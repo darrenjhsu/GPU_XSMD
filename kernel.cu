@@ -4,14 +4,6 @@
 
 __global__ void scat_calc (double *coord, double *Force, int *Ele, double *FF, double *q, double *S_ref, double *dS, double *S_calc, int num_atom, int num_q, int num_ele, double *Aq, double alpha, double k_chi, double sigma2, double *f_ptxc, double *f_ptyc, double *f_ptzc, double *S_calcc, int num_atom2, int num_q2) {
     extern __shared__ double FF_pt[num_ele];
-    //double *f_ptx = f_pt; // 14 KB, if the protein is larger than 2k atoms then we have to move to global memory
-    // also test if we need cudaDeviceSetSharedMemConfig(cudaSharedMemBankSizeEightByte)
-    //double *f_pty = (double*)&f_ptx[num_atom];
-    //double *f_ptz = (double*)&f_pty[num_atom];
-    //int idx = blockIdx.x * blockDim.x + threadIdx.x;
-    //          0 - 512      1024       0 - 1023
-    //int idy = blockIdx.y * blockDim.y + threadIdx.y;
-    //if (idx > num_q || idy > num_atom) return;
     
     if (blockIdx.x > num_q) return; // out of q range
     if (threadIdx.x > num_atom) return; // out of atom numbers (not happening)
