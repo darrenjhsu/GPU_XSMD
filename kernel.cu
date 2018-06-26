@@ -3,7 +3,7 @@
 #include "param.hh"
 
 __global__ void scat_calc (double *coord, double *Force, int *Ele, double *FF, double *q, double *S_ref, double *dS, double *S_calc, int num_atom, int num_q, int num_ele, double *Aq, double alpha, double k_chi, double sigma2, double *f_ptxc, double *f_ptyc, double *f_ptzc, double *S_calcc, int num_atom2, int num_q2) {
-    //extern __shared__ double f_pt[];
+    extern __shared__ double FF_pt[num_ele];
     //double *f_ptx = f_pt; // 14 KB, if the protein is larger than 2k atoms then we have to move to global memory
     // also test if we need cudaDeviceSetSharedMemConfig(cudaSharedMemBankSizeEightByte)
     //double *f_pty = (double*)&f_ptx[num_atom];
@@ -30,10 +30,20 @@ __global__ void scat_calc (double *coord, double *Force, int *Ele, double *FF, d
     __syncthreads();
     */
 
+
     //for (int ii = blockIdx.x * blockDim.x + threadIdx.x; ii < num_q; ii += blockDim.x * gridDim.x) {
     for (int ii = blockIdx.x; ii < num_q; ii += gridDim.x) {
           //       0 - 512          300          512
         double q_pt = q[ii];
+        // Calculate Form factor for this block (or q vector)
+        for (int ii = threadIdx.x; ii < num_ele; ii += blockDim.x) {
+            FF_pt[ii] = 0.0;
+            for (int jj = 0; jj < num_ele; jj++) {
+                FF_pt[ii] += WK[ii*11 + jj] * exp(-WK[ii*11+6+jj] * q_pt * q_pt);
+            }
+            FF_pt[ii] += WK[ii*11 + 5];
+        }
+        __syncthreads();
         // Calculate scattering for Aq
         //for (int jj = blockIdx.y * blockDim.y + threadIdx.y; jj < num_atom; jj += blockIdx.y * gridDim.y) {
         for (int jj = threadIdx.x; jj < num_atom; jj += blockDim.x) {
