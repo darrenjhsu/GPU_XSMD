@@ -1,0 +1,3 @@
+
+This project is to use GPU to accelerate X-ray scattering calculation with Debye formula, and use it in MD simulation. Concepts were taken from Bjorling et al. JCTC 2015, 11, 780. 
+
