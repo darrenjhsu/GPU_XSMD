@@ -12,6 +12,8 @@ void XSMD_calc (double *coord, double *Force) {
     double *d_S_ref, *d_dS, *d_S_calc;
     double *S_calc;
     double *d_S_calcc, *d_f_ptxc, *d_f_ptyc, *d_f_ptzc;
+    double *d_rot_pt, *d_rot;
+    int *d_bond_pp;
     //int *a, *d_a; 
     //a = (int *)malloc(sizeof(int)); 
     //cudaMalloc((void **)&d_a,sizeof(int));
@@ -22,6 +24,9 @@ void XSMD_calc (double *coord, double *Force) {
     int size_q = num_q * sizeof(double); 
     int size_FF = num_ele * num_q * sizeof(double);
     int size_qxatom2 = num_q2 * num_atom2 * sizeof(double); // check if overflow
+    int size_bond_pp = 3 * num_pp * sizeof(int);
+    int size_rot = num_pp * sizeof(int);
+    int size_rotxatom2 = num_pp * num_atom2 * sizeof(double);
     // Initialize Force array
     //Force = (double *)malloc(size_coord);
     for (int ii = 0; ii<3*num_atom; ii++) {
@@ -53,14 +58,19 @@ void XSMD_calc (double *coord, double *Force) {
     cudaMemset(d_f_ptzc,0.0, size_qxatom2);
     cudaMalloc((void **)&d_S_calcc, size_qxatom2);
     cudaMemset(d_S_calcc,0.0, size_qxatom2);   
+    cudaMalloc((void **)&d_rot, size_rot);
+    cudaMemset(d_rot,0.0, size_rot);
+    cudaMalloc((void **)&d_rot_pt, size_rotxatom2);
+    cudaMemset(d_rot_pt,0.0, size_rotxatom2);
+    cudaMalloc((void **)&d_bond_pp, size_bond_pp);
     cudaMemcpy(d_coord, coord, size_coord, cudaMemcpyHostToDevice);
     //cudaMemcpy(d_Force, Force, size_coord, cudaMemcpyHostToDevice);
-    cudaMemcpy(d_q,     q,     size_q,     cudaMemcpyHostToDevice);
-    cudaMemcpy(d_FF,    FF,    size_FF,    cudaMemcpyHostToDevice);
-    cudaMemcpy(d_Ele,   Ele,   size_atom,  cudaMemcpyHostToDevice);
-    cudaMemcpy(d_S_ref, S_ref, size_q,     cudaMemcpyHostToDevice);
-    cudaMemcpy(d_dS,    dS,    size_q,     cudaMemcpyHostToDevice);
-
+    cudaMemcpy(d_q,      q,      size_q,      cudaMemcpyHostToDevice);
+    cudaMemcpy(d_FF,     FF,     size_FF,     cudaMemcpyHostToDevice);
+    cudaMemcpy(d_Ele,    Ele,    size_atom,   cudaMemcpyHostToDevice);
+    cudaMemcpy(d_S_ref,  S_ref,  size_q,      cudaMemcpyHostToDevice);
+    cudaMemcpy(d_dS,     dS,     size_q,      cudaMemcpyHostToDevice);
+    cudaMemcpy(d_bond_pp,bond_pp,size_bond_pp,cudaMemcpyHostToDevice);
 
 
     //k_chi = 5e-10;
@@ -70,6 +80,8 @@ void XSMD_calc (double *coord, double *Force) {
     scat_calc<<<512, 128>>>(d_coord, d_Force, d_Ele, d_FF, d_q, d_S_ref, d_dS, d_S_calc, num_atom, num_q, num_ele, d_Aq, alpha, k_chi, sigma2, d_f_ptxc, d_f_ptyc, d_f_ptzc, d_S_calcc, num_atom2, num_q2);
     //printf("force_calc finished! \n");
     force_calc<<<128, 512>>>(d_Force, d_q, num_atom, num_q, d_f_ptxc, d_f_ptyc, d_f_ptzc, num_atom2, num_q2);
+    
+    force_proj<<<32, 128>>>(d_coord, d_Force, d_rot, d_rot_pt, d_bond_pp, num_pp, num_atom, num_atom2);
     cudaMemcpy(S_calc, d_S_calc, size_q,     cudaMemcpyDeviceToHost);
     cudaMemcpy(Force,  d_Force,  size_coord, cudaMemcpyDeviceToHost);
     //cudaMemcpy(a,      d_a,      sizeof(int),cudaMemcpyDeviceToHost);

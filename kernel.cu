@@ -79,14 +79,14 @@ __global__ void scat_calc (double *coord, double *Force, int *Ele, double *FF, d
         // Tree-like summation of S_calcc to get S_calc
         for (int stride = num_atom2 / 2; stride > 0; stride >>= 1) {
             __syncthreads();
-            for(int iAccum = threadIdx.x; iAccum < stride; iAccum += blockDim.x) {
-                S_calcc[ii * num_atom2 + iAccum] += S_calcc[ii * num_atom2 + stride + iAccum];
+            for(int iaccum = threadidx.x; iaccum < stride; iaccum += blockdim.x) {
+                s_calcc[ii * num_atom2 + iaccum] += s_calcc[ii * num_atom2 + stride + iaccum];
             }
         }
         __syncthreads();
-        if (threadIdx.x == 0) {
-            S_calc[ii] = S_calcc[ii * num_atom2];
-            Aq[ii] = k_chi / 2.0 / sigma2 * ( dS[ii] - alpha * (S_calc[ii] - S_ref[ii]));
+        if (threadidx.x == 0) {
+            s_calc[ii] = s_calcc[ii * num_atom2];
+            aq[ii] = k_chi / 2.0 / sigma2 * ( ds[ii] - alpha * (s_calc[ii] - s_ref[ii]));
         }
         __syncthreads();
         // Multiply f_pt{x,y,z}c(q) by Aq(q) * 8 * alpha * k_chi / sigma2
@@ -127,5 +127,61 @@ __global__ void force_calc (double *Force, double *q, int num_atom, int num_q, d
         }
         __syncthreads();
     }
+}
+
+__global__ void force_proj (double *coord, double *Force, double *rot, double *rot_pt, int *bond_pp, int num_pp, int num_atom, int num_atom2) {
+    if (blockIdx.x > num_pp) return;
+    if (threadIdx.x > num_atom) return;
+    for (int ii = blockIdx.x; ii < num_pp; ii += gridDim.x) {
+        // For each pp bond
+        // Calculate normalized torsional vector
+        double cp1 = 0.0;
+        double cp2 = 0.0;
+        double cp3 = 0.0; // Cross product
+        int E1, E2, E3; // Atom index of the pp bond
+        E1 = bond_pp[ii]; E2 = bond_pp[ii+1]; E3 = bond_pp[ii+2];
+        cp1 = cross2(coord[3*E2+1]-coord[3*E1+1], coord[3*E2+2]-coord[3*E1+2],
+                     coord[3*E3+1]-coord[3*E2+1], coord[3*E3+2]-coord[3*E2+2]);
+        cp2 = cross2(coord[3*E2+2]-coord[3*E1+2], coord[3*E2+0]-coord[3*E1+0],
+                     coord[3*E3+2]-coord[3*E2+2], coord[3*E3+0]-coord[3*E2+0]);
+        cp3 = cross2(coord[3*E2+0]-coord[3*E1+0], coord[3*E2+1]-coord[3*E1+1],
+                     coord[3*E3+0]-coord[3*E2+0], coord[3*E3+1]-coord[3*E2+1]);
+        double r = sqrt(cp1 * cp1 + cp2 * cp2 + cp3 * cp3);
+        cp1 /= r;
+        cp2 /= r;
+        cp3 /= r;
+
+        for (int jj = threadIdx.x; jj < num_atom; jj += blockDim.x) {
+            // For each atom
+            if (jj == E1 || jj == E2) {
+                continue;
+            } else {
+                rot_pt[ii*num_atom2+jj] += dot(cp1, cp2, cp3, coord[3*jj], coord[3*jj+1], coord[3*jj+2]);
+            }
+        }
+    }
+
+    // Perform summation for rot
+    for (int stride = num_atom2 / 2; stride > 0; stride >>= 1) {
+         __syncthreads();
+         for(int iaccum = threadidx.x; iaccum < stride; iaccum += blockdim.x) {
+             rot_pt[ii * num_atom2 + iaccum] += rot_pt[ii * num_atom2 + stride + iaccum];
+         }
+     }
+     __syncthreads();
+     if (threadidx.x == 0) {
+         rot[ii] = rot[ii * num_atom2];
+     }
+     __syncthreads();
+   
 
 }
+
+__device__ double dot (double a1, double a2, double a3, double b1, double b2, double b3) {
+    return (a1 * b1 + a2 * b2 + a3 * b3);
+}
+
+__device__ double cross2 (double a2, double a3, double b2, double b3) {
+    return (a2 * b3 - a3 * b2);
+}
+ 
