@@ -82,8 +82,13 @@ void XSMD_calc (double *coord, double *Force) {
     force_calc<<<128, 512>>>(d_Force, d_q, num_atom, num_q, d_f_ptxc, d_f_ptyc, d_f_ptzc, num_atom2, num_q2);
     
     force_proj<<<32, 128>>>(d_coord, d_Force, d_rot, d_rot_pt, d_bond_pp, num_pp, num_atom, num_atom2);
+    //cudaMemcpy(rot,    d_rot,    size_rot,   cudaMemcpyDeviceToHost);
+    pp_assign<<<1, 128>>>(d_coord, d_Force, d_rot, d_bond_pp, num_pp, num_atom);
     cudaMemcpy(S_calc, d_S_calc, size_q,     cudaMemcpyDeviceToHost);
     cudaMemcpy(Force,  d_Force,  size_coord, cudaMemcpyDeviceToHost);
+
+ 
+
     //cudaMemcpy(a,      d_a,      sizeof(int),cudaMemcpyDeviceToHost);
     double chi = 0.0;
     double chi2 = 0.0;
@@ -105,6 +110,8 @@ void XSMD_calc (double *coord, double *Force) {
     cudaFree(d_dS); cudaFree(d_S_calc); cudaFree(d_Aq);
     cudaFree(d_f_ptxc); cudaFree(d_f_ptyc); cudaFree(d_f_ptzc);
     cudaFree(d_S_calcc);
+
+    cudaFree(d_rot); cudaFree(d_rot_pt); cudafree(d_bond_pp)
     //cudaFree(d_a); free(a);
     free(S_calc);
 
