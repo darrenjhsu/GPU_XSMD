@@ -1,2 +1,2 @@
 
-extern double WK[num_ele * 11];
+extern double WK[44];

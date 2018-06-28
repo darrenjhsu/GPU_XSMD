@@ -61,6 +61,8 @@ void XSMD_calc (double *coord, double *Force) {
     cudaMemcpy(d_S_ref, S_ref, size_q,     cudaMemcpyHostToDevice);
     cudaMemcpy(d_dS,    dS,    size_q,     cudaMemcpyHostToDevice);
 
+
+
     //k_chi = 5e-10;
     double sigma2 = 1.0;
     double alpha = 1.0;
@@ -83,7 +85,7 @@ void XSMD_calc (double *coord, double *Force) {
     }*/
     printf("chi square is %.5e ( %.3f \% )\n",chi2, chi2 / 7.80177e+10 * 100);
     /*for (int ii = 0; ii < 1; ii++) {
-        printf("%.5e and a is %d\n", S_calc[ii], *a);
+        printf("S0 = %.5e \n", S_calc[ii]);
     }*/
 
     cudaFree(d_coord); cudaFree(d_Force); cudaFree(d_q);

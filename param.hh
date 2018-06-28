@@ -9,4 +9,6 @@ extern double dS[301];
 extern double FF[1204];
 extern int Ele[83];
 extern int num_q2;
-extern int num_atom2; 
+extern int num_atom2;
+extern int num_pp;
+extern int bond_pp[42]; 

@@ -1,9 +1,11 @@
 
 #include <math.h>
 #include "param.hh"
+#include "WaasKirf.hh"
 
 __global__ void scat_calc (double *coord, double *Force, int *Ele, double *FF, double *q, double *S_ref, double *dS, double *S_calc, int num_atom, int num_q, int num_ele, double *Aq, double alpha, double k_chi, double sigma2, double *f_ptxc, double *f_ptyc, double *f_ptzc, double *S_calcc, int num_atom2, int num_q2) {
-    extern __shared__ double FF_pt[num_ele];
+//__global__ void scat_calc (double *coord, double *Force, int *Ele, double *WK, double *q, double *S_ref, double *dS, double *S_calc, int num_atom, int num_q, int num_ele, double *Aq, double alpha, double k_chi, double sigma2, double *f_ptxc, double *f_ptyc, double *f_ptzc, double *S_calcc, int num_atom2, int num_q2) {
+    //__shared__ double FF_pt[4];
     
     if (blockIdx.x > num_q) return; // out of q range
     if (threadIdx.x > num_atom) return; // out of atom numbers (not happening)
@@ -28,14 +30,15 @@ __global__ void scat_calc (double *coord, double *Force, int *Ele, double *FF, d
           //       0 - 512          300          512
         double q_pt = q[ii];
         // Calculate Form factor for this block (or q vector)
-        for (int ii = threadIdx.x; ii < num_ele; ii += blockDim.x) {
-            FF_pt[ii] = 0.0;
-            for (int jj = 0; jj < num_ele; jj++) {
-                FF_pt[ii] += WK[ii*11 + jj] * exp(-WK[ii*11+6+jj] * q_pt * q_pt);
-            }
-            FF_pt[ii] += WK[ii*11 + 5];
+        /*for (int jj = threadIdx.x; jj < num_ele; jj += blockDim.x) {
+            FF_pt[jj] = WK[jj*11] * exp(-WK[jj*11+6] * q_pt * q_pt) + \
+                        WK[jj*11+1] * exp(-WK[jj*11+7] * q_pt * q_pt) + \
+                        WK[jj*11+2] * exp(-WK[jj*11+8] * q_pt * q_pt) + \
+                        WK[jj*11+3] * exp(-WK[jj*11+9] * q_pt * q_pt) + \
+                        WK[jj*11+4] * exp(-WK[jj*11+10] * q_pt * q_pt) + \
+                        WK[jj*11+5];
         }
-        __syncthreads();
+        __syncthreads();*/
         // Calculate scattering for Aq
         //for (int jj = blockIdx.y * blockDim.y + threadIdx.y; jj < num_atom; jj += blockIdx.y * gridDim.y) {
         for (int jj = threadIdx.x; jj < num_atom; jj += blockDim.x) {
@@ -45,13 +48,16 @@ __global__ void scat_calc (double *coord, double *Force, int *Ele, double *FF, d
             double atom1z = coord[3*jj+2];
             int atom1t = Ele[jj]; // atom1 element type
             double atom1FF = FF[ii*num_ele+atom1t]; // atom1 form factor at q
+            //double atom1FF = FF_pt[atom1t]; // atom1 form factor at q
             for (int kk = 0; kk < num_atom; kk++) {
                 int atom2t = Ele[kk];
                 if (q_pt == 0.0) {
                     S_calcc[ii*num_atom2+jj] += atom1FF * FF[ii*num_ele+atom2t];
+                    //S_calcc[ii*num_atom2+jj] += atom1FF * FF_pt[atom2t];
                     //*a = 1;
                 } else if (kk == jj) {
                     S_calcc[ii*num_atom2+jj] += atom1FF * FF[ii*num_ele+atom2t];
+                    //S_calcc[ii*num_atom2+jj] += atom1FF * FF_pt[atom2t];
                 } else {
                     double dx = coord[3*kk+0] - atom1x;
                     double dy = coord[3*kk+1] - atom1y;
@@ -59,6 +65,8 @@ __global__ void scat_calc (double *coord, double *Force, int *Ele, double *FF, d
                     double r = sqrt(dx*dx+dy*dy+dz*dz);
                     S_calcc[ii*num_atom2+jj] += atom1FF * FF[ii*num_ele+atom2t] * sin(q_pt * r) / q_pt / r;
                     double prefac = atom1FF * FF[ii*num_ele+atom2t] * (cos(q_pt * r) - sin(q_pt * r) / q_pt / r) / r / r;
+                    //S_calcc[ii*num_atom2+jj] += atom1FF * FF_pt[atom2t] * sin(q_pt * r) / q_pt / r;
+                    //double prefac = atom1FF * FF_pt[atom2t] * (cos(q_pt * r) - sin(q_pt * r) / q_pt / r) / r / r;
                     f_ptxc[ii*num_atom2+jj] += prefac * dx;
                     f_ptyc[ii*num_atom2+jj] += prefac * dy;
                     f_ptzc[ii*num_atom2+jj] += prefac * dz;
