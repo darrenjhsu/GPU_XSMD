@@ -96,10 +96,10 @@ void XSMD_calc (double *coord, double *Force) {
         chi = dS[ii] - (S_calc[ii] - S_ref[ii]);
         chi2 += chi * chi;
     }
-    for (int ii = 0; ii < 3 * num_atom; ii++) {
+    /*for (int ii = 0; ii < 3 * num_atom; ii++) {
         printf("%.8f ", Force[ii]);
         if ((ii+1) % 3 == 0) printf("\n");
-    }
+    }*/
     printf("chi square is %.5e ( %.3f \% )\n",chi2, chi2 / 7.80177e+10 * 100);
     /*for (int ii = 0; ii < 1; ii++) {
         printf("S0 = %.5e \n", S_calc[ii]);

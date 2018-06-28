@@ -223,9 +223,9 @@ __global__ void pp_assign (double *coord, double *Force, double *rot, int *bond_
         cp2 /= r;
         cp3 /= r;
         //printf("Vector for E%d is (%.3f, %.3f, %.3f)\n", E3, cp1, cp2, cp3);
-        Force[3*E3] = cp1 * rot[ii];
-        Force[3*E3+1] = cp2 * rot[ii];
-        Force[3*E3+2] = cp3 * rot[ii];
+        Force[3*E3] = cp1 * rot[ii] * 1e-3;
+        Force[3*E3+1] = cp2 * rot[ii] * 1e-3;
+        Force[3*E3+2] = cp3 * rot[ii] * 1e-3;
     }
 }
 
