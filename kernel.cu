@@ -3,12 +3,20 @@
 #include "param.hh"
 #include "WaasKirf.hh"
 
+__device__ double dot (double a1, double a2, double a3, double b1, double b2, double b3) {
+    return (a1 * b1 + a2 * b2 + a3 * b3);
+}
+
+__device__ double cross2 (double a2, double a3, double b2, double b3) {
+    return (a2 * b3 - a3 * b2);
+}
+ 
 __global__ void scat_calc (double *coord, double *Force, int *Ele, double *FF, double *q, double *S_ref, double *dS, double *S_calc, int num_atom, int num_q, int num_ele, double *Aq, double alpha, double k_chi, double sigma2, double *f_ptxc, double *f_ptyc, double *f_ptzc, double *S_calcc, int num_atom2, int num_q2) {
 //__global__ void scat_calc (double *coord, double *Force, int *Ele, double *WK, double *q, double *S_ref, double *dS, double *S_calc, int num_atom, int num_q, int num_ele, double *Aq, double alpha, double k_chi, double sigma2, double *f_ptxc, double *f_ptyc, double *f_ptzc, double *S_calcc, int num_atom2, int num_q2) {
     //__shared__ double FF_pt[4];
     
-    if (blockIdx.x > num_q) return; // out of q range
-    if (threadIdx.x > num_atom) return; // out of atom numbers (not happening)
+    if (blockIdx.x >= num_q) return; // out of q range
+    if (threadIdx.x >= num_atom) return; // out of atom numbers (not happening)
         
     /*if (blockIdx.x == 0) {
         for (int jj = threadIdx.x; jj < num_atom; jj += blockDim.x) {
@@ -79,14 +87,14 @@ __global__ void scat_calc (double *coord, double *Force, int *Ele, double *FF, d
         // Tree-like summation of S_calcc to get S_calc
         for (int stride = num_atom2 / 2; stride > 0; stride >>= 1) {
             __syncthreads();
-            for(int iaccum = threadIdx.x; iaccum < stride; iaccum += blockDim.x) {
-                s_calcc[ii * num_atom2 + iaccum] += s_calcc[ii * num_atom2 + stride + iaccum];
+            for(int iAccum = threadIdx.x; iAccum < stride; iAccum += blockDim.x) {
+                S_calcc[ii * num_atom2 + iAccum] += S_calcc[ii * num_atom2 + stride + iAccum];
             }
         }
         __syncthreads();
-        if (threadidx.x == 0) {
-            s_calc[ii] = s_calcc[ii * num_atom2];
-            aq[ii] = k_chi / 2.0 / sigma2 * ( ds[ii] - alpha * (s_calc[ii] - s_ref[ii]));
+        if (threadIdx.x == 0) {
+            S_calc[ii] = S_calcc[ii * num_atom2];
+            Aq[ii] = k_chi / 2.0 / sigma2 * ( dS[ii] - alpha * (S_calc[ii] - S_ref[ii]));
         }
         __syncthreads();
         // Multiply f_pt{x,y,z}c(q) by Aq(q) * 8 * alpha * k_chi / sigma2
@@ -109,7 +117,7 @@ __global__ void scat_calc (double *coord, double *Force, int *Ele, double *FF, d
 
 __global__ void force_calc (double *Force, double *q, int num_atom, int num_q, double *f_ptxc, double *f_ptyc, double *f_ptzc, int num_atom2, int num_q2) {
     // Do column tree sum of f_ptxc for f_ptx for every atom, then assign threadIdx.x == 0 (3 * num_atoms) to Force. Force is num_atom * 3. 
-    if (blockIdx.x > num_atom) return;
+    if (blockIdx.x >= num_atom) return;
     for (int ii = blockIdx.x; ii < num_atom; ii += gridDim.x) {
         for (int stride = num_atom2 / 2; stride > 0; stride >>= 1) {
             __syncthreads();
@@ -130,8 +138,8 @@ __global__ void force_calc (double *Force, double *q, int num_atom, int num_q, d
 }
 
 __global__ void force_proj (double *coord, double *Force, double *rot, double *rot_pt, int *bond_pp, int num_pp, int num_atom, int num_atom2) {
-    if (blockIdx.x > num_pp) return;
-    if (threadIdx.x > num_atom) return;
+    if (blockIdx.x >= num_pp) return;
+    if (threadIdx.x >= num_atom) return;
     for (int ii = blockIdx.x; ii < num_pp; ii += gridDim.x) {
         // For each pp bond
         // Calculate normalized torsional vector
@@ -159,27 +167,27 @@ __global__ void force_proj (double *coord, double *Force, double *rot, double *r
                 rot_pt[ii*num_atom2+jj] += dot(cp1, cp2, cp3, coord[3*jj], coord[3*jj+1], coord[3*jj+2]);
             }
         }
-    }
+    
 
     // Perform summation for rot
-    for (int stride = num_atom2 / 2; stride > 0; stride >>= 1) {
-        __syncthreads();
-        for(int iaccum = threadIdx.x; iaccum < stride; iaccum += blockDim.x) {
-            rot_pt[ii * num_atom2 + iaccum] += rot_pt[ii * num_atom2 + stride + iaccum];
+        for (int stride = num_atom2 / 2; stride > 0; stride >>= 1) {
+            __syncthreads();
+            for(int iAccum = threadIdx.x; iAccum < stride; iAccum += blockDim.x) {
+                rot_pt[ii * num_atom2 + iAccum] += rot_pt[ii * num_atom2 + stride + iAccum];
+            }
         }
-    }
-    __syncthreads();
-    if (threadidx.x == 0) {
-        rot[ii] = rot[ii * num_atom2];
-    }
-    __syncthreads();
-       
+        __syncthreads();
+        if (threadIdx.x == 0) {
+            rot[ii] = rot[ii * num_atom2];
+        }
+        __syncthreads();
+    }   
 
 }
 
-__global__ double pp_assign (double *coord, double *Force, double *rot, int *bond_pp, int num_pp, int num_atom) {
-    if (threadIdx.x > num_atom) return;
-    for (int ii = threadIdx.x; ii < num_atom; ii += blockDim.x)
+__global__ void pp_assign (double *coord, double *Force, double *rot, int *bond_pp, int num_pp, int num_atom) {
+    if (threadIdx.x >= num_atom) return;
+    for (int ii = threadIdx.x; ii < num_atom; ii += blockDim.x) {
         Force[ii] = 0.0;
         Force[ii+1] = 0.0;
         Force[ii+2] = 0.0;
@@ -210,11 +218,3 @@ __global__ double pp_assign (double *coord, double *Force, double *rot, int *bon
 
 
 
-__device__ double dot (double a1, double a2, double a3, double b1, double b2, double b3) {
-    return (a1 * b1 + a2 * b2 + a3 * b3);
-}
-
-__device__ double cross2 (double a2, double a3, double b2, double b3) {
-    return (a2 * b3 - a3 * b2);
-}
- 

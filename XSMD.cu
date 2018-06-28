@@ -111,7 +111,7 @@ void XSMD_calc (double *coord, double *Force) {
     cudaFree(d_f_ptxc); cudaFree(d_f_ptyc); cudaFree(d_f_ptzc);
     cudaFree(d_S_calcc);
 
-    cudaFree(d_rot); cudaFree(d_rot_pt); cudafree(d_bond_pp)
+    cudaFree(d_rot); cudaFree(d_rot_pt); cudaFree(d_bond_pp);
     //cudaFree(d_a); free(a);
     free(S_calc);
 
