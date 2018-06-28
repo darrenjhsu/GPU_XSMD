@@ -1,4 +1,5 @@
 
+#include <stdio.h>
 #include <math.h>
 #include "param.hh"
 #include "WaasKirf.hh"
@@ -148,6 +149,7 @@ __global__ void force_proj (double *coord, double *Force, double *rot, double *r
         double cp3 = 0.0; // Cross product
         int E1, E2, E3; // Atom index of the pp bond
         E1 = bond_pp[3*ii]; E2 = bond_pp[3*ii+1]; E3 = bond_pp[3*ii+2];
+        //if (ii == 0) printf("Elements are %d %d and %d \n", E1, E2, E3);
         cp1 = cross2(coord[3*E2+1]-coord[3*E1+1], coord[3*E2+2]-coord[3*E1+2],
                      coord[3*E3+1]-coord[3*E2+1], coord[3*E3+2]-coord[3*E2+2]);
         cp2 = cross2(coord[3*E2+2]-coord[3*E1+2], coord[3*E2+0]-coord[3*E1+0],
@@ -178,7 +180,7 @@ __global__ void force_proj (double *coord, double *Force, double *rot, double *r
         }
         __syncthreads();
         if (threadIdx.x == 0) {
-            rot[ii] = rot[ii * num_atom2];
+            rot[ii] = rot_pt[ii * num_atom2];
         }
         __syncthreads();
     }   
@@ -188,17 +190,28 @@ __global__ void force_proj (double *coord, double *Force, double *rot, double *r
 __global__ void pp_assign (double *coord, double *Force, double *rot, int *bond_pp, int num_pp, int num_atom) {
     if (threadIdx.x >= num_atom) return;
     for (int ii = threadIdx.x; ii < num_atom; ii += blockDim.x) {
-        Force[ii] = 0.0;
-        Force[ii+1] = 0.0;
-        Force[ii+2] = 0.0;
+        Force[3*ii] = 0.0;
+        Force[3*ii+1] = 0.0;
+        Force[3*ii+2] = 0.0;
     }
     __syncthreads();
+    /*if (threadIdx.x == 0) {
+        for (int ii = 0; ii < num_atom; ii ++) {
+            printf("Force is now %.3f, %.3f, and %.3f. \n", Force[ii], Force[ii+1], Force[ii+2]);
+        }
+        printf("rot values: \n");
+        for (int ii = 0; ii < num_pp; ii++) {
+            printf("%.3f \n", rot[ii]*1e3);
+        }
+    }
+    __syncthreads();*/
     for (int ii = threadIdx.x; ii < num_pp; ii += blockDim.x) {
         double cp1 = 0.0;
         double cp2 = 0.0;
         double cp3 = 0.0; // Cross product
         int E1, E2, E3; // Atom index of the pp bond
         E1 = bond_pp[3*ii]; E2 = bond_pp[3*ii+1]; E3 = bond_pp[3*ii+2];
+        //printf("Element 3 is %d. \n", E3);
         cp1 = cross2(coord[3*E2+1]-coord[3*E1+1], coord[3*E2+2]-coord[3*E1+2],
                      coord[3*E3+1]-coord[3*E2+1], coord[3*E3+2]-coord[3*E2+2]);
         cp2 = cross2(coord[3*E2+2]-coord[3*E1+2], coord[3*E2+0]-coord[3*E1+0],
@@ -209,10 +222,10 @@ __global__ void pp_assign (double *coord, double *Force, double *rot, int *bond_
         cp1 /= r;
         cp2 /= r;
         cp3 /= r;
+        //printf("Vector for E%d is (%.3f, %.3f, %.3f)\n", E3, cp1, cp2, cp3);
         Force[3*E3] = cp1 * rot[ii];
         Force[3*E3+1] = cp2 * rot[ii];
         Force[3*E3+2] = cp3 * rot[ii];
-
     }
 }
 

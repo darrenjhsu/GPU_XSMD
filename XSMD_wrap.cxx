@@ -2295,6 +2295,78 @@ fail:
 }
 
 
+SWIGINTERN const char *_wrap_num_pp_get(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, char *name1, char *name2, int flags) {
+  Tcl_Obj *value = 0;
+  
+  value = SWIG_From_int(static_cast< int >(num_pp));
+  if (value) {
+    Tcl_SetVar2(interp,name1,name2,Tcl_GetStringFromObj(value,NULL), flags);
+    Tcl_DecrRefCount(value);
+  }
+  return NULL;
+}
+
+
+SWIGINTERN const char *_wrap_num_pp_set(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, char *name1, char *name2 SWIGUNUSED, int flags) {
+  Tcl_Obj *value = 0;
+  Tcl_Obj *name1o = 0;
+  
+  name1o = Tcl_NewStringObj(name1,-1);
+  value = Tcl_ObjGetVar2(interp, name1o, 0, flags);
+  Tcl_DecrRefCount(name1o);
+  if (!value) SWIG_fail;
+  {
+    int val;
+    int res = SWIG_AsVal_int SWIG_TCL_CALL_ARGS_2(value, &val);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""num_pp""' of type '""int""'");
+    }
+    num_pp = static_cast< int >(val);
+  }
+  return NULL;
+fail:
+  return "num_pp";
+}
+
+
+SWIGINTERN const char *_wrap_bond_pp_get(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, char *name1, char *name2, int flags) {
+  Tcl_Obj *value = 0;
+  
+  value = SWIG_NewPointerObj(SWIG_as_voidptr(bond_pp), SWIGTYPE_p_int,  0 );
+  if (value) {
+    Tcl_SetVar2(interp,name1,name2,Tcl_GetStringFromObj(value,NULL), flags);
+    Tcl_DecrRefCount(value);
+  }
+  return NULL;
+}
+
+
+SWIGINTERN const char *_wrap_bond_pp_set(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, char *name1, char *name2 SWIGUNUSED, int flags) {
+  Tcl_Obj *value = 0;
+  Tcl_Obj *name1o = 0;
+  
+  name1o = Tcl_NewStringObj(name1,-1);
+  value = Tcl_ObjGetVar2(interp, name1o, 0, flags);
+  Tcl_DecrRefCount(name1o);
+  if (!value) SWIG_fail;
+  {
+    int *inp = 0;
+    int res = SWIG_ConvertPtr(value, SWIG_as_voidptrptr(&inp), SWIGTYPE_p_int,  0 );
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""bond_pp""' of type '""int [42]""'");
+    } else if (inp) {
+      size_t ii = 0;
+      for (; ii < (size_t)42; ++ii) bond_pp[ii] = inp[ii];
+    } else {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""bond_pp""' of type '""int [42]""'");
+    }
+  }
+  return NULL;
+fail:
+  return "bond_pp";
+}
+
+
 
 static swig_command_info swig_commands[] = {
     { SWIG_prefix "double_array", (swig_wrapper_func) _wrap_double_array, NULL},
@@ -2317,6 +2389,8 @@ static swig_var_info swig_variables[] = {
     { SWIG_prefix "Ele", 0, (swig_variable_func) _wrap_Ele_get,(swig_variable_func) _wrap_Ele_set},
     { SWIG_prefix "num_q2", 0, (swig_variable_func) _wrap_num_q2_get,(swig_variable_func) _wrap_num_q2_set},
     { SWIG_prefix "num_atom2", 0, (swig_variable_func) _wrap_num_atom2_get,(swig_variable_func) _wrap_num_atom2_set},
+    { SWIG_prefix "num_pp", 0, (swig_variable_func) _wrap_num_pp_get,(swig_variable_func) _wrap_num_pp_set},
+    { SWIG_prefix "bond_pp", 0, (swig_variable_func) _wrap_bond_pp_get,(swig_variable_func) _wrap_bond_pp_set},
     {0,0,0,0}
 };
 
