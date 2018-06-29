@@ -2,6 +2,7 @@
 %{
     #include "XSMD.hh"
     #include "param.hh"
+    #include "WaasKirf.hh"
 %}
 
 // SWIG helper functions for arrays
@@ -25,4 +26,4 @@ void double_destroy(double *a) {
 %}
 %include "XSMD.hh"
 %include "param.hh"
-
+%include "WaasKirf.hh"

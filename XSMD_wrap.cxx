@@ -1673,6 +1673,7 @@ SWIGEXPORT int SWIG_init(Tcl_Interp *);
 
     #include "XSMD.hh"
     #include "param.hh"
+    #include "WaasKirf.hh"
 
 
 /* Create an array */
@@ -2151,44 +2152,6 @@ fail:
 }
 
 
-SWIGINTERN const char *_wrap_FF_get(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, char *name1, char *name2, int flags) {
-  Tcl_Obj *value = 0;
-  
-  value = SWIG_NewPointerObj(SWIG_as_voidptr(FF), SWIGTYPE_p_double,  0 );
-  if (value) {
-    Tcl_SetVar2(interp,name1,name2,Tcl_GetStringFromObj(value,NULL), flags);
-    Tcl_DecrRefCount(value);
-  }
-  return NULL;
-}
-
-
-SWIGINTERN const char *_wrap_FF_set(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, char *name1, char *name2 SWIGUNUSED, int flags) {
-  Tcl_Obj *value = 0;
-  Tcl_Obj *name1o = 0;
-  
-  name1o = Tcl_NewStringObj(name1,-1);
-  value = Tcl_ObjGetVar2(interp, name1o, 0, flags);
-  Tcl_DecrRefCount(name1o);
-  if (!value) SWIG_fail;
-  {
-    double *inp = 0;
-    int res = SWIG_ConvertPtr(value, SWIG_as_voidptrptr(&inp), SWIGTYPE_p_double,  0 );
-    if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""FF""' of type '""double [1204]""'");
-    } else if (inp) {
-      size_t ii = 0;
-      for (; ii < (size_t)1204; ++ii) FF[ii] = inp[ii];
-    } else {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""FF""' of type '""double [1204]""'");
-    }
-  }
-  return NULL;
-fail:
-  return "FF";
-}
-
-
 SWIGINTERN const char *_wrap_Ele_get(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, char *name1, char *name2, int flags) {
   Tcl_Obj *value = 0;
   
@@ -2367,6 +2330,44 @@ fail:
 }
 
 
+SWIGINTERN const char *_wrap_WK_get(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, char *name1, char *name2, int flags) {
+  Tcl_Obj *value = 0;
+  
+  value = SWIG_NewPointerObj(SWIG_as_voidptr(WK), SWIGTYPE_p_double,  0 );
+  if (value) {
+    Tcl_SetVar2(interp,name1,name2,Tcl_GetStringFromObj(value,NULL), flags);
+    Tcl_DecrRefCount(value);
+  }
+  return NULL;
+}
+
+
+SWIGINTERN const char *_wrap_WK_set(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, char *name1, char *name2 SWIGUNUSED, int flags) {
+  Tcl_Obj *value = 0;
+  Tcl_Obj *name1o = 0;
+  
+  name1o = Tcl_NewStringObj(name1,-1);
+  value = Tcl_ObjGetVar2(interp, name1o, 0, flags);
+  Tcl_DecrRefCount(name1o);
+  if (!value) SWIG_fail;
+  {
+    double *inp = 0;
+    int res = SWIG_ConvertPtr(value, SWIG_as_voidptrptr(&inp), SWIGTYPE_p_double,  0 );
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""WK""' of type '""double [44]""'");
+    } else if (inp) {
+      size_t ii = 0;
+      for (; ii < (size_t)44; ++ii) WK[ii] = inp[ii];
+    } else {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""WK""' of type '""double [44]""'");
+    }
+  }
+  return NULL;
+fail:
+  return "WK";
+}
+
+
 
 static swig_command_info swig_commands[] = {
     { SWIG_prefix "double_array", (swig_wrapper_func) _wrap_double_array, NULL},
@@ -2385,12 +2386,12 @@ static swig_var_info swig_variables[] = {
     { SWIG_prefix "q", 0, (swig_variable_func) _wrap_q_get,(swig_variable_func) _wrap_q_set},
     { SWIG_prefix "S_ref", 0, (swig_variable_func) _wrap_S_ref_get,(swig_variable_func) _wrap_S_ref_set},
     { SWIG_prefix "dS", 0, (swig_variable_func) _wrap_dS_get,(swig_variable_func) _wrap_dS_set},
-    { SWIG_prefix "FF", 0, (swig_variable_func) _wrap_FF_get,(swig_variable_func) _wrap_FF_set},
     { SWIG_prefix "Ele", 0, (swig_variable_func) _wrap_Ele_get,(swig_variable_func) _wrap_Ele_set},
     { SWIG_prefix "num_q2", 0, (swig_variable_func) _wrap_num_q2_get,(swig_variable_func) _wrap_num_q2_set},
     { SWIG_prefix "num_atom2", 0, (swig_variable_func) _wrap_num_atom2_get,(swig_variable_func) _wrap_num_atom2_set},
     { SWIG_prefix "num_pp", 0, (swig_variable_func) _wrap_num_pp_get,(swig_variable_func) _wrap_num_pp_set},
     { SWIG_prefix "bond_pp", 0, (swig_variable_func) _wrap_bond_pp_get,(swig_variable_func) _wrap_bond_pp_set},
+    { SWIG_prefix "WK", 0, (swig_variable_func) _wrap_WK_get,(swig_variable_func) _wrap_WK_set},
     {0,0,0,0}
 };
 
