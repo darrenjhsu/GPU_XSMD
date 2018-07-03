@@ -1624,7 +1624,7 @@ SWIG_Tcl_GetArgs(Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[], const char
 /* -------- TYPES TABLE (BEGIN) -------- */
 
 #define SWIGTYPE_p_char swig_types[0]
-#define SWIGTYPE_p_double swig_types[1]
+#define SWIGTYPE_p_float swig_types[1]
 #define SWIGTYPE_p_int swig_types[2]
 static swig_type_info *swig_types[4];
 static swig_module_info swig_module = {swig_types, 3, 0, 0, 0, 0};
@@ -1677,19 +1677,19 @@ SWIGEXPORT int SWIG_init(Tcl_Interp *);
 
 
 /* Create an array */
-double *double_array(int size) {
-    return (double *) malloc(size*sizeof(double));
+float *float_array(int size) {
+    return (float *)malloc(size*sizeof(float));
 }
 /* Get a value from an array */
-double double_get(double *a, int index) {
+float float_get(float *a, int index) {
     return a[index];
 }
 /* Set a value in the array */
-double double_set(double *a, int index, double value) {
+float float_set(float *a, int index, float value) {
     return (a[index] = value);
 }
 
-void double_destroy(double *a) { 
+void float_destroy(float *a) { 
     free(a);
 }
 
@@ -1735,6 +1735,16 @@ SWIG_AsVal_int SWIG_TCL_DECL_ARGS_2(Tcl_Obj * obj, int *val)
   #define SWIG_From_double   Tcl_NewDoubleObj 
 
 
+SWIGINTERNINLINE Tcl_Obj *
+SWIG_From_float  (float value)
+{    
+  return SWIG_From_double  (value);
+}
+
+
+#include <float.h>
+
+
 SWIGINTERN int
 SWIG_AsVal_double SWIG_TCL_DECL_ARGS_2(Tcl_Obj *obj, double *val)
 {
@@ -1744,6 +1754,22 @@ SWIG_AsVal_double SWIG_TCL_DECL_ARGS_2(Tcl_Obj *obj, double *val)
     return SWIG_OK;
   }
   return SWIG_TypeError;
+}
+
+
+SWIGINTERN int
+SWIG_AsVal_float SWIG_TCL_DECL_ARGS_2(Tcl_Obj * obj, float *val)
+{
+  double v;
+  int res = SWIG_AsVal_double SWIG_TCL_CALL_ARGS_2(obj, &v);
+  if (SWIG_IsOK(res)) {
+    if ((v < -FLT_MAX || v > FLT_MAX)) {
+      return SWIG_OverflowError;
+    } else {
+      if (val) *val = static_cast< float >(v);
+    }
+  }  
+  return res;
 }
 
 
@@ -1768,20 +1794,20 @@ SWIG_From_int  (int value)
 extern "C" {
 #endif
 SWIGINTERN int
-_wrap_double_array(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+_wrap_float_array(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
   int arg1 ;
   int val1 ;
   int ecode1 = 0 ;
-  double *result = 0 ;
+  float *result = 0 ;
   
-  if (SWIG_GetArgs(interp, objc, objv,"o:double_array size ",(void *)0) == TCL_ERROR) SWIG_fail;
+  if (SWIG_GetArgs(interp, objc, objv,"o:float_array size ",(void *)0) == TCL_ERROR) SWIG_fail;
   ecode1 = SWIG_AsVal_int SWIG_TCL_CALL_ARGS_2(objv[1], &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "double_array" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "float_array" "', argument " "1"" of type '" "int""'");
   } 
   arg1 = static_cast< int >(val1);
-  result = (double *)double_array(arg1);
-  Tcl_SetObjResult(interp, SWIG_NewInstanceObj( SWIG_as_voidptr(result), SWIGTYPE_p_double,0));
+  result = (float *)float_array(arg1);
+  Tcl_SetObjResult(interp, SWIG_NewInstanceObj( SWIG_as_voidptr(result), SWIGTYPE_p_float,0));
   return TCL_OK;
 fail:
   return TCL_ERROR;
@@ -1789,28 +1815,28 @@ fail:
 
 
 SWIGINTERN int
-_wrap_double_get(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  double *arg1 = (double *) 0 ;
+_wrap_float_get(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  float *arg1 = (float *) 0 ;
   int arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   int val2 ;
   int ecode2 = 0 ;
-  double result;
+  float result;
   
-  if (SWIG_GetArgs(interp, objc, objv,"oo:double_get a index ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
-  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_double, 0 |  0 );
+  if (SWIG_GetArgs(interp, objc, objv,"oo:float_get a index ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_float, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "double_get" "', argument " "1"" of type '" "double *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "float_get" "', argument " "1"" of type '" "float *""'"); 
   }
-  arg1 = reinterpret_cast< double * >(argp1);
+  arg1 = reinterpret_cast< float * >(argp1);
   ecode2 = SWIG_AsVal_int SWIG_TCL_CALL_ARGS_2(objv[2], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "double_get" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "float_get" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (double)double_get(arg1,arg2);
-  Tcl_SetObjResult(interp,SWIG_From_double(static_cast< double >(result)));
+  result = (float)float_get(arg1,arg2);
+  Tcl_SetObjResult(interp,SWIG_From_float(static_cast< float >(result)));
   return TCL_OK;
 fail:
   return TCL_ERROR;
@@ -1818,36 +1844,36 @@ fail:
 
 
 SWIGINTERN int
-_wrap_double_set(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  double *arg1 = (double *) 0 ;
+_wrap_float_set(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  float *arg1 = (float *) 0 ;
   int arg2 ;
-  double arg3 ;
+  float arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   int val2 ;
   int ecode2 = 0 ;
-  double val3 ;
+  float val3 ;
   int ecode3 = 0 ;
-  double result;
+  float result;
   
-  if (SWIG_GetArgs(interp, objc, objv,"ooo:double_set a index value ",(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
-  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_double, 0 |  0 );
+  if (SWIG_GetArgs(interp, objc, objv,"ooo:float_set a index value ",(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_float, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "double_set" "', argument " "1"" of type '" "double *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "float_set" "', argument " "1"" of type '" "float *""'"); 
   }
-  arg1 = reinterpret_cast< double * >(argp1);
+  arg1 = reinterpret_cast< float * >(argp1);
   ecode2 = SWIG_AsVal_int SWIG_TCL_CALL_ARGS_2(objv[2], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "double_set" "', argument " "2"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "float_set" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_double SWIG_TCL_CALL_ARGS_2(objv[3], &val3);
+  ecode3 = SWIG_AsVal_float SWIG_TCL_CALL_ARGS_2(objv[3], &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "double_set" "', argument " "3"" of type '" "double""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "float_set" "', argument " "3"" of type '" "float""'");
   } 
-  arg3 = static_cast< double >(val3);
-  result = (double)double_set(arg1,arg2,arg3);
-  Tcl_SetObjResult(interp,SWIG_From_double(static_cast< double >(result)));
+  arg3 = static_cast< float >(val3);
+  result = (float)float_set(arg1,arg2,arg3);
+  Tcl_SetObjResult(interp,SWIG_From_float(static_cast< float >(result)));
   return TCL_OK;
 fail:
   return TCL_ERROR;
@@ -1855,18 +1881,18 @@ fail:
 
 
 SWIGINTERN int
-_wrap_double_destroy(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  double *arg1 = (double *) 0 ;
+_wrap_float_destroy(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  float *arg1 = (float *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   
-  if (SWIG_GetArgs(interp, objc, objv,"o:double_destroy a ",(void *)0) == TCL_ERROR) SWIG_fail;
-  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_double, 0 |  0 );
+  if (SWIG_GetArgs(interp, objc, objv,"o:float_destroy a ",(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_float, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "double_destroy" "', argument " "1"" of type '" "double *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "float_destroy" "', argument " "1"" of type '" "float *""'"); 
   }
-  arg1 = reinterpret_cast< double * >(argp1);
-  double_destroy(arg1);
+  arg1 = reinterpret_cast< float * >(argp1);
+  float_destroy(arg1);
   
   return TCL_OK;
 fail:
@@ -1876,24 +1902,24 @@ fail:
 
 SWIGINTERN int
 _wrap_XSMD_calc(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  double *arg1 = (double *) 0 ;
-  double *arg2 = (double *) 0 ;
+  float *arg1 = (float *) 0 ;
+  float *arg2 = (float *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
   int res2 = 0 ;
   
   if (SWIG_GetArgs(interp, objc, objv,"oo:XSMD_calc coord Force ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
-  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_double, 0 |  0 );
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_float, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "XSMD_calc" "', argument " "1"" of type '" "double *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "XSMD_calc" "', argument " "1"" of type '" "float *""'"); 
   }
-  arg1 = reinterpret_cast< double * >(argp1);
-  res2 = SWIG_ConvertPtr(objv[2], &argp2,SWIGTYPE_p_double, 0 |  0 );
+  arg1 = reinterpret_cast< float * >(argp1);
+  res2 = SWIG_ConvertPtr(objv[2], &argp2,SWIGTYPE_p_float, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "XSMD_calc" "', argument " "2"" of type '" "double *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "XSMD_calc" "', argument " "2"" of type '" "float *""'"); 
   }
-  arg2 = reinterpret_cast< double * >(argp2);
+  arg2 = reinterpret_cast< float * >(argp2);
   XSMD_calc(arg1,arg2);
   
   return TCL_OK;
@@ -2007,7 +2033,7 @@ fail:
 SWIGINTERN const char *_wrap_k_chi_get(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, char *name1, char *name2, int flags) {
   Tcl_Obj *value = 0;
   
-  value = SWIG_From_double(static_cast< double >(k_chi));
+  value = SWIG_From_float(static_cast< float >(k_chi));
   if (value) {
     Tcl_SetVar2(interp,name1,name2,Tcl_GetStringFromObj(value,NULL), flags);
     Tcl_DecrRefCount(value);
@@ -2025,12 +2051,12 @@ SWIGINTERN const char *_wrap_k_chi_set(ClientData clientData SWIGUNUSED, Tcl_Int
   Tcl_DecrRefCount(name1o);
   if (!value) SWIG_fail;
   {
-    double val;
-    int res = SWIG_AsVal_double SWIG_TCL_CALL_ARGS_2(value, &val);
+    float val;
+    int res = SWIG_AsVal_float SWIG_TCL_CALL_ARGS_2(value, &val);
     if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""k_chi""' of type '""double""'");
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""k_chi""' of type '""float""'");
     }
-    k_chi = static_cast< double >(val);
+    k_chi = static_cast< float >(val);
   }
   return NULL;
 fail:
@@ -2038,10 +2064,10 @@ fail:
 }
 
 
-SWIGINTERN const char *_wrap_q_get(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, char *name1, char *name2, int flags) {
+SWIGINTERN const char *_wrap_q_S_ref_dS_get(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, char *name1, char *name2, int flags) {
   Tcl_Obj *value = 0;
   
-  value = SWIG_NewPointerObj(SWIG_as_voidptr(q), SWIGTYPE_p_double,  0 );
+  value = SWIG_NewPointerObj(SWIG_as_voidptr(q_S_ref_dS), SWIGTYPE_p_float,  0 );
   if (value) {
     Tcl_SetVar2(interp,name1,name2,Tcl_GetStringFromObj(value,NULL), flags);
     Tcl_DecrRefCount(value);
@@ -2050,7 +2076,7 @@ SWIGINTERN const char *_wrap_q_get(ClientData clientData SWIGUNUSED, Tcl_Interp 
 }
 
 
-SWIGINTERN const char *_wrap_q_set(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, char *name1, char *name2 SWIGUNUSED, int flags) {
+SWIGINTERN const char *_wrap_q_S_ref_dS_set(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, char *name1, char *name2 SWIGUNUSED, int flags) {
   Tcl_Obj *value = 0;
   Tcl_Obj *name1o = 0;
   
@@ -2059,96 +2085,20 @@ SWIGINTERN const char *_wrap_q_set(ClientData clientData SWIGUNUSED, Tcl_Interp 
   Tcl_DecrRefCount(name1o);
   if (!value) SWIG_fail;
   {
-    double *inp = 0;
-    int res = SWIG_ConvertPtr(value, SWIG_as_voidptrptr(&inp), SWIGTYPE_p_double,  0 );
+    float *inp = 0;
+    int res = SWIG_ConvertPtr(value, SWIG_as_voidptrptr(&inp), SWIGTYPE_p_float,  0 );
     if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""q""' of type '""double [301]""'");
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""q_S_ref_dS""' of type '""float [903]""'");
     } else if (inp) {
       size_t ii = 0;
-      for (; ii < (size_t)301; ++ii) q[ii] = inp[ii];
+      for (; ii < (size_t)903; ++ii) q_S_ref_dS[ii] = inp[ii];
     } else {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""q""' of type '""double [301]""'");
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""q_S_ref_dS""' of type '""float [903]""'");
     }
   }
   return NULL;
 fail:
-  return "q";
-}
-
-
-SWIGINTERN const char *_wrap_S_ref_get(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, char *name1, char *name2, int flags) {
-  Tcl_Obj *value = 0;
-  
-  value = SWIG_NewPointerObj(SWIG_as_voidptr(S_ref), SWIGTYPE_p_double,  0 );
-  if (value) {
-    Tcl_SetVar2(interp,name1,name2,Tcl_GetStringFromObj(value,NULL), flags);
-    Tcl_DecrRefCount(value);
-  }
-  return NULL;
-}
-
-
-SWIGINTERN const char *_wrap_S_ref_set(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, char *name1, char *name2 SWIGUNUSED, int flags) {
-  Tcl_Obj *value = 0;
-  Tcl_Obj *name1o = 0;
-  
-  name1o = Tcl_NewStringObj(name1,-1);
-  value = Tcl_ObjGetVar2(interp, name1o, 0, flags);
-  Tcl_DecrRefCount(name1o);
-  if (!value) SWIG_fail;
-  {
-    double *inp = 0;
-    int res = SWIG_ConvertPtr(value, SWIG_as_voidptrptr(&inp), SWIGTYPE_p_double,  0 );
-    if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""S_ref""' of type '""double [301]""'");
-    } else if (inp) {
-      size_t ii = 0;
-      for (; ii < (size_t)301; ++ii) S_ref[ii] = inp[ii];
-    } else {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""S_ref""' of type '""double [301]""'");
-    }
-  }
-  return NULL;
-fail:
-  return "S_ref";
-}
-
-
-SWIGINTERN const char *_wrap_dS_get(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, char *name1, char *name2, int flags) {
-  Tcl_Obj *value = 0;
-  
-  value = SWIG_NewPointerObj(SWIG_as_voidptr(dS), SWIGTYPE_p_double,  0 );
-  if (value) {
-    Tcl_SetVar2(interp,name1,name2,Tcl_GetStringFromObj(value,NULL), flags);
-    Tcl_DecrRefCount(value);
-  }
-  return NULL;
-}
-
-
-SWIGINTERN const char *_wrap_dS_set(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, char *name1, char *name2 SWIGUNUSED, int flags) {
-  Tcl_Obj *value = 0;
-  Tcl_Obj *name1o = 0;
-  
-  name1o = Tcl_NewStringObj(name1,-1);
-  value = Tcl_ObjGetVar2(interp, name1o, 0, flags);
-  Tcl_DecrRefCount(name1o);
-  if (!value) SWIG_fail;
-  {
-    double *inp = 0;
-    int res = SWIG_ConvertPtr(value, SWIG_as_voidptrptr(&inp), SWIGTYPE_p_double,  0 );
-    if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""dS""' of type '""double [301]""'");
-    } else if (inp) {
-      size_t ii = 0;
-      for (; ii < (size_t)301; ++ii) dS[ii] = inp[ii];
-    } else {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""dS""' of type '""double [301]""'");
-    }
-  }
-  return NULL;
-fail:
-  return "dS";
+  return "q_S_ref_dS";
 }
 
 
@@ -2176,12 +2126,12 @@ SWIGINTERN const char *_wrap_Ele_set(ClientData clientData SWIGUNUSED, Tcl_Inter
     int *inp = 0;
     int res = SWIG_ConvertPtr(value, SWIG_as_voidptrptr(&inp), SWIGTYPE_p_int,  0 );
     if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""Ele""' of type '""int [83]""'");
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""Ele""' of type '""int [1749]""'");
     } else if (inp) {
       size_t ii = 0;
-      for (; ii < (size_t)83; ++ii) Ele[ii] = inp[ii];
+      for (; ii < (size_t)1749; ++ii) Ele[ii] = inp[ii];
     } else {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""Ele""' of type '""int [83]""'");
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""Ele""' of type '""int [1749]""'");
     }
   }
   return NULL;
@@ -2333,7 +2283,7 @@ fail:
 SWIGINTERN const char *_wrap_WK_get(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, char *name1, char *name2, int flags) {
   Tcl_Obj *value = 0;
   
-  value = SWIG_NewPointerObj(SWIG_as_voidptr(WK), SWIGTYPE_p_double,  0 );
+  value = SWIG_NewPointerObj(SWIG_as_voidptr(WK), SWIGTYPE_p_float,  0 );
   if (value) {
     Tcl_SetVar2(interp,name1,name2,Tcl_GetStringFromObj(value,NULL), flags);
     Tcl_DecrRefCount(value);
@@ -2351,15 +2301,15 @@ SWIGINTERN const char *_wrap_WK_set(ClientData clientData SWIGUNUSED, Tcl_Interp
   Tcl_DecrRefCount(name1o);
   if (!value) SWIG_fail;
   {
-    double *inp = 0;
-    int res = SWIG_ConvertPtr(value, SWIG_as_voidptrptr(&inp), SWIGTYPE_p_double,  0 );
+    float *inp = 0;
+    int res = SWIG_ConvertPtr(value, SWIG_as_voidptrptr(&inp), SWIGTYPE_p_float,  0 );
     if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""WK""' of type '""double [44]""'");
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""WK""' of type '""float [66]""'");
     } else if (inp) {
       size_t ii = 0;
-      for (; ii < (size_t)44; ++ii) WK[ii] = inp[ii];
+      for (; ii < (size_t)66; ++ii) WK[ii] = inp[ii];
     } else {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""WK""' of type '""double [44]""'");
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""WK""' of type '""float [66]""'");
     }
   }
   return NULL;
@@ -2370,10 +2320,10 @@ fail:
 
 
 static swig_command_info swig_commands[] = {
-    { SWIG_prefix "double_array", (swig_wrapper_func) _wrap_double_array, NULL},
-    { SWIG_prefix "double_get", (swig_wrapper_func) _wrap_double_get, NULL},
-    { SWIG_prefix "double_set", (swig_wrapper_func) _wrap_double_set, NULL},
-    { SWIG_prefix "double_destroy", (swig_wrapper_func) _wrap_double_destroy, NULL},
+    { SWIG_prefix "float_array", (swig_wrapper_func) _wrap_float_array, NULL},
+    { SWIG_prefix "float_get", (swig_wrapper_func) _wrap_float_get, NULL},
+    { SWIG_prefix "float_set", (swig_wrapper_func) _wrap_float_set, NULL},
+    { SWIG_prefix "float_destroy", (swig_wrapper_func) _wrap_float_destroy, NULL},
     { SWIG_prefix "XSMD_calc", (swig_wrapper_func) _wrap_XSMD_calc, NULL},
     {0, 0, 0}
 };
@@ -2383,9 +2333,7 @@ static swig_var_info swig_variables[] = {
     { SWIG_prefix "num_atom", 0, (swig_variable_func) _wrap_num_atom_get,(swig_variable_func) _wrap_num_atom_set},
     { SWIG_prefix "num_ele", 0, (swig_variable_func) _wrap_num_ele_get,(swig_variable_func) _wrap_num_ele_set},
     { SWIG_prefix "k_chi", 0, (swig_variable_func) _wrap_k_chi_get,(swig_variable_func) _wrap_k_chi_set},
-    { SWIG_prefix "q", 0, (swig_variable_func) _wrap_q_get,(swig_variable_func) _wrap_q_set},
-    { SWIG_prefix "S_ref", 0, (swig_variable_func) _wrap_S_ref_get,(swig_variable_func) _wrap_S_ref_set},
-    { SWIG_prefix "dS", 0, (swig_variable_func) _wrap_dS_get,(swig_variable_func) _wrap_dS_set},
+    { SWIG_prefix "q_S_ref_dS", 0, (swig_variable_func) _wrap_q_S_ref_dS_get,(swig_variable_func) _wrap_q_S_ref_dS_set},
     { SWIG_prefix "Ele", 0, (swig_variable_func) _wrap_Ele_get,(swig_variable_func) _wrap_Ele_set},
     { SWIG_prefix "num_q2", 0, (swig_variable_func) _wrap_num_q2_get,(swig_variable_func) _wrap_num_q2_set},
     { SWIG_prefix "num_atom2", 0, (swig_variable_func) _wrap_num_atom2_get,(swig_variable_func) _wrap_num_atom2_set},
@@ -2402,22 +2350,22 @@ static swig_const_info swig_constants[] = {
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_double = {"_p_double", "double *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_float = {"_p_float", "float *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_int = {"_p_int", "int *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_char,
-  &_swigt__p_double,
+  &_swigt__p_float,
   &_swigt__p_int,
 };
 
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_double[] = {  {&_swigt__p_double, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_float[] = {  {&_swigt__p_float, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_int[] = {  {&_swigt__p_int, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_char,
-  _swigc__p_double,
+  _swigc__p_float,
   _swigc__p_int,
 };
 

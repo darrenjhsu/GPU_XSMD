@@ -8,19 +8,19 @@
 // SWIG helper functions for arrays
 %inline %{
 /* Create an array */
-double *double_array(int size) {
-    return (double *) malloc(size*sizeof(double));
+float *float_array(int size) {
+    return (float *)malloc(size*sizeof(float));
 }
 /* Get a value from an array */
-double double_get(double *a, int index) {
+float float_get(float *a, int index) {
     return a[index];
 }
 /* Set a value in the array */
-double double_set(double *a, int index, double value) {
+float float_set(float *a, int index, float value) {
     return (a[index] = value);
 }
 
-void double_destroy(double *a) { 
+void float_destroy(float *a) { 
     free(a);
 }
 %}

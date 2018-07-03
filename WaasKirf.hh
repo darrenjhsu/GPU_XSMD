@@ -1,3 +1,3 @@
 
-extern double WK[44];
+extern float WK[66];
 

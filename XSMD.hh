@@ -1,7 +1,7 @@
 
 
 
-void XSMD_calc (double *coord, double *Force);
+void XSMD_calc (float *coord, float *Force);
 
 
 

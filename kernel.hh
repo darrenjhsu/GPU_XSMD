@@ -2,10 +2,10 @@
 
 
 
-//__global__ void scat_calc (double *coord, double *Force, int *Ele, double *FF, double *q, double *S_ref, double *dS, double *S_calc, int num_atom, int num_q, int num_ele, double *Aq, double alpha, double k_chi, double sigma2, double *f_ptxc, double *f_ptyc, double *f_ptzc, double *S_calcc, int num_atom2, int num_q2);
-__global__ void scat_calc (double *coord, double *Force, int *Ele, double *WK, double *q, double *S_ref, double *dS, double *S_calc, int num_atom, int num_q, int num_ele, double *Aq, double alpha, double k_chi, double sigma2, double *f_ptxc, double *f_ptyc, double *f_ptzc, double *S_calcc, int num_atom2, int num_q2);
-__global__ void force_calc (double *Force, double *q, int num_atom, int num_q, double *f_ptxc, double *f_ptyc, double *f_ptzc, int num_atom2, int num_q2); 
-__global__ void force_proj (double *coord, double *Force, double *rot, double *rot_pt, int *bond_pp, int num_pp, int num_atom, int num_atom2);
-__global__ void pp_assign (double *coord, double *Force, double *rot, int *bond_pp, int num_pp, int num_atom);
-__device__ double dot (double a1, double a2, double a3, double b1, double b2, double b3);
-__device__ double cross2 (double a2, double a3, double b2, double b3);
+//__global__ void scat_calc (float *coord, float *Force, int *Ele, float *FF, float *q, float *S_ref, float *dS, float *S_calc, int num_atom, int num_q, int num_ele, float *Aq, float alpha, float k_chi, float sigma2, float *f_ptxc, float *f_ptyc, float *f_ptzc, float *S_calcc, int num_atom2, int num_q2);
+__global__ void scat_calc (float *coord, float *Force, int *Ele, float *WK, float *q_S_ref_dS, float *S_calc, int num_atom, int num_q, int num_ele, float *Aq, float alpha, float k_chi, float sigma2, float *f_ptxc, float *f_ptyc, float *f_ptzc, float *S_calcc, int num_atom2, int num_q2);
+__global__ void force_calc (float *Force, int num_atom, int num_q, float *f_ptxc, float *f_ptyc, float *f_ptzc, int num_atom2, int num_q2); 
+/*__global__ void force_proj (float *coord, float *Force, float *rot, float *rot_pt, int *bond_pp, int num_pp, int num_atom, int num_atom2);
+__global__ void pp_assign (float *coord, float *Force, float *rot, int *bond_pp, int num_pp, int num_atom);
+__device__ float dot (float a1, float a2, float a3, float b1, float b2, float b3);
+__device__ float cross2 (float a2, float a3, float b2, float b3);*/
