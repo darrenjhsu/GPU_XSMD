@@ -206,6 +206,9 @@ __global__ void force_calc (float *Force, int num_atom, int num_q, float *f_ptxc
             Force[ii*3    ] = -f_ptxc[ii];
             Force[ii*3 + 1] = -f_ptyc[ii];
             Force[ii*3 + 2] = -f_ptzc[ii];
+            //Force[ii*3    ] = 0.0;// -f_ptxc[ii];
+            //Force[ii*3 + 1] = 0.0;//-f_ptyc[ii];
+            //Force[ii*3 + 2] = 0.0;//-f_ptzc[ii];
         }
         __syncthreads();
     }

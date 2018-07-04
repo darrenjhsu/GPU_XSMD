@@ -9,6 +9,7 @@
 int main () {
     //int *Ele, float *FF, float *q, float *S_ref, float *dS, float *S_calc, int num_atom, int num_q, int num_ele, float k_chi)
     //for (int ii = 0; ii < num_atom; ii ++) printf("%.3f, %.3f, %.3f\n",coord_ref[ii*3],coord_ref[ii*3+1],coord_ref[ii*3+2]) ;
+    cudaFree(0); 
     float *d_Aq, *d_coord, *d_Force, *d_FF;
     int *d_Ele;
     float *d_q_S_ref_dS, *d_S_calc;
@@ -89,6 +90,7 @@ int main () {
     scat_calc<<<320, 1024>>>(d_coord, d_Force, d_Ele, d_WK, d_q_S_ref_dS, d_S_calc, num_atom, num_q, num_ele, d_Aq, alpha, k_chi, sigma2, d_f_ptxc, d_f_ptyc, d_f_ptzc, d_S_calcc, num_atom2, num_q2);
     //printf("force_calc finished! \n");
     //printf("%d \n",cudaDeviceSynchronize());
+    cudaDeviceSynchronize();
     cudaMemcpy(S_calc, d_S_calc, size_q,     cudaMemcpyDeviceToHost);
     force_calc<<<1024, 512>>>(d_Force, num_atom, num_q, d_f_ptxc, d_f_ptyc, d_f_ptzc, num_atom2, num_q2);
     
