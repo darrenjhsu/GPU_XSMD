@@ -1,0 +1,18 @@
+
+
+1.  Implement the SASA calc with a sphere of vdW R + 1.4 A out from every atom to vdW R 3.0 A.
+  This includes 
+  0-1. Compile dx, dy, dz, and r as 1749 * 1749 matrices <- a separate kernel.
+  1-1. Get vdW radii for each atom.
+  1-2. Equal volume partition of each sphere (center at atom, r = 3.0 A + vdW radius)
+       This can be done by having a function returning N raster points in the sphere
+  2-1. For each center atom (block) and for every test atom (thread), calculate distance between the atoms. 
+  2-2. If any of these conditions are met, skip that entire test atom:
+    2-2-1. dx or dy or dz > 6.0 + vdW radius of center atom + vdW radius of test atom.
+    2-2-2. Store as a shared boolean array.
+
+  2-3. In the same kernel, for every raster point (thread and a shared array of N) and the test atoms, test the distance if the boolean is true. 
+
+  2-4. Calculate volume of SASA for this atom. 
+
+
