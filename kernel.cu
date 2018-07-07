@@ -35,6 +35,104 @@ __device__ float cross2 (float a2, float a3, float b2, float b3) {
 
 }
 */
+
+__global__ void dist_calc (float *coord, float *dx, float *dy, float *dz, float *r2, int num_atom) {
+    // r2 is the square of distances
+    //__shared__ float coord_s[5247];
+    __shared__ float x_ref, y_ref, z_ref;
+    if (blockIdx.x >= num_atom) return;
+    if (threadIdx.x >= num_atom) return;
+    // Put coord into coord_s
+    //for (int ii = threadIdx.x; ii < num_atom; ii += blockDim.x) {
+    //    coord_s[ii] = coord[ii];
+    //}
+    // Calc distance
+    if (threadIdx.x == 0) {
+        x_ref = coord[3*blockIdx.x  ];
+        y_ref = coord[3*blockIdx.x+1];
+        z_ref = coord[3*blockIdx.x+2];
+    }
+    __syncthreads();
+    for (int ii = threadIdx.x; ii < num_atom; ii += blockDim.x) {
+        dx[blockIdx.x*num_atom+ii] = coord[3*ii  ] - x_ref;
+        dy[blockIdx.x*num_atom+ii] = coord[3*ii+1] - y_ref;
+        dz[blockIdx.x*num_atom+ii] = coord[3*ii+2] - z_ref;
+        r2[blockIdx.x*num_atom+ii] = (coord[3*ii  ] - x_ref) * (coord[3*ii  ] - x_ref) + 
+                                     (coord[3*ii+1] - y_ref) * (coord[3*ii+1] - y_ref) + 
+                                     (coord[3*ii+2] - z_ref) * (coord[3*ii+2] - z_ref); 
+    }
+
+}
+
+__global__ void border_scat (float *coord, float *Ele, float *r2, float *offset, float *V, int num_atom, int num_atom2, int num_offset) {
+    // offset is the rasterized equivolumetric sphere points w.r.t. center atom as N * 3 array.
+    // Calculate border scattering
+    if (blockIdx.x >= num_atom) return;
+    __shared__ float pts[2048];
+    __shared__ int close_flag[1749];
+    float r2_min = 2.25;
+    float r2_max = 9.00;
+    // Marking those atoms that are close
+    for (int ii = blockIdx.x; jj < num_atom; jj += gridDim.x) {
+        for (int jj = threadIdx.x; jj < num_atom; jj += blockDim.x) {
+            close_flag[jj] = 1;
+            if (r[ii*num_atom+jj] >= 6.0) close_flag[jj] = 0;
+        }
+    
+    // For each off-set points
+        for (int jj = threadIdx.x; jj < num_offset; jj += blockDim.x) {
+            pts[jj] = 1.0;
+            for (int kk = 0; kk < num_atom; kk ++) {
+                if (jj == kk) {
+                    if ((off_set[jj*3] * off_set[jj*3] + off_set[jj*3+1] * off_set[jj*3+2] + off_set[jj*3+2] * off_set[jj*3 + 2]) < r2_min) {
+                        pts[jj] = 0.0;
+                        break;
+                    }
+                } else {
+                    if (close_flag[jj] == 1) {
+                        float dr = (coord[3*ii] + offset[3*jj] - coord[3*kk]) * 
+                                   (coord[3*ii] + offset[3*jj] - coord[3*kk]) + 
+                                   (coord[3*ii+1] + offset[3*jj+1] - coord[3*kk+1]) * 
+                                   (coord[3*ii+1] + offset[3*jj+1] - coord[3*kk+1]) + 
+                                   (coord[3*ii+2] + offset[3*jj+2] - coord[3*kk+2]) * 
+                                   (coord[3*ii+2] + offset[3*jj+2] - coord[3*kk+2]);
+                        if (dr < r2_min) {
+                            pts[jj] = 0.0;
+                            break;
+                        } else if (dr < r2_max) {
+                            pts[jj]++;
+                        }
+                    }
+                }
+            }
+            if (pts[jj] > 0.0) pts[jj] = 1.0 / pts[jj];
+        }
+        // Calculate volume 
+        for (int stride = num_atom2 / 2; stride > 0; stride >>= 1) {
+            __syncthreads();
+            for(int iAccum = threadIdx.x; iAccum < stride; iAccum += blockDim.x) {
+                pts[iAccum] += pts[stride + iAccum];
+            }
+        }
+        __syncthreads();
+        if (threadIdx.x == 0) {
+            V[ii] = pts[0];
+        }
+    }
+}
+
+__global__ void V_calc (float *V, float num_atom2) {
+    // Integrate V
+    for (int stride = num_atom2 / 2; stride > 0; stride >>= 1) {
+        __syncthreads();
+        for(int iAccum = threadIdx.x; iAccum < stride; iAccum += blockDim.x) {
+            V[iAccum] += V[stride + iAccum];
+        }
+    }
+    __syncthreads();
+    printf("There are %.3f volume elements", V[0]);
+}
+
 __global__ void scat_calc (float *coord, float *Force, int *Ele, float *WK, float *q_S_ref_dS, float *S_calc, int num_atom, int num_q, int num_ele, float *Aq, float alpha, float k_chi, float sigma2, float *f_ptxc, float *f_ptyc, float *f_ptzc, float *S_calcc, int num_atom2, int num_q2) {
     __shared__ float q_pt, q_WK;
     __shared__ float FF_pt[6];
@@ -47,6 +145,7 @@ __global__ void scat_calc (float *coord, float *Force, int *Ele, float *WK, floa
     if (blockIdx.x >= num_q) return; // out of q range
     if (threadIdx.x >= num_atom) return; // out of atom numbers (not happening)
    
+
     /*if (blockIdx.x == 0) {
         for (int jj = threadIdx.x; jj < num_atom; jj += blockDim.x) {
             f_ptx[jj] = 0.0;
