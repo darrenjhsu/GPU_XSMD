@@ -36,8 +36,9 @@ __device__ float cross2 (float a2, float a3, float b2, float b3) {
 }
 */
 
-__global__ void dist_calc (float *coord, float *dx, float *dy, float *dz, float *r2, int *close_flag, int *close_num, int num_atom) {
+__global__ void dist_calc (float *coord, float *dx, float *dy, float *dz, float *r2, int *close_flag, int num_atom, int num_atom2) {
     // r2 is the square of distances
+    // close_flag is a num_atom2 x num_atom2 matrix initialized to 0.
     //__shared__ float coord_s[5247];
     __shared__ float x_ref, y_ref, z_ref;
     if (blockIdx.x >= num_atom) return;
@@ -47,31 +48,81 @@ __global__ void dist_calc (float *coord, float *dx, float *dy, float *dz, float 
     //    coord_s[ii] = coord[ii];
     //}
     // Calc distance
-    if (threadIdx.x == 0) {
-        x_ref = coord[3*blockIdx.x  ];
-        y_ref = coord[3*blockIdx.x+1];
-        z_ref = coord[3*blockIdx.x+2];
-    }
-    __syncthreads();
-    for (int ii = threadIdx.x; ii < num_atom; ii += blockDim.x) {
-        dx[blockIdx.x*num_atom+ii] = coord[3*ii  ] - x_ref;
-        dy[blockIdx.x*num_atom+ii] = coord[3*ii+1] - y_ref;
-        dz[blockIdx.x*num_atom+ii] = coord[3*ii+2] - z_ref;
-        r2[blockIdx.x*num_atom+ii] = (coord[3*ii  ] - x_ref) * (coord[3*ii  ] - x_ref) + 
-                                     (coord[3*ii+1] - y_ref) * (coord[3*ii+1] - y_ref) + 
-                                     (coord[3*ii+2] - z_ref) * (coord[3*ii+2] - z_ref); 
-        if (r2 < 29) close_flag[blockIdx.x*num_atom+ii] = 1; // roughly 2 A vdW radii + 1.4 A water vdW
-    }
-    // Do some sort of prefix sum for getting the index out
+    for (int ii = blockIdx.x; ii < num_atom; ii += gridDim.x) {
+        if (threadIdx.x == 0) {
+            x_ref = coord[3*ii  ];
+            y_ref = coord[3*ii+1];
+            z_ref = coord[3*ii+2];
+        }
     
+        __syncthreads();
+        for (int jj = threadIdx.x; jj < num_atom; jj += blockDim.x) {
+            dx[ii*num_atom+jj] = coord[3*jj  ] - x_ref;
+            dy[ii*num_atom+jj] = coord[3*jj+1] - y_ref;
+            dz[ii*num_atom+jj] = coord[3*jj+2] - z_ref;
+            float r2t = (coord[3*jj  ] - x_ref) * (coord[3*jj  ] - x_ref) + 
+                        (coord[3*jj+1] - y_ref) * (coord[3*jj+1] - y_ref) + 
+                        (coord[3*jj+2] - z_ref) * (coord[3*jj+2] - z_ref); 
+ 
+            r2[ii*num_atom+jj] = r2t;
+            if (r2t < 29.0) close_flag[ii*num_atom2+jj] = 1; // roughly 2 A vdW radii + 1.4 A water vdW
+        }
+    }
 }
 
-__global__ void surf_calc (float *coord, int *Ele, float *r2, float *V, float *close_flag, float *close_num, float *vdW, int num_atom, int num_raster, float sol_s) {
+__global__ void pre_scan_close (int *close_flag, int *close_num, int *close_idx, int num_atom2) {
+    // close_flag: A num_atom2 x num_atom2 boolean matrix
+    // close_num: A num_atom2 int vector 
+    // close_idx: A num_atom2 x num_atom2 int matrix, row i of which only the first close_num[i] elements are defined. (Otherwise it's 0). 
+    // Do prefix sum for getting the index out - now up to 2048 ( = 1024 threads * 2 ) elements.
+    if (blockIdx.x >= num_atom2) return;
+    __shared__ int temp[2048];
+    int idx = threadIdx.x; 
+    int offset = 1;
+    temp[2 * idx]     = close_flag[blockIdx.x * num_atom2 + 2 * idx];
+    temp[2 * idx + 1] = close_flag[blockIdx.x * num_atom2 + 2 * idx + 1];
+    for (int d = num_atom2>>1; d > 0; d >>= 1) {
+        __syncthreads();
+        if (idx < d) {
+            int ai = offset * (2 * idx + 1) - 1;
+            int bi = offset * (2 * idx + 2) - 1;
+            temp[bi] += temp[ai];
+        }
+        offset *= 2;
+    }
+    if (idx == 0) {
+        close_num[blockIdx.x] = temp[num_atom2 - 1];
+        temp[num_atom2 - 1] = 0;
+    }
+    for (int d = 1; d < num_atom2; d *= 2) {
+        offset >>= 1;
+        __syncthreads();
+        if (idx < d) {
+            int ai = offset * (2 * idx + 1) - 1;
+            int bi = offset * (2 * idx + 2) - 1;
+            int t    = temp[ai];
+            temp[ai] = temp[bi];
+            temp[bi] += t;
+        }
+    }
+
+    __syncthreads();
+
+    // Finally assign the indices
+    if (close_flag[blockIdx.x * num_atom2 + 2 * idx] == 1) {
+        close_idx[blockIdx.x * num_atom2 + temp[2*idx]] = 2*idx;
+    }
+    if (close_flag[blockIdx.x * num_atom2 + 2 * idx + 1] == 1) {
+        close_idx[blockIdx.x * num_atom2 + temp[2*idx+1]] = 2*idx+1;
+    }
+}
+
+__global__ void surf_calc (float *coord, int *Ele, float *r2, int *close_num, int *close_idx, float *vdW, int num_atom, int num_atom2, int num_raster, float sol_s, float *V) {
     // num_raster should be a number of 2^n. 
     // sol_s is solvent radius (default = 1.4 A)
     __shared__ float vdW_s; // vdW radius of the center atom
     __shared__ int pts[512]; // All spherical raster points
-    __shared__ L;
+    __shared__ float L;
     if (blockIdx.x >= num_atom) return;
     if (threadIdx.x == 0) L = sqrt(num_raster * PI);
     for (int ii = blockIdx.x; ii < num_atom; ii += gridDim.x) {
@@ -85,8 +136,8 @@ __global__ void surf_calc (float *coord, int *Ele, float *r2, float *V, float *c
             float x = (vdW_s + sol_s) * sin(p) * cos(t) + coord[3*ii];
             float y = (vdW_s + sol_s) * sin(p) * sin(t) + coord[3*ii+1];
             float z = (vdW_s + sol_s) * cos(p) + coord[3*ii+2];
-            for (int kk = 0; kk < close_num; kk++) {
-                int atom2i = close_flag[kk];
+            for (int kk = 0; kk < close_num[ii]; kk++) {
+                int atom2i = close_idx[ii*num_atom2 + kk];
                 int atom2t = Ele[atom2i];
                 float dr2 = (x - coord[3*atom2i]) * (x - coord[3*atom2i]) +
                             (y - coord[3*atom2i+1]) * (y - coord[3*atom2i+1]) +
@@ -96,11 +147,12 @@ __global__ void surf_calc (float *coord, int *Ele, float *r2, float *V, float *c
                     break;
                 }
             }
-        }   
+        }
+    // Sum pts == 1, calc surf area and assign to V[ii]
     }
      
 }
-
+/*
 __global__ void border_scat (float *coord, int *Ele, float *r2, float *raster, float *V, int num_atom, int num_atom2, int num_raster, int num_raster2) {
     // raster is the rasterized equivolumetric sphere points w.r.t. center atom as N * 3 array.
     // Calculate border scattering
@@ -164,7 +216,8 @@ __global__ void border_scat (float *coord, int *Ele, float *r2, float *raster, f
         }
     }
 }
-
+*/
+/*
 __global__ void V_calc (float *V, int num_atom2) {
     // Integrate V
     for (int stride = num_atom2 / 2; stride > 0; stride >>= 1) {
@@ -179,7 +232,7 @@ __global__ void V_calc (float *V, int num_atom2) {
         printf("There are %.3f volume elements, which translates to %.3f A^3.\n", V[0], vol);
     }
 }
-
+*/
 __global__ void scat_calc (float *coord, float *Force, int *Ele, float *WK, float *q_S_ref_dS, float *S_calc, int num_atom, int num_q, int num_ele, float *Aq, float alpha, float k_chi, float sigma2, float *f_ptxc, float *f_ptyc, float *f_ptzc, float *S_calcc, int num_atom2, int num_q2) {
     __shared__ float q_pt, q_WK;
     __shared__ float FF_pt[6];
