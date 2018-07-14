@@ -123,6 +123,9 @@ int main () {
     //k_chi = 5e-10;
     float sigma2 = 1.0;
     float alpha = 1.0;
+    // FoXS C1 term
+    float C1 = c1 * c1 * c1 * exp(-powf(4.0 * PI / 3.0, 1.5) * q_WK * q_WK * r_m * r_m * (c1 * c1 - 1.0) / 4.0 / PI)
+     
     //printf("About to start force_calc...\n");
     //scat_calc<<<512, 128>>>(d_coord, d_Force, d_Ele, d_FF, d_q, d_S_ref, d_dS, d_S_calc, num_atom, num_q, num_ele, d_Aq, alpha, k_chi, sigma2, d_f_ptxc, d_f_ptyc, d_f_ptzc, d_S_calcc, num_atom2, num_q2);
     dist_calc<<<1024, 1024>>>(d_coord, d_dx, d_dy, d_dz, d_r2, d_close_flag, num_atom, num_atom2); 
@@ -132,7 +135,7 @@ int main () {
     surf_calc<<<1024,512>>>(d_coord, d_Ele, d_r2, d_close_num, d_close_idx, d_vdW, num_atom, num_atom2, num_raster, sol_s, d_V);
     cudaMemcpy(V, d_V, size_atom2f, cudaMemcpyDeviceToHost);
     for (int i = 0; i < num_atom; i++) {
-        printf("%3d atoms are close to atom %4d, surf being %.3f A^3.\n", close_num[i], i, V[i]);
+        printf("%3d atoms are close to atom %4d, %.2f percent of surf being exposed.\n", close_num[i], i, V[i]*100.0);
         /*for (int j = 0; j < close_num[i]; j++) {
         //for (int j = 0; j < 30; j++) {
             printf("%4d, ", close_idx[i*num_atom2+j]);

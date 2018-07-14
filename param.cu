@@ -40,6 +40,6 @@ int bond_pp[42] = {4, 10, 12, 12, 14, 20, 14, 20, 22, 22, 24, 30, 24, 30, 32, 32
 int num_raster = 512;
 int num_raster2 = 512;
 
-float sol_s = 1.4;
-
-float vdW[6] = {0.6, 1.2, 1.3, 1.4, 1.7, 0.6};
+float sol_s = 1.40;
+                // H     C     N     O     S    Fe
+float vdW[6] = {1.07, 1.58, 0.84, 1.30, 1.68, 1.24};

@@ -168,11 +168,20 @@ __global__ void surf_calc (float *coord, int *Ele, float *r2, int *close_num, in
         }
         __syncthreads();
         if (threadIdx.x == 0) {
-            V[ii] = (float)pts[0] / (float)num_raster * 4.0 * r * r * PI ;
+            V[ii] = (float)pts[0] / (float)num_raster;// * 4.0 * r * r * PI ;
             //if (ii == 0) printf("Sum pts = %d, V = %.3f. \n", pts[0], V[ii]);
         }
     } 
 }
+
+__global__ float FF_calc_dummy (float q, int Ele, float *WK, float vdW) {
+    
+
+}
+
+
+
+
 /*
 __global__ void border_scat (float *coord, int *Ele, float *r2, float *raster, float *V, int num_atom, int num_atom2, int num_raster, int num_raster2) {
     // raster is the rasterized equivolumetric sphere points w.r.t. center atom as N * 3 array.
@@ -256,7 +265,7 @@ __global__ void V_calc (float *V, int num_atom2) {
 */
 __global__ void scat_calc (float *coord, float *Force, int *Ele, float *WK, float *q_S_ref_dS, float *S_calc, int num_atom, int num_q, int num_ele, float *Aq, float alpha, float k_chi, float sigma2, float *f_ptxc, float *f_ptyc, float *f_ptzc, float *S_calcc, int num_atom2, int num_q2) {
     __shared__ float q_pt, q_WK;
-    __shared__ float FF_pt[6];
+    __shared__ float FF_pt[7]; // num_ele + 1, the last one for water.
     __shared__ float WK_s[66];
     __shared__ float S_calccs[1024];
     __shared__ float f_ptxcs[1024];
@@ -303,13 +312,31 @@ __global__ void scat_calc (float *coord, float *Force, int *Ele, float *WK, floa
         }
         __syncthreads();*/
         // Calculate Form factor for this block (or q vector)
-        for (int jj = threadIdx.x; jj < num_ele; jj += blockDim.x) {
-            FF_pt[jj] = WK_s[jj*11] * exp(-WK_s[jj*11+6] * q_WK * q_WK) + \
-                        WK_s[jj*11+1] * exp(-WK_s[jj*11+7] * q_WK * q_WK) + \
-                        WK_s[jj*11+2] * exp(-WK_s[jj*11+8] * q_WK * q_WK) + \
-                        WK_s[jj*11+3] * exp(-WK_s[jj*11+9] * q_WK * q_WK) + \
-                        WK_s[jj*11+4] * exp(-WK_s[jj*11+10] * q_WK * q_WK) + \
-                        WK_s[jj*11+5];
+        for (int jj = threadIdx.x; jj < num_ele + 1; jj += blockDim.x) {
+            if (jj == num_ele) {
+                // water
+                FF_pt[jj] = WK_s[3*11] * exp(-WK_s[3*11+6] * q_WK * q_WK) + 
+                            WK_s[3*11+1] * exp(-WK_s[3*11+7] * q_WK * q_WK) + 
+                            WK_s[3*11+2] * exp(-WK_s[3*11+8] * q_WK * q_WK) + 
+                            WK_s[3*11+3] * exp(-WK_s[3*11+9] * q_WK * q_WK) + 
+                            WK_s[3*11+4] * exp(-WK_s[3*11+10] * q_WK * q_WK) + 
+                            WK_s[3*11+5] + 2.0 * (WK_s[5] + 
+                            WK_s[0] * exp(-WK_s[6] * q_WK * q_WK) + 
+                            WK_s[1] * exp(-WK_s[7] * q_WK * q_WK) + 
+                            WK_s[2] * exp(-WK_s[8] * q_WK * q_WK) + 
+                            WK_s[3] * exp(-WK_s[9] * q_WK * q_WK) + 
+                            WK_s[4] * exp(-WK_s[10] * q_WK * q_WK));
+            } else { 
+                // The last part is for excluded volume
+                FF_pt[jj] = WK_s[jj*11] * exp(-WK_s[jj*11+6] * q_WK * q_WK) + 
+                            WK_s[jj*11+1] * exp(-WK_s[jj*11+7] * q_WK * q_WK) + 
+                            WK_s[jj*11+2] * exp(-WK_s[jj*11+8] * q_WK * q_WK) + 
+                            WK_s[jj*11+3] * exp(-WK_s[jj*11+9] * q_WK * q_WK) + 
+                            WK_s[jj*11+4] * exp(-WK_s[jj*11+10] * q_WK * q_WK) +
+                            WK_s[jj*11+5] -
+                            C1 * vdW[jj] * vdW[jj] * vdW[jj] * PI * 4.0 / 3.0 * 0.334 *
+                            exp(-PI * vdW[jj] * vdw[jj] * q_WK * q_WK);
+            }
             //if (ii == 0) printf("FF for elem %d at q = 0 is %.3f.\n", jj, FF_pt[jj]);
         }
         __syncthreads();
