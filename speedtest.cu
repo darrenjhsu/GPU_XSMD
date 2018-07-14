@@ -24,6 +24,7 @@ int main () {
     int *d_close_flag, *d_close_num, *d_close_idx;
     float *d_vdW;
     int *close_num, *close_idx;
+    float *V;
     //int *d_bond_pp;
     //int *a, *d_a; 
     //a = (int *)malloc(sizeof(int)); 
@@ -50,6 +51,7 @@ int main () {
     Force = (float *)malloc(size_coord);
     close_idx = (int *)malloc(size_atom2xatom2);
     close_num = (int *)malloc(size_atom2);
+    V = (float *)malloc(size_atom2f);
     /*for (int ii = 0; ii<3*num_atom; ii++) {
         Force[ii] = 0.0;
     }*/
@@ -127,15 +129,16 @@ int main () {
     pre_scan_close<<<2048,1024>>>(d_close_flag, d_close_num, d_close_idx, num_atom2);
     cudaMemcpy(close_num, d_close_num, size_atom2, cudaMemcpyDeviceToHost);
     cudaMemcpy(close_idx, d_close_idx, size_atom2xatom2, cudaMemcpyDeviceToHost);
-    for (int i = 0; i < num_atom2; i++) {
-        printf("%3d atoms are close to atom %4d: ", close_num[i], i);
-        for (int j = 0; j < close_num[i]; j++) {
+    surf_calc<<<1024,512>>>(d_coord, d_Ele, d_r2, d_close_num, d_close_idx, d_vdW, num_atom, num_atom2, num_raster, sol_s, d_V);
+    cudaMemcpy(V, d_V, size_atom2f, cudaMemcpyDeviceToHost);
+    for (int i = 0; i < num_atom; i++) {
+        printf("%3d atoms are close to atom %4d, surf being %.3f A^3.\n", close_num[i], i, V[i]);
+        /*for (int j = 0; j < close_num[i]; j++) {
         //for (int j = 0; j < 30; j++) {
             printf("%4d, ", close_idx[i*num_atom2+j]);
         }
-        printf("\n");
+        printf("\n");*/
     }
-    surf_calc<<<1024,512>>>(d_coord, d_Ele, d_r2, d_close_num, d_close_idx, d_vdW, num_atom, num_atom2, num_raster, sol_s, d_V);
     //border_scat<<<1024, 1024>>>(d_coord, d_Ele, d_r2, d_raster, d_V, num_atom, num_atom2, num_raster, num_raster2); 
     //V_calc<<<1, 1024>>>(d_V, num_atom2); 
     // scat_calc<<<320, 1024>>>(d_coord, d_Force, d_Ele, d_WK, d_q_S_ref_dS, d_S_calc, num_atom, num_q, num_ele, d_Aq, alpha, k_chi, sigma2, d_f_ptxc, d_f_ptyc, d_f_ptzc, d_S_calcc, num_atom2, num_q2);

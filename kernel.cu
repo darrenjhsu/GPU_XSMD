@@ -122,35 +122,56 @@ __global__ void surf_calc (float *coord, int *Ele, float *r2, int *close_num, in
     // sol_s is solvent radius (default = 1.4 A)
     __shared__ float vdW_s; // vdW radius of the center atom
     __shared__ int pts[512]; // All spherical raster points
-    __shared__ float L;
+    __shared__ float L, r;
     if (blockIdx.x >= num_atom) return;
     if (threadIdx.x == 0) L = sqrt(num_raster * PI);
     for (int ii = blockIdx.x; ii < num_atom; ii += gridDim.x) {
         int atom1t = Ele[ii];
         vdW_s = vdW[atom1t];
+        r = vdW_s + sol_s;
         for (int jj = threadIdx.x; jj < num_raster; jj += blockDim.x) {
             pts[jj] = 1;
-            float h = 1 - (2 * jj + 1) / num_raster;
+            float h = 1.0 - (2.0 * (float)jj + 1.0) / (float)num_raster;
             float p = acos(h);
             float t = L * p; 
-            float x = (vdW_s + sol_s) * sin(p) * cos(t) + coord[3*ii];
-            float y = (vdW_s + sol_s) * sin(p) * sin(t) + coord[3*ii+1];
-            float z = (vdW_s + sol_s) * cos(p) + coord[3*ii+2];
+            float x = r * sin(p) * cos(t) + coord[3*ii];
+            float y = r * sin(p) * sin(t) + coord[3*ii+1];
+            float z = r * cos(p) + coord[3*ii+2];
+            //if (ii == 0 && jj == 0) printf("Raster: %.3f, %.3f, %.3f  Ref: %.3f, %.3f, %.3f, \n", x, y, z, coord[3*ii], coord[3*ii+1], coord[3*ii+2]);
             for (int kk = 0; kk < close_num[ii]; kk++) {
                 int atom2i = close_idx[ii*num_atom2 + kk];
+                
                 int atom2t = Ele[atom2i];
                 float dr2 = (x - coord[3*atom2i]) * (x - coord[3*atom2i]) +
                             (y - coord[3*atom2i+1]) * (y - coord[3*atom2i+1]) +
                             (z - coord[3*atom2i+2]) * (z - coord[3*atom2i+2]); 
                 if (dr2 < vdW[atom2t] * vdW[atom2t]) {
                     pts[jj] = 0;
-                    break;
+                    //break;
                 }
             }
         }
+        /*if (ii == 0 && threadIdx.x == 0) {
+            for (int jj = 0; jj < 16; jj++) {
+                for (int kk = 0; kk < 32; kk++) {
+                    printf("%d ", pts[jj*32+kk]);
+                }
+                printf("\n");
+            }
+        }*/
     // Sum pts == 1, calc surf area and assign to V[ii]
-    }
-     
+        for (int stride = num_raster / 2; stride > 0; stride >>= 1) {
+            __syncthreads();
+            for(int iAccum = threadIdx.x; iAccum < stride; iAccum += blockDim.x) {
+                pts[iAccum] += pts[stride + iAccum];
+            }
+        }
+        __syncthreads();
+        if (threadIdx.x == 0) {
+            V[ii] = (float)pts[0] / (float)num_raster * 4.0 * r * r * PI ;
+            //if (ii == 0) printf("Sum pts = %d, V = %.3f. \n", pts[0], V[ii]);
+        }
+    } 
 }
 /*
 __global__ void border_scat (float *coord, int *Ele, float *r2, float *raster, float *V, int num_atom, int num_atom2, int num_raster, int num_raster2) {
