@@ -325,7 +325,9 @@ __global__ void scat_calc (float *coord, float *Force, int *Ele, float *WK, floa
                             WK_s[1] * exp(-WK_s[7] * q_WK * q_WK) + 
                             WK_s[2] * exp(-WK_s[8] * q_WK * q_WK) + 
                             WK_s[3] * exp(-WK_s[9] * q_WK * q_WK) + 
-                            WK_s[4] * exp(-WK_s[10] * q_WK * q_WK));
+                            WK_s[4] * exp(-WK_s[10] * q_WK * q_WK)) - 
+                            vdW[jj] * vdW[jj] * vdW[jj] * PI * 4.0 / 3.0 * 0.334 *
+                            exp(-PI * vdW[jj] * vdw[jj] * q_WK * q_WK);;
             } else { 
                 // The last part is for excluded volume
                 FF_pt[jj] = WK_s[jj*11] * exp(-WK_s[jj*11+6] * q_WK * q_WK) + 
@@ -352,6 +354,7 @@ __global__ void scat_calc (float *coord, float *Force, int *Ele, float *WK, floa
             float atom1z = coord[3*jj+2];
             int atom1t = Ele[jj]; // atom1 element type
             float atom1FF = FF_pt[atom1t]; // atom1 form factor at q // 6 ms
+            atom1FF += c2 * V[jj] * FF_pt[num_ele]; // Correction with border layer scattering
             //float atom1FF = FF[ii*num_ele+atom1t]; // atom1 form factor at q
             for (int kk = 0; kk < num_atom; kk++) {
                 int atom2t = Ele[kk]; // 6 ms

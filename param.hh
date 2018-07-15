@@ -20,4 +20,4 @@ extern int bond_pp[42];
 extern int num_raster; 
 extern int num_raster2;
 extern float sol_s;
-extern float vdW[6];
+extern float vdW[7];

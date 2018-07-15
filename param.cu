@@ -41,5 +41,5 @@ int num_raster = 512;
 int num_raster2 = 512;
 
 float sol_s = 1.40;
-                // H     C     N     O     S    Fe
-float vdW[6] = {1.07, 1.58, 0.84, 1.30, 1.68, 1.24};
+                // H     C     N     O     S    Fe   H2O see Svergun J Appl Crystallogr 1978
+float vdW[7] = {1.07, 1.58, 0.84, 1.30, 1.68, 1.24, 1.67};
