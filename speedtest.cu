@@ -123,33 +123,35 @@ int main () {
     //k_chi = 5e-10;
     float sigma2 = 1.0;
     float alpha = 1.0;
-    // FoXS C1 term
-    float C1 = c1 * c1 * c1 * exp(-powf(4.0 * PI / 3.0, 1.5) * q_WK * q_WK * r_m * r_m * (c1 * c1 - 1.0) / 4.0 / PI)
      
     //printf("About to start force_calc...\n");
     //scat_calc<<<512, 128>>>(d_coord, d_Force, d_Ele, d_FF, d_q, d_S_ref, d_dS, d_S_calc, num_atom, num_q, num_ele, d_Aq, alpha, k_chi, sigma2, d_f_ptxc, d_f_ptyc, d_f_ptzc, d_S_calcc, num_atom2, num_q2);
     dist_calc<<<1024, 1024>>>(d_coord, d_dx, d_dy, d_dz, d_r2, d_close_flag, num_atom, num_atom2); 
     pre_scan_close<<<2048,1024>>>(d_close_flag, d_close_num, d_close_idx, num_atom2);
-    cudaMemcpy(close_num, d_close_num, size_atom2, cudaMemcpyDeviceToHost);
-    cudaMemcpy(close_idx, d_close_idx, size_atom2xatom2, cudaMemcpyDeviceToHost);
+    //cudaMemcpy(close_num, d_close_num, size_atom2, cudaMemcpyDeviceToHost);
+    //cudaMemcpy(close_idx, d_close_idx, size_atom2xatom2, cudaMemcpyDeviceToHost);
     surf_calc<<<1024,512>>>(d_coord, d_Ele, d_r2, d_close_num, d_close_idx, d_vdW, num_atom, num_atom2, num_raster, sol_s, d_V);
-    cudaMemcpy(V, d_V, size_atom2f, cudaMemcpyDeviceToHost);
-    for (int i = 0; i < num_atom; i++) {
+    //cudaMemcpy(V, d_V, size_atom2f, cudaMemcpyDeviceToHost);
+    /*for (int i = 0; i < num_atom; i++) {
         printf("%3d atoms are close to atom %4d, %.2f percent of surf being exposed.\n", close_num[i], i, V[i]*100.0);
-        /*for (int j = 0; j < close_num[i]; j++) {
+        for (int j = 0; j < close_num[i]; j++) {
         //for (int j = 0; j < 30; j++) {
             printf("%4d, ", close_idx[i*num_atom2+j]);
         }
-        printf("\n");*/
-    }
+        printf("\n");
+    }*/
     //border_scat<<<1024, 1024>>>(d_coord, d_Ele, d_r2, d_raster, d_V, num_atom, num_atom2, num_raster, num_raster2); 
     //V_calc<<<1, 1024>>>(d_V, num_atom2); 
-    // scat_calc<<<320, 1024>>>(d_coord, d_Force, d_Ele, d_WK, d_q_S_ref_dS, d_S_calc, num_atom, num_q, num_ele, d_Aq, alpha, k_chi, sigma2, d_f_ptxc, d_f_ptyc, d_f_ptzc, d_S_calcc, num_atom2, num_q2);
+    scat_calc<<<320, 1024>>>(d_coord,  d_Force,   d_Ele,     d_WK,     d_q_S_ref_dS, 
+                             d_S_calc, num_atom,  num_q,     num_ele,  d_Aq, 
+                             alpha,    k_chi,     sigma2,    d_f_ptxc, d_f_ptyc, 
+                             d_f_ptzc, d_S_calcc, num_atom2, num_q2,   d_vdW,
+                             c1,       c2,        d_V,       r_m);
     //printf("force_calc finished! \n");
     //printf("%d \n",cudaDeviceSynchronize());
     // cudaDeviceSynchronize();
-    // cudaMemcpy(S_calc, d_S_calc, size_q,     cudaMemcpyDeviceToHost);
-    // force_calc<<<1024, 512>>>(d_Force, num_atom, num_q, d_f_ptxc, d_f_ptyc, d_f_ptzc, num_atom2, num_q2);
+    cudaMemcpy(S_calc, d_S_calc, size_q,     cudaMemcpyDeviceToHost);
+    force_calc<<<1024, 512>>>(d_Force, num_atom, num_q, d_f_ptxc, d_f_ptyc, d_f_ptzc, num_atom2, num_q2);
     
     //printf("%d \n",cudaDeviceSynchronize());
     //force_proj<<<32, 128>>>(d_coord, d_Force, d_rot, d_rot_pt, d_bond_pp, num_pp, num_atom, num_atom2);
@@ -166,7 +168,7 @@ int main () {
     float chi_ref = 0.0;
     for (int ii = 0; ii < num_q; ii++) {
         chi = q_S_ref_dS[ii+2*num_q] - (S_calc[ii] - q_S_ref_dS[ii+num_q]);
-        //printf("%d: chi is: %.3f, dS is: %.3f, S_calc is: %.3f, S_ref is: %.3f\n", ii, chi, dS[ii], S_calc[ii], S_ref[ii]); 
+        printf("q = %.3f: chi is: %.3f, dS is: %.3f, S_calc is: %.3f, S_ref is: %.3f\n", q_S_ref_dS[ii], chi, q_S_ref_dS[ii+2*num_q], S_calc[ii], q_S_ref_dS[ii+num_q]); 
         chi2 += chi * chi;
         chi_ref+= q_S_ref_dS[ii+2*num_q] * q_S_ref_dS[ii+2*num_q];
     }

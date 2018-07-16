@@ -40,6 +40,10 @@ int bond_pp[42] = {4, 10, 12, 12, 14, 20, 14, 20, 22, 22, 24, 30, 24, 30, 32, 32
 int num_raster = 512;
 int num_raster2 = 512;
 
-float sol_s = 1.40;
+float sol_s = 1.80;
                 // H     C     N     O     S    Fe   H2O see Svergun J Appl Crystallogr 1978
 float vdW[7] = {1.07, 1.58, 0.84, 1.30, 1.68, 1.24, 1.67};
+
+float c1 = 0.0;
+float c2 = 0.0;
+float r_m = 1.62;

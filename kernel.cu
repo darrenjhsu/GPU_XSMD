@@ -174,11 +174,6 @@ __global__ void surf_calc (float *coord, int *Ele, float *r2, int *close_num, in
     } 
 }
 
-__global__ float FF_calc_dummy (float q, int Ele, float *WK, float vdW) {
-    
-
-}
-
 
 
 
@@ -263,8 +258,12 @@ __global__ void V_calc (float *V, int num_atom2) {
     }
 }
 */
-__global__ void scat_calc (float *coord, float *Force, int *Ele, float *WK, float *q_S_ref_dS, float *S_calc, int num_atom, int num_q, int num_ele, float *Aq, float alpha, float k_chi, float sigma2, float *f_ptxc, float *f_ptyc, float *f_ptzc, float *S_calcc, int num_atom2, int num_q2) {
-    __shared__ float q_pt, q_WK;
+__global__ void scat_calc (float *coord,  float *Force,   int *Ele,      float *WK,     float *q_S_ref_dS, 
+                           float *S_calc, int num_atom,   int num_q,     int num_ele,   float *Aq, 
+                           float alpha,   float k_chi,    float sigma2,  float *f_ptxc, float *f_ptyc, 
+                           float *f_ptzc, float *S_calcc, int num_atom2, int num_q2,    float *vdW, 
+                           float c1,      float c2,       float *V,      float r_m) {
+    __shared__ float q_pt, q_WK, C1;
     __shared__ float FF_pt[7]; // num_ele + 1, the last one for water.
     __shared__ float WK_s[66];
     __shared__ float S_calccs[1024];
@@ -298,9 +297,11 @@ __global__ void scat_calc (float *coord, float *Force, int *Ele, float *WK, floa
         //    printf("q_pt[%d] = %.3f. \n", ii, q_pt);
         //}
         q_WK = q_pt / 4.0 / PI;
+        // FoXS C1 term
+        if (threadIdx.x == 11 * num_ele) C1 = c1 * c1 * c1 * exp(-powf(4.0 * PI / 3.0, 1.5) * q_WK * q_WK * r_m * r_m * (c1 * c1 - 1.0) / 4.0 / PI);
         // Put FF coeff to shared memory
         //if (threadIdx.x == 0)
-        for (int jj = threadIdx.x; jj < 11 * num_ele; jj +=blockDim.x) {
+        for (int jj = threadIdx.x; jj < 11 * num_ele; jj += blockDim.x) {
             WK_s[jj] = WK[jj];
         }
         __syncthreads();
@@ -326,8 +327,8 @@ __global__ void scat_calc (float *coord, float *Force, int *Ele, float *WK, floa
                             WK_s[2] * exp(-WK_s[8] * q_WK * q_WK) + 
                             WK_s[3] * exp(-WK_s[9] * q_WK * q_WK) + 
                             WK_s[4] * exp(-WK_s[10] * q_WK * q_WK)) - 
-                            vdW[jj] * vdW[jj] * vdW[jj] * PI * 4.0 / 3.0 * 0.334 *
-                            exp(-PI * vdW[jj] * vdw[jj] * q_WK * q_WK);;
+                            C1 * vdW[jj] * vdW[jj] * vdW[jj] * PI * 4.0 / 3.0 * 0.334 *
+                            exp(-PI * vdW[jj] * vdW[jj] * q_WK * q_WK);;
             } else { 
                 // The last part is for excluded volume
                 FF_pt[jj] = WK_s[jj*11] * exp(-WK_s[jj*11+6] * q_WK * q_WK) + 
@@ -337,7 +338,7 @@ __global__ void scat_calc (float *coord, float *Force, int *Ele, float *WK, floa
                             WK_s[jj*11+4] * exp(-WK_s[jj*11+10] * q_WK * q_WK) +
                             WK_s[jj*11+5] -
                             C1 * vdW[jj] * vdW[jj] * vdW[jj] * PI * 4.0 / 3.0 * 0.334 *
-                            exp(-PI * vdW[jj] * vdw[jj] * q_WK * q_WK);
+                            exp(-PI * vdW[jj] * vdW[jj] * q_WK * q_WK);
             }
             //if (ii == 0) printf("FF for elem %d at q = 0 is %.3f.\n", jj, FF_pt[jj]);
         }
@@ -355,6 +356,7 @@ __global__ void scat_calc (float *coord, float *Force, int *Ele, float *WK, floa
             int atom1t = Ele[jj]; // atom1 element type
             float atom1FF = FF_pt[atom1t]; // atom1 form factor at q // 6 ms
             atom1FF += c2 * V[jj] * FF_pt[num_ele]; // Correction with border layer scattering
+            __syncthreads();
             //float atom1FF = FF[ii*num_ele+atom1t]; // atom1 form factor at q
             for (int kk = 0; kk < num_atom; kk++) {
                 int atom2t = Ele[kk]; // 6 ms
