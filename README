@@ -1,3 +1,9 @@
 
-This project is to use GPU to accelerate X-ray scattering calculation with Debye formula, and use it in MD simulation. Concepts were taken from Bjorling et al. JCTC 2015, 11, 780. 
+This project is to use GPU to accelerate X-ray scattering calculation with Debye formula looping over atoms and use it in MD simulation. Concepts were taken from Bjorling et al. JCTC 2015, 11, 780. 
+
+The calculation of scattering profile is the same as in FoXS but the form factors are calculated explicitly. The c1 and c2 terms used for fitting in FoXS are no longer fitting variables; they are now parameters.
+
+The atomic form factors in vacuum are calculated using Waasmaier-Kirfel table. The volume for dummy atom calcualtion were taken from Svergun 1995 J Appl Crystallgr paper, which refers to Fraser 1978 J Appl Crystallgr paper and International Tables for X-ray Crystallography (1968). 
+
+
 
