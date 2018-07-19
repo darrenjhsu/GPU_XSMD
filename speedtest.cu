@@ -25,6 +25,8 @@ int main () {
     float *d_vdW;
     int *close_num, *close_idx;
     float *V;
+    float *d_FF_table;
+    float *d_surf, *surf;
     //int *d_bond_pp;
     //int *a, *d_a; 
     //a = (int *)malloc(sizeof(int)); 
@@ -41,7 +43,8 @@ int main () {
     int size_FF = num_ele * num_q * sizeof(float);
     int size_qxatom2 = num_q2 * num_atom2 * sizeof(float); // check if overflow
     int size_raster = num_raster * 3 * sizeof(float);
-    
+    int size_FF_table = (num_ele+1) * num_q * sizeof(float);
+    int size_surf = num_atom * num_raster * 3 * sizeof(float);
     /*int size_bond_pp = 3 * num_pp * sizeof(int);
     int size_rot = num_pp * sizeof(int);
     int size_rotxatom2 = num_pp * num_atom2 * sizeof(float);*/
@@ -59,6 +62,7 @@ int main () {
         printf("CPU: WK element %d is %.3f\n", ii, WK[ii]);
     }*/
     S_calc = (float *)malloc(size_q);
+    surf = (float *)malloc(size_surf);
     //for (int ii = 0; ii < num_q; ii++) {
     //    S_calc[ii] = 0.0;
     //}
@@ -102,6 +106,7 @@ int main () {
     cudaMalloc((void **)&d_close_idx, size_atom2xatom2);
     cudaMemset(d_close_idx, 0, size_atom2xatom2);
     cudaMalloc((void **)&d_vdW, size_vdW);
+    cudaMalloc((void **)&d_FF_table, size_FF_table);
     cudaMemcpy(d_vdW, vdW, size_vdW, cudaMemcpyHostToDevice);
     /*cudaMalloc((void **)&d_rot, size_rot);
     cudaMemset(d_rot,0.0, size_rot);
@@ -109,6 +114,8 @@ int main () {
     cudaMemset(d_rot_pt,0.0, size_rotxatom2);
     cudaMalloc((void **)&d_bond_pp, size_bond_pp);*/
     cudaMalloc((void **)&d_WK, size_WK);
+    cudaMalloc((void **)&d_surf, size_surf);
+    cudaMemset(d_surf, 0.0, size_surf);
     cudaMemcpy(d_coord, coord_ref, size_coord,    cudaMemcpyHostToDevice);
     //cudaMemcpy(d_Force, Force, size_coord, cudaMemcpyHostToDevice);
     //cudaMemcpy(d_q,      q,      size_q,      cudaMemcpyHostToDevice);
@@ -128,29 +135,32 @@ int main () {
     //scat_calc<<<512, 128>>>(d_coord, d_Force, d_Ele, d_FF, d_q, d_S_ref, d_dS, d_S_calc, num_atom, num_q, num_ele, d_Aq, alpha, k_chi, sigma2, d_f_ptxc, d_f_ptyc, d_f_ptzc, d_S_calcc, num_atom2, num_q2);
     dist_calc<<<1024, 1024>>>(d_coord, d_dx, d_dy, d_dz, d_r2, d_close_flag, num_atom, num_atom2); 
     pre_scan_close<<<2048,1024>>>(d_close_flag, d_close_num, d_close_idx, num_atom2);
-    //cudaMemcpy(close_num, d_close_num, size_atom2, cudaMemcpyDeviceToHost);
+    cudaMemcpy(close_num, d_close_num, size_atom2, cudaMemcpyDeviceToHost);
     //cudaMemcpy(close_idx, d_close_idx, size_atom2xatom2, cudaMemcpyDeviceToHost);
-    surf_calc<<<1024,512>>>(d_coord, d_Ele, d_r2, d_close_num, d_close_idx, d_vdW, num_atom, num_atom2, num_raster, sol_s, d_V);
-    //cudaMemcpy(V, d_V, size_atom2f, cudaMemcpyDeviceToHost);
-    /*for (int i = 0; i < num_atom; i++) {
-        printf("%3d atoms are close to atom %4d, %.2f percent of surf being exposed.\n", close_num[i], i, V[i]*100.0);
-        for (int j = 0; j < close_num[i]; j++) {
+    surf_calc<<<1024,512>>>(d_coord, d_Ele, d_r2, d_close_num, d_close_idx, d_vdW, num_atom, num_atom2, num_raster, sol_s, d_V, d_surf);
+    sum_V<<<1,1024>>>(d_V, num_atom2);
+    cudaMemcpy(V, d_V, size_atom2f, cudaMemcpyDeviceToHost);
+    for (int i = 0; i < num_atom; i++) {
+        printf("%3d atoms are close to atom %4d, %.6f of surf being exposed.\n", close_num[i], i, V[i]);
+        /*for (int j = 0; j < close_num[i]; j++) {
         //for (int j = 0; j < 30; j++) {
             printf("%4d, ", close_idx[i*num_atom2+j]);
         }
-        printf("\n");
-    }*/
+        printf("\n");*/
+    }
     //border_scat<<<1024, 1024>>>(d_coord, d_Ele, d_r2, d_raster, d_V, num_atom, num_atom2, num_raster, num_raster2); 
-    //V_calc<<<1, 1024>>>(d_V, num_atom2); 
+    //V_calc<<<1, 1024>>>(d_V, num_atom2);
+    FF_calc<<<320, 32>>>(d_q_S_ref_dS, d_WK, d_vdW, num_q, num_ele, c1, r_m, d_FF_table); 
     scat_calc<<<320, 1024>>>(d_coord,  d_Force,   d_Ele,     d_WK,     d_q_S_ref_dS, 
                              d_S_calc, num_atom,  num_q,     num_ele,  d_Aq, 
                              alpha,    k_chi,     sigma2,    d_f_ptxc, d_f_ptyc, 
                              d_f_ptzc, d_S_calcc, num_atom2, num_q2,   d_vdW,
-                             c1,       c2,        d_V,       r_m);
+                             c1,       c2,        d_V,       r_m,      d_FF_table);
     //printf("force_calc finished! \n");
     //printf("%d \n",cudaDeviceSynchronize());
     // cudaDeviceSynchronize();
     cudaMemcpy(S_calc, d_S_calc, size_q,     cudaMemcpyDeviceToHost);
+    cudaMemcpy(surf,   d_surf,   size_surf,  cudaMemcpyDeviceToHost);
     force_calc<<<1024, 512>>>(d_Force, num_atom, num_q, d_f_ptxc, d_f_ptyc, d_f_ptzc, num_atom2, num_q2);
     
     //printf("%d \n",cudaDeviceSynchronize());
@@ -180,6 +190,14 @@ int main () {
     /*for (int ii = 0; ii < 1; ii++) {
         printf("S0 = %.5e \n", S_calc[ii]);
     }*/
+            printf("CRYST1    0.000    0.000    0.000  90.00  90.00  90.00 P 1           1\n");
+    int idx = 0;
+    for (int ii = 0; ii < num_atom * num_raster; ii++) {
+        if (surf[3*ii] != 0) {
+            printf("ATOM  %5d  XXX XXX P   1     %7.3f %7.3f %7.3f  0.00  0.00      P1\n", idx, surf[3*ii], surf[3*ii+1], surf[3*ii+2]);
+            idx++;
+        }
+    }
 
     cudaFree(d_coord); cudaFree(d_Force); //cudaFree(d_q);
     cudaFree(d_Ele); cudaFree(d_FF); 

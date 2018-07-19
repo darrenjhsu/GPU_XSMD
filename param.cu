@@ -37,13 +37,13 @@ float k_chi = 1e-11;
 int num_pp = 14;
 int bond_pp[42] = {4, 10, 12, 12, 14, 20, 14, 20, 22, 22, 24, 30, 24, 30, 32, 32, 34, 40, 34, 40, 42, 42, 44, 50, 44, 50, 52, 52, 54, 60, 54, 60, 62, 62, 64, 70, 64, 70, 72, 72, 74, 80}; 
 
-int num_raster = 512;
-int num_raster2 = 512;
+int num_raster = 1024;
+int num_raster2 = 1024;
 
 float sol_s = 1.80;
                 // H     C     N     O     S    Fe   H2O see Svergun J Appl Crystallogr 1978
 float vdW[7] = {1.07, 1.58, 0.84, 1.30, 1.68, 1.24, 1.67};
 
-float c1 = 0.0;
-float c2 = 0.0;
+float c1 = 1.0;
+float c2 = 2.78;
 float r_m = 1.62;
