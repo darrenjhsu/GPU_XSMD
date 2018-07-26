@@ -7,6 +7,8 @@ The atomic form factors in vacuum are calculated using Waasmaier-Kirfel table. T
 
 In the surface area calculation part the generating function is from Guidance Navigation and Control Conference and Exhibit 1998 Bauer. 
 
+The surface area calculation is done numerically following J Appl Crystallgr 1983 Connolly "Analytical Molecular Surface Calculation." Rasterized points sample the vdW sphere, which has to be outside of any other vdW spheres of other atoms. Extended by solvent radius the point (solvent center) must also be far enough from the vdW spheres of other atoms.
+
 The software has been tested and compared with FoXS and CRYSOL, resulting in similar parameters. A c2 = 2.78 here corresponds to c2 = 2.86 in FoXS fitting and contrast of 0.030 e / A^3 in CRYSOL. Difference here may be a result of different surface area calc implementations. 
 
 
