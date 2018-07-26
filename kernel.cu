@@ -66,7 +66,8 @@ __global__ void dist_calc (float *coord, float *dx, float *dy, float *dz, float 
  
             r2[ii*num_atom+jj] = r2t;
             //if (r2t < 29.0) close_flag[ii*num_atom2+jj] = 1; // roughly 2 A vdW radii + 1.4 A water vdW
-            if (r2t < 58.0) close_flag[ii*num_atom2+jj] = 1; // roughly 2 A + 2 A vdW + 2 * 1.8 A probe
+            if (r2t < 34.0) close_flag[ii*num_atom2+jj] = 1; // roughly 2 A + 2 A vdW + 2 * 1.8 A probe
+            if (ii == jj) close_flag[ii*num_atom2+jj] = 0;
         }
     }
 }
@@ -122,7 +123,7 @@ __global__ void surf_calc (float *coord, int *Ele, float *r2, int *close_num, in
     // num_raster should be a number of 2^n. 
     // sol_s is solvent radius (default = 1.4 A)
     __shared__ float vdW_s; // vdW radius of the center atom
-    __shared__ int pts[1024]; // All spherical raster points
+    __shared__ int pts[512]; // All spherical raster points
     __shared__ float L, r;
     if (blockIdx.x >= num_atom) return;
     L = sqrt(num_raster * PI);
@@ -135,20 +136,31 @@ __global__ void surf_calc (float *coord, int *Ele, float *r2, int *close_num, in
             float h = 1.0 - (2.0 * (float)jj + 1.0) / (float)num_raster;
             float p = acos(h);
             float t = L * p; 
-            float x = r * sin(p) * cos(t) + coord[3*ii];
-            float y = r * sin(p) * sin(t) + coord[3*ii+1];
-            float z = r * cos(p) + coord[3*ii+2];
+            // vdW points
+            float x = vdW_s * sin(p) * cos(t) + coord[3*ii];
+            float y = vdW_s * sin(p) * sin(t) + coord[3*ii+1];
+            float z = vdW_s * cos(p) + coord[3*ii+2];
+            // Solvent center
+            float x2 = r * sin(p) * cos(t) + coord[3*ii];
+            float y2 = r * sin(p) * sin(t) + coord[3*ii+1];
+            float z2 = r * cos(p) + coord[3*ii+2];
             //if (ii == 0 && jj == 0) printf("Raster: %.3f, %.3f, %.3f  Ref: %.3f, %.3f, %.3f, \n", x, y, z, coord[3*ii], coord[3*ii+1], coord[3*ii+2]);
             for (int kk = 0; kk < close_num[ii]; kk++) {
                 int atom2i = close_idx[ii*num_atom2 + kk];
-                
                 int atom2t = Ele[atom2i];
-                float dr2 = (x - coord[3*atom2i]) * (x - coord[3*atom2i]) +
-                            (y - coord[3*atom2i+1]) * (y - coord[3*atom2i+1]) +
-                            (z - coord[3*atom2i+2]) * (z - coord[3*atom2i+2]); 
-                if (dr2 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) {
+                float dr2 =  (x - coord[3*atom2i]) * (x - coord[3*atom2i]) +
+                             (y - coord[3*atom2i+1]) * (y - coord[3*atom2i+1]) +
+                             (z - coord[3*atom2i+2]) * (z - coord[3*atom2i+2]); 
+                float dr22 = (x2 - coord[3*atom2i]) * (x2 - coord[3*atom2i]) +
+                             (y2 - coord[3*atom2i+1]) * (y2 - coord[3*atom2i+1]) +
+                             (z2 - coord[3*atom2i+2]) * (z2 - coord[3*atom2i+2]);
+                // vdW points must not cross into other atom
+                if (dr2 < vdW[atom2t] * vdW[atom2t]) {
                     pts[jj] = 0;
-                    //break;
+                }
+                // solvent center has to be far enough
+                if (dr22 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) {
+                    pts[jj] = 0;
                 }
             }
             if (pts[jj] == 1) {
