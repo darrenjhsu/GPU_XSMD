@@ -145,7 +145,7 @@ int main () {
     force_calc<<<1024, 512>>>(d_Force, num_atom, num_q, d_f_ptxc, d_f_ptyc, d_f_ptzc, num_atom2, num_q2);
  
 
-    printf("float d_q_S_ref_dS[%d] = {", 3*num_q);
+    printf("float q_S_ref_dS[%d] = {", 3*num_q);
     for (int ii = 0; ii < num_q; ii++) {
         printf("%f, ",q_S_ref_dS[ii]);
     }

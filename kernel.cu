@@ -193,7 +193,6 @@ __global__ void surf_calc (float *coord, int *Ele, float *r2, int *close_num, in
 }
 
 __global__ void sum_V (float *V, int num_atom2) {
-    __shared__ float V_sum;
     __shared__ float V_s[2048];
     for (int ii = threadIdx.x; ii < num_atom2; ii += blockDim.x) {
         V_s[ii] = V[ii];
@@ -205,7 +204,7 @@ __global__ void sum_V (float *V, int num_atom2) {
         }
     }
     __syncthreads();
-    if (threadIdx.x == 0) printf("V_s[0] = %.1f\n", V_s[0]);
+    if (threadIdx.x == 0) printf("V_s[0] = %.3f\n", V_s[0]);
     /*for (int ii = threadIdx.x; ii < num_atom2; ii += blockDim.x) {
         V[ii] = V[ii] / V_s[0];
     } */
@@ -352,70 +351,30 @@ __global__ void scat_calc (float *coord,  float *Force,   int *Ele,      float *
                            float alpha,   float k_chi,    float sigma2,  float *f_ptxc, float *f_ptyc, 
                            float *f_ptzc, float *S_calcc, int num_atom2, int num_q2,    float *vdW, 
                            float c1,      float c2,       float *V,      float r_m,     float *FF_table) {
-    __shared__ float q_pt, q_WK, C1, expC1;
+    __shared__ float q_pt;
     __shared__ float FF_pt[7]; // num_ele + 1, the last one for water.
-    __shared__ float WK_s[66];
     __shared__ float S_calccs[1024];
     __shared__ float f_ptxcs[1024];
     __shared__ float f_ptycs[1024];
     __shared__ float f_ptzcs[1024];
-    __shared__ float vdW_s[7];
-    __shared__ float C1_PI_43_rho;
-    //float FF_pt[6]; 
+
     if (blockIdx.x >= num_q) return; // out of q range
     if (threadIdx.x >= num_atom) return; // out of atom numbers (not happening)
    
 
-    /*if (blockIdx.x == 0) {
-        for (int jj = threadIdx.x; jj < num_atom; jj += blockDim.x) {
-            f_ptx[jj] = 0.0;
-            f_pty[jj] = 0.0;
-            f_ptz[jj] = 0.0;
-        }
-        for (int jj = threadIdx.x; jj < num_q; jj += blockDim.x) {
-            Aq[jj] = 0.0;
-            S_calc[jj] = 0.0;
-        }
-    }
-    __syncthreads();
-    */
-    //unsigned int t1, t2, t3;
-    //for (int ii = blockIdx.x * blockDim.x + threadIdx.x; ii < num_q; ii += blockDim.x * gridDim.x) {
     for (int ii = blockIdx.x; ii < num_q; ii += gridDim.x) {
-          //       0 - 512          300          512
+        //         0 - 301          301          301
         q_pt = q_S_ref_dS[ii];
-        //if (threadIdx.x == 0) {
-        //    printf("q_pt[%d] = %.3f. \n", ii, q_pt);
-        //}
-        q_WK = q_pt / 4.0 / PI;
-        // FoXS C1 term
-        expC1 = -powf(4.0 * PI / 3.0, 1.5) * q_WK * q_WK * r_m * r_m * (c1 * c1 - 1.0) / 4.0 / PI;
-        C1 = powf(c1,3) * exp(expC1);
-        C1_PI_43_rho = C1 * PI * 4.0 / 3.0 * 0.334;
-        // Put FF coeff to shared memory
-        //if (threadIdx.x == 0)
-        for (int jj = threadIdx.x; jj < 11 * num_ele; jj += blockDim.x) {
-            WK_s[jj] = WK[jj];
-        }
-        __syncthreads();
-        /*if (blockIdx.x == 0 && threadIdx.x == 0) {
-            for (int jj = 0; jj < 66; jj ++) {
-                printf("WK %d before is %.3f. \n", jj, WK[jj]);
-                printf("WK coeff %d is %.3f. \n", jj, WK_s[jj]);
-            }
-        }
-        __syncthreads();*/
-        // Calculate Form factor for this block (or q vector)
+
+        // Get form factor for this block (or q vector)
         for (int jj = threadIdx.x; jj < num_ele + 1; jj += blockDim.x) {
             FF_pt[jj] = FF_table[ii*(num_ele+1)+jj];
         }
         __syncthreads();
         // Calculate scattering for Aq
-        //for (int jj = blockIdx.y * blockDim.y + threadIdx.y; jj < num_atom; jj += blockIdx.y * gridDim.y) {
         for (int jj = threadIdx.x; jj < num_atom; jj += blockDim.x) {
               //       0 - 1023          1749            1024
             int idx = jj % blockDim.x;
-            // if (jj==1) printf("idx is %d. \n",idx);
             S_calccs[idx] = 0.0; f_ptxcs[idx] = 0.0; f_ptycs[idx] = 0.0; f_ptzcs[idx] = 0.0;
             float atom1x = coord[3*jj+0];
             float atom1y = coord[3*jj+1];
@@ -447,8 +406,6 @@ __global__ void scat_calc (float *coord,  float *Force,   int *Ele,      float *
                     // float r = sqrt(r2[jj*num_atom+kk]); // 7.6 ms
                     float r = sqrt(dx*dx+dy*dy+dz*dz);
                     
-                    //if (ii==1&&jj==0&&kk==1) printf("Distance btw jj = 0 and kk = 1 is sqrt (%.3f^2 + %.3f^2 + %.3f^2) = %.3f. \n", dx, dy, dz, r);
-                    //int r_bin = (int)(q_pt * r / qr_step);
                     float sqr = sin(q_pt * r); // 22 ms
                     float prefac = atom1FF * atom2FF * (cos(q_pt * r) - sqr / q_pt / r) / r / r; //27 ms
                     //float prefac = atom1FF * FF_pt[atom2t] * cxsxdx_table[r_bin] / r / r;
@@ -466,12 +423,30 @@ __global__ void scat_calc (float *coord,  float *Force,   int *Ele,      float *
                     //if (ii==0&&jj==0&&kk==num_atom-1) t2 = clock();
                 }
             }
+            //printf("At atom %d we have these values: \n",jj);
+            /*if (jj == 737) {
+                printf("%d, q = %.3f: %.8f %.8f %.8f\n", 
+                jj, q_S_ref_dS[ii],
+                //f_ptxc[ii * num_atom2 + jj], 
+                //f_ptyc[ii * num_atom2 + jj], 
+                //f_ptzc[ii * num_atom2 + jj]);
+                f_ptxcs[idx], 
+                f_ptycs[idx], 
+                f_ptzcs[idx]);
+            }*/ 
             //if (ii==0&&jj==1024) t2=clock();
             S_calcc[ii*num_atom2+jj] = S_calccs[idx];
             //if (ii==0&&jj>0&&jj<10) printf("S_calccs[jj = %d] = %f. \n",jj,S_calccs[idx]);
             f_ptxc[ii*num_atom2+jj] = f_ptxcs[idx];
             f_ptyc[ii*num_atom2+jj] = f_ptycs[idx];
             f_ptzc[ii*num_atom2+jj] = f_ptzcs[idx];
+            /*if (jj == 737) {
+                printf("%d, inner q = %.3f: %.8f %.8f %.8f\n", 
+                jj, q_S_ref_dS[ii],
+                f_ptxc[ii * num_atom2 + jj], 
+                f_ptyc[ii * num_atom2 + jj], 
+                f_ptzc[ii * num_atom2 + jj]);
+            } */
         }
         
         // S_calc[ii] += S_pt;
@@ -483,19 +458,17 @@ __global__ void scat_calc (float *coord,  float *Force,   int *Ele,      float *
             }
         }
         __syncthreads();
-        if (threadIdx.x == 0) {
-            S_calc[ii] = S_calcc[ii * num_atom2];
-            Aq[ii] = k_chi / 2.0 / sigma2 * ( q_S_ref_dS[ii+2*num_q] - alpha * (S_calc[ii] - q_S_ref_dS[ii+num_q]));
-            //printf("S_calc[%d] = %.3f. \n", ii, S_calc[ii]);
-        }
+        
+        S_calc[ii] = S_calcc[ii * num_atom2];
         __syncthreads();
-        // Multiply f_pt{x,y,z}c(q) by Aq(q) * 8 * alpha * k_chi / sigma2
+        Aq[ii] = k_chi / 2.0 / sigma2 * ( q_S_ref_dS[ii+2*num_q] - alpha * (S_calc[ii] - q_S_ref_dS[ii+num_q]));
+        __syncthreads();
+        // Multiply f_pt{x,y,z}c(q) by Aq(q) * 4 * alpha
         for (int jj = threadIdx.x; jj < num_atom; jj += blockDim.x) {
             f_ptxc[ii * num_atom2 + jj] *= Aq[ii] * 4.0 * alpha;
             f_ptyc[ii * num_atom2 + jj] *= Aq[ii] * 4.0 * alpha;
             f_ptzc[ii * num_atom2 + jj] *= Aq[ii] * 4.0 * alpha;
         }
-        __syncthreads();
         // Call another device function (block = atom_num, threads = num_q)
         // to column sum f_pt{x,y,z}c for Force[jj] 
         /*for (int jj = threadIdx.x; jj < num_atom; jj += blockDim.x) {
@@ -517,6 +490,15 @@ __global__ void force_calc (float *Force, int num_atom, int num_q, float *f_ptxc
     if (blockIdx.x >= num_atom) return;
     for (int ii = blockIdx.x; ii < num_atom; ii += gridDim.x) {
         //printf("BlockIdx = %d \n", ii);
+        /*if (ii == 725 && threadIdx.x == 0) {
+            printf("At atom %d we have these values: \n",ii);
+            for (int jj = 0; jj < num_q2; jj ++) {
+                printf("%.8f %.8f %.8f\n", f_ptxc[ii + jj * num_atom2], 
+                                           f_ptyc[ii + jj * num_atom2], 
+                                           f_ptzc[ii + jj * num_atom2]);
+            }
+        }
+        */
         for (int stride = num_q2 / 2; stride > 0; stride >>= 1) {
             __syncthreads();
             for(int iAccum = threadIdx.x; iAccum < stride; iAccum += blockDim.x) {

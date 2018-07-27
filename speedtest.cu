@@ -140,14 +140,18 @@ int main () {
     surf_calc<<<1024,512>>>(d_coord, d_Ele, d_r2, d_close_num, d_close_idx, d_vdW, num_atom, num_atom2, num_raster, sol_s, d_V, d_surf);
     sum_V<<<1,1024>>>(d_V, num_atom2);
     cudaMemcpy(V, d_V, size_atom2f, cudaMemcpyDeviceToHost);
+
+    // Print surf info
+    /*
     for (int i = 0; i < num_atom; i++) {
         printf("%3d atoms are close to atom %4d, %.6f of surf being exposed.\n", close_num[i], i, V[i]);
-        /*for (int j = 0; j < close_num[i]; j++) {
+        //for (int j = 0; j < close_num[i]; j++) {
         //for (int j = 0; j < 30; j++) {
             printf("%4d, ", close_idx[i*num_atom2+j]);
         }
-        printf("\n");*/
+        //printf("\n");
     }
+    */
     //border_scat<<<1024, 1024>>>(d_coord, d_Ele, d_r2, d_raster, d_V, num_atom, num_atom2, num_raster, num_raster2); 
     //V_calc<<<1, 1024>>>(d_V, num_atom2);
     FF_calc<<<320, 32>>>(d_q_S_ref_dS, d_WK, d_vdW, num_q, num_ele, c1, r_m, d_FF_table); 
@@ -168,9 +172,8 @@ int main () {
     //cudaMemcpy(rot,    d_rot,    size_rot,   cudaMemcpyDeviceToHost);
     //pp_assign<<<1, 128>>>(d_coord, d_Force, d_rot, d_bond_pp, num_pp, num_atom);
 
-    //cudaMemcpy(Force,  d_Force,  size_coord, cudaMemcpyDeviceToHost);
+    cudaMemcpy(Force,  d_Force,  size_coord, cudaMemcpyDeviceToHost);
 
- 
 
     //cudaMemcpy(a,      d_a,      sizeof(int),cudaMemcpyDeviceToHost);
     float chi = 0.0;
@@ -182,14 +185,17 @@ int main () {
         chi2 += chi * chi;
         chi_ref+= q_S_ref_dS[ii+2*num_q] * q_S_ref_dS[ii+2*num_q];
     }
-    /*for (int ii = 0; ii < 3 * num_atom; ii++) {
-        printf("%.8f ", Force[ii]);
+    for (int ii = 0; ii < 3 * num_atom; ii++) {
+        printf("%d: %.8f ", ii/3, Force[ii]);
         if ((ii+1) % 3 == 0) printf("\n");
-    }*/
+    }
     printf("chi square is %.5e ( %.3f \% )\n", chi2, chi2 / chi_ref * 100);
     /*for (int ii = 0; ii < 1; ii++) {
         printf("S0 = %.5e \n", S_calc[ii]);
     }*/
+
+    // Print surface points
+    /*
             printf("CRYST1    0.000    0.000    0.000  90.00  90.00  90.00 P 1           1\n");
     int idx = 0;
     for (int ii = 0; ii < num_atom * num_raster; ii++) {
@@ -198,7 +204,7 @@ int main () {
             idx++;
         }
     }
-
+    */
     cudaFree(d_coord); cudaFree(d_Force); //cudaFree(d_q);
     cudaFree(d_Ele); cudaFree(d_FF); 
     cudaFree(d_q_S_ref_dS); 
