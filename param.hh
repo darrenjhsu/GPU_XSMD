@@ -24,3 +24,4 @@ extern float vdW[7];
 extern float c1;
 extern float c2;
 extern float r_m;
+extern float offset;

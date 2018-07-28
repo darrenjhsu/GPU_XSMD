@@ -119,11 +119,15 @@ __global__ void pre_scan_close (int *close_flag, int *close_num, int *close_idx,
     }
 }
 
-__global__ void surf_calc (float *coord, int *Ele, float *r2, int *close_num, int *close_idx, float *vdW, int num_atom, int num_atom2, int num_raster, float sol_s, float *V, float *surf) {
+__global__ void surf_calc (float *coord, int *Ele, float *r2, int *close_num, int *close_idx, float *vdW, int num_atom, int num_atom2, int num_raster, float sol_s, float *V, float *surf, float *surf_grad, float offset) {
     // num_raster should be a number of 2^n. 
-    // sol_s is solvent radius (default = 1.4 A)
+    // sol_s is solvent radius (default = 1.8 A)
+    // surf_grad is num_atom of gradient vectors for each atom
+    // offset is the h in calculation of gradient = ( f(x+h) - f(x-h) ) / 2 h
     __shared__ float vdW_s; // vdW radius of the center atom
     __shared__ int pts[512]; // All spherical raster points
+    __shared__ int ptspx[512], ptsmx[512], ptspy[512], ptsmy[512], ptspz[512], ptsmz[512];
+                   // plus x   minus x ... for gradient
     __shared__ float L, r;
     if (blockIdx.x >= num_atom) return;
     L = sqrt(num_raster * PI);
@@ -132,7 +136,10 @@ __global__ void surf_calc (float *coord, int *Ele, float *r2, int *close_num, in
         vdW_s = vdW[atom1t];
         r = vdW_s + sol_s;
         for (int jj = threadIdx.x; jj < num_raster; jj += blockDim.x) {
-            pts[jj] = 1;
+            pts[jj] = 1; 
+            ptspx[jj] = 1; ptsmx[jj] = 1; 
+            ptspy[jj] = 1; ptsmy[jj] = 1;
+            ptspz[jj] = 1; ptsmz[jj] = 1;
             float h = 1.0 - (2.0 * (float)jj + 1.0) / (float)num_raster;
             float p = acos(h);
             float t = L * p; 
@@ -148,26 +155,54 @@ __global__ void surf_calc (float *coord, int *Ele, float *r2, int *close_num, in
             for (int kk = 0; kk < close_num[ii]; kk++) {
                 int atom2i = close_idx[ii*num_atom2 + kk];
                 int atom2t = Ele[atom2i];
-                float dr2 =  (x - coord[3*atom2i]) * (x - coord[3*atom2i]) +
-                             (y - coord[3*atom2i+1]) * (y - coord[3*atom2i+1]) +
-                             (z - coord[3*atom2i+2]) * (z - coord[3*atom2i+2]); 
-                float dr22 = (x2 - coord[3*atom2i]) * (x2 - coord[3*atom2i]) +
-                             (y2 - coord[3*atom2i+1]) * (y2 - coord[3*atom2i+1]) +
-                             (z2 - coord[3*atom2i+2]) * (z2 - coord[3*atom2i+2]);
+                float dx = (x - coord[3*atom2i]);
+                float dy = (y - coord[3*atom2i+1]);
+                float dz = (z - coord[3*atom2i+2]);
+                float dx2 = (x2 - coord[3*atom2i]);
+                float dy2 = (y2 - coord[3*atom2i+1]);
+                float dz2 = (z2 - coord[3*atom2i+2]);
+                float dr2 = dx * dx + dy * dy + dz * dz; 
+                float dr22 = dx2 * dx2 + dy2 * dy2 + dz2 * dz2;
                 // vdW points must not cross into other atom
-                if (dr2 < vdW[atom2t] * vdW[atom2t]) {
-                    pts[jj] = 0;
-                }
+                if (dr2 < vdW[atom2t] * vdW[atom2t]) pts[jj] = 0;
                 // solvent center has to be far enough
-                if (dr22 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) {
-                    pts[jj] = 0;
-                }
+                if (dr22 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) pts[jj] = 0;
+                // Plus x
+                dr2 =  (dx + offset)  * (dx + offset) + dy * dy + dz * dz;
+                dr22 = (dx2 + offset) * (dx2 + offset) + dy2 * dy2 + dz2 * dz2;
+                if (dr2 < vdW[atom2t] * vdW[atom2t]) ptspx[jj] = 0;
+                if (dr22 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) ptspx[jj] = 0;
+                // Minus x
+                dr2 =  (dx - offset)  * (dx - offset) + dy * dy + dz * dz;
+                dr22 = (dx2 - offset) * (dx2 - offset) + dy2 * dy2 + dz2 * dz2;
+                if (dr2 < vdW[atom2t] * vdW[atom2t]) ptsmx[jj] = 0;
+                if (dr22 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) ptsmx[jj] = 0;
+                // Plus y
+                dr2 =  dx * dx   + (dy + offset)  * (dy + offset) + dz * dz; 
+                dr22 = dx2 * dx2 + (dy2 + offset) * (dy2 + offset) + dz2 * dz2;
+                if (dr2 < vdW[atom2t] * vdW[atom2t]) ptspy[jj] = 0;
+                if (dr22 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) ptspy[jj] = 0;
+                // Minus y
+                dr2 =  dx * dx   + (dy - offset)  * (dy - offset) + dz * dz; 
+                dr22 = dx2 * dx2 + (dy2 - offset) * (dy2 - offset) + dz2 * dz2;
+                if (dr2 < vdW[atom2t] * vdW[atom2t]) ptsmy[jj] = 0;
+                if (dr22 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) ptsmy[jj] = 0;
+                // Plus z
+                dr2 =  dx * dx + dy * dy + (dz + offset) * (dz + offset); 
+                dr22 = dx2 * dx2 + dy2 * dy2 + (dz2 + offset) * (dz2 + offset);
+                if (dr2 < vdW[atom2t] * vdW[atom2t]) ptspz[jj] = 0;
+                if (dr22 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) ptspz[jj] = 0;
+                // Minus z
+                dr2 =  dx * dx + dy * dy + (dz - offset) * (dz - offset); 
+                dr22 = dx2 * dx2 + dy2 * dy2 + (dz2 - offset) * (dz2 - offset);
+                if (dr2 < vdW[atom2t] * vdW[atom2t]) ptsmz[jj] = 0;
+                if (dr22 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) ptsmz[jj] = 0;
             }
-            if (pts[jj] == 1) {
+            /*if (pts[jj] == 1) {
                 surf[3*ii*num_raster+jj*3  ] = x;
                 surf[3*ii*num_raster+jj*3+1] = y;
                 surf[3*ii*num_raster+jj*3+2] = z;
-            }
+            }*/
         }
         /*if (ii == 0 && threadIdx.x == 0) {
             for (int jj = 0; jj < 16; jj++) {
@@ -182,20 +217,35 @@ __global__ void surf_calc (float *coord, int *Ele, float *r2, int *close_num, in
             __syncthreads();
             for(int iAccum = threadIdx.x; iAccum < stride; iAccum += blockDim.x) {
                 pts[iAccum] += pts[stride + iAccum];
+                ptspx[iAccum] += ptspx[stride + iAccum];
+                ptsmx[iAccum] += ptsmx[stride + iAccum];
+                ptspy[iAccum] += ptspy[stride + iAccum];
+                ptsmy[iAccum] += ptsmy[stride + iAccum];
+                ptspz[iAccum] += ptspz[stride + iAccum];
+                ptsmz[iAccum] += ptsmz[stride + iAccum];
+                
             }
         }
         __syncthreads();
         if (threadIdx.x == 0) {
             V[ii] = (float)pts[0]/(float)num_raster;// * 4.0 * r * r * PI ;
+            surf_grad[3*ii  ] = (float)(ptspx[0] - ptsmx[0]) / 2.0 / offset / (float)num_raster;
+            surf_grad[3*ii+1] = (float)(ptspy[0] - ptsmy[0]) / 2.0 / offset / (float)num_raster;
+            surf_grad[3*ii+2] = (float)(ptspz[0] - ptsmz[0]) / 2.0 / offset / (float)num_raster;
             //if (ii == 0) printf("Sum pts = %d, V = %.3f. \n", pts[0], V[ii]);
         }
     }
 }
 
-__global__ void sum_V (float *V, int num_atom2) {
+__global__ void sum_V (float *V, int num_atom, int num_atom2, int *Ele, float *vdW) {
     __shared__ float V_s[2048];
     for (int ii = threadIdx.x; ii < num_atom2; ii += blockDim.x) {
-        V_s[ii] = V[ii];
+        if (ii < num_atom) {
+            int atomi = Ele[ii];
+            V_s[ii] = V[ii] * 4.0 * PI * vdW[atomi] * vdW[atomi];
+        } else {
+            V_s[ii] = 0.0;
+        }
     }
     for (int stride = num_atom2 / 2; stride > 0; stride >>= 1) {
         __syncthreads();
@@ -204,7 +254,7 @@ __global__ void sum_V (float *V, int num_atom2) {
         }
     }
     __syncthreads();
-    if (threadIdx.x == 0) printf("V_s[0] = %.3f\n", V_s[0]);
+    if (threadIdx.x == 0) printf("Convex contact area = %.3f A^2.\n", V_s[0]);
     /*for (int ii = threadIdx.x; ii < num_atom2; ii += blockDim.x) {
         V[ii] = V[ii] / V_s[0];
     } */
@@ -350,7 +400,8 @@ __global__ void scat_calc (float *coord,  float *Force,   int *Ele,      float *
                            float *S_calc, int num_atom,   int num_q,     int num_ele,   float *Aq, 
                            float alpha,   float k_chi,    float sigma2,  float *f_ptxc, float *f_ptyc, 
                            float *f_ptzc, float *S_calcc, int num_atom2, int num_q2,    float *vdW, 
-                           float c1,      float c2,       float *V,      float r_m,     float *FF_table) {
+                           float c1,      float c2,       float *V,      float r_m,     float *FF_table,
+                           float *surf_grad) {
     __shared__ float q_pt;
     __shared__ float FF_pt[7]; // num_ele + 1, the last one for water.
     __shared__ float S_calccs[1024];
@@ -407,7 +458,9 @@ __global__ void scat_calc (float *coord,  float *Force,   int *Ele,      float *
                     float r = sqrt(dx*dx+dy*dy+dz*dz);
                     
                     float sqr = sin(q_pt * r); // 22 ms
-                    float prefac = atom1FF * atom2FF * (cos(q_pt * r) - sqr / q_pt / r) / r / r; //27 ms
+                    float prefac = 2.0 * atom1FF * atom2FF * (cos(q_pt * r) - sqr / q_pt / r) / r / r; //27 ms
+                    float gradient = surf_grad[3*kk] * dx + surf_grad[3*kk+1] * dy + surf_grad[3*kk+2] * dz;
+                    //prefac += atom1FF * c2 * FF_pt[num_ele] * gradient * sqr / q_pt / r / r;
                     //float prefac = atom1FF * FF_pt[atom2t] * cxsxdx_table[r_bin] / r / r;
                     //float prefac = atom1FF * FF[ii*num_ele+atom2t] * (cos(q_pt * r) - sin(q_pt * r) / q_pt / r) / r / r;
                     //S_calcc[ii*num_atom2+jj] += atom1FF * FF[ii*num_ele+atom2t] * sin(q_pt * r) / q_pt / r;
@@ -484,7 +537,7 @@ __global__ void scat_calc (float *coord,  float *Force,   int *Ele,      float *
 }
 
 
-__global__ void force_calc (float *Force, int num_atom, int num_q, float *f_ptxc, float *f_ptyc, float *f_ptzc, int num_atom2, int num_q2) {
+__global__ void force_calc (float *Force, int num_atom, int num_q, float *f_ptxc, float *f_ptyc, float *f_ptzc, int num_atom2, int num_q2, int *Ele) {
     // Do column tree sum of f_ptxc for f_ptx for every atom, then assign threadIdx.x == 0 (3 * num_atoms) to Force. Force is num_atom * 3. 
     //if (threadIdx.x == 0) printf("blockIdx.x = %d\n", blockIdx.x);
     if (blockIdx.x >= num_atom) return;
@@ -509,9 +562,11 @@ __global__ void force_calc (float *Force, int num_atom, int num_q, float *f_ptxc
         }
         __syncthreads();
         if (threadIdx.x == 0) {
-            Force[ii*3    ] = -f_ptxc[ii];
-            Force[ii*3 + 1] = -f_ptyc[ii];
-            Force[ii*3 + 2] = -f_ptzc[ii];
+            //if (Ele[ii]) {
+                Force[ii*3    ] = -f_ptxc[ii];
+                Force[ii*3 + 1] = -f_ptyc[ii];
+                Force[ii*3 + 2] = -f_ptzc[ii];
+            //}
             //Force[ii*3    ] = 0.0;// -f_ptxc[ii];
             //Force[ii*3 + 1] = 0.0;//-f_ptyc[ii];
             //Force[ii*3 + 2] = 0.0;//-f_ptzc[ii];

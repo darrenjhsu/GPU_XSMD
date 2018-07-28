@@ -23,7 +23,7 @@ int main () {
     int *close_num, *close_idx;
     float *V;
     float *d_FF_table;
-    float *d_surf, *surf;
+    float *d_surf, *surf, *d_surf_grad;
 
     // set various memory chunk sizes
     int size_coord = 3 * num_atom * sizeof(float);
@@ -76,6 +76,7 @@ int main () {
     cudaMalloc((void **)&d_FF_table, size_FF_table);
     cudaMalloc((void **)&d_WK, size_WK);
     cudaMalloc((void **)&d_surf, size_surf);
+    cudaMalloc((void **)&d_surf_grad, size_coord);
     // Initialize some matrices
     cudaMemset(d_close_flag, 0, size_qxatom2);
     cudaMemset(d_Force, 0.0, size_coord);
@@ -101,17 +102,18 @@ int main () {
     dist_calc<<<1024, 1024>>>(d_coord, d_dx, d_dy, d_dz, d_r2, d_close_flag, num_atom, num_atom2); 
     pre_scan_close<<<2048,1024>>>(d_close_flag, d_close_num, d_close_idx, num_atom2);
     cudaMemcpy(close_num, d_close_num, size_atom2, cudaMemcpyDeviceToHost);
-    surf_calc<<<1024,512>>>(d_coord, d_Ele, d_r2, d_close_num, d_close_idx, d_vdW, num_atom, num_atom2, num_raster, sol_s, d_V, d_surf);
-    sum_V<<<1,1024>>>(d_V, num_atom2);
+    surf_calc<<<1024,512>>>(d_coord, d_Ele, d_r2, d_close_num, d_close_idx, d_vdW, num_atom, num_atom2, num_raster, sol_s, d_V, d_surf, d_surf_grad, offset);
+    sum_V<<<1,1024>>>(d_V, num_atom, num_atom2, d_Ele, d_vdW);
     FF_calc<<<320, 32>>>(d_q_S_ref_dS, d_WK, d_vdW, num_q, num_ele, c1, r_m, d_FF_table); 
     scat_calc<<<320, 1024>>>(d_coord,  d_Force,   d_Ele,     d_WK,     d_q_S_ref_dS, 
                              d_S_calc, num_atom,  num_q,     num_ele,  d_Aq, 
                              alpha,    k_chi,     sigma2,    d_f_ptxc, d_f_ptyc, 
                              d_f_ptzc, d_S_calcc, num_atom2, num_q2,   d_vdW,
-                             c1,       c2,        d_V,       r_m,      d_FF_table);
+                             c1,       c2,        d_V,       r_m,      d_FF_table,
+                             d_surf_grad);
     cudaMemcpy(S_calc1,d_S_calc, size_q,     cudaMemcpyDeviceToHost);
     cudaMemcpy(surf,   d_surf,   size_surf,  cudaMemcpyDeviceToHost);
-    force_calc<<<1024, 512>>>(d_Force, num_atom, num_q, d_f_ptxc, d_f_ptyc, d_f_ptzc, num_atom2, num_q2);
+    force_calc<<<1024, 512>>>(d_Force, num_atom, num_q, d_f_ptxc, d_f_ptyc, d_f_ptzc, num_atom2, num_q2, d_Ele);
   
     // Initialize some matrices
     cudaMemset(d_close_flag, 0, size_qxatom2);
@@ -132,17 +134,18 @@ int main () {
     dist_calc<<<1024, 1024>>>(d_coord, d_dx, d_dy, d_dz, d_r2, d_close_flag, num_atom, num_atom2); 
     pre_scan_close<<<2048,1024>>>(d_close_flag, d_close_num, d_close_idx, num_atom2);
     cudaMemcpy(close_num, d_close_num, size_atom2, cudaMemcpyDeviceToHost);
-    surf_calc<<<1024,512>>>(d_coord, d_Ele, d_r2, d_close_num, d_close_idx, d_vdW, num_atom, num_atom2, num_raster, sol_s, d_V, d_surf);
-    sum_V<<<1,1024>>>(d_V, num_atom2);
+    surf_calc<<<1024,512>>>(d_coord, d_Ele, d_r2, d_close_num, d_close_idx, d_vdW, num_atom, num_atom2, num_raster, sol_s, d_V, d_surf, d_surf_grad, offset);
+    sum_V<<<1,1024>>>(d_V, num_atom, num_atom2, d_Ele, d_vdW);
     FF_calc<<<320, 32>>>(d_q_S_ref_dS, d_WK, d_vdW, num_q, num_ele, c1, r_m, d_FF_table); 
     scat_calc<<<320, 1024>>>(d_coord,  d_Force,   d_Ele,     d_WK,     d_q_S_ref_dS, 
                              d_S_calc, num_atom,  num_q,     num_ele,  d_Aq, 
                              alpha,    k_chi,     sigma2,    d_f_ptxc, d_f_ptyc, 
                              d_f_ptzc, d_S_calcc, num_atom2, num_q2,   d_vdW,
-                             c1,       c2,        d_V,       r_m,      d_FF_table);
+                             c1,       c2,        d_V,       r_m,      d_FF_table,
+                             d_surf_grad);
     cudaMemcpy(S_calc2,d_S_calc, size_q,     cudaMemcpyDeviceToHost);
     cudaMemcpy(surf,   d_surf,   size_surf,  cudaMemcpyDeviceToHost);
-    force_calc<<<1024, 512>>>(d_Force, num_atom, num_q, d_f_ptxc, d_f_ptyc, d_f_ptzc, num_atom2, num_q2);
+    force_calc<<<1024, 512>>>(d_Force, num_atom, num_q, d_f_ptxc, d_f_ptyc, d_f_ptzc, num_atom2, num_q2, d_Ele);
  
 
     printf("float q_S_ref_dS[%d] = {", 3*num_q);
@@ -151,7 +154,7 @@ int main () {
     }
     printf("\n");
     for (int ii = 0; ii < num_q; ii++) {
-        printf("%f, ",S_calc1[ii]);
+        printf("%f, ",S_calc2[ii]);
     }
     printf("\n");
     for (int ii = 0; ii < num_q; ii++) {

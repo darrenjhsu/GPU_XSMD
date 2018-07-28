@@ -21,7 +21,7 @@ void XSMD_calc (float *coord, float *Force) {
     int *d_close_flag, *d_close_num, *d_close_idx;
     float *d_vdW;
     float *d_FF_table;
-    float *d_surf;
+    float *d_surf, *d_surf_grad;
 
     // set various memory chunk sizes
     int size_coord = 3 * num_atom * sizeof(float);
@@ -70,6 +70,7 @@ void XSMD_calc (float *coord, float *Force) {
     cudaMalloc((void **)&d_FF_table, size_FF_table);
     cudaMalloc((void **)&d_WK, size_WK);
     cudaMalloc((void **)&d_surf, size_surf);
+    cudaMalloc((void **)&d_surf_grad, size_coord);
     // Initialize some matrices
     cudaMemset(d_close_flag, 0, size_qxatom2);
     cudaMemset(d_Force, 0.0, size_coord);
@@ -82,6 +83,7 @@ void XSMD_calc (float *coord, float *Force) {
     cudaMemset(d_close_num, 0, size_atom2);
     cudaMemset(d_close_idx, 0, size_atom2xatom2);
     cudaMemset(d_surf, 0.0, size_surf);
+    cudaMemset(d_surf_grad, 0.0, size_coord);
     // Copy necessary data
     cudaMemcpy(d_coord, coord, size_coord,    cudaMemcpyHostToDevice);
     cudaMemcpy(d_vdW, vdW, size_vdW, cudaMemcpyHostToDevice);
@@ -111,7 +113,7 @@ void XSMD_calc (float *coord, float *Force) {
        fprintf(stderr,"ERROR: %s\n", cudaGetErrorString(error) );
        exit(-1);
     }
-    surf_calc<<<1024,512>>>(d_coord, d_Ele, d_r2, d_close_num, d_close_idx, d_vdW, num_atom, num_atom2, num_raster, sol_s, d_V, d_surf);
+    surf_calc<<<1024,512>>>(d_coord, d_Ele, d_r2, d_close_num, d_close_idx, d_vdW, num_atom, num_atom2, num_raster, sol_s, d_V, d_surf, d_surf_grad, offset);
     //printf("Done surf_calc\n");
     cudaDeviceSynchronize();
     error = cudaGetLastError();
@@ -120,7 +122,7 @@ void XSMD_calc (float *coord, float *Force) {
        fprintf(stderr,"ERROR: %s\n", cudaGetErrorString(error) );
        exit(-1);
     }
-    sum_V<<<1,1024>>>(d_V, num_atom2);
+    sum_V<<<1,1024>>>(d_V, num_atom, num_atom2, d_Ele, d_vdW);
     //printf("Done sum_V\n");
     cudaDeviceSynchronize();
     error = cudaGetLastError();
@@ -142,7 +144,8 @@ void XSMD_calc (float *coord, float *Force) {
                              d_S_calc, num_atom,  num_q,     num_ele,  d_Aq, 
                              alpha,    k_chi,     sigma2,    d_f_ptxc, d_f_ptyc, 
                              d_f_ptzc, d_S_calcc, num_atom2, num_q2,   d_vdW,
-                             c1,       c2,        d_V,       r_m,      d_FF_table);
+                             c1,       c2,        d_V,       r_m,      d_FF_table,
+                             d_surf_grad);
     //printf("Done scat_calc\n");
     cudaDeviceSynchronize();
     error = cudaGetLastError();
@@ -152,7 +155,8 @@ void XSMD_calc (float *coord, float *Force) {
        exit(-1);
     }
     cudaMemcpyAsync(S_calc, d_S_calc, size_q,     cudaMemcpyDeviceToHost);
-    force_calc<<<1024, 512>>>(d_Force, num_atom, num_q, d_f_ptxc, d_f_ptyc, d_f_ptzc, num_atom2, num_q2);
+    force_calc<<<1024, 512>>>(d_Force, num_atom, num_q, d_f_ptxc, d_f_ptyc, 
+                              d_f_ptzc, num_atom2, num_q2, d_Ele);
     //printf("Done force_calc\n");
 
     cudaDeviceSynchronize();
@@ -198,7 +202,7 @@ void XSMD_calc (float *coord, float *Force) {
     cudaFree(d_close_flag); cudaFree(d_close_num); cudaFree(d_close_idx);
     cudaFree(d_vdW);
     cudaFree(d_FF_table);
-    cudaFree(d_surf);
+    cudaFree(d_surf); cudaFree(d_surf_grad);
     free(S_calc);
 
 }

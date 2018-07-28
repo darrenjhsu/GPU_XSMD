@@ -27,6 +27,8 @@ int main () {
     float *V;
     float *d_FF_table;
     float *d_surf, *surf;
+    float *d_surf_grad, *surf_grad;
+    
     //int *d_bond_pp;
     //int *a, *d_a; 
     //a = (int *)malloc(sizeof(int)); 
@@ -55,6 +57,7 @@ int main () {
     close_idx = (int *)malloc(size_atom2xatom2);
     close_num = (int *)malloc(size_atom2);
     V = (float *)malloc(size_atom2f);
+    surf_grad = (float *)malloc(size_coord);
     /*for (int ii = 0; ii<3*num_atom; ii++) {
         Force[ii] = 0.0;
     }*/
@@ -116,6 +119,8 @@ int main () {
     cudaMalloc((void **)&d_WK, size_WK);
     cudaMalloc((void **)&d_surf, size_surf);
     cudaMemset(d_surf, 0.0, size_surf);
+    cudaMalloc((void **)&d_surf_grad, size_coord);
+    cudaMemset(d_surf_grad, 0.0, size_coord);
     cudaMemcpy(d_coord, coord_ref, size_coord,    cudaMemcpyHostToDevice);
     //cudaMemcpy(d_Force, Force, size_coord, cudaMemcpyHostToDevice);
     //cudaMemcpy(d_q,      q,      size_q,      cudaMemcpyHostToDevice);
@@ -137,8 +142,9 @@ int main () {
     pre_scan_close<<<2048,1024>>>(d_close_flag, d_close_num, d_close_idx, num_atom2);
     cudaMemcpy(close_num, d_close_num, size_atom2, cudaMemcpyDeviceToHost);
     //cudaMemcpy(close_idx, d_close_idx, size_atom2xatom2, cudaMemcpyDeviceToHost);
-    surf_calc<<<1024,512>>>(d_coord, d_Ele, d_r2, d_close_num, d_close_idx, d_vdW, num_atom, num_atom2, num_raster, sol_s, d_V, d_surf);
-    sum_V<<<1,1024>>>(d_V, num_atom2);
+    surf_calc<<<1024,512>>>(d_coord, d_Ele, d_r2, d_close_num, d_close_idx, d_vdW, num_atom, num_atom2, num_raster, sol_s, d_V, d_surf, d_surf_grad, offset);
+    cudaMemcpy(surf_grad, d_surf_grad, size_coord, cudaMemcpyDeviceToHost);
+    sum_V<<<1,1024>>>(d_V, num_atom, num_atom2, d_Ele, d_vdW);
     cudaMemcpy(V, d_V, size_atom2f, cudaMemcpyDeviceToHost);
 
     // Print surf info
@@ -159,13 +165,15 @@ int main () {
                              d_S_calc, num_atom,  num_q,     num_ele,  d_Aq, 
                              alpha,    k_chi,     sigma2,    d_f_ptxc, d_f_ptyc, 
                              d_f_ptzc, d_S_calcc, num_atom2, num_q2,   d_vdW,
-                             c1,       c2,        d_V,       r_m,      d_FF_table);
+                             c1,       c2,        d_V,       r_m,      d_FF_table, 
+                             d_surf_grad);
     //printf("force_calc finished! \n");
     //printf("%d \n",cudaDeviceSynchronize());
     // cudaDeviceSynchronize();
     cudaMemcpy(S_calc, d_S_calc, size_q,     cudaMemcpyDeviceToHost);
     cudaMemcpy(surf,   d_surf,   size_surf,  cudaMemcpyDeviceToHost);
-    force_calc<<<1024, 512>>>(d_Force, num_atom, num_q, d_f_ptxc, d_f_ptyc, d_f_ptzc, num_atom2, num_q2);
+    force_calc<<<1024, 512>>>(d_Force, num_atom, num_q, d_f_ptxc, d_f_ptyc, 
+                              d_f_ptzc, num_atom2, num_q2, d_Ele);
     
     //printf("%d \n",cudaDeviceSynchronize());
     //force_proj<<<32, 128>>>(d_coord, d_Force, d_rot, d_rot_pt, d_bond_pp, num_pp, num_atom, num_atom2);
@@ -188,6 +196,9 @@ int main () {
     for (int ii = 0; ii < 3 * num_atom; ii++) {
         printf("%d: %.8f ", ii/3, Force[ii]);
         if ((ii+1) % 3 == 0) printf("\n");
+    }
+    for (int ii = 0; ii < num_atom; ii++) {
+        printf("grad: %4d: %7.4f %7.4f %7.4f \n", ii, surf_grad[3*ii], surf_grad[3*ii+1], surf_grad[3*ii+2]);
     }
     printf("chi square is %.5e ( %.3f \% )\n", chi2, chi2 / chi_ref * 100);
     /*for (int ii = 0; ii < 1; ii++) {
@@ -217,9 +228,10 @@ int main () {
     cudaFree(d_r2);
     cudaFree(d_close_flag); cudaFree(d_close_num); cudaFree(d_close_idx);
     cudaFree(d_vdW);
+    cudaFree(d_surf_grad);
     //cudaFree(d_rot); cudaFree(d_rot_pt); cudaFree(d_bond_pp);
     //cudaFree(d_a); free(a);
-    free(S_calc); free(close_num); free(close_idx);
+    free(S_calc); free(close_num); free(close_idx); free(surf_grad);
     //printf("So the fault is at NAMD?\n");
 
     return 0;
