@@ -10,7 +10,8 @@
 int main () {
     //int *Ele, float *FF, float *q, float *S_ref, float *dS, float *S_calc, int num_atom, int num_q, int num_ele, float k_chi)
     //for (int ii = 0; ii < num_atom; ii ++) printf("%.3f, %.3f, %.3f\n",coord_ref[ii*3],coord_ref[ii*3+1],coord_ref[ii*3+2]) ;
-    cudaFree(0); 
+    cudaFree(0);
+    //cudaDeviceSetCacheConfig(cudaFuncCachePreferL1); 
     float *d_Aq, *d_coord, *d_Force, *d_FF;
     int *d_Ele;
     float *d_q_S_ref_dS, *d_S_calc;
@@ -142,8 +143,9 @@ int main () {
     pre_scan_close<<<2048,1024>>>(d_close_flag, d_close_num, d_close_idx, num_atom2);
     cudaMemcpy(close_num, d_close_num, size_atom2, cudaMemcpyDeviceToHost);
     //cudaMemcpy(close_idx, d_close_idx, size_atom2xatom2, cudaMemcpyDeviceToHost);
+    //surf_calc<<<1024,512>>>(d_coord, d_Ele, d_r2, d_close_num, d_close_idx, d_vdW, num_atom, num_atom2, num_raster, sol_s, d_V, d_surf, d_surf_grad, offset);
     surf_calc<<<1024,512>>>(d_coord, d_Ele, d_r2, d_close_num, d_close_idx, d_vdW, num_atom, num_atom2, num_raster, sol_s, d_V, d_surf, d_surf_grad, offset);
-    cudaMemcpy(surf_grad, d_surf_grad, size_coord, cudaMemcpyDeviceToHost);
+    //cudaMemcpy(surf_grad, d_surf_grad, size_coord, cudaMemcpyDeviceToHost);
     sum_V<<<1,1024>>>(d_V, num_atom, num_atom2, d_Ele, d_vdW);
     cudaMemcpy(V, d_V, size_atom2f, cudaMemcpyDeviceToHost);
 
@@ -163,9 +165,10 @@ int main () {
     FF_calc<<<320, 32>>>(d_q_S_ref_dS, d_WK, d_vdW, num_q, num_ele, c1, r_m, d_FF_table); 
     scat_calc<<<320, 1024>>>(d_coord,  d_Force,   d_Ele,     d_WK,     d_q_S_ref_dS, 
                              d_S_calc, num_atom,  num_q,     num_ele,  d_Aq, 
+                             //d_S_calc, num_atom,  num_q,     num_ele, 
                              alpha,    k_chi,     sigma2,    d_f_ptxc, d_f_ptyc, 
                              d_f_ptzc, d_S_calcc, num_atom2, num_q2,   d_vdW,
-                             c1,       c2,        d_V,       r_m,      d_FF_table, 
+                             c2,       d_V,       r_m,      d_FF_table, 
                              d_surf_grad);
     //printf("force_calc finished! \n");
     //printf("%d \n",cudaDeviceSynchronize());

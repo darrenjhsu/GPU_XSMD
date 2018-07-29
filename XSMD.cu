@@ -8,13 +8,23 @@
 
 
 void XSMD_calc (float *coord, float *Force) {
-    // Declare local pointers
+
+    // In this code pointers with d_ are device pointers. 
+
+    // Declare local pointers //
+    // The calculated scattering pattern for this snapshot.
     float *S_calc;
-    // Declare cuda pointers
+
+    // Declare cuda pointers //
+    // The prefactor, coordinates, force to be returned, and force field table (num_q * num_ele)
     float *d_Aq, *d_coord, *d_Force, *d_FF;
+    // List of what element each atom is.
     int *d_Ele;
+    // q vector, reference scattering pattern and measured difference pattern to fit.
     float *d_q_S_ref_dS, *d_S_calc;
+    // Some intermediate matrices
     float *d_S_calcc, *d_f_ptxc, *d_f_ptyc, *d_f_ptzc;
+    // Displacement of the coordinates (N x N matrices)
     float *d_dx, *d_dy, *d_dz;
     float *d_V, *d_r2;
     float *d_WK;
@@ -144,8 +154,7 @@ void XSMD_calc (float *coord, float *Force) {
                              d_S_calc, num_atom,  num_q,     num_ele,  d_Aq, 
                              alpha,    k_chi,     sigma2,    d_f_ptxc, d_f_ptyc, 
                              d_f_ptzc, d_S_calcc, num_atom2, num_q2,   d_vdW,
-                             c1,       c2,        d_V,       r_m,      d_FF_table,
-                             d_surf_grad);
+                             c2,        d_V,       r_m,      d_FF_table, d_surf_grad);
     //printf("Done scat_calc\n");
     cudaDeviceSynchronize();
     error = cudaGetLastError();
