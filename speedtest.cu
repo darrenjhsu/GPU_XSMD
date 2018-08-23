@@ -3,7 +3,9 @@
 #include <cuda.h>
 #include "kernel.cu"
 #include "speedtest.hh"
-#include "param.hh"
+#include "env_param.hh"
+#include "mol_param.hh"
+#include "scat_param.hh"
 #include "coord_ref.hh"
 //#include "raster8.hh"
 
@@ -29,6 +31,7 @@ int main () {
     float *d_FF_table;
     float *d_surf, *surf;
     float *d_surf_grad, *surf_grad;
+    float *d_c2;
     
     //int *d_bond_pp;
     //int *a, *d_a; 
@@ -53,6 +56,7 @@ int main () {
     int size_rotxatom2 = num_pp * num_atom2 * sizeof(float);*/
     int size_WK = 11 * num_ele * sizeof(float);
     int size_vdW = (num_ele+1) * sizeof(float);
+    int size_c2 = 9 * sizeof(float);
     // Initialize Force array
     Force = (float *)malloc(size_coord);
     close_idx = (int *)malloc(size_atom2xatom2);
@@ -111,6 +115,7 @@ int main () {
     cudaMemset(d_close_idx, 0, size_atom2xatom2);
     cudaMalloc((void **)&d_vdW, size_vdW);
     cudaMalloc((void **)&d_FF_table, size_FF_table);
+    cudaMalloc((void **)&d_c2, size_c2);
     cudaMemcpy(d_vdW, vdW, size_vdW, cudaMemcpyHostToDevice);
     /*cudaMalloc((void **)&d_rot, size_rot);
     cudaMemset(d_rot,0.0, size_rot);
@@ -131,6 +136,7 @@ int main () {
     //cudaMemcpy(d_dS,     dS,     size_q,      cudaMemcpyHostToDevice);
     //cudaMemcpy(d_bond_pp,bond_pp,size_bond_pp,cudaMemcpyHostToDevice);
     cudaMemcpy(d_WK,     WK,     size_WK,     cudaMemcpyHostToDevice);
+    cudaMemcpy(d_c2,     c2,     size_c2,     cudaMemcpyHostToDevice);
     //printf("Finished copying.\n");
 
     //k_chi = 5e-10;
@@ -145,21 +151,26 @@ int main () {
     //cudaMemcpy(close_idx, d_close_idx, size_atom2xatom2, cudaMemcpyDeviceToHost);
     //surf_calc<<<1024,512>>>(d_coord, d_Ele, d_r2, d_close_num, d_close_idx, d_vdW, num_atom, num_atom2, num_raster, sol_s, d_V, d_surf, d_surf_grad, offset);
     surf_calc<<<1024,512>>>(d_coord, d_Ele, d_r2, d_close_num, d_close_idx, d_vdW, num_atom, num_atom2, num_raster, sol_s, d_V, d_surf, d_surf_grad, offset);
-    //cudaMemcpy(surf_grad, d_surf_grad, size_coord, cudaMemcpyDeviceToHost);
+    cudaMemcpy(surf_grad, d_surf_grad, size_coord, cudaMemcpyDeviceToHost);
     sum_V<<<1,1024>>>(d_V, num_atom, num_atom2, d_Ele, d_vdW);
     cudaMemcpy(V, d_V, size_atom2f, cudaMemcpyDeviceToHost);
 
     // Print surf info
-    /*
+    float wa_c2 = 0.0; 
+    float V_sum = 0.0;
     for (int i = 0; i < num_atom; i++) {
         printf("%3d atoms are close to atom %4d, %.6f of surf being exposed.\n", close_num[i], i, V[i]);
+        V_sum += V[i];
+        wa_c2 += V[i] * c2[Ele[i]];
+        //wa_c2 += V[i] * 2.0;
         //for (int j = 0; j < close_num[i]; j++) {
         //for (int j = 0; j < 30; j++) {
-            printf("%4d, ", close_idx[i*num_atom2+j]);
-        }
+        //    printf("%4d, ", close_idx[i*num_atom2+j]);
+        //}
         //printf("\n");
     }
-    */
+    printf("Weighed average c2 is %.5f . \n", wa_c2 / V_sum);
+    
     //border_scat<<<1024, 1024>>>(d_coord, d_Ele, d_r2, d_raster, d_V, num_atom, num_atom2, num_raster, num_raster2); 
     //V_calc<<<1, 1024>>>(d_V, num_atom2);
     FF_calc<<<320, 32>>>(d_q_S_ref_dS, d_WK, d_vdW, num_q, num_ele, c1, r_m, d_FF_table); 
@@ -168,7 +179,7 @@ int main () {
                              //d_S_calc, num_atom,  num_q,     num_ele, 
                              alpha,    k_chi,     sigma2,    d_f_ptxc, d_f_ptyc, 
                              d_f_ptzc, d_S_calcc, num_atom2, num_q2,   d_vdW,
-                             c2,       d_V,       r_m,      d_FF_table, 
+                             d_c2,       d_V,       r_m,      d_FF_table, 
                              d_surf_grad);
     //printf("force_calc finished! \n");
     //printf("%d \n",cudaDeviceSynchronize());
@@ -232,6 +243,7 @@ int main () {
     cudaFree(d_close_flag); cudaFree(d_close_num); cudaFree(d_close_idx);
     cudaFree(d_vdW);
     cudaFree(d_surf_grad);
+    cudaFree(d_c2);
     //cudaFree(d_rot); cudaFree(d_rot_pt); cudaFree(d_bond_pp);
     //cudaFree(d_a); free(a);
     free(S_calc); free(close_num); free(close_idx); free(surf_grad);

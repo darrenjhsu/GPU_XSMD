@@ -3,7 +3,9 @@
 #include <math.h>
 #include "kernel.cu"
 #include "XSMD.hh"
-#include "param.hh"
+#include "mol_param.hh"
+#include "env_param.hh"
+#include "scat_param.hh"
 
 
 
@@ -32,6 +34,7 @@ void XSMD_calc (float *coord, float *Force) {
     float *d_vdW;
     float *d_FF_table;
     float *d_surf, *d_surf_grad;
+    float *d_c2;
 
     // set various memory chunk sizes
     int size_coord = 3 * num_atom * sizeof(float);
@@ -47,7 +50,7 @@ void XSMD_calc (float *coord, float *Force) {
     int size_surf = num_atom * num_raster * 3 * sizeof(float);
     int size_WK = 11 * num_ele * sizeof(float);
     int size_vdW = (num_ele+1) * sizeof(float);
-
+    int size_c2 = 9 * sizeof(float);
 
     // Allocate local memories
     //Force = (float *)malloc(size_coord);
@@ -81,6 +84,7 @@ void XSMD_calc (float *coord, float *Force) {
     cudaMalloc((void **)&d_WK, size_WK);
     cudaMalloc((void **)&d_surf, size_surf);
     cudaMalloc((void **)&d_surf_grad, size_coord);
+    cudaMalloc((void **)&d_c2, size_c2);
     // Initialize some matrices
     cudaMemset(d_close_flag, 0, size_qxatom2);
     cudaMemset(d_Force, 0.0, size_coord);
@@ -100,6 +104,7 @@ void XSMD_calc (float *coord, float *Force) {
     cudaMemcpy(d_Ele,    Ele,    size_atom,   cudaMemcpyHostToDevice);
     cudaMemcpy(d_q_S_ref_dS,  q_S_ref_dS, 3 * size_q,      cudaMemcpyHostToDevice);
     cudaMemcpy(d_WK,     WK,     size_WK,     cudaMemcpyHostToDevice);
+    cudaMemcpy(d_c2,     c2,     size_c2,     cudaMemcpyHostToDevice);
 
     float sigma2 = 1.0;
     float alpha = 1.0;
@@ -154,7 +159,7 @@ void XSMD_calc (float *coord, float *Force) {
                              d_S_calc, num_atom,  num_q,     num_ele,  d_Aq, 
                              alpha,    k_chi,     sigma2,    d_f_ptxc, d_f_ptyc, 
                              d_f_ptzc, d_S_calcc, num_atom2, num_q2,   d_vdW,
-                             c2,        d_V,       r_m,      d_FF_table, d_surf_grad);
+                             d_c2,        d_V,       r_m,      d_FF_table, d_surf_grad);
     //printf("Done scat_calc\n");
     cudaDeviceSynchronize();
     error = cudaGetLastError();
@@ -212,6 +217,7 @@ void XSMD_calc (float *coord, float *Force) {
     cudaFree(d_vdW);
     cudaFree(d_FF_table);
     cudaFree(d_surf); cudaFree(d_surf_grad);
+    cudaFree(d_c2);
     free(S_calc);
 
 }

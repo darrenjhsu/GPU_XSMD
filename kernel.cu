@@ -2,7 +2,9 @@
 #include <stdio.h>
 #include <math.h>
 #include <time.h>
-#include "param.hh"
+#include "env_param.hh"
+#include "scat_param.hh"
+#include "mol_param.hh"
 #include "WaasKirf.hh"
 #define PI 3.14159265359
 
@@ -135,6 +137,7 @@ __global__ void surf_calc (float *coord, int *Ele, float *r2, int *close_num, in
     L = sqrt(num_raster * PI);
     for (int ii = blockIdx.x; ii < num_atom; ii += gridDim.x) {
         int atom1t = Ele[ii];
+        if (atom1t > 5) atom1t = 0;
         vdW_s = vdW[atom1t];
         r = vdW_s + sol_s;
         for (int jj = threadIdx.x; jj < num_raster; jj += blockDim.x) {
@@ -162,6 +165,7 @@ __global__ void surf_calc (float *coord, int *Ele, float *r2, int *close_num, in
             for (int kk = 0; kk < close_num[ii]; kk++) {
                 int atom2i = close_idx[ii * num_atom2 + kk];
                 int atom2t = Ele[atom2i];
+                if (atom2t > 5) atom2t = 0;
                 float dx = (x - coord[3*atom2i]);
                 float dy = (y - coord[3*atom2i+1]);
                 float dz = (z - coord[3*atom2i+2]);
@@ -261,6 +265,7 @@ __global__ void sum_V (float *V, int num_atom, int num_atom2, int *Ele, float *v
     for (int ii = threadIdx.x; ii < num_atom2; ii += blockDim.x) {
         if (ii < num_atom) {
             int atomi = Ele[ii];
+            if (atomi > 5) atomi = 0;
             V_s[ii] = V[ii] * 4.0 * PI * vdW[atomi] * vdW[atomi];
         } else {
             V_s[ii] = 0.0;
@@ -420,7 +425,7 @@ __global__ void __launch_bounds__(1024,2)
                float *S_calc, int num_atom,   int num_q,     int num_ele,   float *Aq, 
                float alpha,   float k_chi,    float sigma2,  float *f_ptxc, float *f_ptyc, 
                float *f_ptzc, float *S_calcc, int num_atom2, int num_q2,    float *vdW, 
-               float c2,       float *V,      float r_m,     float *FF_table,
+               float *c2,     float *V,       float r_m,     float *FF_table,
                float *surf_grad) {
     __shared__ float q_pt;
     __shared__ float FF_pt[7]; // num_ele + 1, the last one for water.
@@ -428,7 +433,8 @@ __global__ void __launch_bounds__(1024,2)
     __shared__ float f_ptxcs[1024];
     __shared__ float f_ptycs[1024];
     __shared__ float f_ptzcs[1024];
-    __shared__ float atomFF[1749];
+    __shared__ float atomFF[2048];
+    __shared__ float hydration[10]; // Null, C, N, O, S, Fe = 0, HC, HN, HO, HS
 
     //if (blockIdx.x >= num_q) return; // out of q range
     //if (threadIdx.x >= num_atom) return; // out of atom numbers (not happening)
@@ -443,12 +449,20 @@ __global__ void __launch_bounds__(1024,2)
             FF_pt[jj] = FF_table[ii*(num_ele+1)+jj];
         }
         __syncthreads();
-        float hydration = c2 * FF_pt[num_ele];
+        for (int jj = 0; jj < 10; jj ++ ) {
+            hydration[jj] = c2[jj] * FF_pt[num_ele];
+        }
+        __syncthreads();
         // Calculate atomic form factor for this q
         for (int jj = threadIdx.x; jj < num_atom; jj += blockDim.x) {
             int atomt = Ele[jj];
-            atomFF[jj] = FF_pt[atomt];
-            atomFF[jj] += hydration * V[jj];
+            if (atomt > 5) {  // Which means this is a hydrogen
+                atomFF[jj] = FF_pt[0];
+                atomFF[jj] += hydration[atomt] * V[jj];
+            } else { // Heavy atoms - do the same as before
+                atomFF[jj] = FF_pt[atomt];
+                atomFF[jj] += hydration[atomt] * V[jj];
+            }
         }
         __syncthreads();
         // Calculate scattering for Aq
@@ -459,14 +473,18 @@ __global__ void __launch_bounds__(1024,2)
             float atom1x = coord[3*jj+0];
             float atom1y = coord[3*jj+1];
             float atom1z = coord[3*jj+2];
-            //int atom1t = Ele[jj]; // atom1 element type
+            float surf_grad1x = surf_grad[3*jj+0];
+            float surf_grad1y = surf_grad[3*jj+1];
+            float surf_grad1z = surf_grad[3*jj+2];
+            int atom1t = Ele[jj]; // atom1 element type
             // float atom1FF = FF_pt[atom1t]; // atom1 form factor at q // 6 ms
             /*float atom1FF = FF_pt[atom1t]; // atom1 form factor at q // 6 ms
             atom1FF += c2 * V[jj] * FF_pt[num_ele]; // Correction with border layer scattering
             __syncthreads();*/
             //float atom1FF = FF[ii*num_ele+atom1t]; // atom1 form factor at q
             for (int kk = 0; kk < num_atom; kk++) {
-                //int atom2t = Ele[kk]; // 6 ms
+                int atom2t = Ele[kk]; // 6 ms
+                
                 /*float atom2FF = FF_pt[atom2t];
                 atom2FF += c2 * V[kk] * FF_pt[num_ele];*/
                 float FF_kj = atomFF[jj] * atomFF[kk];
@@ -494,13 +512,16 @@ __global__ void __launch_bounds__(1024,2)
                     //float prefac = 2.0 * atom1FF * atom2FF * (cos(q_pt * r) - sqr / q_pt / r) / r / r; //27 ms
                     float prefac = FF_kj * dsqr / r / r; //27 ms
                     prefac += prefac;
-                    float gradient = surf_grad[3*kk] * dx;
-                    gradient += surf_grad[3*kk+1] * dy;
-                    gradient += surf_grad[3*kk+2] * dz;
-                    //gradient /= r;
-                    gradient *= sqr * atomFF[jj];
-                    //gradient *= 0.1;
-                    prefac += hydration * gradient;
+                    float gradient = -surf_grad[3*kk+0] * dx * hydration[atom2t] * atomFF[jj]; 
+                    gradient -= surf_grad[3*kk+1] * dy * hydration[atom2t] * atomFF[jj]; 
+                    gradient -= surf_grad[3*kk+2] * dz * hydration[atom2t] * atomFF[jj];
+                    
+                    gradient += surf_grad1x * dx * hydration[atom1t] * atomFF[kk];
+                    gradient += surf_grad1y * dy * hydration[atom1t] * atomFF[kk];
+                    gradient += surf_grad1z * dz * hydration[atom1t] * atomFF[kk];
+                    gradient *= sqr / r / r;
+                    prefac += gradient;
+                    //prefac /= r * r;
                     //float prefac = atom1FF * FF_pt[atom2t] * cxsxdx_table[r_bin] / r / r;
                     //float prefac = atom1FF * FF[ii*num_ele+atom2t] * (cos(q_pt * r) - sin(q_pt * r) / q_pt / r) / r / r;
                     //S_calcc[ii*num_atom2+jj] += atom1FF * FF[ii*num_ele+atom2t] * sin(q_pt * r) / q_pt / r;
