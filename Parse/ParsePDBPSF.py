@@ -4,13 +4,16 @@ import os.path
 import re
 import math
 
-def next_power_of_2(x):
-    return 1 if x == 0 else int(2**math.ceil(math.log(x,2)))
-
+def next_2048(x):
+    #return 1 if x == 0 else int(2**math.ceil(math.log(x,2)))
+    print(((x+2047)/2048)*2048)
+    return (((x+2047)/2048)*2048)
 # Read PSF
 
-fname = '1dgb_autopsf.psf'
-with open(fname) as f:
+RCSB = '1ubq'
+fpsf = RCSB + '_autopsf.psf'
+fpdb = RCSB + '_autopsf.pdb'
+with open(fpsf) as f:
     PSF = f.readlines()
 
 #PSF = [x.strip() for x in PSF]
@@ -77,8 +80,7 @@ print(Ele)
 
 
 # Read PDB
-fname = '1dgb_autopsf.pdb'
-with open(fname) as f:
+with open(fpdb) as f:
     PDB = f.readlines()
 
 PDB = [x.strip().split() for x in PDB]
@@ -136,7 +138,7 @@ with open('mol_param.hh','w') as f:
 with open('mol_param.cu','w') as f:
     f.write('\n#include "mol_param.hh"\n\n')
     f.write('int num_atom = {:d};\n'.format(NATOM))
-    f.write('int num_atom2 = {:d};\n\n'.format(next_power_of_2(NATOM)))
+    f.write('int num_atom2 = {:d};\n\n'.format(next_2048(NATOM)))
     f.write('int Ele[{:d}] = {{'.format(NATOM))
     f.write(', '.join(map(str,Ele.flatten())))
     f.write('};\n')

@@ -3,9 +3,11 @@
 
 
 //__global__ void scat_calc (float *coord, float *Force, int *Ele, float *FF, float *q, float *S_ref, float *dS, float *S_calc, int num_atom, int num_q, int num_ele, float *Aq, float alpha, float k_chi, float sigma2, float *f_ptxc, float *f_ptyc, float *f_ptzc, float *S_calcc, int num_atom2, int num_q2);
-__global__ void dist_calc (float *coord, float *dx, float *dy, float *dz, float *r2, int *close_flag, int num_atom, int num_atom2);
+__global__ void dist_calc (float *coord, //float *dx, float *dy, float *dz, 
+                           int *cloase_num, int *close_flag, int *close_idx, int num_atom, int num_atom2);
 __global__ void pre_scan_close (int *close_flag, int *close_num, int *close_idx, int num_atom2);
-__global__ void surf_calc (float *coord, int *Ele, float *r2, int *close_num, int *close_idx, float *vdW, int num_atom, int num_atom2, int num_raster, float sol_s, float *V);
+__global__ void surf_calc (float *coord, int *Ele, //float *r2, 
+                           int *close_num, int *close_flag, int *close_idx, float *vdW, int num_atom, int num_atom2, int num_raster, float sol_s, float *V);
 __global__ void border_scat (float *coord, int *Ele, float *r2, float *raster, float *V, int num_atom, int num_atom2, int num_raster);
 __global__ void V_calc (float *V, int num_atom2);
 

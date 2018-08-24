@@ -12,4 +12,12 @@ The surface area calculation is done numerically following J Appl Crystallgr 198
 The software has been tested and compared with FoXS and CRYSOL, resulting in similar parameters. A c2 = 2.78 here corresponds to c2 = 2.86 in FoXS fitting and contrast of 0.030 e / A^3 in CRYSOL. Difference here may be a result of different surface area calc implementations. 
 
 
+Of the files, 
+
+Init_calc.cu       calculates with given two sets of coordinates, the scattering pattern for reference (S_ref) and for initial (S_init) structures, and then compute the difference (dS = S_ref - S_init)
+
+raster.cu          specifies parameters. 
+kernel.cu          is the workhorse of the package.
+XSMD.cu            is where the code NAMD calls every step is in.
+speedtest.cu       is to test new features. 
 
