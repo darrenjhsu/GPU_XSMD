@@ -180,8 +180,8 @@ int main () {
     //border_scat<<<1024, 1024>>>(d_coord, d_Ele, d_r2, d_raster, d_V, num_atom, num_atom2, num_raster, num_raster2); 
     //V_calc<<<1, 1024>>>(d_V, num_atom2);
     FF_calc<<<320, 32>>>(d_q_S_ref_dS, d_WK, d_vdW, num_q, num_ele, c1, r_m, d_FF_table);
-    create_FF_full<<<320, 1024>>>(d_FF_table, d_V, d_c2, d_Ele, 
-                                  d_FF_full, num_q, num_ele, num_atom, num_atom2);
+    create_FF_full<<<320, 1024>>>(d_FF_table, d_V, d_c2, d_Ele, d_FF_full, 
+                                  d_surf_grad, num_q, num_ele, num_atom, num_atom2);
     cudaMemcpy(FF_table, d_FF_table, size_FF_table, cudaMemcpyDeviceToHost);
     /*printf("FF_table is here:\n");
     for (int i = 0; i < num_q; i++) {

@@ -187,8 +187,9 @@ __global__ void pre_scan_close (int *close_flag, int *close_num, int *close_idx,
     }
 }
 
-__global__ void surf_calc (float *coord, int *Ele, //float *r2, 
-                           int *close_num, int *close_idx, float *vdW, int num_atom, int num_atom2, int num_raster, float sol_s, float *V, float *surf, float *surf_grad, float offset) {
+__global__ void __launch_bounds__(512,4)
+    surf_calc (float *coord, int *Ele, //float *r2, 
+               int *close_num, int *close_idx, float *vdW, int num_atom, int num_atom2, int num_raster, float sol_s, float *V, float *surf, float *surf_grad, float offset) {
 //__global__ void surf_calc (float *coord, int *Ele, float *r2, int *close_num, int *close_idx, float *vdW, int num_atom, int num_atom2, int num_raster, float sol_s, float *V, float *surf) {
     // num_raster should be a number of 2^n. 
     // sol_s is solvent radius (default = 1.8 A)
@@ -208,11 +209,18 @@ __global__ void surf_calc (float *coord, int *Ele, //float *r2,
         vdW_s = vdW[atom1t];
         r = vdW_s + sol_s;
         for (int jj = threadIdx.x; jj < num_raster; jj += blockDim.x) {
-            pts[jj] = 1; 
+            /*pts[jj] = 1; 
            
             ptspx[jj] = 1; ptsmx[jj] = 1; 
             ptspy[jj] = 1; ptsmy[jj] = 1;
-            ptspz[jj] = 1; ptsmz[jj] = 1;
+            ptspz[jj] = 1; ptsmz[jj] = 1;*/
+            int pt = 1;
+            int ptpx = 1;
+            int ptmx = 1;
+            int ptpy = 1;
+            int ptmy = 1;
+            int ptpz = 1;
+            int ptmz = 1;
             
             float h = 1.0 - (2.0 * (float)jj + 1.0) / (float)num_raster;
             float p = acos(h);
@@ -248,42 +256,49 @@ __global__ void surf_calc (float *coord, int *Ele, //float *r2,
                             (y2 - coord[3*atom2i+1]) * (y2 - coord[3*atom2i+1]) + 
                             (z2 - coord[3*atom2i+2]) * (z2 - coord[3*atom2i+2]);*/
                 // vdW points must not cross into other atom
-                if (dr2 < vdW[atom2t] * vdW[atom2t]) pts[jj] = 0;
+                if (dr2 < vdW[atom2t] * vdW[atom2t]) pt = 0; //pts[jj] = 0;
                 // solvent center has to be far enough
-                if (dr22 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) pts[jj] = 0;
+                if (dr22 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) pt = 0; //pts[jj] = 0;
                 
                 // Plus x
                 dr2 =  (dx + offset)  * (dx + offset) + dy * dy + dz * dz;
                 dr22 = (dx2 + offset) * (dx2 + offset) + dy2 * dy2 + dz2 * dz2;
-                if (dr2 < vdW[atom2t] * vdW[atom2t]) ptspx[jj] = 0;
-                if (dr22 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) ptspx[jj] = 0;
+                if (dr2 < vdW[atom2t] * vdW[atom2t]) ptpx = 0; //ptspx[jj] = 0;
+                if (dr22 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) ptpx = 0; //ptspx[jj] = 0;
                 // Minus x
                 dr2 =  (dx - offset)  * (dx - offset) + dy * dy + dz * dz;
                 dr22 = (dx2 - offset) * (dx2 - offset) + dy2 * dy2 + dz2 * dz2;
-                if (dr2 < vdW[atom2t] * vdW[atom2t]) ptsmx[jj] = 0;
-                if (dr22 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) ptsmx[jj] = 0;
+                if (dr2 < vdW[atom2t] * vdW[atom2t]) ptmx = 0; //ptsmx[jj] = 0;
+                if (dr22 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) ptmx = 0; //ptsmx[jj] = 0;
                 // Plus y
                 dr2 =  dx * dx   + (dy + offset)  * (dy + offset) + dz * dz; 
                 dr22 = dx2 * dx2 + (dy2 + offset) * (dy2 + offset) + dz2 * dz2;
-                if (dr2 < vdW[atom2t] * vdW[atom2t]) ptspy[jj] = 0;
-                if (dr22 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) ptspy[jj] = 0;
+                if (dr2 < vdW[atom2t] * vdW[atom2t]) ptpy = 0; //ptspy[jj] = 0;
+                if (dr22 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) ptpy = 0; //ptspy[jj] = 0;
                 // Minus y
                 dr2 =  dx * dx   + (dy - offset)  * (dy - offset) + dz * dz; 
                 dr22 = dx2 * dx2 + (dy2 - offset) * (dy2 - offset) + dz2 * dz2;
-                if (dr2 < vdW[atom2t] * vdW[atom2t]) ptsmy[jj] = 0;
-                if (dr22 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) ptsmy[jj] = 0;
+                if (dr2 < vdW[atom2t] * vdW[atom2t]) ptmy = 0; //ptsmy[jj] = 0;
+                if (dr22 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) ptmy = 0; //ptsmy[jj] = 0;
                 // Plus z
                 dr2 =  dx * dx + dy * dy + (dz + offset) * (dz + offset); 
                 dr22 = dx2 * dx2 + dy2 * dy2 + (dz2 + offset) * (dz2 + offset);
-                if (dr2 < vdW[atom2t] * vdW[atom2t]) ptspz[jj] = 0;
-                if (dr22 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) ptspz[jj] = 0;
+                if (dr2 < vdW[atom2t] * vdW[atom2t]) ptpz = 0; //ptspz[jj] = 0;
+                if (dr22 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) ptpz = 0; //ptspz[jj] = 0;
                 // Minus z
                 dr2 =  dx * dx + dy * dy + (dz - offset) * (dz - offset); 
                 dr22 = dx2 * dx2 + dy2 * dy2 + (dz2 - offset) * (dz2 - offset);
-                if (dr2 < vdW[atom2t] * vdW[atom2t]) ptsmz[jj] = 0;
-                if (dr22 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) ptsmz[jj] = 0;
+                if (dr2 < vdW[atom2t] * vdW[atom2t]) ptmz = 0; //ptsmz[jj] = 0;
+                if (dr22 < (vdW[atom2t]+sol_s) * (vdW[atom2t]+sol_s)) ptmz = 0; //ptsmz[jj] = 0;
                 
             }
+            pts[jj] = pt;
+            ptspx[jj] = ptpx;
+            ptsmx[jj] = ptmx;
+            ptspy[jj] = ptpy;
+            ptsmy[jj] = ptmy;
+            ptspz[jj] = ptpz;
+            ptsmz[jj] = ptmz;
             /*if (pts[jj] == 1) {
                 surf[3*ii*num_raster+jj*3  ] = x;
                 surf[3*ii*num_raster+jj*3+1] = y;
@@ -488,11 +503,11 @@ __global__ void FF_calc (float *q_S_ref_dS, float *WK, float *vdW, int num_q, in
     }
 }
 
-__global__ void create_FF_full (float *FF_table, float *V, float *c2, int *Ele, 
-                                float *FF_full, int num_q, int num_ele, int num_atom, int num_atom2) {
+__global__ void create_FF_full (float *FF_table, float *V, float *c2, int *Ele, float *FF_full, 
+                                float *surf_grad, int num_q, int num_ele, int num_atom, int num_atom2) {
     __shared__ float FF_pt[7];
     __shared__ float hydration[10];
-    for (int ii = blockIdx.x; ii < num_q; ii += gridDim.x) {
+    for (int ii = blockIdx.x; ii < num_q+1; ii += gridDim.x) {
         //         0 - 301          301          301
 
         // Get form factor for this block (or q vector)
@@ -512,28 +527,38 @@ __global__ void create_FF_full (float *FF_table, float *V, float *c2, int *Ele,
             hydration[jj] = c2[jj] * FF_pt[num_ele];
         }
         __syncthreads();
-
-        // Calculate atomic form factor for this q
-        for (int jj = threadIdx.x; jj < num_atom; jj += blockDim.x) {
-            int atomt = Ele[jj];
-            if (atomt > 5) {  // Which means this is a hydrogen
-                FF_full[ii*num_atom2 + jj] = FF_pt[0];
-                FF_full[ii*num_atom2 + jj] += hydration[atomt] * V[jj];
-            } else { // Heavy atoms - do the same as before
-                FF_full[ii*num_atom2 + jj] = FF_pt[atomt];
-                FF_full[ii*num_atom2 + jj] += hydration[atomt] * V[jj];
+        
+        if (ii == num_q) {
+            // calculate surf_grad
+            for (int jj = threadIdx.x; jj < num_atom; jj += blockDim.x) {
+                int atomt = Ele[jj];
+                surf_grad[3*jj]   *= hydration[atomt];
+                surf_grad[3*jj+1] *= hydration[atomt];
+                surf_grad[3*jj+2] *= hydration[atomt];
             }
-            /*if (ii == 0 && jj == 0) {
-                printf("\n\nType: %d, hydration[atomt] = %.3f, V[0] = %.3f, FF_full[0] (q = 0) = %.5f\n\n",Ele[jj], hydration[atomt], V[jj], FF_full[jj]);
-            }*/
+        } else {
+            // Calculate atomic form factor for this q
+            for (int jj = threadIdx.x; jj < num_atom; jj += blockDim.x) {
+                int atomt = Ele[jj];
+                if (atomt > 5) {  // Which means this is a hydrogen
+                    FF_full[ii*num_atom2 + jj] = FF_pt[0];
+                    FF_full[ii*num_atom2 + jj] += hydration[atomt] * V[jj];
+                } else { // Heavy atoms - do the same as before
+                    FF_full[ii*num_atom2 + jj] = FF_pt[atomt];
+                    FF_full[ii*num_atom2 + jj] += hydration[atomt] * V[jj];
+                }
+                /*if (ii == 0 && jj == 0) {
+                    printf("\n\nType: %d, hydration[atomt] = %.3f, V[0] = %.3f, FF_full[0] (q = 0) = %.5f\n\n",Ele[jj], hydration[atomt], V[jj], FF_full[jj]);
+                }*/
+            }
+            //__syncthreads();
+            /*if (ii == 0 && threadIdx.x == 0) {
+                for (int jj = 0; jj < 10; jj++) {
+                    printf("hydra: %.3f, c2: %.3f, FF_pt:  \n",hydration[jj], c2[jj]);//, FF_pt[num_ele]);
+                } 
+            }
+            __syncthreads()/;*/
         }
-        __syncthreads();
-        /*if (ii == 0 && threadIdx.x == 0) {
-            for (int jj = 0; jj < 10; jj++) {
-                printf("hydra: %.3f, c2: %.3f, FF_pt:  \n",hydration[jj], c2[jj]);//, FF_pt[num_ele]);
-            } 
-        }*/
-        __syncthreads();
     }
 }
 
@@ -546,10 +571,10 @@ __global__ void __launch_bounds__(1024,2)
                float *surf_grad, float *FF_full) {
     __shared__ float q_pt;
     __shared__ float FF_pt[7]; // num_ele + 1, the last one for water.
-    __shared__ float S_calccs[1024];
+    /*__shared__ float S_calccs[1024];
     __shared__ float f_ptxcs[1024];
     __shared__ float f_ptycs[1024];
-    __shared__ float f_ptzcs[1024];
+    __shared__ float f_ptzcs[1024];*/
     __shared__ float atomFF[2048];
     __shared__ float hydration[10]; // Null, C, N, O, S, Fe = 0, HC, HN, HO, HS
 
@@ -604,13 +629,17 @@ __global__ void __launch_bounds__(1024,2)
         for (int jj = threadIdx.x; jj < num_atom; jj += blockDim.x) {
               //       0 - 1023          1749            1024
             int idx = jj % blockDim.x;
-            S_calccs[idx] = 0.0; f_ptxcs[idx] = 0.0; f_ptycs[idx] = 0.0; f_ptzcs[idx] = 0.0;
+            //S_calccs[idx] = 0.0; f_ptxcs[idx] = 0.0; f_ptycs[idx] = 0.0; f_ptzcs[idx] = 0.0;
             float atom1x = coord[3*jj+0];
             float atom1y = coord[3*jj+1];
             float atom1z = coord[3*jj+2];
             float surf_grad1x = surf_grad[3*jj+0];
             float surf_grad1y = surf_grad[3*jj+1];
             float surf_grad1z = surf_grad[3*jj+2];
+            float S_calccs = 0.0;
+            float f_ptxcs = 0.0;
+            float f_ptycs = 0.0;
+            float f_ptzcs = 0.0;
             int atom1t = Ele[jj]; // atom1 element type
             // float atom1FF = FF_pt[atom1t]; // atom1 form factor at q // 6 ms
             /*float atom1FF = FF_pt[atom1t]; // atom1 form factor at q // 6 ms
@@ -634,7 +663,8 @@ __global__ void __launch_bounds__(1024,2)
                     //S_calcc[ii*num_atom2+jj] += atom1FF * FF[ii*num_ele+atom2t];
                     //S_calcc[ii*num_atom2+jj] += atom1FF * FF_pt[atom2t];
                     //S_calccs[idx] += atom1FF * atom2FF; // 7.6 ms*/
-                    S_calccs[idx] += FF_kj;
+                    //S_calccs[idx] += FF_kj;
+                    S_calccs += FF_kj;
                 } else {
                     //if (ii==0&&jj==0&&kk==0) t1 = clock();
                     float dx = coord[3*kk+0] - atom1x;
@@ -642,6 +672,7 @@ __global__ void __launch_bounds__(1024,2)
                     float dz = coord[3*kk+2] - atom1z; // 7.6 ms
                     // float r = sqrt(r2[jj*num_atom+kk]); // 7.6 ms
                     float r = sqrt(dx*dx+dy*dy+dz*dz);
+                    //r = sqrt(r);
                     float qr = q_pt * r; 
                     float sqr = sin(qr) / qr; // 22 ms
                     float dsqr = cos(qr) - sqr;
@@ -655,13 +686,30 @@ __global__ void __launch_bounds__(1024,2)
                     gradient += surf_grad1x * dx * hydration[atom1t] * atomFF[kk];
                     gradient += surf_grad1y * dy * hydration[atom1t] * atomFF[kk];
                     gradient += surf_grad1z * dz * hydration[atom1t] * atomFF[kk];*/
-                    float gradient = -surf_grad[3*kk+0] * dx * hydration[atom2t] * FF_full[ii*num_atom2+jj]; 
+                    /*float gradient = -surf_grad[3*kk+0] * dx * hydration[atom2t] * FF_full[ii*num_atom2+jj]; 
                     gradient -= surf_grad[3*kk+1] * dy * hydration[atom2t] * FF_full[ii*num_atom2+jj]; 
                     gradient -= surf_grad[3*kk+2] * dz * hydration[atom2t] * FF_full[ii*num_atom2+jj];
                     
                     gradient += surf_grad1x * dx * hydration[atom1t] * FF_full[ii*num_atom2+kk];
                     gradient += surf_grad1y * dy * hydration[atom1t] * FF_full[ii*num_atom2+kk];
-                    gradient += surf_grad1z * dz * hydration[atom1t] * FF_full[ii*num_atom2+kk];
+                    gradient += surf_grad1z * dz * hydration[atom1t] * FF_full[ii*num_atom2+kk];*/
+                    /*float gradient = -surf_grad[3*kk+0] * dx * FF_full[ii*num_atom2+jj]; 
+                    gradient -= surf_grad[3*kk+1] * dy * FF_full[ii*num_atom2+jj]; 
+                    gradient -= surf_grad[3*kk+2] * dz * FF_full[ii*num_atom2+jj];
+                    
+                    gradient += surf_grad1x * dx * FF_full[ii*num_atom2+kk];
+                    gradient += surf_grad1y * dy * FF_full[ii*num_atom2+kk];
+                    gradient += surf_grad1z * dz * FF_full[ii*num_atom2+kk];*/
+                    float gradient = -surf_grad[3*kk+0] * dx; 
+                    gradient -= surf_grad[3*kk+1] * dy;
+                    gradient -= surf_grad[3*kk+2] * dz;
+                    gradient *= FF_full[ii*num_atom2+jj];
+                    float gradient2 = surf_grad1x * dx; 
+                    gradient2 += surf_grad1y * dy;
+                    gradient2 += surf_grad1z * dz;
+                    gradient2 *= FF_full[ii*num_atom2+kk];
+                    gradient += gradient2;
+
                     gradient *= sqr / r / r;
                     prefac += gradient;
                     //prefac /= r * r;
@@ -670,11 +718,15 @@ __global__ void __launch_bounds__(1024,2)
                     //S_calcc[ii*num_atom2+jj] += atom1FF * FF[ii*num_ele+atom2t] * sin(q_pt * r) / q_pt / r;
                     //S_calcc[ii*num_atom2+jj] += atom1FF * FF_pt[atom2t] * sqr / q_pt / r;
                     //S_calccs[idx] += atom1FF * atom2FF * sqr / q_pt / r; // 51 ms
-                    S_calccs[idx] += FF_kj * sqr; // 51 ms
                     //S_calccs[jj] += atom1FF * FF_pt[atom2t] * sx_table[r_bin] / q_pt / r;
+                    /*S_calccs[idx] += FF_kj * sqr; // 51 ms
                     f_ptxcs[idx] += prefac * dx;
                     f_ptycs[idx] += prefac * dy;
-                    f_ptzcs[idx] += prefac * dz; // 94 ms
+                    f_ptzcs[idx] += prefac * dz; // 94 ms*/
+                    S_calccs += FF_kj * sqr; // 51 ms
+                    f_ptxcs += prefac * dx;
+                    f_ptycs += prefac * dy;
+                    f_ptzcs += prefac * dz; // 94 ms
                     // f_ptxcs[idx] += prefac * dx[jj*num_atom+kk];
                     // f_ptycs[idx] += prefac * dy[jj*num_atom+kk]; 
                     // f_ptzcs[idx] += prefac * dz[jj*num_atom+kk]; // 94 -> 90 ms.
@@ -693,11 +745,14 @@ __global__ void __launch_bounds__(1024,2)
                 f_ptzcs[idx]);
             }*/ 
             //if (ii==0&&jj==1024) t2=clock();
-            S_calcc[ii*num_atom2+jj] = S_calccs[idx];
-            //if (ii==0&&jj>0&&jj<10) printf("S_calccs[jj = %d] = %f. \n",jj,S_calccs[idx]);
+            /*S_calcc[ii*num_atom2+jj] = S_calccs[idx];
             f_ptxc[ii*num_atom2+jj] = f_ptxcs[idx];
             f_ptyc[ii*num_atom2+jj] = f_ptycs[idx];
-            f_ptzc[ii*num_atom2+jj] = f_ptzcs[idx];
+            f_ptzc[ii*num_atom2+jj] = f_ptzcs[idx];*/
+            S_calcc[ii*num_atom2+jj] = S_calccs;
+            f_ptxc[ii*num_atom2+jj] = f_ptxcs;
+            f_ptyc[ii*num_atom2+jj] = f_ptycs;
+            f_ptzc[ii*num_atom2+jj] = f_ptzcs;
             /*if (jj == 737) {
                 printf("%d, inner q = %.3f: %.8f %.8f %.8f\n", 
                 jj, q_S_ref_dS[ii],
