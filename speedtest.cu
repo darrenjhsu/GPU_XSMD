@@ -71,7 +71,7 @@ int main () {
         printf("CPU: WK element %d is %.3f\n", ii, WK[ii]);
     }*/
     S_calc = (float *)malloc(size_q);
-    surf = (float *)malloc(size_surf);
+    //surf = (float *)malloc(size_surf);
     //for (int ii = 0; ii < num_q; ii++) {
     //    S_calc[ii] = 0.0;
     //}
@@ -127,11 +127,12 @@ int main () {
     cudaMemset(d_rot_pt,0.0, size_rotxatom2);
     cudaMalloc((void **)&d_bond_pp, size_bond_pp);*/
     cudaMalloc((void **)&d_WK, size_WK);
-    cudaMalloc((void **)&d_surf, size_surf);
-    cudaMemset(d_surf, 0.0, size_surf);
+    //cudaMalloc((void **)&d_surf, size_surf);
+    //cudaMemset(d_surf, 0.0, size_surf);
     cudaMalloc((void **)&d_surf_grad, size_coord);
     cudaMemset(d_surf_grad, 0.0, size_coord);
-    cudaMemcpy(d_coord, coord_ref, size_coord,    cudaMemcpyHostToDevice);
+    //cudaMemcpy(d_coord, coord_ref, size_coord,    cudaMemcpyHostToDevice);
+    cudaMemcpy(d_coord, coord_init, size_coord,    cudaMemcpyHostToDevice);
     //cudaMemcpy(d_Force, Force, size_coord, cudaMemcpyHostToDevice);
     //cudaMemcpy(d_q,      q,      size_q,      cudaMemcpyHostToDevice);
     //cudaMemcpy(d_FF,     FF,     size_FF,     cudaMemcpyHostToDevice);
@@ -156,7 +157,7 @@ int main () {
     cudaMemcpy(close_idx, d_close_idx, size_atom2xatom2, cudaMemcpyDeviceToHost);
     //surf_calc<<<1024,512>>>(d_coord, d_Ele, d_r2, d_close_num, d_close_idx, d_vdW, num_atom, num_atom2, num_raster, sol_s, d_V, d_surf, d_surf_grad, offset);
     surf_calc<<<1024,512>>>(d_coord, d_Ele, //d_r2, 
-                            d_close_num, d_close_idx, d_vdW, num_atom, num_atom2, num_raster, sol_s, d_V, d_surf, d_surf_grad, offset);
+                            d_close_num, d_close_idx, d_vdW, num_atom, num_atom2, num_raster, sol_s, d_V, d_surf_grad, offset);
     cudaMemcpy(surf_grad, d_surf_grad, size_coord, cudaMemcpyDeviceToHost);
     sum_V<<<1,1024>>>(d_V, d_V_s, num_atom, num_atom2, d_Ele, d_vdW);
     cudaMemcpy(V, d_V, size_atom2f, cudaMemcpyDeviceToHost);
@@ -190,12 +191,14 @@ int main () {
         }
         printf("\n");
     }*/
-    scat_calc<<<320, 1024>>>(d_coord,  d_Force,   d_Ele,     d_WK,     d_q_S_ref_dS, 
+    scat_calc<<<320, 1024>>>(d_coord,  //d_Force,   
+                             d_Ele,     //d_WK,     
+                             d_q_S_ref_dS, 
                              d_S_calc, num_atom,  num_q,     num_ele,  d_Aq, 
                              //d_S_calc, num_atom,  num_q,     num_ele, 
                              alpha,    k_chi,     sigma2,    d_f_ptxc, d_f_ptyc, 
-                             d_f_ptzc, d_S_calcc, num_atom2, num_q2,   d_vdW,
-                             d_c2,       d_V,       r_m,      d_FF_table, 
+                             d_f_ptzc, d_S_calcc, num_atom2, //num_q2,   d_vdW,
+                             d_c2,     //d_V,       r_m,      d_FF_table, 
                              d_surf_grad, d_FF_full);
     //printf("force_calc finished! \n");
     //printf("%d \n",cudaDeviceSynchronize());
@@ -229,8 +232,8 @@ int main () {
     }
     for (int ii = 0; ii < num_atom; ii++) {
         printf("grad: %4d: %7.4f %7.4f %7.4f \n", ii, surf_grad[3*ii], surf_grad[3*ii+1], surf_grad[3*ii+2]);
-    }
-    printf("chi square is %.5e ( %.3f \% )\n", chi2, chi2 / chi_ref * 100);*/
+    }*/
+    printf("chi square is %.5e ( %.3f \% )\n", chi2, chi2 / chi_ref * 100);
     /*for (int ii = 0; ii < 1; ii++) {
         printf("S0 = %.5e \n", S_calc[ii]);
     }*/
