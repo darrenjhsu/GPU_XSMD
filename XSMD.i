@@ -1,7 +1,9 @@
 %module XSMD
 %{
     #include "XSMD.hh"
-    #include "param.hh"
+    #include "mol_param.hh"
+    #include "env_param.hh"
+    #include "scat_param.hh"
     #include "WaasKirf.hh"
 %}
 
@@ -25,5 +27,7 @@ void float_destroy(float *a) {
 }
 %}
 %include "XSMD.hh"
-%include "param.hh"
+%include "mol_param.hh"
+%include "env_param.hh"
+%include "scat_param.hh"
 %include "WaasKirf.hh"

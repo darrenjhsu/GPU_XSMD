@@ -14,7 +14,7 @@ int main() {
     //int num_q = 98;
     //int num_atom = 3649;
     int frames_to_average = 500; // Will be the last n frames of the traj
-    int frames_total = 1001; // Look at the xyz file
+    int frames_total = 2001; // Look at the xyz file
 
     float *coord, *S_calc, *S_calc_tot;
     float *d_coord, *d_S_calc;
@@ -29,7 +29,6 @@ int main() {
     int *close_num, *close_idx;
     float *V;
     float *d_FF_table, *d_FF_full;
-    float *d_surf, *surf, *d_surf_grad;
     float *d_c2;
 
     int size_coord = 3 * num_atom * sizeof(float);
@@ -67,7 +66,6 @@ int main() {
     cudaMalloc((void **)&d_FF_table, size_FF_table);
     cudaMalloc((void **)&d_FF_full, size_qxatom2);
     cudaMalloc((void **)&d_WK, size_WK);
-    cudaMalloc((void **)&d_surf_grad, size_coord);
     cudaMalloc((void **)&d_c2, size_c2);
  
     // Allocate local memory
@@ -92,7 +90,8 @@ int main() {
     cudaMemcpy(d_Ele,    Ele,    size_atom,   cudaMemcpyHostToDevice);
     cudaMemcpy(d_q_S_ref_dS,  q_S_ref_dS, 3 * size_q,      cudaMemcpyHostToDevice);
     cudaMemcpy(d_WK,     WK,     size_WK,     cudaMemcpyHostToDevice);
-    cudaMemcpy(d_c2,     c2,     size_c2,     cudaMemcpyHostToDevice);
+    //cudaMemcpy(d_c2,     c2,     size_c2,     cudaMemcpyHostToDevice);
+
 
     // Initialize local matrices
     for (int ii = 0; ii < 3 * num_atom; ii++) coord[ii] = 0.0;
@@ -139,21 +138,18 @@ int main() {
             dist_calc<<<1024, 1024>>>(d_coord, //d_dx, d_dy, d_dz, 
                                       d_close_num, d_close_flag, d_close_idx, num_atom, num_atom2); 
             surf_calc<<<1024,512>>>(d_coord, d_Ele, d_close_num, d_close_idx, d_vdW, 
-                                    num_atom, num_atom2, num_raster, sol_s, d_V, 
-                                    d_surf_grad, offset);
+                                    num_atom, num_atom2, num_raster, sol_s, d_V);
             sum_V<<<1,1024>>>(d_V, d_V_s, num_atom, num_atom2, d_Ele, d_vdW);
             FF_calc<<<320, 32>>>(d_q_S_ref_dS, d_WK, d_vdW, num_q, num_ele, c1, r_m, d_FF_table);
-            create_FF_full<<<320, 1024>>>(d_FF_table, d_V, d_c2, d_Ele, d_FF_full, 
-                                          d_surf_grad, num_q, num_ele, num_atom, num_atom2);
-            scat_calc<<<320, 1024>>>(d_coord,  //d_Force,   
-                                     d_Ele,     //d_WK,     
+            create_FF_full_FoXS<<<320, 1024>>>(d_FF_table, d_V, c2, d_Ele, d_FF_full, 
+                                          num_q, num_ele, num_atom, num_atom2);
+            scat_calc<<<320, 1024>>>(d_coord,    
+                                     d_Ele,        
                                      d_q_S_ref_dS, 
                                      d_S_calc, num_atom,  num_q,     num_ele,  d_Aq, 
-                                     //d_S_calc, num_atom,  num_q,     num_ele, 
                                      alpha,    k_chi,     sigma2,    d_f_ptxc, d_f_ptyc, 
-                                     d_f_ptzc, d_S_calcc, num_atom2, //num_q2,   d_vdW,
-                                     d_c2,     //d_V,       r_m,      d_FF_table, 
-                                     d_surf_grad, d_FF_full);
+                                     d_f_ptzc, d_S_calcc, num_atom2, 
+                                     d_FF_full);
             cudaMemcpy(S_calc ,d_S_calc, size_q,     cudaMemcpyDeviceToHost);
             for (int jj = 0; jj < num_q; jj++) {
                 S_calc_tot[jj] += S_calc[jj];

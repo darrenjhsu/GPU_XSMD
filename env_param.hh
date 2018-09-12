@@ -1,20 +1,12 @@
 
 extern int num_ele;
 extern float k_chi;
-//extern float q[301];
-//extern float S_ref[301];
-//extern float dS[301];
-//extern float FF[2668];
-/*extern float q[667];
-extern float S_ref[667];
-extern float dS[667];
-extern float FF[2668];*/
 extern int num_raster; 
 extern int num_raster2;
 extern float sol_s;
 extern float vdW[7];
 extern float c1;
-//extern float c2;
-extern float c2[10];
+extern float c2_F;
+extern float c2_H[10];
 extern float r_m;
 extern float offset;

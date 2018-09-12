@@ -10,7 +10,7 @@ def next_2048(x):
     return (((x+2047)/2048)*2048)
 # Read PSF
 
-RCSB = '1ubq'
+RCSB = 'Ala10_c'
 fpsf = RCSB + '_autopsf.psf'
 fpdb = RCSB + '_autopsf.pdb'
 with open(fpsf) as f:

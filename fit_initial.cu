@@ -1,21 +1,20 @@
 
 #include <stdio.h>
 #include <math.h>
+#include <cuda.h>
+#include <gsl/gsl_multimin.h>
 #include "kernel.cu"
-#include "XSMD.hh"
-#include "mol_param.hh"
+#include "speedtest.hh"
 #include "env_param.hh"
+#include "mol_param.hh"
 #include "scat_param.hh"
-#include "WaasKirf.hh"
+#include "coord_ref.hh"
+//#include "raster8.hh"
 
-
-void XSMD_calc (float *coord, float *Force) {
-
-    // In this code pointers with d_ are device pointers. 
-
-    // Declare local pointers //
-    // The calculated scattering pattern for this snapshot.
+int main () {
+    cudaFree(0);
     float *S_calc;
+    float *S_exp;
 
     // Declare cuda pointers //
     float *d_coord;          // Coordinates 3 x num_atom
@@ -50,7 +49,7 @@ void XSMD_calc (float *coord, float *Force) {
                                 considering the SASA an atom has. */
 
     // If using HyPred mode, then an array of c2 is needed. //
-    // float *d_c2;
+    float *d_c2_H;
     
     // set various memory chunk sizes
     int size_coord       = 3 * num_atom * sizeof(float);
@@ -63,10 +62,11 @@ void XSMD_calc (float *coord, float *Force) {
     int size_FF_table    = (num_ele + 1) * num_q * sizeof(float); // +1 for solvent
     int size_WK          = 11 * num_ele * sizeof(float);
     int size_vdW         = (num_ele + 1) * sizeof(float); // +1 for solvent
-    // int size_c2          = 10 * sizeof(float); // Only for HyPred
+    int size_c2          = 10 * sizeof(float); // Only for HyPred
 
     // Allocate local memories
     S_calc = (float *)malloc(size_q);
+    S_exp = (float *)malloc(size_q);
 
     // Allocate cuda memories
     cudaMalloc((void **)&d_Aq,         size_q);
@@ -88,7 +88,7 @@ void XSMD_calc (float *coord, float *Force) {
     cudaMalloc((void **)&d_FF_table,   size_FF_table);
     cudaMalloc((void **)&d_FF_full,    size_qxatom2);
     cudaMalloc((void **)&d_WK,         size_WK);
-    //cudaMalloc((void **)&d_c2,         size_c2); // Only for HyPred
+    cudaMalloc((void **)&d_c2_H,       size_c2); // Only for HyPred
 
     // Initialize some matrices
     cudaMemset(d_close_flag, 0,   size_qxatom2);
@@ -104,17 +104,21 @@ void XSMD_calc (float *coord, float *Force) {
     cudaMemset(d_FF_full,    0.0, size_qxatom2);
 
     // Copy necessary data
-    cudaMemcpy(d_coord,      coord,      size_coord, cudaMemcpyHostToDevice);
+    cudaMemcpy(d_coord,      coord_init, size_coord, cudaMemcpyHostToDevice);
     cudaMemcpy(d_vdW,        vdW,        size_vdW,   cudaMemcpyHostToDevice);
     cudaMemcpy(d_Ele,        Ele,        size_atom,  cudaMemcpyHostToDevice);
     cudaMemcpy(d_q_S_ref_dS, q_S_ref_dS, 3 * size_q, cudaMemcpyHostToDevice);
     cudaMemcpy(d_WK,         WK,         size_WK,    cudaMemcpyHostToDevice);
     // Only for HyPred
-    //cudaMemcpy(d_c2,         c2,         size_c2,    cudaMemcpyHostToDevice);
+    cudaMemcpy(d_c2_H,       c2_H,       size_c2,    cudaMemcpyHostToDevice);
+
+
 
     float sigma2 = 1.0;
     float alpha = 1.0;
-     
+
+
+
     dist_calc<<<1024, 1024>>>(
         d_coord, 
         d_close_num, 
@@ -122,14 +126,6 @@ void XSMD_calc (float *coord, float *Force) {
         d_close_idx, 
         num_atom,
         num_atom2); 
-
-    cudaDeviceSynchronize();
-    cudaError_t error = cudaGetLastError();
-    if(error!=cudaSuccess)
-    {
-       fprintf(stderr,"ERROR: %s\n", cudaGetErrorString(error) );
-       exit(-1);
-    }
 
     surf_calc<<<1024,512>>>(
         d_coord, 
@@ -143,123 +139,98 @@ void XSMD_calc (float *coord, float *Force) {
         sol_s, 
         d_V);
 
-    cudaDeviceSynchronize();
-    error = cudaGetLastError();
-    if(error!=cudaSuccess)
-    {
-       fprintf(stderr,"ERROR: %s\n", cudaGetErrorString(error) );
-       exit(-1);
-    }
 
-    sum_V<<<1,1024>>>(
+    /*sum_V<<<1,1024>>>(
         d_V, 
         d_V_s, 
         num_atom, 
         num_atom2, 
         d_Ele, 
-        d_vdW);
-
-    cudaDeviceSynchronize();
-    error = cudaGetLastError();
-    if(error!=cudaSuccess)
-    {
-       fprintf(stderr,"ERROR: %s\n", cudaGetErrorString(error) );
-       exit(-1);
-    }
-
-    FF_calc<<<320, 32>>>(
-        d_q_S_ref_dS, 
-        d_WK, 
-        d_vdW, 
-        num_q, 
-        num_ele, 
-        c1, 
-        r_m, 
-        d_FF_table);
-
-//    create_FF_full_HyPred<<<320, 1024>>>(d_FF_table, d_V, d_c2, d_Ele, d_FF_full, 
-//                                  d_surf_grad, num_q, num_ele, num_atom, num_atom2);
-
-    create_FF_full_FoXS<<<320, 1024>>>(
-        d_FF_table, 
-        d_V,
-        c2, 
-        d_Ele, 
-        d_FF_full, 
-        num_q, 
-        num_ele, 
-        num_atom, 
-        num_atom2);
-
-    cudaDeviceSynchronize();
-    error = cudaGetLastError();
-    if(error!=cudaSuccess)
-    {
-       fprintf(stderr,"ERROR: %s\n", cudaGetErrorString(error) );
-       exit(-1);
-    }
-
-    scat_calc<<<320, 1024>>>(
-        d_coord, 
-        d_Ele,
-        d_q_S_ref_dS, 
-        d_S_calc, 
-        num_atom,  
-        num_q,     
-        num_ele,  
-        d_Aq, 
-        alpha,    
-        k_chi,     
-        sigma2,    
-        d_f_ptxc, 
-        d_f_ptyc, 
-        d_f_ptzc, 
-        d_S_calcc, 
-        num_atom2, 
-        d_FF_full);
-
-    cudaDeviceSynchronize();
-    error = cudaGetLastError();
-    if(error!=cudaSuccess)
-    {
-       fprintf(stderr,"ERROR: %s\n", cudaGetErrorString(error) );
-       exit(-1);
-    }
-
-    cudaMemcpyAsync(S_calc, d_S_calc, size_q,     cudaMemcpyDeviceToHost);
-
-    force_calc<<<1024, 512>>>(
-        d_Force, 
-        num_atom, 
-        num_q, 
-        d_f_ptxc, 
-        d_f_ptyc, 
-        d_f_ptzc, 
-        num_atom2, 
-        num_q2, 
-        d_Ele);
-
-    cudaDeviceSynchronize();
-    error = cudaGetLastError();
-    if(error!=cudaSuccess)
-    {
-       fprintf(stderr,"ERROR: %s\n", cudaGetErrorString(error) );
-       exit(-1);
-    }
-
-    cudaMemcpy(Force,  d_Force,  size_coord, cudaMemcpyDeviceToHost);
-
-    float chi = 0.0;
-    float chi2 = 0.0;
-    float chi_ref = 0.0;
+        d_vdW);*/
+    
+    printf("%d ", num_q);
+    printf("86 "); 
     for (int ii = 0; ii < num_q; ii++) {
-        chi = q_S_ref_dS[ii+2*num_q] - (S_calc[ii] - q_S_ref_dS[ii+num_q]);
-        chi2 += chi * chi;
-        chi_ref+= q_S_ref_dS[ii+2*num_q] * q_S_ref_dS[ii+2*num_q];
+        printf("%.6f ", q_S_ref_dS[ii]);
     }
-    printf("chi square is %.5e ( %.3f % )\n", chi2, chi2 / chi_ref * 100);
+    printf("\n");
 
+    float c1 = 0.90;
+    for (int ii = 0; ii < 86; ii++) {
+        float c2_F = 0.0;
+        FF_calc<<<320, 32>>>(
+            d_q_S_ref_dS, 
+            d_WK, 
+            d_vdW, 
+            num_q, 
+            num_ele, 
+            c1, 
+            r_m, 
+            d_FF_table);
+
+        for (int jj = 0; jj < 21; jj++) {
+            create_FF_full_HyPred<<<320, 1024>>>(
+                d_FF_table, 
+                d_V,
+                c2_F,
+                d_c2_H, 
+                d_Ele, 
+                d_FF_full, 
+                num_q, 
+                num_ele, 
+                num_atom, 
+                num_atom2);
+        
+            scat_calc<<<320, 1024>>>(
+                d_coord, 
+                d_Ele,
+                d_q_S_ref_dS, 
+                d_S_calc, 
+                num_atom,  
+                num_q,     
+                num_ele,  
+                d_Aq, 
+                alpha,    
+                k_chi,     
+                sigma2,    
+                d_f_ptxc, 
+                d_f_ptyc, 
+                d_f_ptzc, 
+                d_S_calcc, 
+                num_atom2, 
+                d_FF_full);
+        
+            cudaMemcpy(S_calc, d_S_calc, size_q,     cudaMemcpyDeviceToHost);
+            
+            // Need to do some sort of fitting. 
+            
+            fit_S_exp_to_S_calc(S_calc, S_exp);
+
+            printf("%.3f %.3f ", c1, c2_F);
+            for (int jj = 0; jj < num_q; jj++) {
+                printf("%.5f ",S_calc[jj]);
+            }
+            printf("\n");
  
+            // Initialize some matrices
+            cudaMemset(d_close_flag, 0,   size_qxatom2);
+            cudaMemset(d_Force,      0.0, size_coord);
+            cudaMemset(d_Aq,         0.0, size_q);
+            cudaMemset(d_S_calc,     0.0, size_q);
+            cudaMemset(d_f_ptxc,     0.0, size_qxatom2);
+            cudaMemset(d_f_ptyc,     0.0, size_qxatom2);   
+            cudaMemset(d_f_ptzc,     0.0, size_qxatom2);
+            cudaMemset(d_S_calcc,    0.0, size_qxatom2);
+            cudaMemset(d_close_num,  0,   size_atom2);
+            cudaMemset(d_close_idx,  0,   size_atom2xatom2);
+            cudaMemset(d_FF_full,    0.0, size_qxatom2);
+            
+            c2_F += 0.1;
+        }
+
+        c1 += 0.002;
+    }
+
     cudaFree(d_coord); 
     cudaFree(d_Force); 
     cudaFree(d_Ele); 
@@ -273,7 +244,10 @@ void XSMD_calc (float *coord, float *Force) {
     cudaFree(d_close_flag); cudaFree(d_close_num); cudaFree(d_close_idx);
     cudaFree(d_vdW);
     cudaFree(d_FF_table); cudaFree(d_FF_full);
-    //cudaFree(d_c2);
-    free(S_calc);
+    cudaFree(d_c2_H);
 
+    free(S_calc);
+    free(S_exp);
+
+    return 0;
 }
