@@ -3,18 +3,130 @@
 #include <math.h>
 #include <cuda.h>
 #include <gsl/gsl_multimin.h>
+//#include <gsl/gsl_vector.h>
 #include "kernel.cu"
 #include "speedtest.hh"
 #include "env_param.hh"
 #include "mol_param.hh"
 #include "scat_param.hh"
 #include "coord_ref.hh"
+#include "expt_data.hh"
 //#include "raster8.hh"
+
+double my_f (const gsl_vector *v, void *params) {
+    // The objective function chi square
+    double c, a;
+    double chi_sq = 0.0;
+    c = gsl_vector_get(v, 0);
+    a = gsl_vector_get(v, 1);
+    double *p = (double *)params; 
+    int num_q = (int)p[0];
+    
+    for (int ii = 0; ii < num_q; ii++) {
+        chi_sq += (p[3*ii+1] - c * p[3*ii+2] + a) * 
+                  (p[3*ii+1] - c * p[3*ii+2] + a) 
+                  / p[3*ii+3] / p[3*ii+3];
+    }
+
+    return chi_sq;
+}
+
+void my_df (const gsl_vector *v, void *params, gsl_vector *df) {
+    // The derivative of objective function chi square
+    double c, a, dc, da;
+    c = gsl_vector_get(v, 0);
+    a = gsl_vector_get(v, 1);
+    dc = 0.0;
+    da = 0.0;
+    double *p = (double *)params;
+    int num_q = (int)p[0];
+    for (int ii = 0; ii < num_q; ii++) {
+        dc -= 2.0 * (p[3*ii+1] - c * p[3*ii+2] + a) * p[3*ii+2] / p[3*ii+3] / p[3*ii+3]; 
+        da += 2.0 * (p[3*ii+1] - c * p[3*ii+2] + a) / p[3*ii+3] / p[3*ii+3];
+    }
+    gsl_vector_set(df, 0, dc);
+    gsl_vector_set(df, 1, da);
+}
+
+void my_fdf (const gsl_vector *x, void *params, double *f, gsl_vector *df) {
+    *f= my_f(x, params);
+    my_df(x, params, df);
+}
+
+float fit_S_exp_to_S_calc(float *S_calc, float *S_exp, float *S_err, float *c, float *a, int ql, int qh, int idx) {
+    // This minimizes the function chi^2 = ( (S_calc - c * S_exp + a) / S_exp_err ) ^ 2
+    // and returns the minimized chi^2.
+    size_t iter = 0;
+    int status;
+    float chi_sq;
+
+    printf("In fitting.\n"); 
+    
+    double *p = (double *)malloc(sizeof(double) * (3 * (qh-ql+1) +1));
+
+    p[0] = (double)(qh-ql+1);
+    for (int ii = 0; ii < qh-ql+1; ii++) {
+        p[3*ii+1] = (double)S_calc[ii];
+        p[3*ii+2] = (double)S_exp[ii];
+        p[3*ii+3] = (double)S_err[ii];
+    }
+        
+    gsl_vector *x; 
+    gsl_multimin_function_fdf my_func;
+
+    my_func.n = 2;
+    my_func.f = &my_f;
+    my_func.df = &my_df;
+    my_func.fdf = &my_fdf;
+    my_func.params = (void *)p;
+
+    const gsl_multimin_fdfminimizer_type *T;
+    gsl_multimin_fdfminimizer *s;
+
+    x = gsl_vector_alloc(2);
+    gsl_vector_set (x, 0, S_calc[0] / S_exp[0]);
+    gsl_vector_set (x, 1, 0.0);
+
+    T = gsl_multimin_fdfminimizer_conjugate_fr;
+    s = gsl_multimin_fdfminimizer_alloc (T, 2);
+
+    gsl_multimin_fdfminimizer_set (s, &my_func, x, 0.01, 1e-6);
+
+    do {
+        iter++;
+        status = gsl_multimin_fdfminimizer_iterate (s);
+        
+        if (status) break;
+
+        status = gsl_multimin_test_gradient (s->gradient, 1e-5); 
+  
+        if (status == GSL_SUCCESS) printf("Minimum found at:\n");
+        
+        printf ("%5d, %.5e, %.5e, %.5e\n", iter,
+                gsl_vector_get (s->x, 0),
+                gsl_vector_get (s->x, 1),
+                s->f);
+       } while (status == GSL_CONTINUE && iter < 1000);
+
+    c[idx] = gsl_vector_get (s -> x, 0);
+    a[idx] = gsl_vector_get (s -> x, 1);
+    chi_sq = s->f;
+    float S_calc_sum = 0.0;
+    for (int ii = ql; ii < qh; ii++) {
+        S_calc_sum += S_calc[ii] * S_calc[ii];
+    }
+
+    gsl_multimin_fdfminimizer_free (s);
+    gsl_vector_free (x);
+
+    return (float)chi_sq / S_calc_sum;
+}
+
+
 
 int main () {
     cudaFree(0);
     float *S_calc;
-    float *S_exp;
 
     // Declare cuda pointers //
     float *d_coord;          // Coordinates 3 x num_atom
@@ -66,7 +178,10 @@ int main () {
 
     // Allocate local memories
     S_calc = (float *)malloc(size_q);
-    S_exp = (float *)malloc(size_q);
+
+    /*for (int ii = 0; ii < num_q; ii++) {
+        S_exp[ii] = q_S_ref_dS[ii+num_q];
+    }*/
 
     // Allocate cuda memories
     cudaMalloc((void **)&d_Aq,         size_q);
@@ -117,7 +232,21 @@ int main () {
     float sigma2 = 1.0;
     float alpha = 1.0;
 
+    float c1_init   = 0.93;
+    float c1_step   = 0.002;
+    float c1_end    = 1.07;
+    int c1_step_num = (int)((c1_end - c1_init) / c1_step + 1.0);
+    float c2_init   = 0.0;
+    float c2_step   = 0.1;
+    float c2_end    = 2.0;
+    int c2_step_num = (int)((c2_end - c2_init) / c2_step + 1.0);
+    int ql = 0;
+    int qh = 179;
 
+
+    float *chi_sq = (float *)malloc(c1_step_num * c2_step_num * sizeof(float));
+    float *c = (float *)malloc(c1_step_num * c2_step_num * sizeof(float));
+    float *a = (float *)malloc(c1_step_num * c2_step_num * sizeof(float));
 
     dist_calc<<<1024, 1024>>>(
         d_coord, 
@@ -147,17 +276,19 @@ int main () {
         num_atom2, 
         d_Ele, 
         d_vdW);*/
-    
+    /*
     printf("%d ", num_q);
     printf("86 "); 
     for (int ii = 0; ii < num_q; ii++) {
         printf("%.6f ", q_S_ref_dS[ii]);
     }
     printf("\n");
+    */
 
-    float c1 = 0.90;
-    for (int ii = 0; ii < 86; ii++) {
-        float c2_F = 0.0;
+    float c1 = c1_init;
+    int idx = 0;
+    for (int ii = 0; ii < c1_step_num; ii++) {
+        float c2_F = c2_init;
         FF_calc<<<320, 32>>>(
             d_q_S_ref_dS, 
             d_WK, 
@@ -168,7 +299,7 @@ int main () {
             r_m, 
             d_FF_table);
 
-        for (int jj = 0; jj < 21; jj++) {
+        for (int jj = 0; jj < c2_step_num; jj++) {
             create_FF_full_HyPred<<<320, 1024>>>(
                 d_FF_table, 
                 d_V,
@@ -204,14 +335,17 @@ int main () {
             
             // Need to do some sort of fitting. 
             
-            fit_S_exp_to_S_calc(S_calc, S_exp);
-
-            printf("%.3f %.3f ", c1, c2_F);
-            for (int jj = 0; jj < num_q; jj++) {
+            chi_sq[idx] = fit_S_exp_to_S_calc(S_calc, S_exp, S_err, c, a, ql, qh, idx);
+            printf("c1 = %.3f, c2_F = %.3f ", c1, c2_F);
+            printf("c = %.3e, a = %.3e ", c[idx], a[idx]);
+            printf("chi square = %.5f\n", chi_sq[idx]);
+            /*for (int jj = 0; jj < num_q; jj++) {
                 printf("%.5f ",S_calc[jj]);
             }
-            printf("\n");
+            printf("\n");*/
  
+            idx++;
+            
             // Initialize some matrices
             cudaMemset(d_close_flag, 0,   size_qxatom2);
             cudaMemset(d_Force,      0.0, size_coord);
@@ -225,10 +359,10 @@ int main () {
             cudaMemset(d_close_idx,  0,   size_atom2xatom2);
             cudaMemset(d_FF_full,    0.0, size_qxatom2);
             
-            c2_F += 0.1;
+            c2_F += c2_step;
         }
 
-        c1 += 0.002;
+        c1 += c1_step;
     }
 
     cudaFree(d_coord); 
@@ -247,7 +381,6 @@ int main () {
     cudaFree(d_c2_H);
 
     free(S_calc);
-    free(S_exp);
 
     return 0;
 }
