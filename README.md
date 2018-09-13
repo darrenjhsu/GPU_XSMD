@@ -1,5 +1,5 @@
 
-##Driving an MD structure to another with SAXS signal.
+## Driving an MD structure to another with SAXS signal.
 
 This project is to use GPU to accelerate X-ray scattering calculation with
 Debye formula looping over atoms and use it in MD simulation. Concepts were 
@@ -25,7 +25,7 @@ sample the vdW sphere, which has to be outside of any other vdW spheres of
 other atoms. Extended by solvent radius, the point (solvent center) must also 
 be far enough from the vdW spheres of other atoms.
 
-##Requirements
+## Requirements
 
 This program is written in CUDA C and runs only on Nvidia GPUs.
 
@@ -34,7 +34,7 @@ For some parts GNU Scientific Library (GSL) is required.
 There are some python files too. 
 
 
-##Application workflow
+## Application workflow
 
 There are several steps. This is given that you work on a cluster with Nvidia
 GPU access, and that you use some sort of job submission system.
