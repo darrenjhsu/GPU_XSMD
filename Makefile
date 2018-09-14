@@ -1,18 +1,45 @@
 
-all: 
-	nvcc --compiler-options='-fPIC'  -use_fast_math -lineinfo --ptxas-options=-v -c XSMD.cu mol_param.cu scat_param.cu env_param.cu WaasKirf.cu XSMD_wrap.cxx 
+
+CC := nvcc
+SRCDIR := src
+BUILDDIR := build
+TARGET := bin/XSMD.so
+
+SRCEXT := cu
+SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
+PARAMS := $(SRCDIR)/mol_param.cu $(SRCDIR)/scat_param.cu $(SRCDIR)/env_param.cu $(SRCDIR)/WaasKirf.cu $(SRCDIR)/coord_ref.cu $(SRCDIR)/expt_data.cu
+FITPARAMS := $(SRCDIR)/mol_param.cu $(SRCDIR)/env_param.cu $(SRCDIR)/WaasKirf.cu $(SRCDIR)/coord_ref.cu $(SRCDIR)/expt_data.cu
+SOURCESOBJ := $(patsubst $(SRCDIR)/%, $(BUILDDIR)/%, $(SOURCES:.$(SRCEXT)=.o))
+PARAMSOBJ := $(patsubst $(SRCDIR)/%, $(BUILDDIR)/%, $(PARAMS:.$(SRCEXT)=.o))
+FITPARAMSOBJ := $(patsubst $(SRCDIR)/%, $(BUILDDIR)/%, $(FITPARAMS:.$(SRCEXT)=.o))
+CFLAGS := -use_fast_math -lineinfo --ptxas-options=-v
+LIB := -lgsl -lgslcblas -lm
+INC := -I include
+GSLINC := -I/home/djh992/lib/gsl/include
+GSLLIB := -L/home/djh992/lib/gsl/lib
+
+
+$(TARGET): XSMD_wrap.cxx $(OBJECTS)
+	nvcc --compiler-options='-fPIC' -use_fast_math -lineinfo --ptxas-options=-v -c XSMD.cu mol_param.cu scat_param.cu env_param.cu WaasKirf.cu XSMD_wrap.cxx 
 	nvcc -shared XSMD.o mol_param.o scat_param.o env_param.o WaasKirf.o XSMD_wrap.o -o XSMD.so
-XSMD_wrap.cxx: XSMD.i
-	swig -c++ -tcl $<
+XSMD_wrap.cxx: $(SRCDIR)/XSMD.i
+	$(swig -c++ -tcl $^)
 test: speedtest.cu mol_param.cu scat_param.cu env_param.cu WaasKirf.cu coord_ref.cu
 	nvcc -use_fast_math -Xptxas=-v,-dlcm=ca -lineinfo   $^
-traj: traj_scatter.cu mol_param.cu scat_param.cu env_param.cu WaasKirf.cu
-	nvcc -use_fast_math -Xptxas=-v,-dlcm=ca -lineinfo   $^
-initial: structure_calc.cu mol_param.cu scat_param.cu env_param.cu WaasKirf.cu coord_ref.cu
-	nvcc -use_fast_math -lineinfo --ptxas-options=-v $^ -o structure_calc
-fit: fit_initial.cu mol_param.cu scat_param.cu env_param.cu WaasKirf.cu coord_ref.cu
-	nvcc -use_fast_math -lineinfo --ptxas-options=-v $^ -o fit_initial
+traj: $(BUILDDIR)/traj_scatter.o $(PARAMSOBJ)
+	$(CC) $(CFLAGS) $^ -o bin/traj_scatter.out
+initial: $(BUILDDIR)/structure_calc.o $(PARAMSOBJ)
+	$(CC) $(CFLAGS) $^ -o bin/structure_calc.out
+fit: $(BUILDDIR)/fit_initial.o $(FITPARAMSOBJ) 
+	@echo "Linking for fit ......"
+	nvcc $(GSLLIB) $^ $(LIB) -o bin/fit_initial.out 
+
+$(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
+	@mkdir -p $(BUILDDIR)
+	$(CC) $(CFLAGS) $(INC) $(GSLINC) $(LIB) -c -o $@ $^
+
 clean:
-	rm -rf *.o
-	rm XSMD.so
-	rm XSMD_wrap.cxx
+	@echo " Cleaning..."; 
+	@echo " $(RM) -r $(BUILDDIR) $(TARGET)"; $(RM) -r $(BUILDDIR) $(TARGET)	
+	@echo " $(RM) -r $(SRCDIR)/XSMD_wrap.cxx"; $(RM) -r $(SRCDIR)/XSMD_wrap.cxx
+

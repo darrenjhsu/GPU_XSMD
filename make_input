@@ -1,0 +1,7 @@
+#!/bin/bash
+
+data_path=data/1wla/
+#python input.py
+
+cp $data_path/*.cu src/
+cp $data_path/*.hh include/

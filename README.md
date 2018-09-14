@@ -47,34 +47,34 @@ GPU access, and that you use some sort of job submission system.
    This is the file to edit when changing the parameters. Please refer to the
    comments and instructions in the file.
 
-1. Run `<make cu>` to parse the PDB and PSF files and generate
-   `<mol\_param.cu>` and `<coord\_ref.cu`>. 
+1. Run `make cu` to parse the PDB and PSF files and generate
+   `mol_param.cu` and `coord_ref.cu`. 
 
-1. Run `<make fit>` to compile `<fit_initial.cu>` 
+1. Run `make fit` to compile `fit_initial.cu` 
 
-1. Submit your `<fit_initial.sh`> to calculate c1 and c2 that best fit your
-   data. This will also generate the `<scat_param.cu`> with the data you
+1. Submit your `fit_initial.sh` to calculate c1 and c2 that best fit your
+   data. This will also generate the `scat_param.cu` with the data you
    provided properly scaled to the calculated curve. 
 
-1. Run `<make>` to finally compile the `<XSMD.cu>` to a shared object that NAMD
+1. Run `make` to finally compile the `XSMD.cu` to a shared object that NAMD
    will call every step. 
 
 ### If you have two structures and you want to drive one to another
 
 1. Modify the **input.py** for appropriately.
 
-1. Run `<make cu>` to parse the PDB and PSF files and generate
-   `<mol\_param.cu>` and `<coord\_ref.cu`>. 
+1. Run `make cu` to parse the PDB and PSF files and generate
+   `mol_param.cu` and `coord_ref.cu`. 
 
-1. Run `<make initial>` to compile `<structure_calc.cu>`
+1. Run `make initial` to compile `structure_calc.cu`
 
-1. Submit your `<structure_calc.sh>` to calculate the difference signal.
+1. Submit your `structure_calc.sh` to calculate the difference signal.
 
 It is also possible to use an equilibrium trajectory or an ensemble of
 structures to calculate the target scattering profile. In this case, run
-`<make traj>` and submit `<traj_scatter.sh>` to get the curve and difference. _
+`make traj` and submit `traj_scatter.sh` to get the curve and difference. 
 
-1. Run `<make>` to finally compile the `<XSMD.cu>` to a shared object that NAMD
+1. Run `make` to finally compile the `XSMD.cu` to a shared object that NAMD
    will call every step. 
  
 
