@@ -26,4 +26,5 @@ date +%s%3N
 #cuda-memcheck ./a.out
 #srun --gres=gpu:1 nvprof ./a.out
 bin/fit_initial.out
+cp scat_param.{cu,hh} src/ 
 date +%s%3N

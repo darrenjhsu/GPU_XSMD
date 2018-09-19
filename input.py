@@ -23,12 +23,16 @@ def next_2048(x):
 driving_mode = 's'
 
 # Initial PDB and PSF files
-data_path = 'data/1wla/'
-fpsf = data_path + '1wla_autopsf.psf'
-fpdb = data_path + '1wla_autopsf.pdb'
+data_path = 'data/1ubq/'
+fpsf = data_path + '1ubq_autopsf.psf'
+fpdb = data_path + '1ubq_autopsf.pdb'
+
+#data_path = 'data/1oad/'
+#fpsf = data_path + '1oad_autopsf.psf'
+#fpdb = data_path + '1oad_autopsf.pdb'
 
 # Number of atoms
-num_atom = 2486
+num_atom = 1231
 
 ## Experimental files (file format: q, S_exp [, S_err])
 # One static (S_exp) is required, and many difference can follow.
