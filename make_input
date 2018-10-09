@@ -1,6 +1,6 @@
 #!/bin/bash
 
-data_path=data/1ubq/
+data_path=data/3v03/
 #python input.py
 
 cp $data_path/*.cu src/
