@@ -1,0 +1,7 @@
+1537470736014
+==2143== NVPROF is profiling process 2143, command: bin/fit_initial.out
+==2143== Some kernel(s) will be replayed on device 0 in order to collect all events/metrics.
+==2143== Generated result file: /home/djh992/MD_simulation/180607/template/speedtest_bin2.txt
+#Final fitting result: 
+#c1 = 1.000, c2 = 1.000, c = 1.357e+08, a = 0.000e+00, chi2 = 1.556e+00 
+1537470751360

@@ -25,6 +25,8 @@ date +%s%3N
 #srun --gres=gpu:1 cuda-memcheck ./a.out
 #cuda-memcheck ./a.out
 #srun --gres=gpu:1 nvprof ./a.out
-bin/fit_initial.out
-cp scat_param.{cu,hh} src/ 
+nvprof --analysis-metrics -o speedtest_bin12.txt bin/fit_initial.out
+#cuda-memcheck bin/fit_initial.out
+#nvprof bin/fit_initial.out
+#cp scat_param.{cu,hh} src/ 
 date +%s%3N
