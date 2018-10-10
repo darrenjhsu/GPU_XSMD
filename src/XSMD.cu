@@ -9,7 +9,7 @@
 #include "WaasKirf.hh"
 
 
-void XSMD_calc (float *coord, float *Force, double *scat, int frame_num) {
+void XSMD_calc (float *coord, float *Force, double *scat, int frame_num, double *EMA_norm) {
 if (frame_num % 1000 == 0) {
     // In this code pointers with d_ are device pointers. 
 
@@ -27,7 +27,7 @@ if (frame_num % 1000 == 0) {
                                 Since they are of same size they're grouped */
                                 
     float *d_Aq;             // Prefactor for each q
-    float *d_S_calc;         // Calculated scattering curve
+    double *d_S_calc;         // Calculated scattering curve
 
     float *d_S_calcc,        // Some intermediate matrices
           *d_f_ptxc, 
@@ -48,6 +48,10 @@ if (frame_num % 1000 == 0) {
     float *d_FF_table,       // Form factors for each atom type at each q
           *d_FF_full;        /* Form factors for each atom at each q, 
                                 considering the SASA an atom has. */
+    
+    // Compute the exponential moving average normalization constant.
+    EMA_norm = EMA_norm * exp(-1.0/1000.0) + 1;
+    
 
     // If using HyPred mode, then an array of c2 is needed. //
     float *d_c2;
@@ -59,6 +63,7 @@ if (frame_num % 1000 == 0) {
     int size_atom2f      = num_atom2 * sizeof(float);
     int size_atom2xatom2 = 1024 * num_atom2 * sizeof(int); // For d_close_flag
     int size_q           = num_q * sizeof(float); 
+    int size_double_q    = num_q * sizeof(double);
     int size_qxatom2     = num_q2 * num_atom2 * sizeof(float);
     int size_FF_table    = (num_ele + 1) * num_q * sizeof(float); // +1 for solvent
     int size_WK          = 11 * num_ele * sizeof(float);
@@ -74,7 +79,7 @@ if (frame_num % 1000 == 0) {
     cudaMalloc((void **)&d_Force,      size_coord); // 40 KB
     cudaMalloc((void **)&d_Ele,        size_atom);
     cudaMalloc((void **)&d_q_S_ref_dS, 3 * size_q);
-    cudaMalloc((void **)&d_S_calc,     size_q); // Will be computed on GPU
+    cudaMalloc((void **)&d_S_calc,     size_double_q); // Will be computed on GPU
     cudaMalloc((void **)&d_f_ptxc,     size_qxatom2);
     cudaMalloc((void **)&d_f_ptyc,     size_qxatom2);
     cudaMalloc((void **)&d_f_ptzc,     size_qxatom2);
@@ -94,7 +99,7 @@ if (frame_num % 1000 == 0) {
     cudaMemset(d_close_flag, 0,   size_qxatom2);
     cudaMemset(d_Force,      0.0, size_coord);
     cudaMemset(d_Aq,         0.0, size_q);
-    cudaMemset(d_S_calc,     0.0, size_q);
+    cudaMemset(d_S_calc,     0.0, size_double_q);
     cudaMemset(d_f_ptxc,     0.0, size_qxatom2);
     cudaMemset(d_f_ptyc,     0.0, size_qxatom2);   
     cudaMemset(d_f_ptzc,     0.0, size_qxatom2);
@@ -110,7 +115,7 @@ if (frame_num % 1000 == 0) {
     cudaMemcpy(d_q_S_ref_dS, q_S_ref_dS, 3 * size_q, cudaMemcpyHostToDevice);
     cudaMemcpy(d_WK,         WK,         size_WK,    cudaMemcpyHostToDevice);
     // Only for HyPred
-    cudaMemcpy(d_c2,       c2_H,         size_c2,    cudaMemcpyHostToDevice);
+    cudaMemcpy(d_c2,         c2_H,       size_c2,    cudaMemcpyHostToDevice);
 
     float sigma2 = 1.0;
     float alpha = 1.0;

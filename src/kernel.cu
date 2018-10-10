@@ -435,7 +435,7 @@ __global__ void __launch_bounds__(1024,2) scat_calc_EMA (
     float *coord, 
     int *Ele,
     float *q_S_ref_dS, 
-    float *S_calc, 
+    double *S_calc, 
     int num_atom,   
     int num_q,     
     int num_ele,   
@@ -448,7 +448,11 @@ __global__ void __launch_bounds__(1024,2) scat_calc_EMA (
     float *f_ptzc, 
     float *S_calcc, 
     int num_atom2,
-    float *FF_full) {
+    float *FF_full,
+    double *S_old,
+    double EMA_norm) {
+
+    // EMA_norm is computed on the host. See Chen & Hub, Biophysics 2015 2573-2584.
 
     float q_pt; 
 
@@ -502,14 +506,18 @@ __global__ void __launch_bounds__(1024,2) scat_calc_EMA (
         }
         __syncthreads();
         
-        S_calc[ii] = S_calcc[ii * num_atom2];
+        S_calc[ii] = (double) S_calcc[ii * num_atom2];
         __syncthreads();
         // Here comes in the past scat
         // Scat is calced to (S_new + ((N-1) / N) S_old) / N-1
         // Remember to convert S_new to double or set an array for it.
-
+        
         if (threadIdx.x == 0) {
-            Aq[ii] = S_calc[ii] - q_S_ref_dS[ii+num_q];
+            
+            S_calc[ii] += S_old * (EMA_norm - 1);
+            S_calc[ii] /= EMA_norm;
+            
+            Aq[ii] = (float)S_calc[ii] - q_S_ref_dS[ii+num_q];
             Aq[ii] *= -alpha;
             Aq[ii] += q_S_ref_dS[ii + 2*num_q];
             Aq[ii] *= k_chi / sigma2;
