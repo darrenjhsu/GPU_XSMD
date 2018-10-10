@@ -508,14 +508,16 @@ __global__ void __launch_bounds__(1024,2) scat_calc_EMA (
         
         S_calc[ii] = (double) S_calcc[ii * num_atom2];
         __syncthreads();
-        // Here comes in the past scat
-        // Scat is calced to (S_new + ((N-1) / N) S_old) / N-1
-        // Remember to convert S_new to double or set an array for it.
         
         if (threadIdx.x == 0) {
             
-            S_calc[ii] += S_old * (EMA_norm - 1);
+            // Here comes in the past scat
+            // Scat is calced to (S_new + ((N-1) / N) S_old) / N-1
+            // Remember to convert S_new to double or set an array for it.
+            S_calc[ii] += S_old[ii] * (EMA_norm - 1);
             S_calc[ii] /= EMA_norm;
+            // Update old scattering
+            S_old[ii] = S_calc[ii];
             
             Aq[ii] = (float)S_calc[ii] - q_S_ref_dS[ii+num_q];
             Aq[ii] *= -alpha;

@@ -50,7 +50,10 @@ if (frame_num % 1000 == 0) {
                                 considering the SASA an atom has. */
     
     // Compute the exponential moving average normalization constant.
-    EMA_norm = EMA_norm * exp(-1.0/1000.0) + 1;
+    // Here this final 500.0 is to say we average over 500 snapshots,
+    // each snapshot taken every 1000 steps (the first if statement of this kernel).
+    // So we have tau = 1.0 ns for exponential averaging.
+    EMA_norm = EMA_norm * exp(-1.0/500.0) + 1;
     
 
     // If using HyPred mode, then an array of c2 is needed. //
