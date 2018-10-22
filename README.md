@@ -3,7 +3,7 @@
 
 This project is to use GPU to accelerate X-ray scattering calculation with
 Debye formula looping over atoms and use it in MD simulation. Concepts were 
-taken from Bjorling et al. JCTC 2015, 11, 780. 
+taken from Bjorling et al. JCTC 2015, 11, 780 and a few other papers. 
 
 The calculation of scattering profile is the same as in FoXS but the form 
 factors are calculated explicitly. The solvation shell contrast coefficient is
