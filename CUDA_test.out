@@ -1,7 +1,28 @@
-1538103173662
-==19496== NVPROF is profiling process 19496, command: bin/fit_initial.out
-==19496== Some kernel(s) will be replayed on device 0 in order to collect all events/metrics.
-==19496== Generated result file: /home/djh992/MD_simulation/180607/template/speedtest_bin12.txt
-#Final fitting result: 
+1539807915556
+==26162== NVPROF is profiling process 26162, command: bin/fit_initial.out
+==26162== #Final fitting result: 
 #c1 = 1.000, c2 = 1.000, c = 1.252e+06, a = 0.000e+00, chi2 = 1.617e-01 
-1538103384165
+Profiling application: bin/fit_initial.out
+==26162== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   90.40%  650.04ms         1  650.04ms  650.04ms  650.04ms  scat_calc(float*, int*, float*, float*, int, int, int, float*, float, float, float, float*, float*, float*, float*, int, float*)
+                    6.68%  48.031ms         1  48.031ms  48.031ms  48.031ms  dist_calc(float*, int*, int*, int*, int, int)
+                    2.89%  20.811ms         1  20.811ms  20.811ms  20.811ms  surf_calc(float*, int*, int*, int*, float*, int, int, int, float, float*)
+                    0.01%  87.137us         1  87.137us  87.137us  87.137us  create_FF_full_HyPred(float*, float*, float, float*, int*, float*, int, int, int, int)
+                    0.01%  36.128us        24  1.5050us     800ns  6.1760us  [CUDA memset]
+                    0.00%  33.825us         6  5.6370us     960ns  22.689us  [CUDA memcpy HtoD]
+                    0.00%  10.592us         1  10.592us  10.592us  10.592us  FF_calc(float*, float*, float*, int, int, float, float, float*)
+                    0.00%  2.1440us         1  2.1440us  2.1440us  2.1440us  [CUDA memcpy DtoH]
+      API calls:   71.19%  719.52ms         7  102.79ms  9.7260us  718.88ms  cudaMemcpy
+                   28.20%  285.05ms        22  12.957ms  11.947us  269.30ms  cudaFree
+                    0.43%  4.3148ms        21  205.47us  10.497us  412.07us  cudaMalloc
+                    0.08%  775.09us        94  8.2450us     299ns  303.59us  cuDeviceGetAttribute
+                    0.04%  363.35us         1  363.35us  363.35us  363.35us  cuDeviceTotalMem
+                    0.03%  339.69us        24  14.153us  3.4240us  80.109us  cudaMemset
+                    0.03%  272.67us         5  54.534us  15.497us  196.59us  cudaLaunch
+                    0.01%  85.083us         1  85.083us  85.083us  85.083us  cuDeviceGetName
+                    0.00%  30.130us        51     590ns     291ns  9.9320us  cudaSetupArgument
+                    0.00%  4.3430us         5     868ns     408ns  1.6750us  cudaConfigureCall
+                    0.00%  3.9530us         2  1.9760us     419ns  3.5340us  cuDeviceGet
+                    0.00%  3.5880us         3  1.1960us     331ns  2.0970us  cuDeviceGetCount
+1539807917142

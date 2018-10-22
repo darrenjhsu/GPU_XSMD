@@ -33,6 +33,9 @@ set frame_num 0
 set p_coord [float_array [expr {$numatoms * 3}]]
 set p_force [float_array [expr {$numatoms * 3}]]
 set p_scat [double_array [expr $num_q]]
+set EMA_norm [double_array 1]
+double_set $EMA_norm 0.0
+
 
 proc calcforces { } {
     global atoms numatoms opt frame_num
@@ -53,7 +56,7 @@ proc calcforces { } {
         #puts $p_force 
         # Need to turn these into pointers 
         # void XSMD (float *coord, float *Force)
-        XSMD_calc $p_coord $p_force $p_scat $frame_num
+        XSMD_calc $p_coord $p_force $p_scat $frame_num $EMA_norm
         incr frame_num 
         # unpack force
         #set force {}
