@@ -514,7 +514,7 @@ __global__ void __launch_bounds__(1024,2) scat_calc_EMA (
             // Here comes in the past scat
             // Scat is calced to (S_new + ((N-1) / N) S_old) / N-1
             // Remember to convert S_new to double or set an array for it.
-            S_calc[ii] += S_old[ii] * (EMA_norm - 1);
+            S_calc[ii] += S_old[ii] * (EMA_norm - 1.0);
             S_calc[ii] /= EMA_norm;
             // Update old scattering
             S_old[ii] = S_calc[ii];
@@ -868,7 +868,8 @@ __global__ void force_calc (
     float *f_ptzc, 
     int num_atom2, 
     int num_q2, 
-    int *Ele) {
+    int *Ele,
+    float force_ramp) {
     // Do column tree sum of f_ptxc for f_ptx for every atom, then assign threadIdx.x == 0 (3 * num_atoms) to Force. Force is num_atom * 3. 
     if (blockIdx.x >= num_atom) return;
     for (int ii = blockIdx.x; ii < num_atom; ii += gridDim.x) {
@@ -883,9 +884,9 @@ __global__ void force_calc (
         __syncthreads();
         if (threadIdx.x == 0) {
             if (Ele[ii]) {
-                Force[ii*3    ] = -f_ptxc[ii];
-                Force[ii*3 + 1] = -f_ptyc[ii];
-                Force[ii*3 + 2] = -f_ptzc[ii];
+                Force[ii*3    ] = -f_ptxc[ii] * force_ramp;
+                Force[ii*3 + 1] = -f_ptyc[ii] * force_ramp;
+                Force[ii*3 + 2] = -f_ptzc[ii] * force_ramp;
             }
         }
         __syncthreads();

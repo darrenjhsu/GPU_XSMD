@@ -7,10 +7,11 @@
 #include "env_param.hh"
 #include "scat_param.hh"
 #include "WaasKirf.hh"
+#define PI 3.14159265359 
 
-
-void XSMD_calc (float *coord, float *Force, double *scat, int frame_num, double *EMA_norm) {
-if (frame_num % 1000 == 0) {
+void XSMD_calc (float *coord, float *Force, double *S_old, int frame_num, double *EMA_norm) {
+if (frame_num % delta_t == 0) {
+    printf("Frame %d, doing things ...\n", frame_num);
     // In this code pointers with d_ are device pointers. 
 
     // Declare local pointers //
@@ -27,7 +28,8 @@ if (frame_num % 1000 == 0) {
                                 Since they are of same size they're grouped */
                                 
     float *d_Aq;             // Prefactor for each q
-    double *d_S_calc;         // Calculated scattering curve
+    //float *d_S_calc;         // Calculated scattering curve
+    double *d_S_calc;         // For EMA method, use double
 
     float *d_S_calcc,        // Some intermediate matrices
           *d_f_ptxc, 
@@ -53,7 +55,18 @@ if (frame_num % 1000 == 0) {
     // Here this final 500.0 is to say we average over 500 snapshots,
     // each snapshot taken every 1000 steps (the first if statement of this kernel).
     // So we have tau = 1.0 ns for exponential averaging.
-    EMA_norm = EMA_norm * exp(-1.0/500.0) + 1;
+    double *d_S_old;
+    *EMA_norm = *EMA_norm * exp(-(float)delta_t/(float)tau) + 1.0;
+    printf("Currently EMA_Norm is %.3f\n",*EMA_norm);
+    float force_ramp;
+    if (frame_num < tau) {
+        force_ramp = 0.0;
+    } else if (frame_num > 2 * tau) {
+        force_ramp = 1.0;
+    } else {
+        force_ramp = (1 - cos(PI * ((float)frame_num - (float)tau) / (float)tau)) / 2.0;
+    }
+    printf("Currently force_ramp is %.3f\n",force_ramp);
     
 
     // If using HyPred mode, then an array of c2 is needed. //
@@ -82,7 +95,8 @@ if (frame_num % 1000 == 0) {
     cudaMalloc((void **)&d_Force,      size_coord); // 40 KB
     cudaMalloc((void **)&d_Ele,        size_atom);
     cudaMalloc((void **)&d_q_S_ref_dS, 3 * size_q);
-    cudaMalloc((void **)&d_S_calc,     size_double_q); // Will be computed on GPU
+    //cudaMalloc((void **)&d_S_calc,     size_q); // Will be computed on GPU
+    cudaMalloc((void **)&d_S_calc,     size_double_q); // For EMA method, use double precision
     cudaMalloc((void **)&d_f_ptxc,     size_qxatom2);
     cudaMalloc((void **)&d_f_ptyc,     size_qxatom2);
     cudaMalloc((void **)&d_f_ptzc,     size_qxatom2);
@@ -97,6 +111,7 @@ if (frame_num % 1000 == 0) {
     cudaMalloc((void **)&d_FF_full,    size_qxatom2);
     cudaMalloc((void **)&d_WK,         size_WK);
     cudaMalloc((void **)&d_c2,         size_c2); // Only for HyPred
+    cudaMalloc((void **)&d_S_old,      size_double_q);
 
     // Initialize some matrices
     cudaMemset(d_close_flag, 0,   size_qxatom2);
@@ -119,6 +134,7 @@ if (frame_num % 1000 == 0) {
     cudaMemcpy(d_WK,         WK,         size_WK,    cudaMemcpyHostToDevice);
     // Only for HyPred
     cudaMemcpy(d_c2,         c2_H,       size_c2,    cudaMemcpyHostToDevice);
+    cudaMemcpy(d_S_old,      S_old,      size_double_q, cudaMemcpyHostToDevice);
 
     float sigma2 = 1.0;
     float alpha = 1.0;
@@ -188,7 +204,7 @@ if (frame_num % 1000 == 0) {
     create_FF_full_HyPred<<<320, 1024>>>(
         d_FF_table, 
         d_V,
-        c2 
+        c2, 
         d_c2, 
         d_Ele, 
         d_FF_full, 
@@ -216,7 +232,7 @@ if (frame_num % 1000 == 0) {
        exit(-1);
     }
 
-    scat_calc<<<320, 1024>>>(
+/*    scat_calc<<<320, 1024>>>(
         d_coord, 
         d_Ele,
         d_q_S_ref_dS, 
@@ -233,7 +249,30 @@ if (frame_num % 1000 == 0) {
         d_f_ptzc, 
         d_S_calcc, 
         num_atom2, 
-        d_FF_full);
+        d_FF_full);*/
+
+    scat_calc_EMA<<<320, 1024>>>(
+        d_coord, 
+        d_Ele,
+        d_q_S_ref_dS, 
+        d_S_calc, 
+        num_atom,  
+        num_q,     
+        num_ele,  
+        d_Aq, 
+        alpha,    
+        k_chi,     
+        sigma2,    
+        d_f_ptxc, 
+        d_f_ptyc, 
+        d_f_ptzc, 
+        d_S_calcc, 
+        num_atom2, 
+        d_FF_full,
+        d_S_old,
+        *EMA_norm
+        );
+
 
     cudaDeviceSynchronize();
     error = cudaGetLastError();
@@ -254,7 +293,8 @@ if (frame_num % 1000 == 0) {
         d_f_ptzc, 
         num_atom2, 
         num_q2, 
-        d_Ele);
+        d_Ele,
+        force_ramp);
 
     cudaDeviceSynchronize();
     error = cudaGetLastError();
@@ -265,12 +305,13 @@ if (frame_num % 1000 == 0) {
     }
 
     cudaMemcpy(Force,  d_Force,  size_coord, cudaMemcpyDeviceToHost);
+    cudaMemcpy(S_old,  d_S_old,  size_double_q, cudaMemcpyDeviceToHost);
 
     float chi = 0.0;
     float chi2 = 0.0;
     float chi_ref = 0.0;
     for (int ii = 0; ii < num_q; ii++) {
-        chi = q_S_ref_dS[ii+2*num_q] - (S_calc[ii] - q_S_ref_dS[ii+num_q]);
+        chi = q_S_ref_dS[ii+2*num_q] - ((float)S_old[ii] - q_S_ref_dS[ii+num_q]);
         chi2 += chi * chi;
         chi_ref+= q_S_ref_dS[ii+2*num_q] * q_S_ref_dS[ii+2*num_q];
     }

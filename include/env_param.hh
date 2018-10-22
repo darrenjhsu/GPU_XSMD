@@ -6,3 +6,5 @@ extern float sol_s;
 extern float vdW[7];
 extern float c2_H[10];
 extern float r_m;
+extern int delta_t;
+extern int tau;

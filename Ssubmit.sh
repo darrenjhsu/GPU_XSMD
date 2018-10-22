@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #SBATCH --job-name CUDA_test
-#SBATCH --partition=PASCAL
+#SBATCH --partition=KEPLER
 #SBATCH --qos normal
 #SBATCH --nodes 1
 #SBATCH --cpus-per-task 12
@@ -25,8 +25,8 @@ date +%s%3N
 #srun --gres=gpu:1 cuda-memcheck ./a.out
 #cuda-memcheck ./a.out
 #srun --gres=gpu:1 nvprof ./a.out
-nvprof --analysis-metrics -o speedtest_bin12.txt bin/fit_initial.out
+#nvprof --analysis-metrics -o speedtest_bin12.txt bin/fit_initial.out
 #cuda-memcheck bin/fit_initial.out
-#nvprof bin/fit_initial.out
+nvprof bin/fit_initial.out
 #cp scat_param.{cu,hh} src/ 
 date +%s%3N

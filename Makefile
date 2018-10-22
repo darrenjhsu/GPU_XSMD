@@ -7,7 +7,7 @@ TARGET := bin/XSMD.so
 
 SRCEXT := cu
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
-PARAMS := $(SRCDIR)/mol_param.cu $(SRCDIR)/scat_param.cu $(SRCDIR)/env_param.cu $(SRCDIR)/WaasKirf.cu $(SRCDIR)/coord_ref.cu 
+PARAMS := $(SRCDIR)/mol_param.cu $(SRCDIR)/scat_param.cu $(SRCDIR)/env_param.cu $(SRCDIR)/WaasKirf.cu $(SRCDIR)/coord_ref.cu $(SRCDIR)/XSMD.cu 
 FITPARAMS := $(SRCDIR)/mol_param.cu $(SRCDIR)/env_param.cu $(SRCDIR)/WaasKirf.cu $(SRCDIR)/coord_ref.cu $(SRCDIR)/expt_data.cu
 SOURCESOBJ := $(patsubst $(SRCDIR)/%, $(BUILDDIR)/%, $(SOURCES:.$(SRCEXT)=.o))
 PARAMSOBJ := $(patsubst $(SRCDIR)/%, $(BUILDDIR)/%, $(PARAMS:.$(SRCEXT)=.o))
@@ -31,7 +31,7 @@ initial: $(BUILDDIR)/structure_calc.o $(PARAMSOBJ)
 	$(CC) $(CFLAGS) $^ -o bin/structure_calc.out
 fit: $(BUILDDIR)/fit_initial.o $(FITPARAMSOBJ) 
 	@echo "Linking for fit ......"
-	nvcc $(GSLLIB) $^ $(LIB) -o bin/fit_initial.out 
+	$(CC) $(GSLLIB) $^ $(LIB) -o bin/fit_initial.out 
 $(BUILDDIR)/XSMD_wrap.o: $(SRCDIR)/XSMD_wrap.cxx
 	@mkdir -p $(BUILDDIR)
 	$(CC) $(CFLAGS) $(INC) $(GSLINC) $(LIB) -c -o $@ $^
