@@ -3,12 +3,17 @@
 
 This project is to use GPU to accelerate X-ray scattering calculation with
 Debye formula looping over atoms and use it in MD simulation. Concepts were 
-taken from Bjorling et al. JCTC 2015, 11, 780 and a few other papers. 
+taken from Bjorling et al. JCTC 2015, 11, 780 and exponential moving average is
+taken from Chen & Hub, Biophysics J, 2015. 
+
+In short, at each interval we evaluate the scattering profile, and take the
+negative gradient (definition of force) of chi square, which is a function of
+all coordinates (only). 
 
 The calculation of scattering profile is the same as in FoXS but the form 
 factors are calculated explicitly. The solvation shell contrast coefficient is
 not uniform. It is with HyPred approach (radial sum of electron density
-difference). 
+difference up to vdW radii + 3 A). 
 
 The atomic form factors in vacuum are calculated using Waasmaier-Kirfel table.
 
@@ -24,6 +29,23 @@ The surface area calculation is done numerically following J Appl Crystallgr
 sample the vdW sphere, which has to be outside of any other vdW spheres of 
 other atoms. Extended by solvent radius, the point (solvent center) must also 
 be far enough from the vdW spheres of other atoms.
+
+## Why use this program?
+
+1. It takes care of changing scattering intensity due to surface area
+   variation. This is necessary if you have an unfolding process to explore.
+   For example, a study focussing on molten globule state will benefit a lot.
+
+1. It is fast. If force is evaluated every 1000 steps, the computational
+   overhead is almost negligible!
+
+1. Only one simulation box is required. You solvate the protein, equlibrate it,
+   fit to the static scattering data, and then fit the difference data.
+
+1. It is compatible with some enhanced sampling methods such as  metadynamics.
+   This again comes in handy when exploring the conformational space for an
+   unfolding reaction, while the correction force keeps the structure from
+   deviating from the difference signal. 
 
 ## Requirements
 
