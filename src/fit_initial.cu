@@ -358,19 +358,19 @@ int main () {
     float sigma2 = 1.0;
     float alpha = 1.0;
 
-    /*float c1_init   = 0.95;
+    float c1_init   = 0.95;
     float c1_step   = 0.002;
-    float c1_end    = 1.05;*/
-    float c1_init   = 1.00;
+    float c1_end    = 1.05;
+    /*float c1_init   = 1.00;
     float c1_step   = 0.002;
-    float c1_end    = 1.00;
+    float c1_end    = 1.00;*/
     int c1_step_num = (int)((c1_end - c1_init) / c1_step + 1.0);
-    /*float c2_init   = 0.0;
+    float c2_init   = 0.0;
     float c2_step   = 0.1;
-    float c2_end    = 2.0;*/
-    float c2_init   = 1.0;
+    float c2_end    = 2.0;
+    /*float c2_init   = 1.0;
     float c2_step   = 0.1;
-    float c2_end    = 1.0;
+    float c2_end    = 1.0;*/
     int c2_step_num = (int)((c2_end - c2_init) / c2_step + 1.0);
     int use_log     = 0;
 
@@ -434,14 +434,26 @@ int main () {
             num_ele, 
             c1, 
             r_m, 
-            d_FF_table);
+            d_FF_table,
+            rho);
 
         for (int jj = 0; jj < c2_step_num; jj++) {
-            create_FF_full_HyPred<<<320, 1024>>>(
+/*            create_FF_full_HyPred<<<320, 1024>>>(
                 d_FF_table, 
                 d_V,
                 c2_F,
                 d_c2_H, 
+                d_Ele, 
+                d_FF_full, 
+                num_q, 
+                num_ele, 
+                num_atom, 
+                num_atom2);*/
+
+            create_FF_full_FoXS<<<320, 1024>>>(
+                d_FF_table, 
+                d_V,
+                c2_F,
                 d_Ele, 
                 d_FF_full, 
                 num_q, 

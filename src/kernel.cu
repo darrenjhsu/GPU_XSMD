@@ -210,7 +210,8 @@ __global__ void FF_calc (
     int num_ele, 
     float c1, 
     float r_m, 
-    float *FF_table) {
+    float *FF_table,
+    float rho) {
 
     __shared__ float q_pt, q_WK, C1, expC1;
     __shared__ float FF_pt[7]; // num_ele + 1, the last one for water.
@@ -224,7 +225,7 @@ __global__ void FF_calc (
         // FoXS C1 term
         expC1 = -powf(4.0 * PI / 3.0, 1.5) * q_WK * q_WK * r_m * r_m * (c1 * c1 - 1.0) / 4.0 / PI;
         C1 = powf(c1,3) * exp(expC1);
-        C1_PI_43_rho = C1 * PI * 4.0 / 3.0 * 0.334;
+        C1_PI_43_rho = C1 * PI * 4.0 / 3.0 * rho;
         for (int jj = threadIdx.x; jj < 11 * num_ele; jj += blockDim.x) {
             WK_s[jj] = WK[jj];
         }
@@ -442,7 +443,7 @@ __global__ void __launch_bounds__(1024,2) scat_calc_EMA (
     float *Aq, 
     float alpha,   
     float k_chi,    
-    float sigma2,  
+    float *sigma2,  
     float *f_ptxc, 
     float *f_ptyc, 
     float *f_ptzc, 
@@ -454,12 +455,12 @@ __global__ void __launch_bounds__(1024,2) scat_calc_EMA (
 
     // EMA_norm is computed on the host. See Chen & Hub, Biophysics 2015 2573-2584.
 
-    float q_pt; 
+    float q_pt, sigma2_pt; 
 
     for (int ii = blockIdx.x; ii < num_q; ii += gridDim.x) {
 
         q_pt = q_S_ref_dS[ii];
-
+        sigma2_pt = sigma2[ii];
         // Calculate scattering for Aq
         for (int jj = threadIdx.x; jj < num_atom; jj += blockDim.x) {
             // for every atom jj
@@ -522,7 +523,7 @@ __global__ void __launch_bounds__(1024,2) scat_calc_EMA (
             Aq[ii] = (float)S_calc[ii] - q_S_ref_dS[ii+num_q];
             Aq[ii] *= -alpha;
             Aq[ii] += q_S_ref_dS[ii + 2*num_q];
-            Aq[ii] *= k_chi / sigma2;
+            Aq[ii] *= k_chi / sigma2_pt;
             Aq[ii] += Aq[ii];
         }
         __syncthreads();

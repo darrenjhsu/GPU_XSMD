@@ -5,6 +5,7 @@ import re
 import math
 import platform
 import scipy.signal as sig
+from scipy import interpolate
 
 print(platform.python_version())
 
@@ -23,38 +24,43 @@ def next_2048(x):
 driving_mode = 's'
 
 # Initial PDB and PSF files
-data_path = 'data/3v03/'
-fpsf = data_path + '3v03_autopsf.psf'
-fpdb = data_path + '3v03_autopsf.pdb'
+data_path = 'data/1f6s/'
+fpsf = data_path + '1f6s_autopsf.psf'
+fpdb = data_path + '1f6s_autopsf.pdb'
 
 #data_path = 'data/1oad/'
 #fpsf = data_path + '1oad_autopsf.psf'
 #fpdb = data_path + '1oad_autopsf.pdb'
 
 # Number of atoms
-num_atom = 9193 
+num_atom = 1932 
 
 ## Experimental files (file format: q, S_exp [, S_err])
 # One static (S_exp) is required, and many difference can follow.
-S_exp_file = data_path + 'S_exp.txt'
+S_exp_file = data_path + 'S_exp60.txt'
+dS_exp_file = data_path + 'dS_exp60.txt'
 
 # Unit of the q vector. If your data is from SASBDB, it is probably 1 / nm.
-q_unit = 'nm' # Options: 'nm' or 'A'
+q_unit = 'A' # Options: 'nm' or 'A'
 
-num_dS = 0   # Number of dS components. Has no effect when driving mode is not set to 'd'
-dS_exp_file = ''
-alpha = 0    # Excitation fraction
+num_dS = 1   # Number of dS components. Has no effect when driving mode is not set to 'd'
+alpha = 1    # Excitation fraction
 
-# Experimental data has error estimate?
+# Experimental data has error estimate? (1 or 0)
 has_S_err = 1
+has_dS_err = 1
 
 # Downsample?
-num_q_down_to = 250 # Apply decimate() to downsample the curve to less than this number of points.
+num_q_down_to = 100 # Apply decimate() to downsample the curve to less than this number of points.
 
 # Upper and lower bound of q
-ql = 0.015
-qu = 0.5
+use_diff_q_range = 1 # Simply use q range from difference file; overwrites ql and qu below
+                     # It is however useful to set the ql and qu in case of fallback. 
+ql = 0.03
+qu = 0.7
 
+# Solvent electron density (rho, for pure water at 20 deg C it is 0.334)
+rho = 0.334 * 0.9857 # 55 deg C density
 
 # k chi - weighing factor
 k_chi = 1e-7
@@ -62,8 +68,14 @@ k_chi = 1e-7
 # number of raster points to determine surface area (better be power of 2)
 num_raster = 512
 
+# Snapshots per delta_t steps for exponential moving averaging
+# Memory time tau steps
+delta_t = 100
+tau = 10000
 
-##### Rest is for official use #####
+
+##### The rest you probably don't need to modify #####
+
 
 # Parse files
 
@@ -124,7 +136,7 @@ for x in PSF:
     if '!NATOM' in x:
         NATOM = int(re.search(r'\d+', x).group())
         if NATOM != num_atom:
-            print('!!!!!! NATOM is larger than num_atom, check if this is a solvated model or you typed wrong num_atom!!!!!!')
+            print('!!!!!! NATOM is larger than num_atom, check if this is a solvated model or you typed wrong num_atom!')
         print(NATOM)
         atoms = np.zeros((NATOM,3))
         Ele = np.zeros((NATOM,1),dtype=int)
@@ -214,35 +226,82 @@ with open(data_path + 'coord_ref.cu','w') as f:
 
 
 # read expt files
+
+if num_dS == 0:
+    use_diff_q_range = 0
+    print('There is no dS file, so we will not use q range from it.')
+    print('Preset ql {:.3f}/A and qu {:.3f}/A will be used'.format(ql,qu))
+
 S_exp = np.loadtxt(S_exp_file)
 S_exp = np.array(S_exp)
 
+# Now we deal with difference curve. Load file. 
+if num_dS > 0:
+    dS_exp = np.loadtxt(dS_exp_file)
+    dS_exp = np.array(dS_exp)
+else:
+    dS_exp = S_exp
+    use_diff_q_range = 0
+
+print(dS_exp)
+if use_diff_q_range == 1:
+    ql = dS_exp[0,0]
+    qu = dS_exp[-1,0]
+    print('Using q range from dS file, which is {:.3f}/A to {:.3f}/A'.format(ql,qu))
+
+
 if q_unit == 'nm':
-    S_exp[:,0] = np.divide(S_exp[:,0],10)
+    dS_exp[:,0] = np.divide(dS_exp[:,0],10.0)
+
+if q_unit == 'nm':
+    S_exp[:,0] = np.divide(S_exp[:,0],10.0)
 
 num_q = len(S_exp[:,0])
+num_q = len(S_exp[(S_exp[:,0]>ql) & (S_exp[:,0]<qu),0])
 if num_q > num_q_down_to:
     down_sample_factor = np.ceil(num_q / num_q_down_to).astype(int)
     #print(S_exp)
     #print(down_sample_factor)
-    S_exp = sig.decimate(S_exp, down_sample_factor, axis=0)
-
-try: 
-    qidxl = np.asscalar(np.argwhere(S_exp[:,0] > ql)[0])
-except:
-    qidxl = 0
-    print('There is no points with q smaller than {:.3f}'.format(ql))
-try:
-    qidxu = np.asscalar(np.argwhere(S_exp[:,0] > qu)[0])
-except:
-    qidxu = len(S_exp[:,0])
-    print('There is no points with q larger than {:.3f}'.format(qu))
-#print(qidxl)
-#print(qidxu)
-S_exp = S_exp[qidxl:qidxu,:]
+    print('Downsampling from {:d} q points to desired ({:d} points)'.format(num_q, num_q_down_to))
+    S_exp = sig.decimate(S_exp[(S_exp[:,0]>ql) & (S_exp[:,0]<qu),:], down_sample_factor, axis=0)
+else:
+    print('There is no need to decimate. Number of q points ({:d}) is smaller than desired ({:d})'.format(num_q, num_q_down_to))
+    try: 
+        qidxl = np.asscalar(np.argwhere(S_exp[:,0] < ql)[-1])
+        print(np.argwhere(S_exp[:,0] <ql))
+    except:
+        qidxl = 0
+        print('There is no points with q smaller than {:.3f}'.format(ql))
+    try:
+        qidxu = np.asscalar(np.argwhere(S_exp[:,0] > qu)[0])
+    except:
+        qidxu = len(S_exp[:,0])
+        print('There is no points with q larger than {:.3f}'.format(qu))
+    #print(qidxl)
+    #print(qidxu)
+    S_exp = S_exp[qidxl:qidxu,:]
 
 num_q = len(S_exp[:,0])
 print(num_q)
+
+print(S_exp)
+
+# Since S_exp may be decimated, we interpolate dS_exp
+x = dS_exp[:,0]
+y = dS_exp[:,1]
+f1 = interpolate.interp1d(x,y)
+ynew = f1(S_exp[:,0])
+if has_dS_err: 
+    y2 = dS_exp[:,2]
+    f2 = interpolate.interp1d(x,y2)
+    y2new = f2(S_exp[:,0])
+
+#dS_exp = []
+#dS_exp.append(S_exp[:,0])
+#dS_exp.append(ynew)
+#dS_exp.append(y2new)
+#print(dS_exp)
+
 
 #print(S_exp)
 # write expt_data.cu
@@ -256,9 +315,32 @@ with open(data_path + 'expt_data.cu','w') as f:
     f.write('float S_exp[{:d}] = {{'.format(num_q))
     f.write(', '.join(map(str,S_exp[:,1])))
     f.write('};\n')
-    f.write('float S_err[{:d}] = {{'.format(num_q))
-    f.write(', '.join(map(str,S_exp[:,2])))
-    f.write('};\n\n')
+    if has_S_err:
+        f.write('float S_err[{:d}] = {{'.format(num_q))
+        f.write(', '.join(map(str,S_exp[:,2])))
+        f.write('};\n')
+    else:
+        f.write('float S_err[{:d}] = {{'.format(num_q))
+        f.write(', '.join(map(str,np.ones_like(S_exp[:,0]))))
+        f.write('};\n')
+    if num_dS > 0:
+        f.write('float dS_exp[{:d}] = {{'.format(num_q))
+        f.write(', '.join(map(str,ynew)))
+        f.write('};\n')
+    else: 
+        f.write('float dS_exp[{:d}] = {{'.format(num_q))
+        f.write(', '.join(map(str,np.zeros_like(S_exp[:,0]))))
+        f.write('};\n\n')
+    if has_dS_err:
+        f.write('float dS_err[{:d}] = {{'.format(num_q))
+        f.write(', '.join(map(str,y2new)))
+        f.write('};\n\n')
+    else: 
+        f.write('float dS_err[{:d}] = {{'.format(num_q))
+        f.write(', '.join(map(str,np.ones_like(S_exp[:,0]))))
+        f.write('};\n\n')
+    f.write('int has_S_err = {:d};\n'.format(has_S_err))
+    f.write('int has_dS_err = {:d};\n'.format(has_dS_err))
     
 with open(data_path + 'expt_data.hh','w') as f:
     f.write('extern int num_q;\n');
@@ -266,7 +348,10 @@ with open(data_path + 'expt_data.hh','w') as f:
     f.write('extern float q[{:d}];\n'.format(num_q))
     f.write('extern float S_exp[{:d}];\n'.format(num_q))
     f.write('extern float S_err[{:d}];\n'.format(num_q))
-
+    f.write('extern float dS_exp[{:d}];\n'.format(num_q))
+    f.write('extern float dS_err[{:d}];\n'.format(num_q))
+    f.write('extern int has_S_err;\n')
+    f.write('extern int has_dS_err;\n')
 
 # write env_param
 
@@ -281,6 +366,10 @@ with open(data_path + 'env_param.cu','w') as f:
     f.write('float c2_H[10] = { 0.00000, -0.08428, -0.68250,  1.59535,  0.23293,  0.00000, \n')
     f.write('                   1.86771,  3.04298,  4.06575,  0.79196};\n')
     f.write('float r_m = 1.62;\n')
+    f.write('float rho = {:.4f};\n'.format(rho))
+    f.write('int delta_t = {:d};\n'.format(delta_t))
+    f.write('int tau = {:d};\n'.format(tau))
+
 
 with open(data_path + 'env_param.hh','w') as f:
     f.write('extern float k_chi;\n')
@@ -291,3 +380,7 @@ with open(data_path + 'env_param.hh','w') as f:
     f.write('extern float vdW[7];\n');
     f.write('extern float c2_H[10];\n')
     f.write('extern float r_m;\n')
+    f.write('extern float rho;\n')
+    f.write('extern int delta_t;\n')
+    f.write('extern int tau;\n')
+

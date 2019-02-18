@@ -110,7 +110,7 @@ int main () {
     cudaMemset(d_FF_full,    0.0, size_qxatom2);
 
     // Copy necessary data
-    cudaMemcpy(d_coord,      coord_init, size_coord, cudaMemcpyHostToDevice);
+    cudaMemcpy(d_coord,      coord_ref,  size_coord, cudaMemcpyHostToDevice);
     cudaMemcpy(d_vdW,        vdW,        size_vdW,   cudaMemcpyHostToDevice);
     cudaMemcpy(d_Ele,        Ele,        size_atom,  cudaMemcpyHostToDevice);
     cudaMemcpy(d_q_S_ref_dS, q_S_ref_dS, 3 * size_q, cudaMemcpyHostToDevice);
@@ -215,7 +215,7 @@ int main () {
 
     cudaMemcpy(S_calc, d_S_calc, size_q,     cudaMemcpyDeviceToHost);
 
-    force_calc<<<1024, 512>>>(
+/*    force_calc<<<1024, 512>>>(
         d_Force, 
         num_atom, 
         num_q, 
@@ -227,7 +227,7 @@ int main () {
         d_Ele);
 
     cudaMemcpy(Force,  d_Force,  size_coord, cudaMemcpyDeviceToHost);
-
+*/
 
     float chi = 0.0;
     float chi2 = 0.0;

@@ -1,6 +1,7 @@
 
 #include <stdio.h>
 #include <math.h>
+#include <sys/time.h>
 #include "kernel.cu"
 #include "XSMD.hh"
 #include "mol_param.hh"
@@ -11,6 +12,9 @@
 
 void XSMD_calc (float *coord, float *Force, double *S_old, int frame_num, double *EMA_norm) {
 if (frame_num % delta_t == 0) {
+    struct timeval tv1, tv2;
+    gettimeofday(&tv1, NULL);
+
     printf("Frame %d, doing things ...\n", frame_num);
     // In this code pointers with d_ are device pointers. 
 
@@ -21,11 +25,12 @@ if (frame_num % delta_t == 0) {
     // Declare cuda pointers //
     float *d_coord;          // Coordinates 3 x num_atom
     float *d_Force;          // Force 3 x num_atom
-    int   *d_Ele;              // Element list.
+    int   *d_Ele;            // Element list.
 
     float *d_q_S_ref_dS;     /* q vector, reference scattering pattern, and 
                                 measured difference pattern to fit.
                                 Since they are of same size they're grouped */
+    float *d_sigma2;         // Sigma square (standard error of mean) for the target diff pattern.
                                 
     float *d_Aq;             // Prefactor for each q
     //float *d_S_calc;         // Calculated scattering curve
@@ -95,6 +100,7 @@ if (frame_num % delta_t == 0) {
     cudaMalloc((void **)&d_Force,      size_coord); // 40 KB
     cudaMalloc((void **)&d_Ele,        size_atom);
     cudaMalloc((void **)&d_q_S_ref_dS, 3 * size_q);
+    cudaMalloc((void **)&d_sigma2,     size_q);
     //cudaMalloc((void **)&d_S_calc,     size_q); // Will be computed on GPU
     cudaMalloc((void **)&d_S_calc,     size_double_q); // For EMA method, use double precision
     cudaMalloc((void **)&d_f_ptxc,     size_qxatom2);
@@ -131,12 +137,13 @@ if (frame_num % delta_t == 0) {
     cudaMemcpy(d_vdW,        vdW,        size_vdW,   cudaMemcpyHostToDevice);
     cudaMemcpy(d_Ele,        Ele,        size_atom,  cudaMemcpyHostToDevice);
     cudaMemcpy(d_q_S_ref_dS, q_S_ref_dS, 3 * size_q, cudaMemcpyHostToDevice);
+    cudaMemcpy(d_sigma2,     dS_err,     size_q,     cudaMemcpyHostToDevice);
     cudaMemcpy(d_WK,         WK,         size_WK,    cudaMemcpyHostToDevice);
     // Only for HyPred
     cudaMemcpy(d_c2,         c2_H,       size_c2,    cudaMemcpyHostToDevice);
     cudaMemcpy(d_S_old,      S_old,      size_double_q, cudaMemcpyHostToDevice);
 
-    float sigma2 = 1.0;
+    //float sigma2 = 1.0;
     float alpha = 1.0;
      
     dist_calc<<<1024, 1024>>>(
@@ -199,9 +206,10 @@ if (frame_num % delta_t == 0) {
         num_ele, 
         c1, 
         r_m, 
-        d_FF_table);
+        d_FF_table,
+        rho);
 
-    create_FF_full_HyPred<<<320, 1024>>>(
+/*    create_FF_full_HyPred<<<320, 1024>>>(
         d_FF_table, 
         d_V,
         c2, 
@@ -212,8 +220,8 @@ if (frame_num % delta_t == 0) {
         num_ele, 
         num_atom, 
         num_atom2);
-
-/*    create_FF_full_FoXS<<<320, 1024>>>(
+*/
+    create_FF_full_FoXS<<<320, 1024>>>(
         d_FF_table, 
         d_V,
         c2, 
@@ -223,7 +231,7 @@ if (frame_num % delta_t == 0) {
         num_ele, 
         num_atom, 
         num_atom2);
-*/
+
     cudaDeviceSynchronize();
     error = cudaGetLastError();
     if(error!=cudaSuccess)
@@ -262,7 +270,7 @@ if (frame_num % delta_t == 0) {
         d_Aq, 
         alpha,    
         k_chi,     
-        sigma2,    
+        d_sigma2,    
         d_f_ptxc, 
         d_f_ptyc, 
         d_f_ptzc, 
@@ -310,12 +318,14 @@ if (frame_num % delta_t == 0) {
     float chi = 0.0;
     float chi2 = 0.0;
     float chi_ref = 0.0;
+    printf("S_old: ");
     for (int ii = 0; ii < num_q; ii++) {
         chi = q_S_ref_dS[ii+2*num_q] - ((float)S_old[ii] - q_S_ref_dS[ii+num_q]);
         chi2 += chi * chi;
         chi_ref+= q_S_ref_dS[ii+2*num_q] * q_S_ref_dS[ii+2*num_q];
+        printf("%.3f, ", S_old[ii]);
     }
-    printf("chi square is %.5e ( %.3f % )\n", chi2, chi2 / chi_ref * 100);
+    printf("\nchi square is %.5e ( %.3f % )\n", chi2, chi2 / chi_ref * 100);
 
  
     cudaFree(d_coord); 
@@ -333,5 +343,10 @@ if (frame_num % delta_t == 0) {
     cudaFree(d_FF_table); cudaFree(d_FF_full);
     //cudaFree(d_c2);
     free(S_calc);
+
+    gettimeofday(&tv2, NULL);
+    double time_in_mill = 
+         (tv2.tv_sec - tv1.tv_sec) * 1000.0 + (tv2.tv_usec - tv1.tv_usec) / 1000.0 ;
+    printf("Time elapsed = %.3f ms.\n", time_in_mill);
 }
 }
