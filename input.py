@@ -24,7 +24,7 @@ def next_2048(x):
 driving_mode = 's'
 
 # Initial PDB and PSF files
-data_path = 'data/1f6s/'
+data_path = 'data/1f6s_2/'
 fpsf = data_path + '1f6s_autopsf.psf'
 fpdb = data_path + '1f6s_autopsf.pdb'
 
@@ -38,7 +38,7 @@ num_atom = 1932
 ## Experimental files (file format: q, S_exp [, S_err])
 # One static (S_exp) is required, and many difference can follow.
 S_exp_file = data_path + 'S_exp60.txt'
-dS_exp_file = data_path + 'dS_exp60.txt'
+dS_exp_file = data_path + 'dS_exp60_full_SADS.txt'
 
 # Unit of the q vector. If your data is from SASBDB, it is probably 1 / nm.
 q_unit = 'A' # Options: 'nm' or 'A'
@@ -63,7 +63,7 @@ qu = 0.7
 rho = 0.334 * 0.9857 # 55 deg C density
 
 # k chi - weighing factor
-k_chi = 1e-7
+k_chi = 5e-7
 
 # number of raster points to determine surface area (better be power of 2)
 num_raster = 512

@@ -1,0 +1,33 @@
+
+1. Investigate the effect of having an exponential moving average of S_calc
+   when calculating force. This might help fix the very noise nature of chi
+   square?
+
+   This can be done with declaring a 100 * num_q array in pre calc section.
+
+2. Most of the invariant data can be copied in pre calc section and passed by a
+   wrapper pointer so no copying is needed for every step.
+
+   Actually the matrices are the same. They just need to be initialized to 0's
+   every step.
+
+3. Finish the deca-alanine with no solvation layer effect. 
+
+4. Metadynamics section.
+
+5. Try the Fourier transformed force calculation as:
+
+   F_j = sum_q f_j(q) * 
+           sum_(r_kj in bins) F(q, r_kj) (cos(qr_kj) - sin(qr_kj) / qr_kj) / r_kj^2 .
+
+   where F(q, r_kj) is defined as 
+
+   F(q, r_kj) = sum_(k where r_kj in this bin) f_k(q) * [vector]r_kj .
+
+   Here F(r_kj) will be a matrix of 3 * num_bins * num_q and the size is
+   num_bins * num_q. This should be at most 40 MB. 
+
+   The reduction of calculation is about num_atom / num_bins (~400).
+
+
+
