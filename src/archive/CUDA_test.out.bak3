@@ -1,0 +1,2079 @@
+1531950460302
+==9689== NVPROF is profiling process 9689, command: ./a.out
+size_atomxatom = 12236004. 
+ 63 atoms are close to atom    0, 0.006836 of surf being exposed.
+ 55 atoms are close to atom    1, 0.028809 of surf being exposed.
+ 72 atoms are close to atom    2, 0.014648 of surf being exposed.
+ 52 atoms are close to atom    3, 0.069336 of surf being exposed.
+ 68 atoms are close to atom    4, 0.012207 of surf being exposed.
+ 62 atoms are close to atom    5, 0.051758 of surf being exposed.
+ 74 atoms are close to atom    6, 0.000000 of surf being exposed.
+ 77 atoms are close to atom    7, 0.004883 of surf being exposed.
+ 76 atoms are close to atom    8, 0.008301 of surf being exposed.
+ 73 atoms are close to atom    9, 0.039551 of surf being exposed.
+ 72 atoms are close to atom   10, 0.041992 of surf being exposed.
+ 85 atoms are close to atom   11, 0.000000 of surf being exposed.
+ 96 atoms are close to atom   12, 0.000000 of surf being exposed.
+ 83 atoms are close to atom   13, 0.000000 of surf being exposed.
+ 74 atoms are close to atom   14, 0.016113 of surf being exposed.
+ 84 atoms are close to atom   15, 0.000000 of surf being exposed.
+ 82 atoms are close to atom   16, 0.000000 of surf being exposed.
+ 71 atoms are close to atom   17, 0.000977 of surf being exposed.
+ 67 atoms are close to atom   18, 0.018066 of surf being exposed.
+ 71 atoms are close to atom   19, 0.041992 of surf being exposed.
+ 58 atoms are close to atom   20, 0.016113 of surf being exposed.
+ 55 atoms are close to atom   21, 0.041504 of surf being exposed.
+ 48 atoms are close to atom   22, 0.084961 of surf being exposed.
+ 91 atoms are close to atom   23, 0.000000 of surf being exposed.
+ 96 atoms are close to atom   24, 0.011719 of surf being exposed.
+ 91 atoms are close to atom   25, 0.000000 of surf being exposed.
+ 87 atoms are close to atom   26, 0.000000 of surf being exposed.
+ 91 atoms are close to atom   27, 0.000000 of surf being exposed.
+ 89 atoms are close to atom   28, 0.004395 of surf being exposed.
+ 76 atoms are close to atom   29, 0.000000 of surf being exposed.
+ 76 atoms are close to atom   30, 0.027832 of surf being exposed.
+ 74 atoms are close to atom   31, 0.013672 of surf being exposed.
+ 80 atoms are close to atom   32, 0.006836 of surf being exposed.
+ 71 atoms are close to atom   33, 0.047852 of surf being exposed.
+ 59 atoms are close to atom   34, 0.068848 of surf being exposed.
+ 60 atoms are close to atom   35, 0.006348 of surf being exposed.
+ 56 atoms are close to atom   36, 0.054688 of surf being exposed.
+ 56 atoms are close to atom   37, 0.035156 of surf being exposed.
+ 46 atoms are close to atom   38, 0.073242 of surf being exposed.
+111 atoms are close to atom   39, 0.000000 of surf being exposed.
+112 atoms are close to atom   40, 0.000000 of surf being exposed.
+115 atoms are close to atom   41, 0.000000 of surf being exposed.
+106 atoms are close to atom   42, 0.000488 of surf being exposed.
+127 atoms are close to atom   43, 0.000000 of surf being exposed.
+124 atoms are close to atom   44, 0.001465 of surf being exposed.
+114 atoms are close to atom   45, 0.000000 of surf being exposed.
+105 atoms are close to atom   46, 0.021484 of surf being exposed.
+108 atoms are close to atom   47, 0.000000 of surf being exposed.
+112 atoms are close to atom   48, 0.000000 of surf being exposed.
+122 atoms are close to atom   49, 0.000000 of surf being exposed.
+105 atoms are close to atom   50, 0.010742 of surf being exposed.
+ 82 atoms are close to atom   51, 0.007324 of surf being exposed.
+ 64 atoms are close to atom   52, 0.053711 of surf being exposed.
+ 81 atoms are close to atom   53, 0.014648 of surf being exposed.
+140 atoms are close to atom   54, 0.000000 of surf being exposed.
+144 atoms are close to atom   55, 0.000000 of surf being exposed.
+138 atoms are close to atom   56, 0.000000 of surf being exposed.
+123 atoms are close to atom   57, 0.000000 of surf being exposed.
+144 atoms are close to atom   58, 0.000000 of surf being exposed.
+142 atoms are close to atom   59, 0.004883 of surf being exposed.
+119 atoms are close to atom   60, 0.000000 of surf being exposed.
+112 atoms are close to atom   61, 0.002441 of surf being exposed.
+114 atoms are close to atom   62, 0.007812 of surf being exposed.
+101 atoms are close to atom   63, 0.000000 of surf being exposed.
+105 atoms are close to atom   64, 0.036133 of surf being exposed.
+101 atoms are close to atom   65, 0.000488 of surf being exposed.
+ 77 atoms are close to atom   66, 0.000000 of surf being exposed.
+ 67 atoms are close to atom   67, 0.016113 of surf being exposed.
+ 76 atoms are close to atom   68, 0.000488 of surf being exposed.
+ 65 atoms are close to atom   69, 0.001953 of surf being exposed.
+ 68 atoms are close to atom   70, 0.025391 of surf being exposed.
+ 54 atoms are close to atom   71, 0.046387 of surf being exposed.
+ 48 atoms are close to atom   72, 0.000000 of surf being exposed.
+ 40 atoms are close to atom   73, 0.076660 of surf being exposed.
+ 45 atoms are close to atom   74, 0.071289 of surf being exposed.
+ 52 atoms are close to atom   75, 0.026855 of surf being exposed.
+141 atoms are close to atom   76, 0.000000 of surf being exposed.
+135 atoms are close to atom   77, 0.000000 of surf being exposed.
+136 atoms are close to atom   78, 0.000000 of surf being exposed.
+127 atoms are close to atom   79, 0.000000 of surf being exposed.
+130 atoms are close to atom   80, 0.000488 of surf being exposed.
+119 atoms are close to atom   81, 0.021484 of surf being exposed.
+122 atoms are close to atom   82, 0.000488 of surf being exposed.
+136 atoms are close to atom   83, 0.005371 of surf being exposed.
+126 atoms are close to atom   84, 0.000000 of surf being exposed.
+142 atoms are close to atom   85, 0.000000 of surf being exposed.
+136 atoms are close to atom   86, 0.000000 of surf being exposed.
+143 atoms are close to atom   87, 0.000000 of surf being exposed.
+135 atoms are close to atom   88, 0.009766 of surf being exposed.
+135 atoms are close to atom   89, 0.000977 of surf being exposed.
+140 atoms are close to atom   90, 0.000000 of surf being exposed.
+127 atoms are close to atom   91, 0.015137 of surf being exposed.
+126 atoms are close to atom   92, 0.000000 of surf being exposed.
+129 atoms are close to atom   93, 0.000000 of surf being exposed.
+138 atoms are close to atom   94, 0.000000 of surf being exposed.
+108 atoms are close to atom   95, 0.001953 of surf being exposed.
+101 atoms are close to atom   96, 0.005859 of surf being exposed.
+101 atoms are close to atom   97, 0.017578 of surf being exposed.
+110 atoms are close to atom   98, 0.003906 of surf being exposed.
+111 atoms are close to atom   99, 0.016602 of surf being exposed.
+ 88 atoms are close to atom  100, 0.061523 of surf being exposed.
+118 atoms are close to atom  101, 0.000000 of surf being exposed.
+111 atoms are close to atom  102, 0.032715 of surf being exposed.
+133 atoms are close to atom  103, 0.000000 of surf being exposed.
+114 atoms are close to atom  104, 0.002930 of surf being exposed.
+160 atoms are close to atom  105, 0.000000 of surf being exposed.
+167 atoms are close to atom  106, 0.000000 of surf being exposed.
+169 atoms are close to atom  107, 0.000000 of surf being exposed.
+163 atoms are close to atom  108, 0.000000 of surf being exposed.
+163 atoms are close to atom  109, 0.000000 of surf being exposed.
+174 atoms are close to atom  110, 0.000000 of surf being exposed.
+155 atoms are close to atom  111, 0.000000 of surf being exposed.
+155 atoms are close to atom  112, 0.000000 of surf being exposed.
+149 atoms are close to atom  113, 0.000000 of surf being exposed.
+159 atoms are close to atom  114, 0.000000 of surf being exposed.
+162 atoms are close to atom  115, 0.000000 of surf being exposed.
+147 atoms are close to atom  116, 0.000000 of surf being exposed.
+151 atoms are close to atom  117, 0.000000 of surf being exposed.
+149 atoms are close to atom  118, 0.000488 of surf being exposed.
+140 atoms are close to atom  119, 0.000000 of surf being exposed.
+141 atoms are close to atom  120, 0.000488 of surf being exposed.
+138 atoms are close to atom  121, 0.000000 of surf being exposed.
+140 atoms are close to atom  122, 0.004883 of surf being exposed.
+118 atoms are close to atom  123, 0.000000 of surf being exposed.
+113 atoms are close to atom  124, 0.009277 of surf being exposed.
+111 atoms are close to atom  125, 0.000000 of surf being exposed.
+106 atoms are close to atom  126, 0.018066 of surf being exposed.
+160 atoms are close to atom  127, 0.000000 of surf being exposed.
+165 atoms are close to atom  128, 0.002930 of surf being exposed.
+141 atoms are close to atom  129, 0.000000 of surf being exposed.
+136 atoms are close to atom  130, 0.000000 of surf being exposed.
+119 atoms are close to atom  131, 0.000000 of surf being exposed.
+120 atoms are close to atom  132, 0.000000 of surf being exposed.
+104 atoms are close to atom  133, 0.000000 of surf being exposed.
+108 atoms are close to atom  134, 0.000000 of surf being exposed.
+ 81 atoms are close to atom  135, 0.002441 of surf being exposed.
+ 71 atoms are close to atom  136, 0.015625 of surf being exposed.
+ 80 atoms are close to atom  137, 0.004883 of surf being exposed.
+ 80 atoms are close to atom  138, 0.020020 of surf being exposed.
+105 atoms are close to atom  139, 0.001465 of surf being exposed.
+126 atoms are close to atom  140, 0.000000 of surf being exposed.
+ 96 atoms are close to atom  141, 0.032715 of surf being exposed.
+100 atoms are close to atom  142, 0.000488 of surf being exposed.
+ 99 atoms are close to atom  143, 0.037109 of surf being exposed.
+ 84 atoms are close to atom  144, 0.008301 of surf being exposed.
+113 atoms are close to atom  145, 0.000000 of surf being exposed.
+121 atoms are close to atom  146, 0.000000 of surf being exposed.
+109 atoms are close to atom  147, 0.008789 of surf being exposed.
+119 atoms are close to atom  148, 0.000000 of surf being exposed.
+121 atoms are close to atom  149, 0.000000 of surf being exposed.
+ 98 atoms are close to atom  150, 0.000000 of surf being exposed.
+ 91 atoms are close to atom  151, 0.000000 of surf being exposed.
+ 92 atoms are close to atom  152, 0.001465 of surf being exposed.
+ 94 atoms are close to atom  153, 0.030273 of surf being exposed.
+ 80 atoms are close to atom  154, 0.030762 of surf being exposed.
+ 78 atoms are close to atom  155, 0.002441 of surf being exposed.
+ 80 atoms are close to atom  156, 0.006836 of surf being exposed.
+ 88 atoms are close to atom  157, 0.015137 of surf being exposed.
+ 69 atoms are close to atom  158, 0.009766 of surf being exposed.
+ 80 atoms are close to atom  159, 0.053711 of surf being exposed.
+ 60 atoms are close to atom  160, 0.013184 of surf being exposed.
+ 52 atoms are close to atom  161, 0.070801 of surf being exposed.
+ 65 atoms are close to atom  162, 0.007324 of surf being exposed.
+ 65 atoms are close to atom  163, 0.013184 of surf being exposed.
+ 54 atoms are close to atom  164, 0.013672 of surf being exposed.
+ 48 atoms are close to atom  165, 0.048828 of surf being exposed.
+102 atoms are close to atom  166, 0.000000 of surf being exposed.
+ 90 atoms are close to atom  167, 0.017578 of surf being exposed.
+120 atoms are close to atom  168, 0.000000 of surf being exposed.
+138 atoms are close to atom  169, 0.000000 of surf being exposed.
+125 atoms are close to atom  170, 0.000000 of surf being exposed.
+112 atoms are close to atom  171, 0.006348 of surf being exposed.
+148 atoms are close to atom  172, 0.000000 of surf being exposed.
+150 atoms are close to atom  173, 0.000000 of surf being exposed.
+159 atoms are close to atom  174, 0.000000 of surf being exposed.
+163 atoms are close to atom  175, 0.000000 of surf being exposed.
+161 atoms are close to atom  176, 0.000000 of surf being exposed.
+155 atoms are close to atom  177, 0.000000 of surf being exposed.
+145 atoms are close to atom  178, 0.000000 of surf being exposed.
+145 atoms are close to atom  179, 0.000000 of surf being exposed.
+131 atoms are close to atom  180, 0.004883 of surf being exposed.
+151 atoms are close to atom  181, 0.000000 of surf being exposed.
+122 atoms are close to atom  182, 0.000000 of surf being exposed.
+122 atoms are close to atom  183, 0.008301 of surf being exposed.
+114 atoms are close to atom  184, 0.000000 of surf being exposed.
+114 atoms are close to atom  185, 0.000000 of surf being exposed.
+104 atoms are close to atom  186, 0.000000 of surf being exposed.
+106 atoms are close to atom  187, 0.013184 of surf being exposed.
+ 91 atoms are close to atom  188, 0.000000 of surf being exposed.
+ 94 atoms are close to atom  189, 0.012695 of surf being exposed.
+ 86 atoms are close to atom  190, 0.000000 of surf being exposed.
+ 82 atoms are close to atom  191, 0.006348 of surf being exposed.
+ 81 atoms are close to atom  192, 0.017090 of surf being exposed.
+ 67 atoms are close to atom  193, 0.048340 of surf being exposed.
+ 70 atoms are close to atom  194, 0.016113 of surf being exposed.
+ 61 atoms are close to atom  195, 0.027832 of surf being exposed.
+ 70 atoms are close to atom  196, 0.000000 of surf being exposed.
+ 63 atoms are close to atom  197, 0.043457 of surf being exposed.
+ 76 atoms are close to atom  198, 0.006836 of surf being exposed.
+117 atoms are close to atom  199, 0.000000 of surf being exposed.
+120 atoms are close to atom  200, 0.000000 of surf being exposed.
+136 atoms are close to atom  201, 0.000000 of surf being exposed.
+139 atoms are close to atom  202, 0.002930 of surf being exposed.
+155 atoms are close to atom  203, 0.000000 of surf being exposed.
+162 atoms are close to atom  204, 0.000000 of surf being exposed.
+170 atoms are close to atom  205, 0.000000 of surf being exposed.
+168 atoms are close to atom  206, 0.000000 of surf being exposed.
+161 atoms are close to atom  207, 0.000977 of surf being exposed.
+180 atoms are close to atom  208, 0.000000 of surf being exposed.
+180 atoms are close to atom  209, 0.000000 of surf being exposed.
+180 atoms are close to atom  210, 0.000000 of surf being exposed.
+187 atoms are close to atom  211, 0.000000 of surf being exposed.
+181 atoms are close to atom  212, 0.000000 of surf being exposed.
+178 atoms are close to atom  213, 0.000000 of surf being exposed.
+187 atoms are close to atom  214, 0.000000 of surf being exposed.
+193 atoms are close to atom  215, 0.000000 of surf being exposed.
+187 atoms are close to atom  216, 0.000000 of surf being exposed.
+194 atoms are close to atom  217, 0.000000 of surf being exposed.
+202 atoms are close to atom  218, 0.000000 of surf being exposed.
+183 atoms are close to atom  219, 0.000000 of surf being exposed.
+194 atoms are close to atom  220, 0.000000 of surf being exposed.
+165 atoms are close to atom  221, 0.000000 of surf being exposed.
+173 atoms are close to atom  222, 0.000000 of surf being exposed.
+146 atoms are close to atom  223, 0.000000 of surf being exposed.
+139 atoms are close to atom  224, 0.001465 of surf being exposed.
+144 atoms are close to atom  225, 0.000000 of surf being exposed.
+158 atoms are close to atom  226, 0.000000 of surf being exposed.
+124 atoms are close to atom  227, 0.000000 of surf being exposed.
+110 atoms are close to atom  228, 0.007324 of surf being exposed.
+126 atoms are close to atom  229, 0.000000 of surf being exposed.
+112 atoms are close to atom  230, 0.006836 of surf being exposed.
+137 atoms are close to atom  231, 0.000000 of surf being exposed.
+140 atoms are close to atom  232, 0.000000 of surf being exposed.
+123 atoms are close to atom  233, 0.000000 of surf being exposed.
+121 atoms are close to atom  234, 0.000488 of surf being exposed.
+107 atoms are close to atom  235, 0.000000 of surf being exposed.
+111 atoms are close to atom  236, 0.000000 of surf being exposed.
+ 91 atoms are close to atom  237, 0.010742 of surf being exposed.
+ 84 atoms are close to atom  238, 0.026855 of surf being exposed.
+ 85 atoms are close to atom  239, 0.016113 of surf being exposed.
+ 86 atoms are close to atom  240, 0.000977 of surf being exposed.
+106 atoms are close to atom  241, 0.000000 of surf being exposed.
+ 98 atoms are close to atom  242, 0.017578 of surf being exposed.
+126 atoms are close to atom  243, 0.000000 of surf being exposed.
+137 atoms are close to atom  244, 0.000000 of surf being exposed.
+130 atoms are close to atom  245, 0.000000 of surf being exposed.
+114 atoms are close to atom  246, 0.012207 of surf being exposed.
+140 atoms are close to atom  247, 0.000000 of surf being exposed.
+137 atoms are close to atom  248, 0.008789 of surf being exposed.
+127 atoms are close to atom  249, 0.009766 of surf being exposed.
+161 atoms are close to atom  250, 0.000000 of surf being exposed.
+154 atoms are close to atom  251, 0.000000 of surf being exposed.
+159 atoms are close to atom  252, 0.000000 of surf being exposed.
+160 atoms are close to atom  253, 0.000000 of surf being exposed.
+164 atoms are close to atom  254, 0.000000 of surf being exposed.
+158 atoms are close to atom  255, 0.000000 of surf being exposed.
+153 atoms are close to atom  256, 0.000000 of surf being exposed.
+163 atoms are close to atom  257, 0.000000 of surf being exposed.
+155 atoms are close to atom  258, 0.000000 of surf being exposed.
+144 atoms are close to atom  259, 0.000488 of surf being exposed.
+153 atoms are close to atom  260, 0.000000 of surf being exposed.
+146 atoms are close to atom  261, 0.000000 of surf being exposed.
+164 atoms are close to atom  262, 0.000000 of surf being exposed.
+168 atoms are close to atom  263, 0.000000 of surf being exposed.
+171 atoms are close to atom  264, 0.000000 of surf being exposed.
+174 atoms are close to atom  265, 0.000000 of surf being exposed.
+171 atoms are close to atom  266, 0.000000 of surf being exposed.
+191 atoms are close to atom  267, 0.000000 of surf being exposed.
+157 atoms are close to atom  268, 0.000000 of surf being exposed.
+165 atoms are close to atom  269, 0.000000 of surf being exposed.
+145 atoms are close to atom  270, 0.000000 of surf being exposed.
+135 atoms are close to atom  271, 0.000000 of surf being exposed.
+135 atoms are close to atom  272, 0.000000 of surf being exposed.
+147 atoms are close to atom  273, 0.000000 of surf being exposed.
+138 atoms are close to atom  274, 0.000000 of surf being exposed.
+127 atoms are close to atom  275, 0.005371 of surf being exposed.
+128 atoms are close to atom  276, 0.008301 of surf being exposed.
+146 atoms are close to atom  277, 0.000000 of surf being exposed.
+149 atoms are close to atom  278, 0.000000 of surf being exposed.
+148 atoms are close to atom  279, 0.000488 of surf being exposed.
+141 atoms are close to atom  280, 0.000000 of surf being exposed.
+142 atoms are close to atom  281, 0.000000 of surf being exposed.
+153 atoms are close to atom  282, 0.000000 of surf being exposed.
+145 atoms are close to atom  283, 0.002441 of surf being exposed.
+140 atoms are close to atom  284, 0.001953 of surf being exposed.
+116 atoms are close to atom  285, 0.000000 of surf being exposed.
+108 atoms are close to atom  286, 0.007324 of surf being exposed.
+122 atoms are close to atom  287, 0.000000 of surf being exposed.
+129 atoms are close to atom  288, 0.000000 of surf being exposed.
+100 atoms are close to atom  289, 0.000000 of surf being exposed.
+ 88 atoms are close to atom  290, 0.009766 of surf being exposed.
+ 95 atoms are close to atom  291, 0.000000 of surf being exposed.
+100 atoms are close to atom  292, 0.021973 of surf being exposed.
+ 68 atoms are close to atom  293, 0.009766 of surf being exposed.
+ 70 atoms are close to atom  294, 0.047852 of surf being exposed.
+110 atoms are close to atom  295, 0.000488 of surf being exposed.
+108 atoms are close to atom  296, 0.000000 of surf being exposed.
+108 atoms are close to atom  297, 0.014160 of surf being exposed.
+130 atoms are close to atom  298, 0.000000 of surf being exposed.
+ 88 atoms are close to atom  299, 0.000000 of surf being exposed.
+ 96 atoms are close to atom  300, 0.010254 of surf being exposed.
+ 72 atoms are close to atom  301, 0.000000 of surf being exposed.
+ 69 atoms are close to atom  302, 0.000000 of surf being exposed.
+ 63 atoms are close to atom  303, 0.000000 of surf being exposed.
+ 60 atoms are close to atom  304, 0.015137 of surf being exposed.
+ 50 atoms are close to atom  305, 0.000000 of surf being exposed.
+ 46 atoms are close to atom  306, 0.030762 of surf being exposed.
+ 42 atoms are close to atom  307, 0.003906 of surf being exposed.
+ 45 atoms are close to atom  308, 0.018066 of surf being exposed.
+ 35 atoms are close to atom  309, 0.032715 of surf being exposed.
+ 42 atoms are close to atom  310, 0.027344 of surf being exposed.
+ 49 atoms are close to atom  311, 0.009277 of surf being exposed.
+ 51 atoms are close to atom  312, 0.013184 of surf being exposed.
+ 52 atoms are close to atom  313, 0.016113 of surf being exposed.
+ 43 atoms are close to atom  314, 0.043457 of surf being exposed.
+ 79 atoms are close to atom  315, 0.001465 of surf being exposed.
+ 70 atoms are close to atom  316, 0.029297 of surf being exposed.
+ 95 atoms are close to atom  317, 0.000000 of surf being exposed.
+101 atoms are close to atom  318, 0.000000 of surf being exposed.
+ 99 atoms are close to atom  319, 0.000000 of surf being exposed.
+ 87 atoms are close to atom  320, 0.000977 of surf being exposed.
+ 94 atoms are close to atom  321, 0.001465 of surf being exposed.
+ 82 atoms are close to atom  322, 0.012207 of surf being exposed.
+103 atoms are close to atom  323, 0.001465 of surf being exposed.
+ 85 atoms are close to atom  324, 0.000000 of surf being exposed.
+ 80 atoms are close to atom  325, 0.018555 of surf being exposed.
+100 atoms are close to atom  326, 0.000000 of surf being exposed.
+ 70 atoms are close to atom  327, 0.005859 of surf being exposed.
+ 62 atoms are close to atom  328, 0.058594 of surf being exposed.
+ 64 atoms are close to atom  329, 0.031250 of surf being exposed.
+114 atoms are close to atom  330, 0.002930 of surf being exposed.
+127 atoms are close to atom  331, 0.000488 of surf being exposed.
+104 atoms are close to atom  332, 0.000000 of surf being exposed.
+ 89 atoms are close to atom  333, 0.000000 of surf being exposed.
+ 97 atoms are close to atom  334, 0.000000 of surf being exposed.
+103 atoms are close to atom  335, 0.000000 of surf being exposed.
+ 72 atoms are close to atom  336, 0.000977 of surf being exposed.
+ 69 atoms are close to atom  337, 0.012207 of surf being exposed.
+ 73 atoms are close to atom  338, 0.012695 of surf being exposed.
+ 61 atoms are close to atom  339, 0.000000 of surf being exposed.
+ 66 atoms are close to atom  340, 0.009277 of surf being exposed.
+ 61 atoms are close to atom  341, 0.006836 of surf being exposed.
+ 46 atoms are close to atom  342, 0.000488 of surf being exposed.
+ 45 atoms are close to atom  343, 0.029297 of surf being exposed.
+ 43 atoms are close to atom  344, 0.012695 of surf being exposed.
+ 37 atoms are close to atom  345, 0.001465 of surf being exposed.
+ 34 atoms are close to atom  346, 0.025879 of surf being exposed.
+ 40 atoms are close to atom  347, 0.026367 of surf being exposed.
+ 23 atoms are close to atom  348, 0.000000 of surf being exposed.
+ 20 atoms are close to atom  349, 0.056152 of surf being exposed.
+ 23 atoms are close to atom  350, 0.068359 of surf being exposed.
+ 22 atoms are close to atom  351, 0.038574 of surf being exposed.
+102 atoms are close to atom  352, 0.000488 of surf being exposed.
+113 atoms are close to atom  353, 0.001465 of surf being exposed.
+102 atoms are close to atom  354, 0.000000 of surf being exposed.
+ 94 atoms are close to atom  355, 0.003418 of surf being exposed.
+107 atoms are close to atom  356, 0.005371 of surf being exposed.
+ 99 atoms are close to atom  357, 0.043945 of surf being exposed.
+106 atoms are close to atom  358, 0.009766 of surf being exposed.
+114 atoms are close to atom  359, 0.000000 of surf being exposed.
+111 atoms are close to atom  360, 0.000488 of surf being exposed.
+126 atoms are close to atom  361, 0.000000 of surf being exposed.
+128 atoms are close to atom  362, 0.000000 of surf being exposed.
+134 atoms are close to atom  363, 0.000000 of surf being exposed.
+130 atoms are close to atom  364, 0.000000 of surf being exposed.
+122 atoms are close to atom  365, 0.000000 of surf being exposed.
+145 atoms are close to atom  366, 0.000000 of surf being exposed.
+147 atoms are close to atom  367, 0.000000 of surf being exposed.
+156 atoms are close to atom  368, 0.000000 of surf being exposed.
+150 atoms are close to atom  369, 0.000000 of surf being exposed.
+155 atoms are close to atom  370, 0.000000 of surf being exposed.
+165 atoms are close to atom  371, 0.000000 of surf being exposed.
+160 atoms are close to atom  372, 0.000000 of surf being exposed.
+150 atoms are close to atom  373, 0.000000 of surf being exposed.
+151 atoms are close to atom  374, 0.000000 of surf being exposed.
+143 atoms are close to atom  375, 0.000000 of surf being exposed.
+144 atoms are close to atom  376, 0.000000 of surf being exposed.
+135 atoms are close to atom  377, 0.000000 of surf being exposed.
+135 atoms are close to atom  378, 0.000000 of surf being exposed.
+137 atoms are close to atom  379, 0.000000 of surf being exposed.
+137 atoms are close to atom  380, 0.001465 of surf being exposed.
+111 atoms are close to atom  381, 0.000000 of surf being exposed.
+106 atoms are close to atom  382, 0.013184 of surf being exposed.
+100 atoms are close to atom  383, 0.000488 of surf being exposed.
+111 atoms are close to atom  384, 0.000000 of surf being exposed.
+115 atoms are close to atom  385, 0.000000 of surf being exposed.
+ 90 atoms are close to atom  386, 0.022949 of surf being exposed.
+112 atoms are close to atom  387, 0.008789 of surf being exposed.
+149 atoms are close to atom  388, 0.000000 of surf being exposed.
+153 atoms are close to atom  389, 0.000488 of surf being exposed.
+128 atoms are close to atom  390, 0.000000 of surf being exposed.
+129 atoms are close to atom  391, 0.000000 of surf being exposed.
+110 atoms are close to atom  392, 0.000000 of surf being exposed.
+119 atoms are close to atom  393, 0.002441 of surf being exposed.
+100 atoms are close to atom  394, 0.000488 of surf being exposed.
+102 atoms are close to atom  395, 0.007812 of surf being exposed.
+ 95 atoms are close to atom  396, 0.000488 of surf being exposed.
+ 79 atoms are close to atom  397, 0.000000 of surf being exposed.
+ 91 atoms are close to atom  398, 0.013184 of surf being exposed.
+ 78 atoms are close to atom  399, 0.003418 of surf being exposed.
+ 55 atoms are close to atom  400, 0.042969 of surf being exposed.
+ 57 atoms are close to atom  401, 0.038574 of surf being exposed.
+ 46 atoms are close to atom  402, 0.010254 of surf being exposed.
+ 53 atoms are close to atom  403, 0.040527 of surf being exposed.
+ 57 atoms are close to atom  404, 0.056641 of surf being exposed.
+114 atoms are close to atom  405, 0.000000 of surf being exposed.
+111 atoms are close to atom  406, 0.004395 of surf being exposed.
+115 atoms are close to atom  407, 0.000000 of surf being exposed.
+126 atoms are close to atom  408, 0.000000 of surf being exposed.
+115 atoms are close to atom  409, 0.000000 of surf being exposed.
+115 atoms are close to atom  410, 0.010254 of surf being exposed.
+105 atoms are close to atom  411, 0.000000 of surf being exposed.
+102 atoms are close to atom  412, 0.000000 of surf being exposed.
+ 93 atoms are close to atom  413, 0.019043 of surf being exposed.
+111 atoms are close to atom  414, 0.000000 of surf being exposed.
+114 atoms are close to atom  415, 0.000000 of surf being exposed.
+116 atoms are close to atom  416, 0.000000 of surf being exposed.
+ 91 atoms are close to atom  417, 0.001465 of surf being exposed.
+ 91 atoms are close to atom  418, 0.018066 of surf being exposed.
+ 87 atoms are close to atom  419, 0.020508 of surf being exposed.
+ 76 atoms are close to atom  420, 0.002930 of surf being exposed.
+ 64 atoms are close to atom  421, 0.067871 of surf being exposed.
+ 69 atoms are close to atom  422, 0.030762 of surf being exposed.
+ 89 atoms are close to atom  423, 0.000000 of surf being exposed.
+ 93 atoms are close to atom  424, 0.000488 of surf being exposed.
+ 86 atoms are close to atom  425, 0.009277 of surf being exposed.
+ 74 atoms are close to atom  426, 0.044434 of surf being exposed.
+128 atoms are close to atom  427, 0.000000 of surf being exposed.
+124 atoms are close to atom  428, 0.000000 of surf being exposed.
+148 atoms are close to atom  429, 0.000000 of surf being exposed.
+140 atoms are close to atom  430, 0.000000 of surf being exposed.
+145 atoms are close to atom  431, 0.000000 of surf being exposed.
+149 atoms are close to atom  432, 0.000000 of surf being exposed.
+157 atoms are close to atom  433, 0.000000 of surf being exposed.
+169 atoms are close to atom  434, 0.000000 of surf being exposed.
+168 atoms are close to atom  435, 0.000000 of surf being exposed.
+166 atoms are close to atom  436, 0.000977 of surf being exposed.
+155 atoms are close to atom  437, 0.000000 of surf being exposed.
+150 atoms are close to atom  438, 0.000000 of surf being exposed.
+160 atoms are close to atom  439, 0.000000 of surf being exposed.
+147 atoms are close to atom  440, 0.010742 of surf being exposed.
+155 atoms are close to atom  441, 0.000000 of surf being exposed.
+143 atoms are close to atom  442, 0.000000 of surf being exposed.
+155 atoms are close to atom  443, 0.000000 of surf being exposed.
+156 atoms are close to atom  444, 0.000000 of surf being exposed.
+164 atoms are close to atom  445, 0.000000 of surf being exposed.
+171 atoms are close to atom  446, 0.000000 of surf being exposed.
+160 atoms are close to atom  447, 0.000000 of surf being exposed.
+172 atoms are close to atom  448, 0.000000 of surf being exposed.
+176 atoms are close to atom  449, 0.000000 of surf being exposed.
+188 atoms are close to atom  450, 0.000000 of surf being exposed.
+186 atoms are close to atom  451, 0.000000 of surf being exposed.
+167 atoms are close to atom  452, 0.000000 of surf being exposed.
+178 atoms are close to atom  453, 0.000000 of surf being exposed.
+185 atoms are close to atom  454, 0.000000 of surf being exposed.
+185 atoms are close to atom  455, 0.000000 of surf being exposed.
+183 atoms are close to atom  456, 0.000000 of surf being exposed.
+180 atoms are close to atom  457, 0.000000 of surf being exposed.
+181 atoms are close to atom  458, 0.000000 of surf being exposed.
+186 atoms are close to atom  459, 0.000000 of surf being exposed.
+161 atoms are close to atom  460, 0.000000 of surf being exposed.
+184 atoms are close to atom  461, 0.000000 of surf being exposed.
+194 atoms are close to atom  462, 0.000000 of surf being exposed.
+186 atoms are close to atom  463, 0.000000 of surf being exposed.
+182 atoms are close to atom  464, 0.000000 of surf being exposed.
+186 atoms are close to atom  465, 0.000000 of surf being exposed.
+177 atoms are close to atom  466, 0.000000 of surf being exposed.
+177 atoms are close to atom  467, 0.000000 of surf being exposed.
+188 atoms are close to atom  468, 0.000000 of surf being exposed.
+187 atoms are close to atom  469, 0.000000 of surf being exposed.
+184 atoms are close to atom  470, 0.000000 of surf being exposed.
+182 atoms are close to atom  471, 0.000000 of surf being exposed.
+171 atoms are close to atom  472, 0.000488 of surf being exposed.
+182 atoms are close to atom  473, 0.000000 of surf being exposed.
+184 atoms are close to atom  474, 0.000000 of surf being exposed.
+178 atoms are close to atom  475, 0.000000 of surf being exposed.
+190 atoms are close to atom  476, 0.000000 of surf being exposed.
+196 atoms are close to atom  477, 0.000000 of surf being exposed.
+199 atoms are close to atom  478, 0.000000 of surf being exposed.
+189 atoms are close to atom  479, 0.000000 of surf being exposed.
+192 atoms are close to atom  480, 0.000000 of surf being exposed.
+196 atoms are close to atom  481, 0.000000 of surf being exposed.
+176 atoms are close to atom  482, 0.000000 of surf being exposed.
+172 atoms are close to atom  483, 0.000000 of surf being exposed.
+168 atoms are close to atom  484, 0.000000 of surf being exposed.
+167 atoms are close to atom  485, 0.000000 of surf being exposed.
+168 atoms are close to atom  486, 0.000000 of surf being exposed.
+184 atoms are close to atom  487, 0.000000 of surf being exposed.
+183 atoms are close to atom  488, 0.000000 of surf being exposed.
+183 atoms are close to atom  489, 0.000000 of surf being exposed.
+178 atoms are close to atom  490, 0.000000 of surf being exposed.
+156 atoms are close to atom  491, 0.001465 of surf being exposed.
+157 atoms are close to atom  492, 0.000000 of surf being exposed.
+145 atoms are close to atom  493, 0.003418 of surf being exposed.
+155 atoms are close to atom  494, 0.006348 of surf being exposed.
+193 atoms are close to atom  495, 0.000000 of surf being exposed.
+180 atoms are close to atom  496, 0.000000 of surf being exposed.
+183 atoms are close to atom  497, 0.000000 of surf being exposed.
+188 atoms are close to atom  498, 0.000000 of surf being exposed.
+179 atoms are close to atom  499, 0.000000 of surf being exposed.
+184 atoms are close to atom  500, 0.000000 of surf being exposed.
+158 atoms are close to atom  501, 0.000000 of surf being exposed.
+145 atoms are close to atom  502, 0.000000 of surf being exposed.
+156 atoms are close to atom  503, 0.000000 of surf being exposed.
+174 atoms are close to atom  504, 0.000000 of surf being exposed.
+179 atoms are close to atom  505, 0.000000 of surf being exposed.
+167 atoms are close to atom  506, 0.000000 of surf being exposed.
+172 atoms are close to atom  507, 0.000000 of surf being exposed.
+171 atoms are close to atom  508, 0.000000 of surf being exposed.
+155 atoms are close to atom  509, 0.000000 of surf being exposed.
+155 atoms are close to atom  510, 0.002930 of surf being exposed.
+145 atoms are close to atom  511, 0.009766 of surf being exposed.
+182 atoms are close to atom  512, 0.000000 of surf being exposed.
+190 atoms are close to atom  513, 0.000000 of surf being exposed.
+175 atoms are close to atom  514, 0.000000 of surf being exposed.
+170 atoms are close to atom  515, 0.000000 of surf being exposed.
+177 atoms are close to atom  516, 0.000000 of surf being exposed.
+178 atoms are close to atom  517, 0.000000 of surf being exposed.
+167 atoms are close to atom  518, 0.000000 of surf being exposed.
+177 atoms are close to atom  519, 0.000000 of surf being exposed.
+184 atoms are close to atom  520, 0.000000 of surf being exposed.
+177 atoms are close to atom  521, 0.000000 of surf being exposed.
+181 atoms are close to atom  522, 0.000000 of surf being exposed.
+176 atoms are close to atom  523, 0.000000 of surf being exposed.
+182 atoms are close to atom  524, 0.000000 of surf being exposed.
+182 atoms are close to atom  525, 0.000000 of surf being exposed.
+178 atoms are close to atom  526, 0.000000 of surf being exposed.
+185 atoms are close to atom  527, 0.000000 of surf being exposed.
+184 atoms are close to atom  528, 0.000000 of surf being exposed.
+189 atoms are close to atom  529, 0.000000 of surf being exposed.
+186 atoms are close to atom  530, 0.000000 of surf being exposed.
+185 atoms are close to atom  531, 0.000000 of surf being exposed.
+178 atoms are close to atom  532, 0.000000 of surf being exposed.
+178 atoms are close to atom  533, 0.000000 of surf being exposed.
+188 atoms are close to atom  534, 0.000000 of surf being exposed.
+186 atoms are close to atom  535, 0.000000 of surf being exposed.
+197 atoms are close to atom  536, 0.000000 of surf being exposed.
+183 atoms are close to atom  537, 0.000000 of surf being exposed.
+178 atoms are close to atom  538, 0.000000 of surf being exposed.
+169 atoms are close to atom  539, 0.000000 of surf being exposed.
+170 atoms are close to atom  540, 0.000000 of surf being exposed.
+169 atoms are close to atom  541, 0.000000 of surf being exposed.
+163 atoms are close to atom  542, 0.000000 of surf being exposed.
+154 atoms are close to atom  543, 0.000000 of surf being exposed.
+145 atoms are close to atom  544, 0.000000 of surf being exposed.
+149 atoms are close to atom  545, 0.000000 of surf being exposed.
+148 atoms are close to atom  546, 0.000000 of surf being exposed.
+140 atoms are close to atom  547, 0.000000 of surf being exposed.
+141 atoms are close to atom  548, 0.000000 of surf being exposed.
+149 atoms are close to atom  549, 0.000000 of surf being exposed.
+121 atoms are close to atom  550, 0.000000 of surf being exposed.
+122 atoms are close to atom  551, 0.002441 of surf being exposed.
+104 atoms are close to atom  552, 0.014648 of surf being exposed.
+ 88 atoms are close to atom  553, 0.034180 of surf being exposed.
+125 atoms are close to atom  554, 0.002441 of surf being exposed.
+120 atoms are close to atom  555, 0.019531 of surf being exposed.
+ 97 atoms are close to atom  556, 0.012207 of surf being exposed.
+ 84 atoms are close to atom  557, 0.041016 of surf being exposed.
+163 atoms are close to atom  558, 0.000000 of surf being exposed.
+149 atoms are close to atom  559, 0.000000 of surf being exposed.
+166 atoms are close to atom  560, 0.000000 of surf being exposed.
+165 atoms are close to atom  561, 0.000000 of surf being exposed.
+153 atoms are close to atom  562, 0.000000 of surf being exposed.
+155 atoms are close to atom  563, 0.000000 of surf being exposed.
+141 atoms are close to atom  564, 0.004883 of surf being exposed.
+144 atoms are close to atom  565, 0.000000 of surf being exposed.
+131 atoms are close to atom  566, 0.000000 of surf being exposed.
+164 atoms are close to atom  567, 0.000000 of surf being exposed.
+171 atoms are close to atom  568, 0.000000 of surf being exposed.
+146 atoms are close to atom  569, 0.000000 of surf being exposed.
+137 atoms are close to atom  570, 0.000000 of surf being exposed.
+145 atoms are close to atom  571, 0.000000 of surf being exposed.
+128 atoms are close to atom  572, 0.004883 of surf being exposed.
+153 atoms are close to atom  573, 0.000000 of surf being exposed.
+147 atoms are close to atom  574, 0.000000 of surf being exposed.
+155 atoms are close to atom  575, 0.000000 of surf being exposed.
+136 atoms are close to atom  576, 0.016602 of surf being exposed.
+155 atoms are close to atom  577, 0.000000 of surf being exposed.
+166 atoms are close to atom  578, 0.000000 of surf being exposed.
+147 atoms are close to atom  579, 0.000488 of surf being exposed.
+134 atoms are close to atom  580, 0.000000 of surf being exposed.
+124 atoms are close to atom  581, 0.006836 of surf being exposed.
+115 atoms are close to atom  582, 0.015137 of surf being exposed.
+111 atoms are close to atom  583, 0.000000 of surf being exposed.
+109 atoms are close to atom  584, 0.022461 of surf being exposed.
+107 atoms are close to atom  585, 0.034180 of surf being exposed.
+129 atoms are close to atom  586, 0.000000 of surf being exposed.
+127 atoms are close to atom  587, 0.005859 of surf being exposed.
+146 atoms are close to atom  588, 0.000000 of surf being exposed.
+120 atoms are close to atom  589, 0.000000 of surf being exposed.
+103 atoms are close to atom  590, 0.014648 of surf being exposed.
+126 atoms are close to atom  591, 0.000000 of surf being exposed.
+134 atoms are close to atom  592, 0.000000 of surf being exposed.
+101 atoms are close to atom  593, 0.000000 of surf being exposed.
+ 97 atoms are close to atom  594, 0.016602 of surf being exposed.
+101 atoms are close to atom  595, 0.000000 of surf being exposed.
+115 atoms are close to atom  596, 0.004395 of surf being exposed.
+100 atoms are close to atom  597, 0.000000 of surf being exposed.
+ 81 atoms are close to atom  598, 0.000488 of surf being exposed.
+ 74 atoms are close to atom  599, 0.007324 of surf being exposed.
+ 80 atoms are close to atom  600, 0.028320 of surf being exposed.
+ 85 atoms are close to atom  601, 0.000000 of surf being exposed.
+ 96 atoms are close to atom  602, 0.006836 of surf being exposed.
+ 84 atoms are close to atom  603, 0.000488 of surf being exposed.
+ 58 atoms are close to atom  604, 0.002441 of surf being exposed.
+ 50 atoms are close to atom  605, 0.047363 of surf being exposed.
+ 55 atoms are close to atom  606, 0.045410 of surf being exposed.
+ 64 atoms are close to atom  607, 0.000000 of surf being exposed.
+ 52 atoms are close to atom  608, 0.061523 of surf being exposed.
+ 83 atoms are close to atom  609, 0.001953 of surf being exposed.
+ 66 atoms are close to atom  610, 0.024414 of surf being exposed.
+ 91 atoms are close to atom  611, 0.000000 of surf being exposed.
+ 67 atoms are close to atom  612, 0.041016 of surf being exposed.
+ 94 atoms are close to atom  613, 0.000000 of surf being exposed.
+110 atoms are close to atom  614, 0.000000 of surf being exposed.
+ 81 atoms are close to atom  615, 0.000000 of surf being exposed.
+ 69 atoms are close to atom  616, 0.021973 of surf being exposed.
+ 78 atoms are close to atom  617, 0.000000 of surf being exposed.
+ 69 atoms are close to atom  618, 0.040527 of surf being exposed.
+ 95 atoms are close to atom  619, 0.011230 of surf being exposed.
+ 91 atoms are close to atom  620, 0.004883 of surf being exposed.
+ 80 atoms are close to atom  621, 0.004395 of surf being exposed.
+ 67 atoms are close to atom  622, 0.043457 of surf being exposed.
+ 84 atoms are close to atom  623, 0.000000 of surf being exposed.
+ 73 atoms are close to atom  624, 0.047363 of surf being exposed.
+ 75 atoms are close to atom  625, 0.001953 of surf being exposed.
+ 62 atoms are close to atom  626, 0.050781 of surf being exposed.
+ 81 atoms are close to atom  627, 0.000000 of surf being exposed.
+ 93 atoms are close to atom  628, 0.000000 of surf being exposed.
+ 81 atoms are close to atom  629, 0.004395 of surf being exposed.
+ 64 atoms are close to atom  630, 0.049805 of surf being exposed.
+ 85 atoms are close to atom  631, 0.015625 of surf being exposed.
+ 80 atoms are close to atom  632, 0.000977 of surf being exposed.
+ 66 atoms are close to atom  633, 0.060059 of surf being exposed.
+ 90 atoms are close to atom  634, 0.000000 of surf being exposed.
+ 95 atoms are close to atom  635, 0.000000 of surf being exposed.
+ 88 atoms are close to atom  636, 0.000000 of surf being exposed.
+ 67 atoms are close to atom  637, 0.025879 of surf being exposed.
+ 92 atoms are close to atom  638, 0.000000 of surf being exposed.
+ 89 atoms are close to atom  639, 0.009277 of surf being exposed.
+114 atoms are close to atom  640, 0.000000 of surf being exposed.
+ 85 atoms are close to atom  641, 0.000488 of surf being exposed.
+ 92 atoms are close to atom  642, 0.019531 of surf being exposed.
+ 87 atoms are close to atom  643, 0.000488 of surf being exposed.
+ 61 atoms are close to atom  644, 0.010254 of surf being exposed.
+ 55 atoms are close to atom  645, 0.068359 of surf being exposed.
+ 52 atoms are close to atom  646, 0.000000 of surf being exposed.
+ 57 atoms are close to atom  647, 0.033203 of surf being exposed.
+ 36 atoms are close to atom  648, 0.091309 of surf being exposed.
+ 89 atoms are close to atom  649, 0.000000 of surf being exposed.
+ 73 atoms are close to atom  650, 0.041016 of surf being exposed.
+108 atoms are close to atom  651, 0.000000 of surf being exposed.
+119 atoms are close to atom  652, 0.000000 of surf being exposed.
+119 atoms are close to atom  653, 0.000000 of surf being exposed.
+101 atoms are close to atom  654, 0.004883 of surf being exposed.
+148 atoms are close to atom  655, 0.000000 of surf being exposed.
+155 atoms are close to atom  656, 0.000000 of surf being exposed.
+142 atoms are close to atom  657, 0.000000 of surf being exposed.
+157 atoms are close to atom  658, 0.000000 of surf being exposed.
+119 atoms are close to atom  659, 0.008301 of surf being exposed.
+111 atoms are close to atom  660, 0.009766 of surf being exposed.
+111 atoms are close to atom  661, 0.000000 of surf being exposed.
+102 atoms are close to atom  662, 0.002441 of surf being exposed.
+ 90 atoms are close to atom  663, 0.051270 of surf being exposed.
+125 atoms are close to atom  664, 0.001953 of surf being exposed.
+107 atoms are close to atom  665, 0.000000 of surf being exposed.
+ 92 atoms are close to atom  666, 0.036133 of surf being exposed.
+110 atoms are close to atom  667, 0.000000 of surf being exposed.
+ 98 atoms are close to atom  668, 0.010254 of surf being exposed.
+128 atoms are close to atom  669, 0.000000 of surf being exposed.
+ 96 atoms are close to atom  670, 0.002441 of surf being exposed.
+ 72 atoms are close to atom  671, 0.060547 of surf being exposed.
+ 98 atoms are close to atom  672, 0.009277 of surf being exposed.
+128 atoms are close to atom  673, 0.000000 of surf being exposed.
+142 atoms are close to atom  674, 0.000000 of surf being exposed.
+111 atoms are close to atom  675, 0.000000 of surf being exposed.
+ 96 atoms are close to atom  676, 0.018066 of surf being exposed.
+113 atoms are close to atom  677, 0.000488 of surf being exposed.
+104 atoms are close to atom  678, 0.018066 of surf being exposed.
+129 atoms are close to atom  679, 0.000000 of surf being exposed.
+123 atoms are close to atom  680, 0.000000 of surf being exposed.
+120 atoms are close to atom  681, 0.000488 of surf being exposed.
+123 atoms are close to atom  682, 0.000000 of surf being exposed.
+118 atoms are close to atom  683, 0.000000 of surf being exposed.
+121 atoms are close to atom  684, 0.000000 of surf being exposed.
+120 atoms are close to atom  685, 0.000000 of surf being exposed.
+ 96 atoms are close to atom  686, 0.000000 of surf being exposed.
+ 90 atoms are close to atom  687, 0.030273 of surf being exposed.
+ 97 atoms are close to atom  688, 0.020996 of surf being exposed.
+ 85 atoms are close to atom  689, 0.001953 of surf being exposed.
+ 82 atoms are close to atom  690, 0.010742 of surf being exposed.
+ 93 atoms are close to atom  691, 0.014160 of surf being exposed.
+ 67 atoms are close to atom  692, 0.016602 of surf being exposed.
+ 68 atoms are close to atom  693, 0.015137 of surf being exposed.
+ 57 atoms are close to atom  694, 0.021973 of surf being exposed.
+ 50 atoms are close to atom  695, 0.060547 of surf being exposed.
+ 71 atoms are close to atom  696, 0.011230 of surf being exposed.
+ 69 atoms are close to atom  697, 0.038574 of surf being exposed.
+ 59 atoms are close to atom  698, 0.018555 of surf being exposed.
+ 41 atoms are close to atom  699, 0.069336 of surf being exposed.
+124 atoms are close to atom  700, 0.000000 of surf being exposed.
+121 atoms are close to atom  701, 0.000488 of surf being exposed.
+133 atoms are close to atom  702, 0.000000 of surf being exposed.
+131 atoms are close to atom  703, 0.000000 of surf being exposed.
+139 atoms are close to atom  704, 0.000000 of surf being exposed.
+153 atoms are close to atom  705, 0.000000 of surf being exposed.
+147 atoms are close to atom  706, 0.000000 of surf being exposed.
+159 atoms are close to atom  707, 0.000000 of surf being exposed.
+157 atoms are close to atom  708, 0.000000 of surf being exposed.
+160 atoms are close to atom  709, 0.000000 of surf being exposed.
+141 atoms are close to atom  710, 0.005371 of surf being exposed.
+144 atoms are close to atom  711, 0.006348 of surf being exposed.
+131 atoms are close to atom  712, 0.005371 of surf being exposed.
+131 atoms are close to atom  713, 0.020508 of surf being exposed.
+123 atoms are close to atom  714, 0.000000 of surf being exposed.
+103 atoms are close to atom  715, 0.019531 of surf being exposed.
+125 atoms are close to atom  716, 0.000000 of surf being exposed.
+135 atoms are close to atom  717, 0.000000 of surf being exposed.
+110 atoms are close to atom  718, 0.000000 of surf being exposed.
+100 atoms are close to atom  719, 0.018555 of surf being exposed.
+ 99 atoms are close to atom  720, 0.007324 of surf being exposed.
+ 82 atoms are close to atom  721, 0.039062 of surf being exposed.
+ 87 atoms are close to atom  722, 0.048828 of surf being exposed.
+100 atoms are close to atom  723, 0.007812 of surf being exposed.
+ 95 atoms are close to atom  724, 0.014160 of surf being exposed.
+ 95 atoms are close to atom  725, 0.001953 of surf being exposed.
+100 atoms are close to atom  726, 0.020508 of surf being exposed.
+101 atoms are close to atom  727, 0.015625 of surf being exposed.
+101 atoms are close to atom  728, 0.016602 of surf being exposed.
+107 atoms are close to atom  729, 0.027832 of surf being exposed.
+112 atoms are close to atom  730, 0.031250 of surf being exposed.
+114 atoms are close to atom  731, 0.012207 of surf being exposed.
+111 atoms are close to atom  732, 0.005859 of surf being exposed.
+104 atoms are close to atom  733, 0.015625 of surf being exposed.
+112 atoms are close to atom  734, 0.000488 of surf being exposed.
+116 atoms are close to atom  735, 0.000000 of surf being exposed.
+137 atoms are close to atom  736, 0.000000 of surf being exposed.
+109 atoms are close to atom  737, 0.000000 of surf being exposed.
+ 92 atoms are close to atom  738, 0.007324 of surf being exposed.
+130 atoms are close to atom  739, 0.000000 of surf being exposed.
+132 atoms are close to atom  740, 0.000000 of surf being exposed.
+109 atoms are close to atom  741, 0.000000 of surf being exposed.
+102 atoms are close to atom  742, 0.018555 of surf being exposed.
+ 83 atoms are close to atom  743, 0.014648 of surf being exposed.
+ 68 atoms are close to atom  744, 0.077637 of surf being exposed.
+111 atoms are close to atom  745, 0.003906 of surf being exposed.
+116 atoms are close to atom  746, 0.000977 of surf being exposed.
+116 atoms are close to atom  747, 0.000000 of surf being exposed.
+ 90 atoms are close to atom  748, 0.049805 of surf being exposed.
+144 atoms are close to atom  749, 0.000000 of surf being exposed.
+150 atoms are close to atom  750, 0.000000 of surf being exposed.
+135 atoms are close to atom  751, 0.000000 of surf being exposed.
+122 atoms are close to atom  752, 0.000000 of surf being exposed.
+144 atoms are close to atom  753, 0.000000 of surf being exposed.
+139 atoms are close to atom  754, 0.000000 of surf being exposed.
+131 atoms are close to atom  755, 0.000000 of surf being exposed.
+120 atoms are close to atom  756, 0.008789 of surf being exposed.
+127 atoms are close to atom  757, 0.000000 of surf being exposed.
+105 atoms are close to atom  758, 0.000000 of surf being exposed.
+ 85 atoms are close to atom  759, 0.078613 of surf being exposed.
+ 97 atoms are close to atom  760, 0.013184 of surf being exposed.
+165 atoms are close to atom  761, 0.000000 of surf being exposed.
+160 atoms are close to atom  762, 0.000000 of surf being exposed.
+167 atoms are close to atom  763, 0.000000 of surf being exposed.
+151 atoms are close to atom  764, 0.000000 of surf being exposed.
+174 atoms are close to atom  765, 0.000000 of surf being exposed.
+171 atoms are close to atom  766, 0.000000 of surf being exposed.
+171 atoms are close to atom  767, 0.000000 of surf being exposed.
+179 atoms are close to atom  768, 0.000000 of surf being exposed.
+160 atoms are close to atom  769, 0.000000 of surf being exposed.
+171 atoms are close to atom  770, 0.000000 of surf being exposed.
+186 atoms are close to atom  771, 0.000000 of surf being exposed.
+178 atoms are close to atom  772, 0.000000 of surf being exposed.
+181 atoms are close to atom  773, 0.000000 of surf being exposed.
+181 atoms are close to atom  774, 0.000000 of surf being exposed.
+184 atoms are close to atom  775, 0.000000 of surf being exposed.
+180 atoms are close to atom  776, 0.000000 of surf being exposed.
+186 atoms are close to atom  777, 0.000000 of surf being exposed.
+176 atoms are close to atom  778, 0.000000 of surf being exposed.
+184 atoms are close to atom  779, 0.000000 of surf being exposed.
+181 atoms are close to atom  780, 0.000000 of surf being exposed.
+177 atoms are close to atom  781, 0.000000 of surf being exposed.
+184 atoms are close to atom  782, 0.000000 of surf being exposed.
+173 atoms are close to atom  783, 0.000000 of surf being exposed.
+187 atoms are close to atom  784, 0.000000 of surf being exposed.
+173 atoms are close to atom  785, 0.000000 of surf being exposed.
+168 atoms are close to atom  786, 0.001465 of surf being exposed.
+156 atoms are close to atom  787, 0.000000 of surf being exposed.
+160 atoms are close to atom  788, 0.000000 of surf being exposed.
+137 atoms are close to atom  789, 0.000000 of surf being exposed.
+127 atoms are close to atom  790, 0.014648 of surf being exposed.
+119 atoms are close to atom  791, 0.000000 of surf being exposed.
+127 atoms are close to atom  792, 0.000000 of surf being exposed.
+128 atoms are close to atom  793, 0.000000 of surf being exposed.
+102 atoms are close to atom  794, 0.000977 of surf being exposed.
+102 atoms are close to atom  795, 0.011230 of surf being exposed.
+ 94 atoms are close to atom  796, 0.036133 of surf being exposed.
+ 88 atoms are close to atom  797, 0.001953 of surf being exposed.
+ 67 atoms are close to atom  798, 0.063965 of surf being exposed.
+ 87 atoms are close to atom  799, 0.014160 of surf being exposed.
+ 88 atoms are close to atom  800, 0.000000 of surf being exposed.
+ 74 atoms are close to atom  801, 0.061523 of surf being exposed.
+ 99 atoms are close to atom  802, 0.000488 of surf being exposed.
+ 85 atoms are close to atom  803, 0.000000 of surf being exposed.
+ 81 atoms are close to atom  804, 0.012695 of surf being exposed.
+ 93 atoms are close to atom  805, 0.000000 of surf being exposed.
+ 72 atoms are close to atom  806, 0.057129 of surf being exposed.
+138 atoms are close to atom  807, 0.000000 of surf being exposed.
+125 atoms are close to atom  808, 0.000000 of surf being exposed.
+145 atoms are close to atom  809, 0.000000 of surf being exposed.
+144 atoms are close to atom  810, 0.002441 of surf being exposed.
+149 atoms are close to atom  811, 0.000000 of surf being exposed.
+148 atoms are close to atom  812, 0.000000 of surf being exposed.
+147 atoms are close to atom  813, 0.000000 of surf being exposed.
+129 atoms are close to atom  814, 0.023926 of surf being exposed.
+137 atoms are close to atom  815, 0.000977 of surf being exposed.
+160 atoms are close to atom  816, 0.000000 of surf being exposed.
+174 atoms are close to atom  817, 0.000000 of surf being exposed.
+154 atoms are close to atom  818, 0.000000 of surf being exposed.
+161 atoms are close to atom  819, 0.000000 of surf being exposed.
+147 atoms are close to atom  820, 0.000000 of surf being exposed.
+123 atoms are close to atom  821, 0.000000 of surf being exposed.
+100 atoms are close to atom  822, 0.042480 of surf being exposed.
+120 atoms are close to atom  823, 0.000000 of surf being exposed.
+123 atoms are close to atom  824, 0.000000 of surf being exposed.
+ 97 atoms are close to atom  825, 0.000000 of surf being exposed.
+ 96 atoms are close to atom  826, 0.039551 of surf being exposed.
+ 95 atoms are close to atom  827, 0.000000 of surf being exposed.
+ 91 atoms are close to atom  828, 0.000000 of surf being exposed.
+ 79 atoms are close to atom  829, 0.032715 of surf being exposed.
+102 atoms are close to atom  830, 0.000000 of surf being exposed.
+ 97 atoms are close to atom  831, 0.016602 of surf being exposed.
+118 atoms are close to atom  832, 0.000000 of surf being exposed.
+ 87 atoms are close to atom  833, 0.001953 of surf being exposed.
+ 83 atoms are close to atom  834, 0.019531 of surf being exposed.
+ 75 atoms are close to atom  835, 0.045410 of surf being exposed.
+ 81 atoms are close to atom  836, 0.001465 of surf being exposed.
+ 96 atoms are close to atom  837, 0.006836 of surf being exposed.
+ 65 atoms are close to atom  838, 0.077148 of surf being exposed.
+ 78 atoms are close to atom  839, 0.000000 of surf being exposed.
+ 74 atoms are close to atom  840, 0.015625 of surf being exposed.
+ 65 atoms are close to atom  841, 0.062988 of surf being exposed.
+ 87 atoms are close to atom  842, 0.000000 of surf being exposed.
+ 80 atoms are close to atom  843, 0.003418 of surf being exposed.
+ 72 atoms are close to atom  844, 0.044922 of surf being exposed.
+ 84 atoms are close to atom  845, 0.000000 of surf being exposed.
+101 atoms are close to atom  846, 0.000000 of surf being exposed.
+ 77 atoms are close to atom  847, 0.010254 of surf being exposed.
+ 65 atoms are close to atom  848, 0.059570 of surf being exposed.
+ 81 atoms are close to atom  849, 0.052734 of surf being exposed.
+ 72 atoms are close to atom  850, 0.000488 of surf being exposed.
+ 60 atoms are close to atom  851, 0.067383 of surf being exposed.
+ 72 atoms are close to atom  852, 0.000000 of surf being exposed.
+ 77 atoms are close to atom  853, 0.000000 of surf being exposed.
+ 65 atoms are close to atom  854, 0.000000 of surf being exposed.
+ 55 atoms are close to atom  855, 0.025391 of surf being exposed.
+ 59 atoms are close to atom  856, 0.000000 of surf being exposed.
+ 56 atoms are close to atom  857, 0.040039 of surf being exposed.
+ 52 atoms are close to atom  858, 0.016113 of surf being exposed.
+ 56 atoms are close to atom  859, 0.031738 of surf being exposed.
+ 46 atoms are close to atom  860, 0.064941 of surf being exposed.
+ 46 atoms are close to atom  861, 0.056641 of surf being exposed.
+ 66 atoms are close to atom  862, 0.000000 of surf being exposed.
+ 69 atoms are close to atom  863, 0.000000 of surf being exposed.
+ 69 atoms are close to atom  864, 0.002441 of surf being exposed.
+ 59 atoms are close to atom  865, 0.008301 of surf being exposed.
+ 60 atoms are close to atom  866, 0.038086 of surf being exposed.
+ 55 atoms are close to atom  867, 0.074707 of surf being exposed.
+ 55 atoms are close to atom  868, 0.056152 of surf being exposed.
+ 71 atoms are close to atom  869, 0.002441 of surf being exposed.
+ 62 atoms are close to atom  870, 0.062500 of surf being exposed.
+ 90 atoms are close to atom  871, 0.000000 of surf being exposed.
+ 93 atoms are close to atom  872, 0.000000 of surf being exposed.
+103 atoms are close to atom  873, 0.000000 of surf being exposed.
+ 93 atoms are close to atom  874, 0.016602 of surf being exposed.
+122 atoms are close to atom  875, 0.000000 of surf being exposed.
+125 atoms are close to atom  876, 0.003906 of surf being exposed.
+134 atoms are close to atom  877, 0.000000 of surf being exposed.
+140 atoms are close to atom  878, 0.000000 of surf being exposed.
+112 atoms are close to atom  879, 0.000977 of surf being exposed.
+122 atoms are close to atom  880, 0.008301 of surf being exposed.
+ 95 atoms are close to atom  881, 0.055664 of surf being exposed.
+103 atoms are close to atom  882, 0.000000 of surf being exposed.
+102 atoms are close to atom  883, 0.004883 of surf being exposed.
+ 98 atoms are close to atom  884, 0.028809 of surf being exposed.
+ 98 atoms are close to atom  885, 0.000000 of surf being exposed.
+ 96 atoms are close to atom  886, 0.024902 of surf being exposed.
+103 atoms are close to atom  887, 0.000488 of surf being exposed.
+ 91 atoms are close to atom  888, 0.020020 of surf being exposed.
+ 98 atoms are close to atom  889, 0.000000 of surf being exposed.
+ 85 atoms are close to atom  890, 0.056152 of surf being exposed.
+112 atoms are close to atom  891, 0.000488 of surf being exposed.
+ 94 atoms are close to atom  892, 0.003418 of surf being exposed.
+ 86 atoms are close to atom  893, 0.019531 of surf being exposed.
+ 83 atoms are close to atom  894, 0.023926 of surf being exposed.
+ 89 atoms are close to atom  895, 0.000000 of surf being exposed.
+ 85 atoms are close to atom  896, 0.041504 of surf being exposed.
+105 atoms are close to atom  897, 0.008301 of surf being exposed.
+107 atoms are close to atom  898, 0.007324 of surf being exposed.
+114 atoms are close to atom  899, 0.012695 of surf being exposed.
+119 atoms are close to atom  900, 0.028320 of surf being exposed.
+128 atoms are close to atom  901, 0.000000 of surf being exposed.
+131 atoms are close to atom  902, 0.000000 of surf being exposed.
+120 atoms are close to atom  903, 0.010254 of surf being exposed.
+114 atoms are close to atom  904, 0.027832 of surf being exposed.
+126 atoms are close to atom  905, 0.000000 of surf being exposed.
+127 atoms are close to atom  906, 0.000977 of surf being exposed.
+117 atoms are close to atom  907, 0.000000 of surf being exposed.
+135 atoms are close to atom  908, 0.000000 of surf being exposed.
+112 atoms are close to atom  909, 0.000000 of surf being exposed.
+104 atoms are close to atom  910, 0.005371 of surf being exposed.
+126 atoms are close to atom  911, 0.000000 of surf being exposed.
+140 atoms are close to atom  912, 0.000000 of surf being exposed.
+123 atoms are close to atom  913, 0.000488 of surf being exposed.
+128 atoms are close to atom  914, 0.005371 of surf being exposed.
+110 atoms are close to atom  915, 0.033691 of surf being exposed.
+136 atoms are close to atom  916, 0.000000 of surf being exposed.
+133 atoms are close to atom  917, 0.000000 of surf being exposed.
+145 atoms are close to atom  918, 0.000000 of surf being exposed.
+119 atoms are close to atom  919, 0.001465 of surf being exposed.
+118 atoms are close to atom  920, 0.017578 of surf being exposed.
+103 atoms are close to atom  921, 0.028809 of surf being exposed.
+121 atoms are close to atom  922, 0.000000 of surf being exposed.
+134 atoms are close to atom  923, 0.000000 of surf being exposed.
+103 atoms are close to atom  924, 0.031250 of surf being exposed.
+139 atoms are close to atom  925, 0.000000 of surf being exposed.
+143 atoms are close to atom  926, 0.000000 of surf being exposed.
+127 atoms are close to atom  927, 0.001953 of surf being exposed.
+142 atoms are close to atom  928, 0.000000 of surf being exposed.
+120 atoms are close to atom  929, 0.000000 of surf being exposed.
+ 98 atoms are close to atom  930, 0.030273 of surf being exposed.
+136 atoms are close to atom  931, 0.000000 of surf being exposed.
+153 atoms are close to atom  932, 0.000000 of surf being exposed.
+124 atoms are close to atom  933, 0.000000 of surf being exposed.
+107 atoms are close to atom  934, 0.011230 of surf being exposed.
+137 atoms are close to atom  935, 0.000000 of surf being exposed.
+108 atoms are close to atom  936, 0.010254 of surf being exposed.
+124 atoms are close to atom  937, 0.000000 of surf being exposed.
+163 atoms are close to atom  938, 0.000488 of surf being exposed.
+179 atoms are close to atom  939, 0.000000 of surf being exposed.
+166 atoms are close to atom  940, 0.000000 of surf being exposed.
+149 atoms are close to atom  941, 0.000000 of surf being exposed.
+161 atoms are close to atom  942, 0.000000 of surf being exposed.
+131 atoms are close to atom  943, 0.001953 of surf being exposed.
+133 atoms are close to atom  944, 0.000000 of surf being exposed.
+156 atoms are close to atom  945, 0.000000 of surf being exposed.
+121 atoms are close to atom  946, 0.000000 of surf being exposed.
+103 atoms are close to atom  947, 0.012207 of surf being exposed.
+119 atoms are close to atom  948, 0.000000 of surf being exposed.
+143 atoms are close to atom  949, 0.000000 of surf being exposed.
+113 atoms are close to atom  950, 0.000000 of surf being exposed.
+ 95 atoms are close to atom  951, 0.044434 of surf being exposed.
+122 atoms are close to atom  952, 0.000000 of surf being exposed.
+ 97 atoms are close to atom  953, 0.001953 of surf being exposed.
+ 91 atoms are close to atom  954, 0.026855 of surf being exposed.
+ 83 atoms are close to atom  955, 0.039062 of surf being exposed.
+111 atoms are close to atom  956, 0.008789 of surf being exposed.
+115 atoms are close to atom  957, 0.005371 of surf being exposed.
+126 atoms are close to atom  958, 0.000000 of surf being exposed.
+121 atoms are close to atom  959, 0.002441 of surf being exposed.
+136 atoms are close to atom  960, 0.008789 of surf being exposed.
+124 atoms are close to atom  961, 0.000000 of surf being exposed.
+130 atoms are close to atom  962, 0.000000 of surf being exposed.
+133 atoms are close to atom  963, 0.000000 of surf being exposed.
+130 atoms are close to atom  964, 0.011719 of surf being exposed.
+122 atoms are close to atom  965, 0.000000 of surf being exposed.
+136 atoms are close to atom  966, 0.000000 of surf being exposed.
+106 atoms are close to atom  967, 0.036621 of surf being exposed.
+102 atoms are close to atom  968, 0.031738 of surf being exposed.
+125 atoms are close to atom  969, 0.000000 of surf being exposed.
+119 atoms are close to atom  970, 0.000000 of surf being exposed.
+117 atoms are close to atom  971, 0.004883 of surf being exposed.
+142 atoms are close to atom  972, 0.000000 of surf being exposed.
+153 atoms are close to atom  973, 0.000000 of surf being exposed.
+156 atoms are close to atom  974, 0.000000 of surf being exposed.
+159 atoms are close to atom  975, 0.000000 of surf being exposed.
+162 atoms are close to atom  976, 0.000000 of surf being exposed.
+172 atoms are close to atom  977, 0.000000 of surf being exposed.
+168 atoms are close to atom  978, 0.000000 of surf being exposed.
+178 atoms are close to atom  979, 0.000000 of surf being exposed.
+181 atoms are close to atom  980, 0.000000 of surf being exposed.
+184 atoms are close to atom  981, 0.000000 of surf being exposed.
+171 atoms are close to atom  982, 0.000000 of surf being exposed.
+165 atoms are close to atom  983, 0.000000 of surf being exposed.
+167 atoms are close to atom  984, 0.000000 of surf being exposed.
+176 atoms are close to atom  985, 0.000000 of surf being exposed.
+164 atoms are close to atom  986, 0.000000 of surf being exposed.
+179 atoms are close to atom  987, 0.000000 of surf being exposed.
+171 atoms are close to atom  988, 0.000000 of surf being exposed.
+166 atoms are close to atom  989, 0.000000 of surf being exposed.
+171 atoms are close to atom  990, 0.000000 of surf being exposed.
+156 atoms are close to atom  991, 0.000000 of surf being exposed.
+167 atoms are close to atom  992, 0.000000 of surf being exposed.
+170 atoms are close to atom  993, 0.000000 of surf being exposed.
+168 atoms are close to atom  994, 0.000000 of surf being exposed.
+165 atoms are close to atom  995, 0.000000 of surf being exposed.
+174 atoms are close to atom  996, 0.000000 of surf being exposed.
+174 atoms are close to atom  997, 0.000000 of surf being exposed.
+175 atoms are close to atom  998, 0.000000 of surf being exposed.
+162 atoms are close to atom  999, 0.000000 of surf being exposed.
+182 atoms are close to atom 1000, 0.000000 of surf being exposed.
+176 atoms are close to atom 1001, 0.000000 of surf being exposed.
+178 atoms are close to atom 1002, 0.000000 of surf being exposed.
+173 atoms are close to atom 1003, 0.000000 of surf being exposed.
+170 atoms are close to atom 1004, 0.000000 of surf being exposed.
+179 atoms are close to atom 1005, 0.000000 of surf being exposed.
+190 atoms are close to atom 1006, 0.000000 of surf being exposed.
+184 atoms are close to atom 1007, 0.000000 of surf being exposed.
+167 atoms are close to atom 1008, 0.000000 of surf being exposed.
+169 atoms are close to atom 1009, 0.000000 of surf being exposed.
+174 atoms are close to atom 1010, 0.000000 of surf being exposed.
+165 atoms are close to atom 1011, 0.000000 of surf being exposed.
+167 atoms are close to atom 1012, 0.000000 of surf being exposed.
+167 atoms are close to atom 1013, 0.000000 of surf being exposed.
+156 atoms are close to atom 1014, 0.000000 of surf being exposed.
+157 atoms are close to atom 1015, 0.000977 of surf being exposed.
+147 atoms are close to atom 1016, 0.000977 of surf being exposed.
+150 atoms are close to atom 1017, 0.016602 of surf being exposed.
+163 atoms are close to atom 1018, 0.000000 of surf being exposed.
+177 atoms are close to atom 1019, 0.000000 of surf being exposed.
+158 atoms are close to atom 1020, 0.000000 of surf being exposed.
+165 atoms are close to atom 1021, 0.000000 of surf being exposed.
+173 atoms are close to atom 1022, 0.000000 of surf being exposed.
+154 atoms are close to atom 1023, 0.000000 of surf being exposed.
+166 atoms are close to atom 1024, 0.000000 of surf being exposed.
+168 atoms are close to atom 1025, 0.000000 of surf being exposed.
+159 atoms are close to atom 1026, 0.000000 of surf being exposed.
+149 atoms are close to atom 1027, 0.000000 of surf being exposed.
+159 atoms are close to atom 1028, 0.000000 of surf being exposed.
+151 atoms are close to atom 1029, 0.000000 of surf being exposed.
+158 atoms are close to atom 1030, 0.000000 of surf being exposed.
+166 atoms are close to atom 1031, 0.000000 of surf being exposed.
+160 atoms are close to atom 1032, 0.000000 of surf being exposed.
+137 atoms are close to atom 1033, 0.000000 of surf being exposed.
+128 atoms are close to atom 1034, 0.000000 of surf being exposed.
+136 atoms are close to atom 1035, 0.005371 of surf being exposed.
+ 98 atoms are close to atom 1036, 0.000000 of surf being exposed.
+ 91 atoms are close to atom 1037, 0.025879 of surf being exposed.
+ 85 atoms are close to atom 1038, 0.000488 of surf being exposed.
+ 70 atoms are close to atom 1039, 0.020020 of surf being exposed.
+ 67 atoms are close to atom 1040, 0.039062 of surf being exposed.
+129 atoms are close to atom 1041, 0.000000 of surf being exposed.
+128 atoms are close to atom 1042, 0.000000 of surf being exposed.
+102 atoms are close to atom 1043, 0.002930 of surf being exposed.
+ 99 atoms are close to atom 1044, 0.008301 of surf being exposed.
+157 atoms are close to atom 1045, 0.000000 of surf being exposed.
+168 atoms are close to atom 1046, 0.000000 of surf being exposed.
+138 atoms are close to atom 1047, 0.000000 of surf being exposed.
+134 atoms are close to atom 1048, 0.000488 of surf being exposed.
+119 atoms are close to atom 1049, 0.000000 of surf being exposed.
+101 atoms are close to atom 1050, 0.003418 of surf being exposed.
+118 atoms are close to atom 1051, 0.000000 of surf being exposed.
+119 atoms are close to atom 1052, 0.000000 of surf being exposed.
+137 atoms are close to atom 1053, 0.000000 of surf being exposed.
+107 atoms are close to atom 1054, 0.000000 of surf being exposed.
+109 atoms are close to atom 1055, 0.002930 of surf being exposed.
+ 74 atoms are close to atom 1056, 0.004395 of surf being exposed.
+ 72 atoms are close to atom 1057, 0.018555 of surf being exposed.
+ 78 atoms are close to atom 1058, 0.006836 of surf being exposed.
+ 68 atoms are close to atom 1059, 0.028320 of surf being exposed.
+112 atoms are close to atom 1060, 0.000000 of surf being exposed.
+128 atoms are close to atom 1061, 0.000000 of surf being exposed.
+ 99 atoms are close to atom 1062, 0.005859 of surf being exposed.
+118 atoms are close to atom 1063, 0.008301 of surf being exposed.
+127 atoms are close to atom 1064, 0.000488 of surf being exposed.
+122 atoms are close to atom 1065, 0.022949 of surf being exposed.
+137 atoms are close to atom 1066, 0.000000 of surf being exposed.
+149 atoms are close to atom 1067, 0.000000 of surf being exposed.
+144 atoms are close to atom 1068, 0.000000 of surf being exposed.
+114 atoms are close to atom 1069, 0.000488 of surf being exposed.
+149 atoms are close to atom 1070, 0.000000 of surf being exposed.
+172 atoms are close to atom 1071, 0.000000 of surf being exposed.
+150 atoms are close to atom 1072, 0.000000 of surf being exposed.
+132 atoms are close to atom 1073, 0.000000 of surf being exposed.
+146 atoms are close to atom 1074, 0.000000 of surf being exposed.
+146 atoms are close to atom 1075, 0.000000 of surf being exposed.
+115 atoms are close to atom 1076, 0.000488 of surf being exposed.
+109 atoms are close to atom 1077, 0.014648 of surf being exposed.
+101 atoms are close to atom 1078, 0.009277 of surf being exposed.
+136 atoms are close to atom 1079, 0.000000 of surf being exposed.
+148 atoms are close to atom 1080, 0.000000 of surf being exposed.
+123 atoms are close to atom 1081, 0.000000 of surf being exposed.
+118 atoms are close to atom 1082, 0.001953 of surf being exposed.
+108 atoms are close to atom 1083, 0.000000 of surf being exposed.
+107 atoms are close to atom 1084, 0.000488 of surf being exposed.
+ 81 atoms are close to atom 1085, 0.002441 of surf being exposed.
+ 77 atoms are close to atom 1086, 0.028320 of surf being exposed.
+ 85 atoms are close to atom 1087, 0.026367 of surf being exposed.
+ 64 atoms are close to atom 1088, 0.010742 of surf being exposed.
+ 58 atoms are close to atom 1089, 0.048828 of surf being exposed.
+ 58 atoms are close to atom 1090, 0.000000 of surf being exposed.
+ 40 atoms are close to atom 1091, 0.082031 of surf being exposed.
+ 68 atoms are close to atom 1092, 0.029785 of surf being exposed.
+112 atoms are close to atom 1093, 0.000000 of surf being exposed.
+116 atoms are close to atom 1094, 0.000000 of surf being exposed.
+108 atoms are close to atom 1095, 0.000000 of surf being exposed.
+106 atoms are close to atom 1096, 0.000000 of surf being exposed.
+124 atoms are close to atom 1097, 0.000000 of surf being exposed.
+ 91 atoms are close to atom 1098, 0.000000 of surf being exposed.
+104 atoms are close to atom 1099, 0.000000 of surf being exposed.
+119 atoms are close to atom 1100, 0.000000 of surf being exposed.
+ 85 atoms are close to atom 1101, 0.001953 of surf being exposed.
+ 86 atoms are close to atom 1102, 0.043457 of surf being exposed.
+ 71 atoms are close to atom 1103, 0.020020 of surf being exposed.
+106 atoms are close to atom 1104, 0.001953 of surf being exposed.
+127 atoms are close to atom 1105, 0.000000 of surf being exposed.
+ 94 atoms are close to atom 1106, 0.030762 of surf being exposed.
+100 atoms are close to atom 1107, 0.004395 of surf being exposed.
+ 88 atoms are close to atom 1108, 0.013184 of surf being exposed.
+110 atoms are close to atom 1109, 0.000000 of surf being exposed.
+129 atoms are close to atom 1110, 0.000000 of surf being exposed.
+113 atoms are close to atom 1111, 0.000000 of surf being exposed.
+ 98 atoms are close to atom 1112, 0.014160 of surf being exposed.
+125 atoms are close to atom 1113, 0.000000 of surf being exposed.
+121 atoms are close to atom 1114, 0.000000 of surf being exposed.
+146 atoms are close to atom 1115, 0.000000 of surf being exposed.
+112 atoms are close to atom 1116, 0.000000 of surf being exposed.
+104 atoms are close to atom 1117, 0.000000 of surf being exposed.
+ 88 atoms are close to atom 1118, 0.003418 of surf being exposed.
+114 atoms are close to atom 1119, 0.000000 of surf being exposed.
+113 atoms are close to atom 1120, 0.000000 of surf being exposed.
+139 atoms are close to atom 1121, 0.000000 of surf being exposed.
+ 97 atoms are close to atom 1122, 0.002930 of surf being exposed.
+ 97 atoms are close to atom 1123, 0.009277 of surf being exposed.
+100 atoms are close to atom 1124, 0.011719 of surf being exposed.
+ 72 atoms are close to atom 1125, 0.000000 of surf being exposed.
+ 75 atoms are close to atom 1126, 0.040039 of surf being exposed.
+ 57 atoms are close to atom 1127, 0.033203 of surf being exposed.
+ 71 atoms are close to atom 1128, 0.000977 of surf being exposed.
+119 atoms are close to atom 1129, 0.001465 of surf being exposed.
+123 atoms are close to atom 1130, 0.016113 of surf being exposed.
+107 atoms are close to atom 1131, 0.000000 of surf being exposed.
+ 99 atoms are close to atom 1132, 0.000000 of surf being exposed.
+107 atoms are close to atom 1133, 0.000000 of surf being exposed.
+ 94 atoms are close to atom 1134, 0.009766 of surf being exposed.
+ 95 atoms are close to atom 1135, 0.000000 of surf being exposed.
+107 atoms are close to atom 1136, 0.000000 of surf being exposed.
+ 91 atoms are close to atom 1137, 0.001953 of surf being exposed.
+ 80 atoms are close to atom 1138, 0.001953 of surf being exposed.
+ 75 atoms are close to atom 1139, 0.015625 of surf being exposed.
+ 79 atoms are close to atom 1140, 0.046387 of surf being exposed.
+ 71 atoms are close to atom 1141, 0.000000 of surf being exposed.
+ 73 atoms are close to atom 1142, 0.003418 of surf being exposed.
+ 75 atoms are close to atom 1143, 0.006348 of surf being exposed.
+ 56 atoms are close to atom 1144, 0.001953 of surf being exposed.
+ 56 atoms are close to atom 1145, 0.037598 of surf being exposed.
+ 55 atoms are close to atom 1146, 0.053223 of surf being exposed.
+ 46 atoms are close to atom 1147, 0.000000 of surf being exposed.
+ 48 atoms are close to atom 1148, 0.012695 of surf being exposed.
+ 39 atoms are close to atom 1149, 0.055176 of surf being exposed.
+ 51 atoms are close to atom 1150, 0.035645 of surf being exposed.
+121 atoms are close to atom 1151, 0.000000 of surf being exposed.
+140 atoms are close to atom 1152, 0.000000 of surf being exposed.
+101 atoms are close to atom 1153, 0.000000 of surf being exposed.
+ 92 atoms are close to atom 1154, 0.000000 of surf being exposed.
+103 atoms are close to atom 1155, 0.000000 of surf being exposed.
+110 atoms are close to atom 1156, 0.000000 of surf being exposed.
+ 77 atoms are close to atom 1157, 0.004395 of surf being exposed.
+ 70 atoms are close to atom 1158, 0.040039 of surf being exposed.
+ 75 atoms are close to atom 1159, 0.030273 of surf being exposed.
+ 69 atoms are close to atom 1160, 0.006836 of surf being exposed.
+ 64 atoms are close to atom 1161, 0.015137 of surf being exposed.
+ 64 atoms are close to atom 1162, 0.031250 of surf being exposed.
+ 51 atoms are close to atom 1163, 0.021973 of surf being exposed.
+ 45 atoms are close to atom 1164, 0.047363 of surf being exposed.
+ 53 atoms are close to atom 1165, 0.017090 of surf being exposed.
+ 42 atoms are close to atom 1166, 0.067383 of surf being exposed.
+ 35 atoms are close to atom 1167, 0.070801 of surf being exposed.
+ 70 atoms are close to atom 1168, 0.011719 of surf being exposed.
+ 75 atoms are close to atom 1169, 0.003418 of surf being exposed.
+ 62 atoms are close to atom 1170, 0.017090 of surf being exposed.
+ 61 atoms are close to atom 1171, 0.023438 of surf being exposed.
+100 atoms are close to atom 1172, 0.000000 of surf being exposed.
+ 93 atoms are close to atom 1173, 0.025879 of surf being exposed.
+105 atoms are close to atom 1174, 0.000000 of surf being exposed.
+108 atoms are close to atom 1175, 0.000000 of surf being exposed.
+ 97 atoms are close to atom 1176, 0.000000 of surf being exposed.
+ 84 atoms are close to atom 1177, 0.006836 of surf being exposed.
+ 87 atoms are close to atom 1178, 0.000000 of surf being exposed.
+101 atoms are close to atom 1179, 0.003418 of surf being exposed.
+ 79 atoms are close to atom 1180, 0.002441 of surf being exposed.
+ 90 atoms are close to atom 1181, 0.001465 of surf being exposed.
+ 76 atoms are close to atom 1182, 0.031738 of surf being exposed.
+ 72 atoms are close to atom 1183, 0.020996 of surf being exposed.
+ 66 atoms are close to atom 1184, 0.001465 of surf being exposed.
+ 60 atoms are close to atom 1185, 0.052734 of surf being exposed.
+ 71 atoms are close to atom 1186, 0.008301 of surf being exposed.
+ 62 atoms are close to atom 1187, 0.010742 of surf being exposed.
+ 54 atoms are close to atom 1188, 0.031738 of surf being exposed.
+ 54 atoms are close to atom 1189, 0.075684 of surf being exposed.
+ 72 atoms are close to atom 1190, 0.017090 of surf being exposed.
+121 atoms are close to atom 1191, 0.000000 of surf being exposed.
+131 atoms are close to atom 1192, 0.000000 of surf being exposed.
+127 atoms are close to atom 1193, 0.000000 of surf being exposed.
+113 atoms are close to atom 1194, 0.000488 of surf being exposed.
+113 atoms are close to atom 1195, 0.000977 of surf being exposed.
+ 97 atoms are close to atom 1196, 0.031738 of surf being exposed.
+142 atoms are close to atom 1197, 0.000000 of surf being exposed.
+148 atoms are close to atom 1198, 0.000000 of surf being exposed.
+140 atoms are close to atom 1199, 0.000000 of surf being exposed.
+146 atoms are close to atom 1200, 0.000000 of surf being exposed.
+148 atoms are close to atom 1201, 0.000000 of surf being exposed.
+120 atoms are close to atom 1202, 0.000000 of surf being exposed.
+111 atoms are close to atom 1203, 0.001953 of surf being exposed.
+110 atoms are close to atom 1204, 0.009766 of surf being exposed.
+130 atoms are close to atom 1205, 0.000000 of surf being exposed.
+113 atoms are close to atom 1206, 0.000977 of surf being exposed.
+136 atoms are close to atom 1207, 0.000000 of surf being exposed.
+148 atoms are close to atom 1208, 0.000000 of surf being exposed.
+127 atoms are close to atom 1209, 0.000000 of surf being exposed.
+137 atoms are close to atom 1210, 0.000000 of surf being exposed.
+124 atoms are close to atom 1211, 0.016113 of surf being exposed.
+122 atoms are close to atom 1212, 0.000000 of surf being exposed.
+136 atoms are close to atom 1213, 0.000000 of surf being exposed.
+105 atoms are close to atom 1214, 0.000000 of surf being exposed.
+ 96 atoms are close to atom 1215, 0.003906 of surf being exposed.
+100 atoms are close to atom 1216, 0.000000 of surf being exposed.
+114 atoms are close to atom 1217, 0.000000 of surf being exposed.
+ 75 atoms are close to atom 1218, 0.000000 of surf being exposed.
+ 74 atoms are close to atom 1219, 0.024414 of surf being exposed.
+ 61 atoms are close to atom 1220, 0.001465 of surf being exposed.
+ 54 atoms are close to atom 1221, 0.035156 of surf being exposed.
+ 75 atoms are close to atom 1222, 0.013672 of surf being exposed.
+ 85 atoms are close to atom 1223, 0.025391 of surf being exposed.
+ 79 atoms are close to atom 1224, 0.002441 of surf being exposed.
+ 54 atoms are close to atom 1225, 0.056152 of surf being exposed.
+ 95 atoms are close to atom 1226, 0.000000 of surf being exposed.
+ 93 atoms are close to atom 1227, 0.009277 of surf being exposed.
+ 98 atoms are close to atom 1228, 0.000000 of surf being exposed.
+101 atoms are close to atom 1229, 0.000000 of surf being exposed.
+104 atoms are close to atom 1230, 0.000000 of surf being exposed.
+100 atoms are close to atom 1231, 0.003418 of surf being exposed.
+ 92 atoms are close to atom 1232, 0.000488 of surf being exposed.
+100 atoms are close to atom 1233, 0.007324 of surf being exposed.
+ 88 atoms are close to atom 1234, 0.000488 of surf being exposed.
+ 68 atoms are close to atom 1235, 0.001465 of surf being exposed.
+ 65 atoms are close to atom 1236, 0.003418 of surf being exposed.
+ 60 atoms are close to atom 1237, 0.019531 of surf being exposed.
+ 61 atoms are close to atom 1238, 0.000000 of surf being exposed.
+ 56 atoms are close to atom 1239, 0.014160 of surf being exposed.
+ 70 atoms are close to atom 1240, 0.001465 of surf being exposed.
+ 40 atoms are close to atom 1241, 0.002441 of surf being exposed.
+ 41 atoms are close to atom 1242, 0.011719 of surf being exposed.
+ 36 atoms are close to atom 1243, 0.027344 of surf being exposed.
+ 32 atoms are close to atom 1244, 0.000000 of surf being exposed.
+ 34 atoms are close to atom 1245, 0.038574 of surf being exposed.
+ 37 atoms are close to atom 1246, 0.053223 of surf being exposed.
+ 27 atoms are close to atom 1247, 0.053223 of surf being exposed.
+123 atoms are close to atom 1248, 0.000000 of surf being exposed.
+128 atoms are close to atom 1249, 0.000000 of surf being exposed.
+139 atoms are close to atom 1250, 0.000000 of surf being exposed.
+136 atoms are close to atom 1251, 0.000000 of surf being exposed.
+163 atoms are close to atom 1252, 0.000000 of surf being exposed.
+152 atoms are close to atom 1253, 0.000000 of surf being exposed.
+177 atoms are close to atom 1254, 0.000000 of surf being exposed.
+170 atoms are close to atom 1255, 0.000977 of surf being exposed.
+171 atoms are close to atom 1256, 0.000000 of surf being exposed.
+191 atoms are close to atom 1257, 0.000000 of surf being exposed.
+193 atoms are close to atom 1258, 0.000000 of surf being exposed.
+187 atoms are close to atom 1259, 0.000000 of surf being exposed.
+183 atoms are close to atom 1260, 0.000000 of surf being exposed.
+180 atoms are close to atom 1261, 0.000000 of surf being exposed.
+186 atoms are close to atom 1262, 0.000000 of surf being exposed.
+193 atoms are close to atom 1263, 0.000000 of surf being exposed.
+183 atoms are close to atom 1264, 0.000000 of surf being exposed.
+166 atoms are close to atom 1265, 0.000000 of surf being exposed.
+172 atoms are close to atom 1266, 0.000000 of surf being exposed.
+155 atoms are close to atom 1267, 0.000000 of surf being exposed.
+149 atoms are close to atom 1268, 0.000000 of surf being exposed.
+164 atoms are close to atom 1269, 0.000000 of surf being exposed.
+172 atoms are close to atom 1270, 0.000000 of surf being exposed.
+155 atoms are close to atom 1271, 0.000000 of surf being exposed.
+151 atoms are close to atom 1272, 0.000000 of surf being exposed.
+145 atoms are close to atom 1273, 0.000000 of surf being exposed.
+144 atoms are close to atom 1274, 0.000000 of surf being exposed.
+124 atoms are close to atom 1275, 0.000977 of surf being exposed.
+152 atoms are close to atom 1276, 0.000000 of surf being exposed.
+132 atoms are close to atom 1277, 0.000000 of surf being exposed.
+122 atoms are close to atom 1278, 0.005371 of surf being exposed.
+130 atoms are close to atom 1279, 0.000000 of surf being exposed.
+125 atoms are close to atom 1280, 0.000488 of surf being exposed.
+112 atoms are close to atom 1281, 0.018066 of surf being exposed.
+133 atoms are close to atom 1282, 0.000977 of surf being exposed.
+124 atoms are close to atom 1283, 0.000000 of surf being exposed.
+164 atoms are close to atom 1284, 0.000000 of surf being exposed.
+157 atoms are close to atom 1285, 0.000000 of surf being exposed.
+169 atoms are close to atom 1286, 0.000000 of surf being exposed.
+169 atoms are close to atom 1287, 0.000000 of surf being exposed.
+164 atoms are close to atom 1288, 0.000000 of surf being exposed.
+167 atoms are close to atom 1289, 0.000488 of surf being exposed.
+181 atoms are close to atom 1290, 0.000000 of surf being exposed.
+185 atoms are close to atom 1291, 0.000000 of surf being exposed.
+179 atoms are close to atom 1292, 0.000000 of surf being exposed.
+189 atoms are close to atom 1293, 0.000000 of surf being exposed.
+181 atoms are close to atom 1294, 0.000000 of surf being exposed.
+177 atoms are close to atom 1295, 0.000488 of surf being exposed.
+182 atoms are close to atom 1296, 0.000000 of surf being exposed.
+173 atoms are close to atom 1297, 0.000000 of surf being exposed.
+184 atoms are close to atom 1298, 0.000000 of surf being exposed.
+180 atoms are close to atom 1299, 0.000000 of surf being exposed.
+191 atoms are close to atom 1300, 0.000000 of surf being exposed.
+182 atoms are close to atom 1301, 0.000000 of surf being exposed.
+185 atoms are close to atom 1302, 0.000000 of surf being exposed.
+184 atoms are close to atom 1303, 0.000000 of surf being exposed.
+162 atoms are close to atom 1304, 0.000000 of surf being exposed.
+151 atoms are close to atom 1305, 0.000000 of surf being exposed.
+150 atoms are close to atom 1306, 0.000000 of surf being exposed.
+140 atoms are close to atom 1307, 0.010254 of surf being exposed.
+134 atoms are close to atom 1308, 0.000000 of surf being exposed.
+120 atoms are close to atom 1309, 0.002930 of surf being exposed.
+138 atoms are close to atom 1310, 0.000000 of surf being exposed.
+145 atoms are close to atom 1311, 0.000000 of surf being exposed.
+143 atoms are close to atom 1312, 0.000000 of surf being exposed.
+121 atoms are close to atom 1313, 0.002441 of surf being exposed.
+117 atoms are close to atom 1314, 0.000488 of surf being exposed.
+115 atoms are close to atom 1315, 0.005371 of surf being exposed.
+104 atoms are close to atom 1316, 0.000000 of surf being exposed.
+104 atoms are close to atom 1317, 0.010254 of surf being exposed.
+ 89 atoms are close to atom 1318, 0.011719 of surf being exposed.
+ 76 atoms are close to atom 1319, 0.046387 of surf being exposed.
+ 85 atoms are close to atom 1320, 0.011230 of surf being exposed.
+ 96 atoms are close to atom 1321, 0.001465 of surf being exposed.
+ 77 atoms are close to atom 1322, 0.047363 of surf being exposed.
+112 atoms are close to atom 1323, 0.000000 of surf being exposed.
+122 atoms are close to atom 1324, 0.000000 of surf being exposed.
+117 atoms are close to atom 1325, 0.000000 of surf being exposed.
+107 atoms are close to atom 1326, 0.016602 of surf being exposed.
+133 atoms are close to atom 1327, 0.000000 of surf being exposed.
+150 atoms are close to atom 1328, 0.000000 of surf being exposed.
+128 atoms are close to atom 1329, 0.000488 of surf being exposed.
+109 atoms are close to atom 1330, 0.036621 of surf being exposed.
+138 atoms are close to atom 1331, 0.000977 of surf being exposed.
+137 atoms are close to atom 1332, 0.000000 of surf being exposed.
+137 atoms are close to atom 1333, 0.000000 of surf being exposed.
+133 atoms are close to atom 1334, 0.000000 of surf being exposed.
+146 atoms are close to atom 1335, 0.000000 of surf being exposed.
+115 atoms are close to atom 1336, 0.003906 of surf being exposed.
+108 atoms are close to atom 1337, 0.007812 of surf being exposed.
+102 atoms are close to atom 1338, 0.022461 of surf being exposed.
+109 atoms are close to atom 1339, 0.000000 of surf being exposed.
+115 atoms are close to atom 1340, 0.000000 of surf being exposed.
+100 atoms are close to atom 1341, 0.039551 of surf being exposed.
+122 atoms are close to atom 1342, 0.000000 of surf being exposed.
+130 atoms are close to atom 1343, 0.000000 of surf being exposed.
+118 atoms are close to atom 1344, 0.000000 of surf being exposed.
+130 atoms are close to atom 1345, 0.000000 of surf being exposed.
+ 98 atoms are close to atom 1346, 0.000000 of surf being exposed.
+ 90 atoms are close to atom 1347, 0.024414 of surf being exposed.
+ 98 atoms are close to atom 1348, 0.013672 of surf being exposed.
+ 88 atoms are close to atom 1349, 0.000000 of surf being exposed.
+ 96 atoms are close to atom 1350, 0.000000 of surf being exposed.
+ 91 atoms are close to atom 1351, 0.000000 of surf being exposed.
+ 66 atoms are close to atom 1352, 0.000000 of surf being exposed.
+ 55 atoms are close to atom 1353, 0.039062 of surf being exposed.
+ 63 atoms are close to atom 1354, 0.021973 of surf being exposed.
+ 54 atoms are close to atom 1355, 0.000000 of surf being exposed.
+ 58 atoms are close to atom 1356, 0.026367 of surf being exposed.
+ 55 atoms are close to atom 1357, 0.011230 of surf being exposed.
+ 37 atoms are close to atom 1358, 0.000000 of surf being exposed.
+ 31 atoms are close to atom 1359, 0.069336 of surf being exposed.
+ 35 atoms are close to atom 1360, 0.068848 of surf being exposed.
+ 36 atoms are close to atom 1361, 0.040039 of surf being exposed.
+129 atoms are close to atom 1362, 0.000000 of surf being exposed.
+118 atoms are close to atom 1363, 0.019531 of surf being exposed.
+141 atoms are close to atom 1364, 0.000000 of surf being exposed.
+151 atoms are close to atom 1365, 0.000000 of surf being exposed.
+141 atoms are close to atom 1366, 0.000000 of surf being exposed.
+143 atoms are close to atom 1367, 0.001465 of surf being exposed.
+117 atoms are close to atom 1368, 0.000000 of surf being exposed.
+104 atoms are close to atom 1369, 0.006348 of surf being exposed.
+125 atoms are close to atom 1370, 0.000000 of surf being exposed.
+ 94 atoms are close to atom 1371, 0.000000 of surf being exposed.
+106 atoms are close to atom 1372, 0.000000 of surf being exposed.
+ 97 atoms are close to atom 1373, 0.001953 of surf being exposed.
+ 72 atoms are close to atom 1374, 0.001465 of surf being exposed.
+ 65 atoms are close to atom 1375, 0.041992 of surf being exposed.
+ 88 atoms are close to atom 1376, 0.031738 of surf being exposed.
+ 58 atoms are close to atom 1377, 0.002930 of surf being exposed.
+ 48 atoms are close to atom 1378, 0.067383 of surf being exposed.
+ 66 atoms are close to atom 1379, 0.029785 of surf being exposed.
+ 58 atoms are close to atom 1380, 0.000000 of surf being exposed.
+ 55 atoms are close to atom 1381, 0.055664 of surf being exposed.
+ 71 atoms are close to atom 1382, 0.000000 of surf being exposed.
+ 52 atoms are close to atom 1383, 0.062988 of surf being exposed.
+166 atoms are close to atom 1384, 0.000000 of surf being exposed.
+171 atoms are close to atom 1385, 0.000000 of surf being exposed.
+155 atoms are close to atom 1386, 0.000000 of surf being exposed.
+146 atoms are close to atom 1387, 0.000000 of surf being exposed.
+162 atoms are close to atom 1388, 0.000000 of surf being exposed.
+149 atoms are close to atom 1389, 0.000000 of surf being exposed.
+162 atoms are close to atom 1390, 0.000000 of surf being exposed.
+145 atoms are close to atom 1391, 0.000488 of surf being exposed.
+173 atoms are close to atom 1392, 0.000000 of surf being exposed.
+159 atoms are close to atom 1393, 0.000000 of surf being exposed.
+164 atoms are close to atom 1394, 0.000000 of surf being exposed.
+150 atoms are close to atom 1395, 0.005859 of surf being exposed.
+155 atoms are close to atom 1396, 0.000000 of surf being exposed.
+137 atoms are close to atom 1397, 0.031250 of surf being exposed.
+160 atoms are close to atom 1398, 0.000000 of surf being exposed.
+142 atoms are close to atom 1399, 0.001953 of surf being exposed.
+134 atoms are close to atom 1400, 0.009766 of surf being exposed.
+127 atoms are close to atom 1401, 0.007812 of surf being exposed.
+145 atoms are close to atom 1402, 0.000000 of surf being exposed.
+153 atoms are close to atom 1403, 0.000000 of surf being exposed.
+160 atoms are close to atom 1404, 0.000000 of surf being exposed.
+153 atoms are close to atom 1405, 0.000000 of surf being exposed.
+179 atoms are close to atom 1406, 0.000000 of surf being exposed.
+185 atoms are close to atom 1407, 0.000000 of surf being exposed.
+175 atoms are close to atom 1408, 0.000000 of surf being exposed.
+172 atoms are close to atom 1409, 0.000000 of surf being exposed.
+182 atoms are close to atom 1410, 0.000000 of surf being exposed.
+192 atoms are close to atom 1411, 0.000000 of surf being exposed.
+175 atoms are close to atom 1412, 0.000000 of surf being exposed.
+173 atoms are close to atom 1413, 0.000000 of surf being exposed.
+172 atoms are close to atom 1414, 0.000000 of surf being exposed.
+170 atoms are close to atom 1415, 0.000000 of surf being exposed.
+163 atoms are close to atom 1416, 0.000000 of surf being exposed.
+162 atoms are close to atom 1417, 0.000000 of surf being exposed.
+160 atoms are close to atom 1418, 0.000000 of surf being exposed.
+165 atoms are close to atom 1419, 0.000000 of surf being exposed.
+178 atoms are close to atom 1420, 0.000000 of surf being exposed.
+173 atoms are close to atom 1421, 0.000000 of surf being exposed.
+188 atoms are close to atom 1422, 0.000000 of surf being exposed.
+191 atoms are close to atom 1423, 0.000000 of surf being exposed.
+182 atoms are close to atom 1424, 0.000000 of surf being exposed.
+180 atoms are close to atom 1425, 0.000000 of surf being exposed.
+187 atoms are close to atom 1426, 0.000000 of surf being exposed.
+188 atoms are close to atom 1427, 0.000000 of surf being exposed.
+184 atoms are close to atom 1428, 0.000000 of surf being exposed.
+197 atoms are close to atom 1429, 0.000000 of surf being exposed.
+191 atoms are close to atom 1430, 0.000000 of surf being exposed.
+191 atoms are close to atom 1431, 0.000000 of surf being exposed.
+198 atoms are close to atom 1432, 0.000000 of surf being exposed.
+189 atoms are close to atom 1433, 0.000000 of surf being exposed.
+198 atoms are close to atom 1434, 0.000488 of surf being exposed.
+180 atoms are close to atom 1435, 0.000000 of surf being exposed.
+178 atoms are close to atom 1436, 0.000000 of surf being exposed.
+189 atoms are close to atom 1437, 0.000000 of surf being exposed.
+175 atoms are close to atom 1438, 0.000000 of surf being exposed.
+188 atoms are close to atom 1439, 0.000000 of surf being exposed.
+197 atoms are close to atom 1440, 0.000000 of surf being exposed.
+177 atoms are close to atom 1441, 0.000000 of surf being exposed.
+187 atoms are close to atom 1442, 0.000000 of surf being exposed.
+168 atoms are close to atom 1443, 0.000000 of surf being exposed.
+160 atoms are close to atom 1444, 0.000000 of surf being exposed.
+160 atoms are close to atom 1445, 0.000000 of surf being exposed.
+165 atoms are close to atom 1446, 0.000000 of surf being exposed.
+148 atoms are close to atom 1447, 0.000000 of surf being exposed.
+139 atoms are close to atom 1448, 0.000000 of surf being exposed.
+159 atoms are close to atom 1449, 0.000000 of surf being exposed.
+139 atoms are close to atom 1450, 0.000000 of surf being exposed.
+148 atoms are close to atom 1451, 0.000000 of surf being exposed.
+114 atoms are close to atom 1452, 0.013672 of surf being exposed.
+ 99 atoms are close to atom 1453, 0.000000 of surf being exposed.
+ 90 atoms are close to atom 1454, 0.025391 of surf being exposed.
+103 atoms are close to atom 1455, 0.000000 of surf being exposed.
+106 atoms are close to atom 1456, 0.000000 of surf being exposed.
+ 90 atoms are close to atom 1457, 0.024414 of surf being exposed.
+116 atoms are close to atom 1458, 0.006348 of surf being exposed.
+185 atoms are close to atom 1459, 0.000000 of surf being exposed.
+183 atoms are close to atom 1460, 0.000000 of surf being exposed.
+171 atoms are close to atom 1461, 0.000000 of surf being exposed.
+175 atoms are close to atom 1462, 0.000000 of surf being exposed.
+165 atoms are close to atom 1463, 0.000000 of surf being exposed.
+178 atoms are close to atom 1464, 0.000000 of surf being exposed.
+154 atoms are close to atom 1465, 0.000000 of surf being exposed.
+153 atoms are close to atom 1466, 0.000000 of surf being exposed.
+141 atoms are close to atom 1467, 0.000000 of surf being exposed.
+143 atoms are close to atom 1468, 0.000000 of surf being exposed.
+151 atoms are close to atom 1469, 0.000000 of surf being exposed.
+154 atoms are close to atom 1470, 0.000000 of surf being exposed.
+131 atoms are close to atom 1471, 0.000488 of surf being exposed.
+135 atoms are close to atom 1472, 0.002441 of surf being exposed.
+116 atoms are close to atom 1473, 0.000000 of surf being exposed.
+180 atoms are close to atom 1474, 0.000000 of surf being exposed.
+180 atoms are close to atom 1475, 0.000488 of surf being exposed.
+186 atoms are close to atom 1476, 0.000000 of surf being exposed.
+180 atoms are close to atom 1477, 0.000000 of surf being exposed.
+179 atoms are close to atom 1478, 0.000000 of surf being exposed.
+181 atoms are close to atom 1479, 0.000000 of surf being exposed.
+181 atoms are close to atom 1480, 0.000000 of surf being exposed.
+179 atoms are close to atom 1481, 0.000000 of surf being exposed.
+191 atoms are close to atom 1482, 0.000000 of surf being exposed.
+166 atoms are close to atom 1483, 0.000000 of surf being exposed.
+164 atoms are close to atom 1484, 0.001465 of surf being exposed.
+165 atoms are close to atom 1485, 0.000000 of surf being exposed.
+172 atoms are close to atom 1486, 0.000000 of surf being exposed.
+182 atoms are close to atom 1487, 0.000000 of surf being exposed.
+172 atoms are close to atom 1488, 0.000000 of surf being exposed.
+169 atoms are close to atom 1489, 0.000000 of surf being exposed.
+153 atoms are close to atom 1490, 0.000000 of surf being exposed.
+160 atoms are close to atom 1491, 0.000000 of surf being exposed.
+143 atoms are close to atom 1492, 0.000000 of surf being exposed.
+143 atoms are close to atom 1493, 0.001953 of surf being exposed.
+131 atoms are close to atom 1494, 0.006836 of surf being exposed.
+123 atoms are close to atom 1495, 0.000000 of surf being exposed.
+113 atoms are close to atom 1496, 0.000000 of surf being exposed.
+126 atoms are close to atom 1497, 0.000977 of surf being exposed.
+126 atoms are close to atom 1498, 0.000000 of surf being exposed.
+101 atoms are close to atom 1499, 0.000488 of surf being exposed.
+139 atoms are close to atom 1500, 0.000488 of surf being exposed.
+ 98 atoms are close to atom 1501, 0.012207 of surf being exposed.
+ 82 atoms are close to atom 1502, 0.033203 of surf being exposed.
+ 96 atoms are close to atom 1503, 0.006348 of surf being exposed.
+ 93 atoms are close to atom 1504, 0.036621 of surf being exposed.
+138 atoms are close to atom 1505, 0.000000 of surf being exposed.
+143 atoms are close to atom 1506, 0.000000 of surf being exposed.
+139 atoms are close to atom 1507, 0.000000 of surf being exposed.
+143 atoms are close to atom 1508, 0.000000 of surf being exposed.
+142 atoms are close to atom 1509, 0.000000 of surf being exposed.
+124 atoms are close to atom 1510, 0.000000 of surf being exposed.
+135 atoms are close to atom 1511, 0.000000 of surf being exposed.
+140 atoms are close to atom 1512, 0.000000 of surf being exposed.
+125 atoms are close to atom 1513, 0.005371 of surf being exposed.
+107 atoms are close to atom 1514, 0.022461 of surf being exposed.
+129 atoms are close to atom 1515, 0.000000 of surf being exposed.
+111 atoms are close to atom 1516, 0.025879 of surf being exposed.
+116 atoms are close to atom 1517, 0.000000 of surf being exposed.
+103 atoms are close to atom 1518, 0.019043 of surf being exposed.
+117 atoms are close to atom 1519, 0.001465 of surf being exposed.
+101 atoms are close to atom 1520, 0.006836 of surf being exposed.
+ 88 atoms are close to atom 1521, 0.062988 of surf being exposed.
+ 84 atoms are close to atom 1522, 0.057617 of surf being exposed.
+113 atoms are close to atom 1523, 0.000000 of surf being exposed.
+158 atoms are close to atom 1524, 0.000000 of surf being exposed.
+147 atoms are close to atom 1525, 0.000000 of surf being exposed.
+176 atoms are close to atom 1526, 0.000000 of surf being exposed.
+177 atoms are close to atom 1527, 0.000000 of surf being exposed.
+179 atoms are close to atom 1528, 0.000000 of surf being exposed.
+173 atoms are close to atom 1529, 0.000000 of surf being exposed.
+191 atoms are close to atom 1530, 0.000000 of surf being exposed.
+185 atoms are close to atom 1531, 0.000000 of surf being exposed.
+186 atoms are close to atom 1532, 0.000000 of surf being exposed.
+192 atoms are close to atom 1533, 0.000000 of surf being exposed.
+178 atoms are close to atom 1534, 0.000000 of surf being exposed.
+167 atoms are close to atom 1535, 0.000000 of surf being exposed.
+181 atoms are close to atom 1536, 0.000000 of surf being exposed.
+175 atoms are close to atom 1537, 0.000000 of surf being exposed.
+175 atoms are close to atom 1538, 0.000000 of surf being exposed.
+165 atoms are close to atom 1539, 0.000000 of surf being exposed.
+152 atoms are close to atom 1540, 0.000000 of surf being exposed.
+153 atoms are close to atom 1541, 0.000488 of surf being exposed.
+141 atoms are close to atom 1542, 0.001953 of surf being exposed.
+161 atoms are close to atom 1543, 0.000000 of surf being exposed.
+155 atoms are close to atom 1544, 0.000000 of surf being exposed.
+158 atoms are close to atom 1545, 0.001465 of surf being exposed.
+166 atoms are close to atom 1546, 0.000000 of surf being exposed.
+173 atoms are close to atom 1547, 0.000000 of surf being exposed.
+163 atoms are close to atom 1548, 0.000000 of surf being exposed.
+164 atoms are close to atom 1549, 0.000000 of surf being exposed.
+161 atoms are close to atom 1550, 0.000000 of surf being exposed.
+173 atoms are close to atom 1551, 0.000000 of surf being exposed.
+174 atoms are close to atom 1552, 0.000000 of surf being exposed.
+162 atoms are close to atom 1553, 0.000000 of surf being exposed.
+168 atoms are close to atom 1554, 0.000000 of surf being exposed.
+150 atoms are close to atom 1555, 0.000000 of surf being exposed.
+142 atoms are close to atom 1556, 0.002930 of surf being exposed.
+141 atoms are close to atom 1557, 0.000000 of surf being exposed.
+143 atoms are close to atom 1558, 0.000000 of surf being exposed.
+110 atoms are close to atom 1559, 0.000000 of surf being exposed.
+102 atoms are close to atom 1560, 0.007324 of surf being exposed.
+103 atoms are close to atom 1561, 0.000000 of surf being exposed.
+112 atoms are close to atom 1562, 0.001953 of surf being exposed.
+ 87 atoms are close to atom 1563, 0.037109 of surf being exposed.
+104 atoms are close to atom 1564, 0.000000 of surf being exposed.
+119 atoms are close to atom 1565, 0.000000 of surf being exposed.
+ 91 atoms are close to atom 1566, 0.007324 of surf being exposed.
+ 87 atoms are close to atom 1567, 0.017578 of surf being exposed.
+ 94 atoms are close to atom 1568, 0.004395 of surf being exposed.
+ 78 atoms are close to atom 1569, 0.063477 of surf being exposed.
+ 94 atoms are close to atom 1570, 0.013672 of surf being exposed.
+ 92 atoms are close to atom 1571, 0.007812 of surf being exposed.
+ 77 atoms are close to atom 1572, 0.065430 of surf being exposed.
+102 atoms are close to atom 1573, 0.020508 of surf being exposed.
+104 atoms are close to atom 1574, 0.000000 of surf being exposed.
+ 82 atoms are close to atom 1575, 0.043457 of surf being exposed.
+108 atoms are close to atom 1576, 0.000000 of surf being exposed.
+119 atoms are close to atom 1577, 0.000000 of surf being exposed.
+ 98 atoms are close to atom 1578, 0.000000 of surf being exposed.
+ 86 atoms are close to atom 1579, 0.041016 of surf being exposed.
+ 87 atoms are close to atom 1580, 0.000977 of surf being exposed.
+ 73 atoms are close to atom 1581, 0.049805 of surf being exposed.
+ 80 atoms are close to atom 1582, 0.058105 of surf being exposed.
+101 atoms are close to atom 1583, 0.000977 of surf being exposed.
+ 94 atoms are close to atom 1584, 0.021484 of surf being exposed.
+111 atoms are close to atom 1585, 0.001953 of surf being exposed.
+114 atoms are close to atom 1586, 0.000000 of surf being exposed.
+131 atoms are close to atom 1587, 0.000000 of surf being exposed.
+107 atoms are close to atom 1588, 0.009277 of surf being exposed.
+133 atoms are close to atom 1589, 0.000000 of surf being exposed.
+138 atoms are close to atom 1590, 0.000000 of surf being exposed.
+134 atoms are close to atom 1591, 0.000000 of surf being exposed.
+110 atoms are close to atom 1592, 0.000000 of surf being exposed.
+112 atoms are close to atom 1593, 0.000000 of surf being exposed.
+ 97 atoms are close to atom 1594, 0.041016 of surf being exposed.
+ 97 atoms are close to atom 1595, 0.011719 of surf being exposed.
+102 atoms are close to atom 1596, 0.000000 of surf being exposed.
+ 89 atoms are close to atom 1597, 0.026855 of surf being exposed.
+123 atoms are close to atom 1598, 0.000000 of surf being exposed.
+131 atoms are close to atom 1599, 0.000000 of surf being exposed.
+123 atoms are close to atom 1600, 0.000000 of surf being exposed.
+135 atoms are close to atom 1601, 0.000000 of surf being exposed.
+102 atoms are close to atom 1602, 0.000488 of surf being exposed.
+ 85 atoms are close to atom 1603, 0.027344 of surf being exposed.
+100 atoms are close to atom 1604, 0.000977 of surf being exposed.
+ 95 atoms are close to atom 1605, 0.000000 of surf being exposed.
+107 atoms are close to atom 1606, 0.004395 of surf being exposed.
+ 90 atoms are close to atom 1607, 0.004395 of surf being exposed.
+ 63 atoms are close to atom 1608, 0.001465 of surf being exposed.
+ 54 atoms are close to atom 1609, 0.047363 of surf being exposed.
+ 56 atoms are close to atom 1610, 0.038574 of surf being exposed.
+ 62 atoms are close to atom 1611, 0.000000 of surf being exposed.
+ 67 atoms are close to atom 1612, 0.003418 of surf being exposed.
+ 73 atoms are close to atom 1613, 0.021973 of surf being exposed.
+ 45 atoms are close to atom 1614, 0.000000 of surf being exposed.
+ 36 atoms are close to atom 1615, 0.060059 of surf being exposed.
+ 39 atoms are close to atom 1616, 0.067871 of surf being exposed.
+ 41 atoms are close to atom 1617, 0.063477 of surf being exposed.
+134 atoms are close to atom 1618, 0.000000 of surf being exposed.
+120 atoms are close to atom 1619, 0.020020 of surf being exposed.
+134 atoms are close to atom 1620, 0.000000 of surf being exposed.
+143 atoms are close to atom 1621, 0.000000 of surf being exposed.
+140 atoms are close to atom 1622, 0.000000 of surf being exposed.
+135 atoms are close to atom 1623, 0.034668 of surf being exposed.
+146 atoms are close to atom 1624, 0.000488 of surf being exposed.
+135 atoms are close to atom 1625, 0.005859 of surf being exposed.
+162 atoms are close to atom 1626, 0.000000 of surf being exposed.
+151 atoms are close to atom 1627, 0.009766 of surf being exposed.
+150 atoms are close to atom 1628, 0.000000 of surf being exposed.
+146 atoms are close to atom 1629, 0.000488 of surf being exposed.
+160 atoms are close to atom 1630, 0.000000 of surf being exposed.
+167 atoms are close to atom 1631, 0.000000 of surf being exposed.
+166 atoms are close to atom 1632, 0.000000 of surf being exposed.
+166 atoms are close to atom 1633, 0.000000 of surf being exposed.
+167 atoms are close to atom 1634, 0.000000 of surf being exposed.
+165 atoms are close to atom 1635, 0.000000 of surf being exposed.
+167 atoms are close to atom 1636, 0.000000 of surf being exposed.
+167 atoms are close to atom 1637, 0.000000 of surf being exposed.
+189 atoms are close to atom 1638, 0.000000 of surf being exposed.
+190 atoms are close to atom 1639, 0.000000 of surf being exposed.
+187 atoms are close to atom 1640, 0.000000 of surf being exposed.
+192 atoms are close to atom 1641, 0.000000 of surf being exposed.
+151 atoms are close to atom 1642, 0.000000 of surf being exposed.
+140 atoms are close to atom 1643, 0.000000 of surf being exposed.
+146 atoms are close to atom 1644, 0.000000 of surf being exposed.
+144 atoms are close to atom 1645, 0.000000 of surf being exposed.
+122 atoms are close to atom 1646, 0.000000 of surf being exposed.
+113 atoms are close to atom 1647, 0.001953 of surf being exposed.
+102 atoms are close to atom 1648, 0.000000 of surf being exposed.
+101 atoms are close to atom 1649, 0.000488 of surf being exposed.
+ 84 atoms are close to atom 1650, 0.008789 of surf being exposed.
+108 atoms are close to atom 1651, 0.001465 of surf being exposed.
+116 atoms are close to atom 1652, 0.000000 of surf being exposed.
+109 atoms are close to atom 1653, 0.000000 of surf being exposed.
+103 atoms are close to atom 1654, 0.010254 of surf being exposed.
+103 atoms are close to atom 1655, 0.037598 of surf being exposed.
+106 atoms are close to atom 1656, 0.000000 of surf being exposed.
+113 atoms are close to atom 1657, 0.004395 of surf being exposed.
+ 84 atoms are close to atom 1658, 0.000000 of surf being exposed.
+ 80 atoms are close to atom 1659, 0.016113 of surf being exposed.
+ 69 atoms are close to atom 1660, 0.000000 of surf being exposed.
+ 85 atoms are close to atom 1661, 0.000000 of surf being exposed.
+ 56 atoms are close to atom 1662, 0.000488 of surf being exposed.
+ 45 atoms are close to atom 1663, 0.044434 of surf being exposed.
+ 53 atoms are close to atom 1664, 0.032715 of surf being exposed.
+ 75 atoms are close to atom 1665, 0.005859 of surf being exposed.
+ 81 atoms are close to atom 1666, 0.031738 of surf being exposed.
+ 65 atoms are close to atom 1667, 0.050293 of surf being exposed.
+ 96 atoms are close to atom 1668, 0.000000 of surf being exposed.
+119 atoms are close to atom 1669, 0.000000 of surf being exposed.
+100 atoms are close to atom 1670, 0.020996 of surf being exposed.
+ 57 atoms are close to atom 1671, 0.005371 of surf being exposed.
+ 58 atoms are close to atom 1672, 0.046875 of surf being exposed.
+ 52 atoms are close to atom 1673, 0.062988 of surf being exposed.
+168 atoms are close to atom 1674, 0.000000 of surf being exposed.
+145 atoms are close to atom 1675, 0.000000 of surf being exposed.
+150 atoms are close to atom 1676, 0.000000 of surf being exposed.
+187 atoms are close to atom 1677, 0.000000 of surf being exposed.
+169 atoms are close to atom 1678, 0.000000 of surf being exposed.
+127 atoms are close to atom 1679, 0.000000 of surf being exposed.
+102 atoms are close to atom 1680, 0.000000 of surf being exposed.
+ 93 atoms are close to atom 1681, 0.000000 of surf being exposed.
+117 atoms are close to atom 1682, 0.000000 of surf being exposed.
+121 atoms are close to atom 1683, 0.000000 of surf being exposed.
+109 atoms are close to atom 1684, 0.000000 of surf being exposed.
+135 atoms are close to atom 1685, 0.000000 of surf being exposed.
+155 atoms are close to atom 1686, 0.000000 of surf being exposed.
+183 atoms are close to atom 1687, 0.000000 of surf being exposed.
+197 atoms are close to atom 1688, 0.000000 of surf being exposed.
+195 atoms are close to atom 1689, 0.000000 of surf being exposed.
+190 atoms are close to atom 1690, 0.000000 of surf being exposed.
+172 atoms are close to atom 1691, 0.000000 of surf being exposed.
+165 atoms are close to atom 1692, 0.000000 of surf being exposed.
+146 atoms are close to atom 1693, 0.000000 of surf being exposed.
+143 atoms are close to atom 1694, 0.000000 of surf being exposed.
+129 atoms are close to atom 1695, 0.000000 of surf being exposed.
+118 atoms are close to atom 1696, 0.000000 of surf being exposed.
+108 atoms are close to atom 1697, 0.002930 of surf being exposed.
+ 89 atoms are close to atom 1698, 0.000488 of surf being exposed.
+172 atoms are close to atom 1699, 0.000000 of surf being exposed.
+169 atoms are close to atom 1700, 0.000000 of surf being exposed.
+182 atoms are close to atom 1701, 0.000000 of surf being exposed.
+178 atoms are close to atom 1702, 0.000000 of surf being exposed.
+ 66 atoms are close to atom 1703, 0.003418 of surf being exposed.
+ 65 atoms are close to atom 1704, 0.012207 of surf being exposed.
+ 52 atoms are close to atom 1705, 0.024902 of surf being exposed.
+ 58 atoms are close to atom 1706, 0.022949 of surf being exposed.
+ 89 atoms are close to atom 1707, 0.000000 of surf being exposed.
+ 74 atoms are close to atom 1708, 0.008789 of surf being exposed.
+ 90 atoms are close to atom 1709, 0.002441 of surf being exposed.
+ 83 atoms are close to atom 1710, 0.000488 of surf being exposed.
+ 93 atoms are close to atom 1711, 0.000000 of surf being exposed.
+ 73 atoms are close to atom 1712, 0.039062 of surf being exposed.
+ 74 atoms are close to atom 1713, 0.006348 of surf being exposed.
+ 59 atoms are close to atom 1714, 0.029297 of surf being exposed.
+ 89 atoms are close to atom 1715, 0.011230 of surf being exposed.
+ 81 atoms are close to atom 1716, 0.005371 of surf being exposed.
+ 76 atoms are close to atom 1717, 0.013184 of surf being exposed.
+ 78 atoms are close to atom 1718, 0.015625 of surf being exposed.
+ 75 atoms are close to atom 1719, 0.025391 of surf being exposed.
+127 atoms are close to atom 1720, 0.000000 of surf being exposed.
+136 atoms are close to atom 1721, 0.000000 of surf being exposed.
+119 atoms are close to atom 1722, 0.000000 of surf being exposed.
+121 atoms are close to atom 1723, 0.002441 of surf being exposed.
+ 99 atoms are close to atom 1724, 0.006836 of surf being exposed.
+125 atoms are close to atom 1725, 0.000000 of surf being exposed.
+194 atoms are close to atom 1726, 0.000000 of surf being exposed.
+185 atoms are close to atom 1727, 0.000000 of surf being exposed.
+182 atoms are close to atom 1728, 0.000000 of surf being exposed.
+194 atoms are close to atom 1729, 0.000000 of surf being exposed.
+188 atoms are close to atom 1730, 0.000000 of surf being exposed.
+182 atoms are close to atom 1731, 0.000000 of surf being exposed.
+178 atoms are close to atom 1732, 0.000000 of surf being exposed.
+184 atoms are close to atom 1733, 0.000000 of surf being exposed.
+191 atoms are close to atom 1734, 0.000000 of surf being exposed.
+178 atoms are close to atom 1735, 0.000000 of surf being exposed.
+166 atoms are close to atom 1736, 0.005371 of surf being exposed.
+168 atoms are close to atom 1737, 0.000000 of surf being exposed.
+158 atoms are close to atom 1738, 0.000488 of surf being exposed.
+165 atoms are close to atom 1739, 0.000000 of surf being exposed.
+131 atoms are close to atom 1740, 0.000000 of surf being exposed.
+123 atoms are close to atom 1741, 0.000000 of surf being exposed.
+129 atoms are close to atom 1742, 0.000000 of surf being exposed.
+128 atoms are close to atom 1743, 0.000000 of surf being exposed.
+133 atoms are close to atom 1744, 0.000000 of surf being exposed.
+125 atoms are close to atom 1745, 0.000000 of surf being exposed.
+116 atoms are close to atom 1746, 0.000977 of surf being exposed.
+106 atoms are close to atom 1747, 0.031250 of surf being exposed.
+107 atoms are close to atom 1748, 0.037109 of surf being exposed.
+q = 0.000: chi is: 40985756.000, dS is: 0.000, S_calc is: 2730412.500, S_ref is: 43716168.000
+q = 0.003: chi is: 40959332.000, dS is: -3472.748, S_calc is: 2728768.750, S_ref is: 43691572.000
+q = 0.006: chi is: 40880160.000, dS is: -13869.605, S_calc is: 2723842.500, S_ref is: 43617872.000
+q = 0.009: chi is: 40748520.000, dS is: -31126.557, S_calc is: 2715645.500, S_ref is: 43495292.000
+q = 0.012: chi is: 40564868.000, dS is: -55137.391, S_calc is: 2704209.000, S_ref is: 43324212.000
+q = 0.015: chi is: 40329840.000, dS is: -85754.414, S_calc is: 2689569.500, S_ref is: 43105164.000
+q = 0.018: chi is: 40044256.000, dS is: -122789.453, S_calc is: 2671775.500, S_ref is: 42838820.000
+q = 0.021: chi is: 39709100.000, dS is: -166015.109, S_calc is: 2650887.500, S_ref is: 42526004.000
+q = 0.024: chi is: 39325532.000, dS is: -215166.297, S_calc is: 2626972.500, S_ref is: 42167672.000
+q = 0.027: chi is: 38894868.000, dS is: -269942.031, S_calc is: 2600111.250, S_ref is: 41764924.000
+q = 0.030: chi is: 38418584.000, dS is: -330007.438, S_calc is: 2570388.750, S_ref is: 41318980.000
+q = 0.033: chi is: 37898300.000, dS is: -394995.969, S_calc is: 2537902.500, S_ref is: 40831200.000
+q = 0.036: chi is: 37335776.000, dS is: -464511.844, S_calc is: 2502758.000, S_ref is: 40303044.000
+q = 0.039: chi is: 36732900.000, dS is: -538132.812, S_calc is: 2465069.000, S_ref is: 39736100.000
+q = 0.042: chi is: 36091680.000, dS is: -615412.750, S_calc is: 2424953.750, S_ref is: 39132044.000
+q = 0.045: chi is: 35414244.000, dS is: -695884.625, S_calc is: 2382538.750, S_ref is: 38492668.000
+q = 0.048: chi is: 34702812.000, dS is: -779063.875, S_calc is: 2337958.500, S_ref is: 37819836.000
+q = 0.051: chi is: 33959700.000, dS is: -864451.125, S_calc is: 2291350.000, S_ref is: 37115504.000
+q = 0.054: chi is: 33187300.000, dS is: -951535.812, S_calc is: 2242855.750, S_ref is: 36381692.000
+q = 0.057: chi is: 32388056.000, dS is: -1039799.188, S_calc is: 2192623.000, S_ref is: 35620480.000
+q = 0.060: chi is: 31564496.000, dS is: -1128717.875, S_calc is: 2140802.500, S_ref is: 34834016.000
+q = 0.063: chi is: 30719164.000, dS is: -1217767.250, S_calc is: 2087548.500, S_ref is: 34024480.000
+q = 0.066: chi is: 29854652.000, dS is: -1306424.625, S_calc is: 2033013.250, S_ref is: 33194090.000
+q = 0.069: chi is: 28973560.000, dS is: -1394172.500, S_calc is: 1977355.750, S_ref is: 32345088.000
+q = 0.072: chi is: 28078500.000, dS is: -1480501.875, S_calc is: 1920733.250, S_ref is: 31479736.000
+q = 0.075: chi is: 27172086.000, dS is: -1564915.500, S_calc is: 1863300.000, S_ref is: 30600302.000
+q = 0.078: chi is: 26256906.000, dS is: -1646930.625, S_calc is: 1805214.375, S_ref is: 29709050.000
+q = 0.081: chi is: 25335520.000, dS is: -1726082.375, S_calc is: 1746630.750, S_ref is: 28808232.000
+q = 0.084: chi is: 24410458.000, dS is: -1801925.875, S_calc is: 1687702.750, S_ref is: 27900086.000
+q = 0.087: chi is: 23484192.000, dS is: -1874039.375, S_calc is: 1628579.125, S_ref is: 26986812.000
+q = 0.090: chi is: 22559148.000, dS is: -1942026.500, S_calc is: 1569407.125, S_ref is: 26070582.000
+q = 0.093: chi is: 21637668.000, dS is: -2005518.125, S_calc is: 1510330.750, S_ref is: 25153516.000
+q = 0.096: chi is: 20722026.000, dS is: -2064175.125, S_calc is: 1451488.000, S_ref is: 24237690.000
+q = 0.099: chi is: 19814406.000, dS is: -2117689.250, S_calc is: 1393013.500, S_ref is: 23325110.000
+q = 0.102: chi is: 18916904.000, dS is: -2165785.500, S_calc is: 1335035.125, S_ref is: 22417726.000
+q = 0.105: chi is: 18031512.000, dS is: -2208222.750, S_calc is: 1277676.625, S_ref is: 21517410.000
+q = 0.108: chi is: 17160106.000, dS is: -2244795.500, S_calc is: 1221054.750, S_ref is: 20625956.000
+q = 0.111: chi is: 16304462.000, dS is: -2275333.750, S_calc is: 1165279.375, S_ref is: 19745076.000
+q = 0.114: chi is: 15466238.000, dS is: -2299704.500, S_calc is: 1110456.000, S_ref is: 18876398.000
+q = 0.117: chi is: 14646957.000, dS is: -2317811.250, S_calc is: 1056679.625, S_ref is: 18021448.000
+q = 0.120: chi is: 13848029.000, dS is: -2329595.250, S_calc is: 1004042.188, S_ref is: 17181666.000
+q = 0.123: chi is: 13070733.000, dS is: -2335033.250, S_calc is: 952624.125, S_ref is: 16358390.000
+q = 0.126: chi is: 12316216.000, dS is: -2334139.500, S_calc is: 902501.438, S_ref is: 15552856.000
+q = 0.129: chi is: 11585492.000, dS is: -2326963.250, S_calc is: 853741.938, S_ref is: 14766197.000
+q = 0.132: chi is: 10879449.000, dS is: -2313588.250, S_calc is: 806404.938, S_ref is: 13999442.000
+q = 0.135: chi is: 10198841.000, dS is: -2294132.250, S_calc is: 760543.750, S_ref is: 13253517.000
+q = 0.138: chi is: 9544291.000, dS is: -2268744.750, S_calc is: 716202.688, S_ref is: 12529239.000
+q = 0.141: chi is: 8916298.000, dS is: -2237606.750, S_calc is: 673419.125, S_ref is: 11827324.000
+q = 0.144: chi is: 8315229.500, dS is: -2200927.500, S_calc is: 632223.875, S_ref is: 11148381.000
+q = 0.147: chi is: 7741332.500, dS is: -2158943.500, S_calc is: 592640.375, S_ref is: 10492916.000
+q = 0.150: chi is: 7194735.000, dS is: -2111916.750, S_calc is: 554684.062, S_ref is: 9861336.000
+q = 0.153: chi is: 6675452.000, dS is: -2060131.875, S_calc is: 518365.125, S_ref is: 9253949.000
+q = 0.156: chi is: 6183382.500, dS is: -2003894.500, S_calc is: 483686.219, S_ref is: 8670963.000
+q = 0.159: chi is: 5718325.000, dS is: -1943528.375, S_calc is: 450644.469, S_ref is: 8112498.000
+q = 0.162: chi is: 5279976.500, dS is: -1879373.500, S_calc is: 419230.531, S_ref is: 7578580.500
+q = 0.165: chi is: 4867939.000, dS is: -1811783.375, S_calc is: 389429.906, S_ref is: 7069152.500
+q = 0.168: chi is: 4481728.500, dS is: -1741122.125, S_calc is: 361222.688, S_ref is: 6584073.000
+q = 0.171: chi is: 4120777.250, dS is: -1667762.750, S_calc is: 334584.125, S_ref is: 6123124.000
+q = 0.174: chi is: 3784444.250, dS is: -1592084.250, S_calc is: 309484.812, S_ref is: 5686013.500
+q = 0.177: chi is: 3472021.250, dS is: -1514468.750, S_calc is: 285891.000, S_ref is: 5272381.000
+q = 0.180: chi is: 3182737.750, dS is: -1435299.750, S_calc is: 263765.500, S_ref is: 4881803.000
+q = 0.183: chi is: 2915768.500, dS is: -1354959.125, S_calc is: 243067.703, S_ref is: 4513795.000
+q = 0.186: chi is: 2670243.000, dS is: -1273825.125, S_calc is: 223753.531, S_ref is: 4167821.500
+q = 0.189: chi is: 2445249.500, dS is: -1192269.875, S_calc is: 205776.484, S_ref is: 3843296.000
+q = 0.192: chi is: 2239844.750, dS is: -1110657.500, S_calc is: 189087.844, S_ref is: 3539590.000
+q = 0.195: chi is: 2053057.125, dS is: -1029341.875, S_calc is: 173636.781, S_ref is: 3256035.750
+q = 0.198: chi is: 1883896.500, dS is: -948664.938, S_calc is: 159371.062, S_ref is: 2991932.500
+q = 0.201: chi is: 1731360.000, dS is: -868954.562, S_calc is: 146237.062, S_ref is: 2746551.500
+q = 0.204: chi is: 1594436.250, dS is: -790523.250, S_calc is: 134180.594, S_ref is: 2519140.000
+q = 0.207: chi is: 1472114.750, dS is: -713666.562, S_calc is: 123146.461, S_ref is: 2308927.750
+q = 0.210: chi is: 1363388.500, dS is: -638661.625, S_calc is: 113079.594, S_ref is: 2115129.750
+q = 0.213: chi is: 1267261.000, dS is: -565766.312, S_calc is: 103924.844, S_ref is: 1936952.250
+q = 0.216: chi is: 1182751.000, dS is: -495217.812, S_calc is: 95627.430, S_ref is: 1773596.250
+q = 0.219: chi is: 1108896.125, dS is: -427232.344, S_calc is: 88133.219, S_ref is: 1624261.750
+q = 0.222: chi is: 1044759.562, dS is: -362004.062, S_calc is: 81388.734, S_ref is: 1488152.375
+q = 0.225: chi is: 989431.375, dS is: -299704.750, S_calc is: 75341.773, S_ref is: 1364477.875
+q = 0.228: chi is: 942033.500, dS is: -240483.609, S_calc is: 69941.281, S_ref is: 1252458.375
+q = 0.231: chi is: 901722.688, dS is: -184466.922, S_calc is: 65137.625, S_ref is: 1151327.250
+q = 0.234: chi is: 867693.250, dS is: -131758.266, S_calc is: 60882.902, S_ref is: 1060334.375
+q = 0.237: chi is: 839178.750, dS is: -82438.555, S_calc is: 57130.805, S_ref is: 978748.125
+q = 0.240: chi is: 815454.812, dS is: -36566.422, S_calc is: 53837.051, S_ref is: 905858.312
+q = 0.243: chi is: 795840.375, dS is: 5821.305, S_calc is: 50959.148, S_ref is: 840978.188
+q = 0.246: chi is: 779698.312, dS is: 44709.008, S_calc is: 48456.820, S_ref is: 783446.125
+q = 0.249: chi is: 766437.062, dS is: 80101.539, S_calc is: 46291.820, S_ref is: 732627.312
+q = 0.252: chi is: 755510.438, dS is: 112023.383, S_calc is: 44428.047, S_ref is: 687915.125
+q = 0.255: chi is: 746418.125, dS is: 140517.703, S_calc is: 42831.688, S_ref is: 648732.125
+q = 0.258: chi is: 738705.000, dS is: 165645.281, S_calc is: 41471.020, S_ref is: 614530.688
+q = 0.261: chi is: 731961.000, dS is: 187483.406, S_calc is: 40316.578, S_ref is: 584794.125
+q = 0.264: chi is: 725820.000, dS is: 206124.688, S_calc is: 39341.086, S_ref is: 559036.375
+q = 0.267: chi is: 719958.875, dS is: 221675.719, S_calc is: 38519.367, S_ref is: 536802.562
+q = 0.270: chi is: 714096.375, dS is: 234255.875, S_calc is: 37828.402, S_ref is: 517668.938
+q = 0.273: chi is: 707990.938, dS is: 243995.859, S_calc is: 37247.207, S_ref is: 501242.281
+q = 0.276: chi is: 701439.500, dS is: 251036.406, S_calc is: 36756.781, S_ref is: 487159.844
+q = 0.279: chi is: 694275.375, dS is: 255526.891, S_calc is: 36340.055, S_ref is: 475088.562
+q = 0.282: chi is: 686366.438, dS is: 257623.891, S_calc is: 35981.789, S_ref is: 464724.312
+q = 0.285: chi is: 677612.438, dS is: 257489.859, S_calc is: 35668.512, S_ref is: 455791.062
+q = 0.288: chi is: 667943.312, dS is: 255291.734, S_calc is: 35388.375, S_ref is: 448039.938
+q = 0.291: chi is: 657316.375, dS is: 251199.578, S_calc is: 35131.172, S_ref is: 441247.969
+q = 0.294: chi is: 645714.375, dS is: 245385.375, S_calc is: 34888.078, S_ref is: 435217.062
+q = 0.297: chi is: 633142.625, dS is: 238021.672, S_calc is: 34651.648, S_ref is: 429772.594
+q = 0.300: chi is: 619626.875, dS is: 229280.422, S_calc is: 34415.762, S_ref is: 424762.188
+q = 0.303: chi is: 605210.875, dS is: 219331.891, S_calc is: 34175.410, S_ref is: 420054.375
+q = 0.306: chi is: 589953.875, dS is: 208343.484, S_calc is: 33926.672, S_ref is: 415537.062
+q = 0.309: chi is: 573928.562, dS is: 196478.844, S_calc is: 33666.539, S_ref is: 411116.250
+q = 0.312: chi is: 557218.500, dS is: 183896.859, S_calc is: 33392.914, S_ref is: 406714.531
+q = 0.315: chi is: 539916.125, dS is: 170750.859, S_calc is: 33104.438, S_ref is: 402269.688
+q = 0.318: chi is: 522120.781, dS is: 157187.812, S_calc is: 32800.441, S_ref is: 397733.406
+q = 0.321: chi is: 503936.500, dS is: 143347.703, S_calc is: 32480.842, S_ref is: 393069.625
+q = 0.324: chi is: 485470.344, dS is: 129362.883, S_calc is: 32146.062, S_ref is: 388253.531
+q = 0.327: chi is: 466830.750, dS is: 115357.609, S_calc is: 31796.887, S_ref is: 383270.031
+q = 0.330: chi is: 448125.625, dS is: 101447.609, S_calc is: 31434.533, S_ref is: 378112.531
+q = 0.333: chi is: 429461.125, dS is: 87739.742, S_calc is: 31060.457, S_ref is: 372781.844
+q = 0.336: chi is: 410940.500, dS is: 74331.781, S_calc is: 30676.324, S_ref is: 367285.031
+q = 0.339: chi is: 392662.469, dS is: 61312.227, S_calc is: 30283.945, S_ref is: 361634.188
+q = 0.342: chi is: 374720.656, dS is: 48760.227, S_calc is: 29885.227, S_ref is: 355845.656
+q = 0.345: chi is: 357202.438, dS is: 36745.578, S_calc is: 29482.156, S_ref is: 349939.031
+q = 0.348: chi is: 340188.250, dS is: 25328.779, S_calc is: 29076.707, S_ref is: 343936.188
+q = 0.351: chi is: 323751.094, dS is: 14561.178, S_calc is: 28670.812, S_ref is: 337860.719
+q = 0.354: chi is: 307955.875, dS is: 4485.153, S_calc is: 28266.355, S_ref is: 331737.062
+q = 0.357: chi is: 292859.281, dS is: -4865.616, S_calc is: 27865.107, S_ref is: 325590.000
+q = 0.360: chi is: 278509.344, dS is: -13465.846, S_calc is: 27468.738, S_ref is: 319443.938
+q = 0.363: chi is: 264945.594, dS is: -21298.289, S_calc is: 27078.793, S_ref is: 313322.656
+q = 0.366: chi is: 252198.828, dS is: -28353.334, S_calc is: 26696.629, S_ref is: 307248.781
+q = 0.369: chi is: 240291.281, dS is: -34628.562, S_calc is: 26323.496, S_ref is: 301243.344
+q = 0.372: chi is: 229237.031, dS is: -40128.289, S_calc is: 25960.420, S_ref is: 295325.719
+q = 0.375: chi is: 219041.922, dS is: -44863.051, S_calc is: 25608.283, S_ref is: 289513.250
+q = 0.378: chi is: 209704.250, dS is: -48849.105, S_calc is: 25267.797, S_ref is: 283821.156
+q = 0.381: chi is: 201215.078, dS is: -52107.891, S_calc is: 24939.475, S_ref is: 278262.438
+q = 0.384: chi is: 193558.594, dS is: -54665.488, S_calc is: 24623.701, S_ref is: 272847.781
+q = 0.387: chi is: 186712.812, dS is: -56552.078, S_calc is: 24320.670, S_ref is: 267585.562
+q = 0.390: chi is: 180650.047, dS is: -57801.387, S_calc is: 24030.430, S_ref is: 262481.875
+q = 0.393: chi is: 175337.625, dS is: -58450.164, S_calc is: 23752.867, S_ref is: 257540.641
+q = 0.396: chi is: 170738.188, dS is: -58537.633, S_calc is: 23487.779, S_ref is: 252763.594
+q = 0.399: chi is: 166810.766, dS is: -58104.984, S_calc is: 23234.797, S_ref is: 248150.547
+q = 0.402: chi is: 163511.094, dS is: -57194.871, S_calc is: 22993.465, S_ref is: 243699.438
+q = 0.405: chi is: 160792.375, dS is: -55850.941, S_calc is: 22763.215, S_ref is: 239406.531
+q = 0.408: chi is: 158605.750, dS is: -54117.367, S_calc is: 22543.434, S_ref is: 235266.547
+q = 0.411: chi is: 156901.141, dS is: -52038.410, S_calc is: 22333.395, S_ref is: 231272.938
+q = 0.414: chi is: 155627.609, dS is: -49658.047, S_calc is: 22132.328, S_ref is: 227417.984
+q = 0.417: chi is: 154734.094, dS is: -47019.559, S_calc is: 21939.430, S_ref is: 223693.094
+q = 0.420: chi is: 154169.812, dS is: -44165.230, S_calc is: 21753.848, S_ref is: 220088.891
+q = 0.423: chi is: 153884.750, dS is: -41136.000, S_calc is: 21574.740, S_ref is: 216595.484
+q = 0.426: chi is: 153830.156, dS is: -37971.223, S_calc is: 21401.234, S_ref is: 213202.609
+q = 0.429: chi is: 153959.031, dS is: -34708.398, S_calc is: 21232.461, S_ref is: 209899.891
+q = 0.432: chi is: 154226.344, dS is: -31382.982, S_calc is: 21067.562, S_ref is: 206676.891
+q = 0.435: chi is: 154589.453, dS is: -28028.205, S_calc is: 20905.717, S_ref is: 203523.375
+q = 0.438: chi is: 155008.359, dS is: -24674.926, S_calc is: 20746.129, S_ref is: 200429.406
+q = 0.441: chi is: 155445.938, dS is: -21351.527, S_calc is: 20588.023, S_ref is: 197385.484
+q = 0.444: chi is: 155868.125, dS is: -18083.834, S_calc is: 20430.699, S_ref is: 194382.656
+q = 0.447: chi is: 156244.094, dS is: -14895.066, S_calc is: 20273.480, S_ref is: 191412.641
+q = 0.450: chi is: 156546.359, dS is: -11805.812, S_calc is: 20115.746, S_ref is: 188467.922
+q = 0.453: chi is: 156750.797, dS is: -8834.042, S_calc is: 19956.938, S_ref is: 185541.781
+q = 0.456: chi is: 156836.656, dS is: -5995.127, S_calc is: 19796.578, S_ref is: 182628.359
+q = 0.459: chi is: 156786.594, dS is: -3301.901, S_calc is: 19634.215, S_ref is: 179722.719
+q = 0.462: chi is: 156586.641, dS is: -764.727, S_calc is: 19469.484, S_ref is: 176820.859
+q = 0.465: chi is: 156226.047, dS is: 1608.408, S_calc is: 19302.078, S_ref is: 173919.719
+q = 0.468: chi is: 155697.188, dS is: 3811.786, S_calc is: 19131.756, S_ref is: 171017.156
+q = 0.471: chi is: 154995.500, dS is: 5841.836, S_calc is: 18958.342, S_ref is: 168112.000
+q = 0.474: chi is: 154119.188, dS is: 7697.001, S_calc is: 18781.711, S_ref is: 165203.906
+q = 0.477: chi is: 153069.188, dS is: 9377.590, S_calc is: 18601.820, S_ref is: 162293.422
+q = 0.480: chi is: 151848.859, dS is: 10885.631, S_calc is: 18418.662, S_ref is: 159381.891
+q = 0.483: chi is: 150463.797, dS is: 12224.709, S_calc is: 18232.305, S_ref is: 156471.406
+q = 0.486: chi is: 148921.688, dS is: 13399.807, S_calc is: 18042.852, S_ref is: 153564.719
+q = 0.489: chi is: 147231.922, dS is: 14417.140, S_calc is: 17850.461, S_ref is: 150665.234
+q = 0.492: chi is: 145405.516, dS is: 15283.994, S_calc is: 17655.348, S_ref is: 147776.859
+q = 0.495: chi is: 143454.781, dS is: 16008.564, S_calc is: 17457.748, S_ref is: 144903.969
+q = 0.498: chi is: 141393.141, dS is: 16599.789, S_calc is: 17257.959, S_ref is: 142051.312
+q = 0.501: chi is: 139234.891, dS is: 17067.205, S_calc is: 17056.297, S_ref is: 139223.984
+q = 0.504: chi is: 136994.891, dS is: 17420.787, S_calc is: 16853.111, S_ref is: 136427.219
+q = 0.507: chi is: 134688.484, dS is: 17670.818, S_calc is: 16648.785, S_ref is: 133666.453
+q = 0.510: chi is: 132331.188, dS is: 17827.742, S_calc is: 16443.723, S_ref is: 130947.156
+q = 0.513: chi is: 129938.516, dS is: 17902.047, S_calc is: 16238.326, S_ref is: 128274.797
+q = 0.516: chi is: 127525.836, dS is: 17904.141, S_calc is: 16033.049, S_ref is: 125654.742
+q = 0.519: chi is: 125108.156, dS is: 17844.250, S_calc is: 15828.318, S_ref is: 123092.227
+q = 0.522: chi is: 122699.984, dS is: 17732.324, S_calc is: 15624.599, S_ref is: 120592.258
+q = 0.525: chi is: 120315.156, dS is: 17577.938, S_calc is: 15422.350, S_ref is: 118159.570
+q = 0.528: chi is: 117966.797, dS is: 17390.230, S_calc is: 15222.022, S_ref is: 115798.586
+q = 0.531: chi is: 115667.109, dS is: 17177.830, S_calc is: 15024.076, S_ref is: 113513.359
+q = 0.534: chi is: 113427.391, dS is: 16948.805, S_calc is: 14828.955, S_ref is: 111307.539
+q = 0.537: chi is: 111257.828, dS is: 16710.613, S_calc is: 14637.107, S_ref is: 109184.328
+q = 0.540: chi is: 109167.586, dS is: 16470.076, S_calc is: 14448.958, S_ref is: 107146.469
+q = 0.543: chi is: 107164.641, dS is: 16233.348, S_calc is: 14264.938, S_ref is: 105196.234
+q = 0.546: chi is: 105255.852, dS is: 16005.903, S_calc is: 14085.430, S_ref is: 103335.375
+q = 0.549: chi is: 103446.875, dS is: 15792.531, S_calc is: 13910.830, S_ref is: 101565.172
+q = 0.552: chi is: 101742.195, dS is: 15597.334, S_calc is: 13741.512, S_ref is: 99886.367
+q = 0.555: chi is: 100145.164, dS is: 15423.739, S_calc is: 13577.801, S_ref is: 98299.219
+q = 0.558: chi is: 98657.984, dS is: 15274.517, S_calc is: 13420.032, S_ref is: 96803.500
+q = 0.561: chi is: 97281.781, dS is: 15151.797, S_calc is: 13268.504, S_ref is: 95398.492
+q = 0.564: chi is: 96016.648, dS is: 15057.102, S_calc is: 13123.488, S_ref is: 94083.031
+q = 0.567: chi is: 94861.656, dS is: 14991.376, S_calc is: 12985.229, S_ref is: 92855.508
+q = 0.570: chi is: 93814.992, dS is: 14955.025, S_calc is: 12853.947, S_ref is: 91713.914
+q = 0.573: chi is: 92873.961, dS is: 14947.955, S_calc is: 12729.839, S_ref is: 90655.844
+q = 0.576: chi is: 92035.094, dS is: 14969.611, S_calc is: 12613.066, S_ref is: 89678.555
+q = 0.579: chi is: 91294.250, dS is: 15019.030, S_calc is: 12503.772, S_ref is: 88778.992
+q = 0.582: chi is: 90646.633, dS is: 15094.876, S_calc is: 12402.063, S_ref is: 87953.820
+q = 0.585: chi is: 90086.938, dS is: 15195.498, S_calc is: 12308.020, S_ref is: 87199.453
+q = 0.588: chi is: 89609.391, dS is: 15318.966, S_calc is: 12221.691, S_ref is: 86512.109
+q = 0.591: chi is: 89207.859, dS is: 15463.126, S_calc is: 12143.105, S_ref is: 85887.836
+q = 0.594: chi is: 88875.922, dS is: 15625.640, S_calc is: 12072.261, S_ref is: 85322.539
+q = 0.597: chi is: 88606.961, dS is: 15804.031, S_calc is: 12009.115, S_ref is: 84812.047
+q = 0.600: chi is: 88394.227, dS is: 15995.729, S_calc is: 11953.624, S_ref is: 84352.125
+q = 0.603: chi is: 88230.906, dS is: 16198.103, S_calc is: 11905.693, S_ref is: 83938.500
+q = 0.606: chi is: 88110.219, dS is: 16408.506, S_calc is: 11865.217, S_ref is: 83566.930
+q = 0.609: chi is: 88025.453, dS is: 16624.309, S_calc is: 11832.056, S_ref is: 83233.203
+q = 0.612: chi is: 87970.031, dS is: 16842.926, S_calc is: 11806.061, S_ref is: 82933.164
+q = 0.615: chi is: 87937.594, dS is: 17061.855, S_calc is: 11787.041, S_ref is: 82662.781
+q = 0.618: chi is: 87922.016, dS is: 17278.691, S_calc is: 11774.793, S_ref is: 82418.117
+q = 0.621: chi is: 87917.469, dS is: 17491.160, S_calc is: 11769.087, S_ref is: 82195.391
+q = 0.624: chi is: 87918.422, dS is: 17697.129, S_calc is: 11769.685, S_ref is: 81990.984
+q = 0.627: chi is: 87919.750, dS is: 17894.625, S_calc is: 11776.324, S_ref is: 81801.453
+q = 0.630: chi is: 87916.680, dS is: 18081.852, S_calc is: 11788.719, S_ref is: 81623.547
+q = 0.633: chi is: 87904.844, dS is: 18257.191, S_calc is: 11806.571, S_ref is: 81454.219
+q = 0.636: chi is: 87880.281, dS is: 18419.223, S_calc is: 11829.578, S_ref is: 81290.633
+q = 0.639: chi is: 87839.492, dS is: 18566.713, S_calc is: 11857.399, S_ref is: 81130.180
+q = 0.642: chi is: 87779.375, dS is: 18698.623, S_calc is: 11889.713, S_ref is: 80970.461
+q = 0.645: chi is: 87697.266, dS is: 18814.113, S_calc is: 11926.154, S_ref is: 80809.312
+q = 0.648: chi is: 87590.930, dS is: 18912.525, S_calc is: 11966.383, S_ref is: 80644.789
+q = 0.651: chi is: 87458.547, dS is: 18993.389, S_calc is: 12010.023, S_ref is: 80475.180
+q = 0.654: chi is: 87298.656, dS is: 19056.410, S_calc is: 12056.711, S_ref is: 80298.961
+q = 0.657: chi is: 87110.227, dS is: 19101.461, S_calc is: 12106.066, S_ref is: 80114.836
+q = 0.660: chi is: 86892.570, dS is: 19128.564, S_calc is: 12157.713, S_ref is: 79921.719
+q = 0.663: chi is: 86645.320, dS is: 19137.893, S_calc is: 12211.265, S_ref is: 79718.695
+q = 0.666: chi is: 86368.445, dS is: 19129.750, S_calc is: 12266.349, S_ref is: 79505.047
+q = 0.669: chi is: 86062.188, dS is: 19104.551, S_calc is: 12322.586, S_ref is: 79280.219
+q = 0.672: chi is: 85727.039, dS is: 19062.818, S_calc is: 12379.590, S_ref is: 79043.805
+q = 0.675: chi is: 85363.711, dS is: 19005.164, S_calc is: 12437.004, S_ref is: 78795.555
+q = 0.678: chi is: 84973.164, dS is: 18932.273, S_calc is: 12494.451, S_ref is: 78535.344
+q = 0.681: chi is: 84556.477, dS is: 18844.893, S_calc is: 12551.579, S_ref is: 78263.164
+q = 0.684: chi is: 84114.891, dS is: 18743.814, S_calc is: 12608.033, S_ref is: 77979.109
+q = 0.687: chi is: 83649.750, dS is: 18629.867, S_calc is: 12663.479, S_ref is: 77683.367
+q = 0.690: chi is: 83162.500, dS is: 18503.895, S_calc is: 12717.586, S_ref is: 77376.195
+q = 0.693: chi is: 82654.633, dS is: 18366.756, S_calc is: 12770.043, S_ref is: 77057.922
+q = 0.696: chi is: 82127.672, dS is: 18219.305, S_calc is: 12820.544, S_ref is: 76728.914
+q = 0.699: chi is: 81583.156, dS is: 18062.379, S_calc is: 12868.805, S_ref is: 76389.578
+q = 0.702: chi is: 81022.602, dS is: 17896.799, S_calc is: 12914.557, S_ref is: 76040.359
+q = 0.705: chi is: 80447.523, dS is: 17723.357, S_calc is: 12957.543, S_ref is: 75681.711
+q = 0.708: chi is: 79859.367, dS is: 17542.803, S_calc is: 12997.540, S_ref is: 75314.102
+q = 0.711: chi is: 79259.500, dS is: 17355.852, S_calc is: 13034.328, S_ref is: 74937.977
+q = 0.714: chi is: 78649.258, dS is: 17163.164, S_calc is: 13067.713, S_ref is: 74553.805
+q = 0.717: chi is: 78029.859, dS is: 16965.355, S_calc is: 13097.518, S_ref is: 74162.016
+q = 0.720: chi is: 77402.422, dS is: 16762.990, S_calc is: 13123.600, S_ref is: 73763.031
+q = 0.723: chi is: 76768.000, dS is: 16556.572, S_calc is: 13145.820, S_ref is: 73357.250
+q = 0.726: chi is: 76127.508, dS is: 16346.561, S_calc is: 13164.074, S_ref is: 72945.023
+q = 0.729: chi is: 75481.766, dS is: 16133.355, S_calc is: 13178.282, S_ref is: 72526.688
+q = 0.732: chi is: 74831.500, dS is: 15917.308, S_calc is: 13188.371, S_ref is: 72102.562
+q = 0.735: chi is: 74177.312, dS is: 15698.721, S_calc is: 13194.309, S_ref is: 71672.898
+q = 0.738: chi is: 73519.727, dS is: 15477.853, S_calc is: 13196.082, S_ref is: 71237.953
+q = 0.741: chi is: 72859.148, dS is: 15254.919, S_calc is: 13193.691, S_ref is: 70797.922
+q = 0.744: chi is: 72195.930, dS is: 15030.101, S_calc is: 13187.170, S_ref is: 70353.000
+q = 0.747: chi is: 71530.320, dS is: 14803.548, S_calc is: 13176.563, S_ref is: 69903.336
+q = 0.750: chi is: 70862.500, dS is: 14575.383, S_calc is: 13161.947, S_ref is: 69449.062
+q = 0.753: chi is: 70192.586, dS is: 14345.711, S_calc is: 13143.412, S_ref is: 68990.289
+q = 0.756: chi is: 69520.680, dS is: 14114.619, S_calc is: 13121.068, S_ref is: 68527.133
+q = 0.759: chi is: 68846.797, dS is: 13882.188, S_calc is: 13095.053, S_ref is: 68059.664
+q = 0.762: chi is: 68170.977, dS is: 13648.497, S_calc is: 13065.505, S_ref is: 67587.984
+q = 0.765: chi is: 67493.195, dS is: 13413.626, S_calc is: 13032.600, S_ref is: 67112.172
+q = 0.768: chi is: 66813.477, dS is: 13177.664, S_calc is: 12996.509, S_ref is: 66632.320
+q = 0.771: chi is: 66131.805, dS is: 12940.717, S_calc is: 12957.435, S_ref is: 66148.523
+q = 0.774: chi is: 65448.211, dS is: 12702.904, S_calc is: 12915.576, S_ref is: 65660.883
+q = 0.777: chi is: 64762.773, dS is: 12464.372, S_calc is: 12871.149, S_ref is: 65169.551
+q = 0.780: chi is: 64075.570, dS is: 12225.292, S_calc is: 12824.388, S_ref is: 64674.664
+q = 0.783: chi is: 63386.754, dS is: 11985.866, S_calc is: 12775.516, S_ref is: 64176.402
+q = 0.786: chi is: 62696.527, dS is: 11746.328, S_calc is: 12724.777, S_ref is: 63674.977
+q = 0.789: chi is: 62005.164, dS is: 11506.948, S_calc is: 12672.413, S_ref is: 63170.629
+q = 0.792: chi is: 61313.000, dS is: 11268.032, S_calc is: 12618.666, S_ref is: 62663.633
+q = 0.795: chi is: 60620.438, dS is: 11029.921, S_calc is: 12563.784, S_ref is: 62154.301
+q = 0.798: chi is: 59927.969, dS is: 10792.994, S_calc is: 12508.003, S_ref is: 61642.980
+q = 0.801: chi is: 59236.164, dS is: 10557.667, S_calc is: 12451.571, S_ref is: 61130.066
+q = 0.804: chi is: 58545.656, dS is: 10324.389, S_calc is: 12394.715, S_ref is: 60615.984
+q = 0.807: chi is: 57857.180, dS is: 10093.643, S_calc is: 12337.662, S_ref is: 60101.199
+q = 0.810: chi is: 57171.523, dS is: 9865.941, S_calc is: 12280.633, S_ref is: 59586.215
+q = 0.813: chi is: 56489.562, dS is: 9641.824, S_calc is: 12223.829, S_ref is: 59071.566
+q = 0.816: chi is: 55812.234, dS is: 9421.854, S_calc is: 12167.449, S_ref is: 58557.832
+q = 0.819: chi is: 55140.543, dS is: 9206.609, S_calc is: 12111.680, S_ref is: 58045.613
+q = 0.822: chi is: 54475.539, dS is: 8996.687, S_calc is: 12056.682, S_ref is: 57535.531
+q = 0.825: chi is: 53818.328, dS is: 8792.689, S_calc is: 12002.606, S_ref is: 57028.242
+q = 0.828: chi is: 53170.047, dS is: 8595.225, S_calc is: 11949.594, S_ref is: 56524.414
+q = 0.831: chi is: 52531.863, dS is: 8404.896, S_calc is: 11897.760, S_ref is: 56024.727
+q = 0.834: chi is: 51904.969, dS is: 8222.298, S_calc is: 11847.205, S_ref is: 55529.879
+q = 0.837: chi is: 51290.559, dS is: 8048.012, S_calc is: 11798.006, S_ref is: 55040.555
+q = 0.840: chi is: 50689.828, dS is: 7882.600, S_calc is: 11750.228, S_ref is: 54557.453
+q = 0.843: chi is: 50103.941, dS is: 7726.593, S_calc is: 11703.911, S_ref is: 54081.258
+q = 0.846: chi is: 49534.051, dS is: 7580.492, S_calc is: 11659.078, S_ref is: 53612.637
+q = 0.849: chi is: 48981.258, dS is: 7444.761, S_calc is: 11615.738, S_ref is: 53152.234
+q = 0.852: chi is: 48446.629, dS is: 7319.815, S_calc is: 11573.869, S_ref is: 52700.684
+q = 0.855: chi is: 47931.164, dS is: 7206.023, S_calc is: 11533.439, S_ref is: 52258.578
+q = 0.858: chi is: 47435.762, dS is: 7103.700, S_calc is: 11494.404, S_ref is: 51826.469
+q = 0.861: chi is: 46961.281, dS is: 7013.100, S_calc is: 11456.690, S_ref is: 51404.875
+q = 0.864: chi is: 46508.465, dS is: 6934.415, S_calc is: 11420.216, S_ref is: 50994.266
+q = 0.867: chi is: 46077.949, dS is: 6867.769, S_calc is: 11384.882, S_ref is: 50595.062
+q = 0.870: chi is: 45670.266, dS is: 6813.220, S_calc is: 11350.582, S_ref is: 50207.629
+q = 0.873: chi is: 45285.832, dS is: 6770.753, S_calc is: 11317.190, S_ref is: 49832.270
+q = 0.876: chi is: 44924.938, dS is: 6740.277, S_calc is: 11284.573, S_ref is: 49469.234
+q = 0.879: chi is: 44587.734, dS is: 6721.631, S_calc is: 11252.598, S_ref is: 49118.703
+q = 0.882: chi is: 44274.273, dS is: 6714.576, S_calc is: 11221.100, S_ref is: 48780.793
+q = 0.885: chi is: 43984.422, dS is: 6718.801, S_calc is: 11189.937, S_ref is: 48455.559
+q = 0.888: chi is: 43717.957, dS is: 6733.921, S_calc is: 11158.944, S_ref is: 48142.980
+q = 0.891: chi is: 43474.484, dS is: 6759.478, S_calc is: 11127.968, S_ref is: 47842.977
+q = 0.894: chi is: 43253.500, dS is: 6794.947, S_calc is: 11096.847, S_ref is: 47555.398
+q = 0.897: chi is: 43054.348, dS is: 6839.737, S_calc is: 11065.420, S_ref is: 47280.031
+q = 0.900: chi is: 42876.258, dS is: 6893.192, S_calc is: 11033.539, S_ref is: 47016.605
+chi square is 4.16269e+16 ( 23601.564 % )
+==9689== Profiling application: ./a.out
+==9689== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   68.46%  13.324ms         1  13.324ms  13.324ms  13.324ms  scat_calc(float*, float*, int*, float*, float*, float*, int, int, int, float*, float, float, float, float*, float*, float*, float*, int, int, float*, float, float, float*, float, float*)
+                   26.93%  5.2413ms         1  5.2413ms  5.2413ms  5.2413ms  surf_calc(float*, int*, float*, int*, int*, float*, int, int, int, float, float*)
+                    2.46%  478.11us         1  478.11us  478.11us  478.11us  force_calc(float*, int, int, float*, float*, float*, int, int)
+                    1.36%  265.22us         1  265.22us  265.22us  265.22us  pre_scan_close(int*, int*, int*, int)
+                    0.59%  115.39us         1  115.39us  115.39us  115.39us  dist_calc(float*, float*, float*, float*, float*, int*, int, int)
+                    0.06%  10.848us        10  1.0840us     832ns  2.0480us  [CUDA memset]
+                    0.05%  10.496us         1  10.496us  10.496us  10.496us  FF_calc(float*, float*, float*, int, int, float, float, float*)
+                    0.05%  8.8320us         5  1.7660us     992ns  3.3920us  [CUDA memcpy HtoD]
+                    0.04%  8.2240us         3  2.7410us  2.4640us  2.9440us  [CUDA memcpy DtoH]
+      API calls:   95.43%  490.76ms        21  23.370ms  7.6500us  485.51ms  cudaFree
+                    3.71%  19.064ms         8  2.3830ms  8.8120us  13.344ms  cudaMemcpy
+                    0.56%  2.8675ms        22  130.34us  6.7660us  236.45us  cudaMalloc
+                    0.13%  649.53us        94  6.9090us     342ns  262.54us  cuDeviceGetAttribute
+                    0.10%  534.29us         1  534.29us  534.29us  534.29us  cuDeviceTotalMem
+                    0.04%  185.05us        10  18.505us  5.5180us  50.113us  cudaMemset
+                    0.02%  81.226us         6  13.537us  8.9700us  25.911us  cudaLaunch
+                    0.01%  64.793us         1  64.793us  64.793us  64.793us  cuDeviceGetName
+                    0.00%  18.493us        64     288ns     151ns  6.3000us  cudaSetupArgument
+                    0.00%  4.4720us         2  2.2360us     523ns  3.9490us  cuDeviceGet
+                    0.00%  3.8130us         3  1.2710us     329ns  2.3950us  cuDeviceGetCount
+                    0.00%  3.0090us         6     501ns     270ns  1.1740us  cudaConfigureCall
+1531950461247

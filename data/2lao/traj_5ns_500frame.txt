@@ -1,0 +1,2140 @@
+1540829367072
+==9673== NVPROF is profiling process 9673, command: ./traj_scatter.out
+Opened file.
+Read the first two lines, ii = 0
+Read the first two lines, ii = 1
+Read the first two lines, ii = 2
+Read the first two lines, ii = 3
+Read the first two lines, ii = 4
+Read the first two lines, ii = 5
+Read the first two lines, ii = 6
+Read the first two lines, ii = 7
+Read the first two lines, ii = 8
+Read the first two lines, ii = 9
+Read the first two lines, ii = 10
+Read the first two lines, ii = 11
+Read the first two lines, ii = 12
+Read the first two lines, ii = 13
+Read the first two lines, ii = 14
+Read the first two lines, ii = 15
+Read the first two lines, ii = 16
+Read the first two lines, ii = 17
+Read the first two lines, ii = 18
+Read the first two lines, ii = 19
+Read the first two lines, ii = 20
+Read the first two lines, ii = 21
+Read the first two lines, ii = 22
+Read the first two lines, ii = 23
+Read the first two lines, ii = 24
+Read the first two lines, ii = 25
+Read the first two lines, ii = 26
+Read the first two lines, ii = 27
+Read the first two lines, ii = 28
+Read the first two lines, ii = 29
+Read the first two lines, ii = 30
+Read the first two lines, ii = 31
+Read the first two lines, ii = 32
+Read the first two lines, ii = 33
+Read the first two lines, ii = 34
+Read the first two lines, ii = 35
+Read the first two lines, ii = 36
+Read the first two lines, ii = 37
+Read the first two lines, ii = 38
+Read the first two lines, ii = 39
+Read the first two lines, ii = 40
+Read the first two lines, ii = 41
+Read the first two lines, ii = 42
+Read the first two lines, ii = 43
+Read the first two lines, ii = 44
+Read the first two lines, ii = 45
+Read the first two lines, ii = 46
+Read the first two lines, ii = 47
+Read the first two lines, ii = 48
+Read the first two lines, ii = 49
+Read the first two lines, ii = 50
+Read the first two lines, ii = 51
+Read the first two lines, ii = 52
+Read the first two lines, ii = 53
+Read the first two lines, ii = 54
+Read the first two lines, ii = 55
+Read the first two lines, ii = 56
+Read the first two lines, ii = 57
+Read the first two lines, ii = 58
+Read the first two lines, ii = 59
+Read the first two lines, ii = 60
+Read the first two lines, ii = 61
+Read the first two lines, ii = 62
+Read the first two lines, ii = 63
+Read the first two lines, ii = 64
+Read the first two lines, ii = 65
+Read the first two lines, ii = 66
+Read the first two lines, ii = 67
+Read the first two lines, ii = 68
+Read the first two lines, ii = 69
+Read the first two lines, ii = 70
+Read the first two lines, ii = 71
+Read the first two lines, ii = 72
+Read the first two lines, ii = 73
+Read the first two lines, ii = 74
+Read the first two lines, ii = 75
+Read the first two lines, ii = 76
+Read the first two lines, ii = 77
+Read the first two lines, ii = 78
+Read the first two lines, ii = 79
+Read the first two lines, ii = 80
+Read the first two lines, ii = 81
+Read the first two lines, ii = 82
+Read the first two lines, ii = 83
+Read the first two lines, ii = 84
+Read the first two lines, ii = 85
+Read the first two lines, ii = 86
+Read the first two lines, ii = 87
+Read the first two lines, ii = 88
+Read the first two lines, ii = 89
+Read the first two lines, ii = 90
+Read the first two lines, ii = 91
+Read the first two lines, ii = 92
+Read the first two lines, ii = 93
+Read the first two lines, ii = 94
+Read the first two lines, ii = 95
+Read the first two lines, ii = 96
+Read the first two lines, ii = 97
+Read the first two lines, ii = 98
+Read the first two lines, ii = 99
+Read the first two lines, ii = 100
+Read the first two lines, ii = 101
+Read the first two lines, ii = 102
+Read the first two lines, ii = 103
+Read the first two lines, ii = 104
+Read the first two lines, ii = 105
+Read the first two lines, ii = 106
+Read the first two lines, ii = 107
+Read the first two lines, ii = 108
+Read the first two lines, ii = 109
+Read the first two lines, ii = 110
+Read the first two lines, ii = 111
+Read the first two lines, ii = 112
+Read the first two lines, ii = 113
+Read the first two lines, ii = 114
+Read the first two lines, ii = 115
+Read the first two lines, ii = 116
+Read the first two lines, ii = 117
+Read the first two lines, ii = 118
+Read the first two lines, ii = 119
+Read the first two lines, ii = 120
+Read the first two lines, ii = 121
+Read the first two lines, ii = 122
+Read the first two lines, ii = 123
+Read the first two lines, ii = 124
+Read the first two lines, ii = 125
+Read the first two lines, ii = 126
+Read the first two lines, ii = 127
+Read the first two lines, ii = 128
+Read the first two lines, ii = 129
+Read the first two lines, ii = 130
+Read the first two lines, ii = 131
+Read the first two lines, ii = 132
+Read the first two lines, ii = 133
+Read the first two lines, ii = 134
+Read the first two lines, ii = 135
+Read the first two lines, ii = 136
+Read the first two lines, ii = 137
+Read the first two lines, ii = 138
+Read the first two lines, ii = 139
+Read the first two lines, ii = 140
+Read the first two lines, ii = 141
+Read the first two lines, ii = 142
+Read the first two lines, ii = 143
+Read the first two lines, ii = 144
+Read the first two lines, ii = 145
+Read the first two lines, ii = 146
+Read the first two lines, ii = 147
+Read the first two lines, ii = 148
+Read the first two lines, ii = 149
+Read the first two lines, ii = 150
+Read the first two lines, ii = 151
+Read the first two lines, ii = 152
+Read the first two lines, ii = 153
+Read the first two lines, ii = 154
+Read the first two lines, ii = 155
+Read the first two lines, ii = 156
+Read the first two lines, ii = 157
+Read the first two lines, ii = 158
+Read the first two lines, ii = 159
+Read the first two lines, ii = 160
+Read the first two lines, ii = 161
+Read the first two lines, ii = 162
+Read the first two lines, ii = 163
+Read the first two lines, ii = 164
+Read the first two lines, ii = 165
+Read the first two lines, ii = 166
+Read the first two lines, ii = 167
+Read the first two lines, ii = 168
+Read the first two lines, ii = 169
+Read the first two lines, ii = 170
+Read the first two lines, ii = 171
+Read the first two lines, ii = 172
+Read the first two lines, ii = 173
+Read the first two lines, ii = 174
+Read the first two lines, ii = 175
+Read the first two lines, ii = 176
+Read the first two lines, ii = 177
+Read the first two lines, ii = 178
+Read the first two lines, ii = 179
+Read the first two lines, ii = 180
+Read the first two lines, ii = 181
+Read the first two lines, ii = 182
+Read the first two lines, ii = 183
+Read the first two lines, ii = 184
+Read the first two lines, ii = 185
+Read the first two lines, ii = 186
+Read the first two lines, ii = 187
+Read the first two lines, ii = 188
+Read the first two lines, ii = 189
+Read the first two lines, ii = 190
+Read the first two lines, ii = 191
+Read the first two lines, ii = 192
+Read the first two lines, ii = 193
+Read the first two lines, ii = 194
+Read the first two lines, ii = 195
+Read the first two lines, ii = 196
+Read the first two lines, ii = 197
+Read the first two lines, ii = 198
+Read the first two lines, ii = 199
+Read the first two lines, ii = 200
+Read the first two lines, ii = 201
+Read the first two lines, ii = 202
+Read the first two lines, ii = 203
+Read the first two lines, ii = 204
+Read the first two lines, ii = 205
+Read the first two lines, ii = 206
+Read the first two lines, ii = 207
+Read the first two lines, ii = 208
+Read the first two lines, ii = 209
+Read the first two lines, ii = 210
+Read the first two lines, ii = 211
+Read the first two lines, ii = 212
+Read the first two lines, ii = 213
+Read the first two lines, ii = 214
+Read the first two lines, ii = 215
+Read the first two lines, ii = 216
+Read the first two lines, ii = 217
+Read the first two lines, ii = 218
+Read the first two lines, ii = 219
+Read the first two lines, ii = 220
+Read the first two lines, ii = 221
+Read the first two lines, ii = 222
+Read the first two lines, ii = 223
+Read the first two lines, ii = 224
+Read the first two lines, ii = 225
+Read the first two lines, ii = 226
+Read the first two lines, ii = 227
+Read the first two lines, ii = 228
+Read the first two lines, ii = 229
+Read the first two lines, ii = 230
+Read the first two lines, ii = 231
+Read the first two lines, ii = 232
+Read the first two lines, ii = 233
+Read the first two lines, ii = 234
+Read the first two lines, ii = 235
+Read the first two lines, ii = 236
+Read the first two lines, ii = 237
+Read the first two lines, ii = 238
+Read the first two lines, ii = 239
+Read the first two lines, ii = 240
+Read the first two lines, ii = 241
+Read the first two lines, ii = 242
+Read the first two lines, ii = 243
+Read the first two lines, ii = 244
+Read the first two lines, ii = 245
+Read the first two lines, ii = 246
+Read the first two lines, ii = 247
+Read the first two lines, ii = 248
+Read the first two lines, ii = 249
+Read the first two lines, ii = 250
+Read the first two lines, ii = 251
+Read the first two lines, ii = 252
+Read the first two lines, ii = 253
+Read the first two lines, ii = 254
+Read the first two lines, ii = 255
+Read the first two lines, ii = 256
+Read the first two lines, ii = 257
+Read the first two lines, ii = 258
+Read the first two lines, ii = 259
+Read the first two lines, ii = 260
+Read the first two lines, ii = 261
+Read the first two lines, ii = 262
+Read the first two lines, ii = 263
+Read the first two lines, ii = 264
+Read the first two lines, ii = 265
+Read the first two lines, ii = 266
+Read the first two lines, ii = 267
+Read the first two lines, ii = 268
+Read the first two lines, ii = 269
+Read the first two lines, ii = 270
+Read the first two lines, ii = 271
+Read the first two lines, ii = 272
+Read the first two lines, ii = 273
+Read the first two lines, ii = 274
+Read the first two lines, ii = 275
+Read the first two lines, ii = 276
+Read the first two lines, ii = 277
+Read the first two lines, ii = 278
+Read the first two lines, ii = 279
+Read the first two lines, ii = 280
+Read the first two lines, ii = 281
+Read the first two lines, ii = 282
+Read the first two lines, ii = 283
+Read the first two lines, ii = 284
+Read the first two lines, ii = 285
+Read the first two lines, ii = 286
+Read the first two lines, ii = 287
+Read the first two lines, ii = 288
+Read the first two lines, ii = 289
+Read the first two lines, ii = 290
+Read the first two lines, ii = 291
+Read the first two lines, ii = 292
+Read the first two lines, ii = 293
+Read the first two lines, ii = 294
+Read the first two lines, ii = 295
+Read the first two lines, ii = 296
+Read the first two lines, ii = 297
+Read the first two lines, ii = 298
+Read the first two lines, ii = 299
+Read the first two lines, ii = 300
+Read the first two lines, ii = 301
+Read the first two lines, ii = 302
+Read the first two lines, ii = 303
+Read the first two lines, ii = 304
+Read the first two lines, ii = 305
+Read the first two lines, ii = 306
+Read the first two lines, ii = 307
+Read the first two lines, ii = 308
+Read the first two lines, ii = 309
+Read the first two lines, ii = 310
+Read the first two lines, ii = 311
+Read the first two lines, ii = 312
+Read the first two lines, ii = 313
+Read the first two lines, ii = 314
+Read the first two lines, ii = 315
+Read the first two lines, ii = 316
+Read the first two lines, ii = 317
+Read the first two lines, ii = 318
+Read the first two lines, ii = 319
+Read the first two lines, ii = 320
+Read the first two lines, ii = 321
+Read the first two lines, ii = 322
+Read the first two lines, ii = 323
+Read the first two lines, ii = 324
+Read the first two lines, ii = 325
+Read the first two lines, ii = 326
+Read the first two lines, ii = 327
+Read the first two lines, ii = 328
+Read the first two lines, ii = 329
+Read the first two lines, ii = 330
+Read the first two lines, ii = 331
+Read the first two lines, ii = 332
+Read the first two lines, ii = 333
+Read the first two lines, ii = 334
+Read the first two lines, ii = 335
+Read the first two lines, ii = 336
+Read the first two lines, ii = 337
+Read the first two lines, ii = 338
+Read the first two lines, ii = 339
+Read the first two lines, ii = 340
+Read the first two lines, ii = 341
+Read the first two lines, ii = 342
+Read the first two lines, ii = 343
+Read the first two lines, ii = 344
+Read the first two lines, ii = 345
+Read the first two lines, ii = 346
+Read the first two lines, ii = 347
+Read the first two lines, ii = 348
+Read the first two lines, ii = 349
+Read the first two lines, ii = 350
+Read the first two lines, ii = 351
+Read the first two lines, ii = 352
+Read the first two lines, ii = 353
+Read the first two lines, ii = 354
+Read the first two lines, ii = 355
+Read the first two lines, ii = 356
+Read the first two lines, ii = 357
+Read the first two lines, ii = 358
+Read the first two lines, ii = 359
+Read the first two lines, ii = 360
+Read the first two lines, ii = 361
+Read the first two lines, ii = 362
+Read the first two lines, ii = 363
+Read the first two lines, ii = 364
+Read the first two lines, ii = 365
+Read the first two lines, ii = 366
+Read the first two lines, ii = 367
+Read the first two lines, ii = 368
+Read the first two lines, ii = 369
+Read the first two lines, ii = 370
+Read the first two lines, ii = 371
+Read the first two lines, ii = 372
+Read the first two lines, ii = 373
+Read the first two lines, ii = 374
+Read the first two lines, ii = 375
+Read the first two lines, ii = 376
+Read the first two lines, ii = 377
+Read the first two lines, ii = 378
+Read the first two lines, ii = 379
+Read the first two lines, ii = 380
+Read the first two lines, ii = 381
+Read the first two lines, ii = 382
+Read the first two lines, ii = 383
+Read the first two lines, ii = 384
+Read the first two lines, ii = 385
+Read the first two lines, ii = 386
+Read the first two lines, ii = 387
+Read the first two lines, ii = 388
+Read the first two lines, ii = 389
+Read the first two lines, ii = 390
+Read the first two lines, ii = 391
+Read the first two lines, ii = 392
+Read the first two lines, ii = 393
+Read the first two lines, ii = 394
+Read the first two lines, ii = 395
+Read the first two lines, ii = 396
+Read the first two lines, ii = 397
+Read the first two lines, ii = 398
+Read the first two lines, ii = 399
+Read the first two lines, ii = 400
+Read the first two lines, ii = 401
+Read the first two lines, ii = 402
+Read the first two lines, ii = 403
+Read the first two lines, ii = 404
+Read the first two lines, ii = 405
+Read the first two lines, ii = 406
+Read the first two lines, ii = 407
+Read the first two lines, ii = 408
+Read the first two lines, ii = 409
+Read the first two lines, ii = 410
+Read the first two lines, ii = 411
+Read the first two lines, ii = 412
+Read the first two lines, ii = 413
+Read the first two lines, ii = 414
+Read the first two lines, ii = 415
+Read the first two lines, ii = 416
+Read the first two lines, ii = 417
+Read the first two lines, ii = 418
+Read the first two lines, ii = 419
+Read the first two lines, ii = 420
+Read the first two lines, ii = 421
+Read the first two lines, ii = 422
+Read the first two lines, ii = 423
+Read the first two lines, ii = 424
+Read the first two lines, ii = 425
+Read the first two lines, ii = 426
+Read the first two lines, ii = 427
+Read the first two lines, ii = 428
+Read the first two lines, ii = 429
+Read the first two lines, ii = 430
+Read the first two lines, ii = 431
+Read the first two lines, ii = 432
+Read the first two lines, ii = 433
+Read the first two lines, ii = 434
+Read the first two lines, ii = 435
+Read the first two lines, ii = 436
+Read the first two lines, ii = 437
+Read the first two lines, ii = 438
+Read the first two lines, ii = 439
+Read the first two lines, ii = 440
+Read the first two lines, ii = 441
+Read the first two lines, ii = 442
+Read the first two lines, ii = 443
+Read the first two lines, ii = 444
+Read the first two lines, ii = 445
+Read the first two lines, ii = 446
+Read the first two lines, ii = 447
+Read the first two lines, ii = 448
+Read the first two lines, ii = 449
+Read the first two lines, ii = 450
+Read the first two lines, ii = 451
+Read the first two lines, ii = 452
+Read the first two lines, ii = 453
+Read the first two lines, ii = 454
+Read the first two lines, ii = 455
+Read the first two lines, ii = 456
+Read the first two lines, ii = 457
+Read the first two lines, ii = 458
+Read the first two lines, ii = 459
+Read the first two lines, ii = 460
+Read the first two lines, ii = 461
+Read the first two lines, ii = 462
+Read the first two lines, ii = 463
+Read the first two lines, ii = 464
+Read the first two lines, ii = 465
+Read the first two lines, ii = 466
+Read the first two lines, ii = 467
+Read the first two lines, ii = 468
+Read the first two lines, ii = 469
+Read the first two lines, ii = 470
+Read the first two lines, ii = 471
+Read the first two lines, ii = 472
+Read the first two lines, ii = 473
+Read the first two lines, ii = 474
+Read the first two lines, ii = 475
+Read the first two lines, ii = 476
+Read the first two lines, ii = 477
+Read the first two lines, ii = 478
+Read the first two lines, ii = 479
+Read the first two lines, ii = 480
+Read the first two lines, ii = 481
+Read the first two lines, ii = 482
+Read the first two lines, ii = 483
+Read the first two lines, ii = 484
+Read the first two lines, ii = 485
+Read the first two lines, ii = 486
+Read the first two lines, ii = 487
+Read the first two lines, ii = 488
+Read the first two lines, ii = 489
+Read the first two lines, ii = 490
+Read the first two lines, ii = 491
+Read the first two lines, ii = 492
+Read the first two lines, ii = 493
+Read the first two lines, ii = 494
+Read the first two lines, ii = 495
+Read the first two lines, ii = 496
+Read the first two lines, ii = 497
+Read the first two lines, ii = 498
+Read the first two lines, ii = 499
+Read the first two lines, ii = 500
+Read the first two lines, ii = 501
+Read the first two lines, ii = 502
+Read the first two lines, ii = 503
+Read the first two lines, ii = 504
+Read the first two lines, ii = 505
+Read the first two lines, ii = 506
+Read the first two lines, ii = 507
+Read the first two lines, ii = 508
+Read the first two lines, ii = 509
+Read the first two lines, ii = 510
+Read the first two lines, ii = 511
+Read the first two lines, ii = 512
+Read the first two lines, ii = 513
+Read the first two lines, ii = 514
+Calculating frame 514...
+Convex contact area = 1811.991 A^2.
+Read the first two lines, ii = 515
+Calculating frame 515...
+Convex contact area = 1798.734 A^2.
+Read the first two lines, ii = 516
+Calculating frame 516...
+Convex contact area = 1785.841 A^2.
+Read the first two lines, ii = 517
+Calculating frame 517...
+Convex contact area = 1797.480 A^2.
+Read the first two lines, ii = 518
+Calculating frame 518...
+Convex contact area = 1834.591 A^2.
+Read the first two lines, ii = 519
+Calculating frame 519...
+Convex contact area = 1829.906 A^2.
+Read the first two lines, ii = 520
+Calculating frame 520...
+Convex contact area = 1828.564 A^2.
+Read the first two lines, ii = 521
+Calculating frame 521...
+Convex contact area = 1826.854 A^2.
+Read the first two lines, ii = 522
+Calculating frame 522...
+Convex contact area = 1783.499 A^2.
+Read the first two lines, ii = 523
+Calculating frame 523...
+Convex contact area = 1809.092 A^2.
+Read the first two lines, ii = 524
+Calculating frame 524...
+Convex contact area = 1788.643 A^2.
+Read the first two lines, ii = 525
+Calculating frame 525...
+Convex contact area = 1801.014 A^2.
+Read the first two lines, ii = 526
+Calculating frame 526...
+Convex contact area = 1798.722 A^2.
+Read the first two lines, ii = 527
+Calculating frame 527...
+Convex contact area = 1808.181 A^2.
+Read the first two lines, ii = 528
+Calculating frame 528...
+Convex contact area = 1820.474 A^2.
+Read the first two lines, ii = 529
+Calculating frame 529...
+Convex contact area = 1796.450 A^2.
+Read the first two lines, ii = 530
+Calculating frame 530...
+Convex contact area = 1787.761 A^2.
+Read the first two lines, ii = 531
+Calculating frame 531...
+Convex contact area = 1809.862 A^2.
+Read the first two lines, ii = 532
+Calculating frame 532...
+Convex contact area = 1814.147 A^2.
+Read the first two lines, ii = 533
+Calculating frame 533...
+Convex contact area = 1822.656 A^2.
+Read the first two lines, ii = 534
+Calculating frame 534...
+Convex contact area = 1837.070 A^2.
+Read the first two lines, ii = 535
+Calculating frame 535...
+Convex contact area = 1835.565 A^2.
+Read the first two lines, ii = 536
+Calculating frame 536...
+Convex contact area = 1822.508 A^2.
+Read the first two lines, ii = 537
+Calculating frame 537...
+Convex contact area = 1832.215 A^2.
+Read the first two lines, ii = 538
+Calculating frame 538...
+Convex contact area = 1820.210 A^2.
+Read the first two lines, ii = 539
+Calculating frame 539...
+Convex contact area = 1821.986 A^2.
+Read the first two lines, ii = 540
+Calculating frame 540...
+Convex contact area = 1797.056 A^2.
+Read the first two lines, ii = 541
+Calculating frame 541...
+Convex contact area = 1805.743 A^2.
+Read the first two lines, ii = 542
+Calculating frame 542...
+Convex contact area = 1803.528 A^2.
+Read the first two lines, ii = 543
+Calculating frame 543...
+Convex contact area = 1791.224 A^2.
+Read the first two lines, ii = 544
+Calculating frame 544...
+Convex contact area = 1797.622 A^2.
+Read the first two lines, ii = 545
+Calculating frame 545...
+Convex contact area = 1782.635 A^2.
+Read the first two lines, ii = 546
+Calculating frame 546...
+Convex contact area = 1819.620 A^2.
+Read the first two lines, ii = 547
+Calculating frame 547...
+Convex contact area = 1784.997 A^2.
+Read the first two lines, ii = 548
+Calculating frame 548...
+Convex contact area = 1793.257 A^2.
+Read the first two lines, ii = 549
+Calculating frame 549...
+Convex contact area = 1792.320 A^2.
+Read the first two lines, ii = 550
+Calculating frame 550...
+Convex contact area = 1785.105 A^2.
+Read the first two lines, ii = 551
+Calculating frame 551...
+Convex contact area = 1820.784 A^2.
+Read the first two lines, ii = 552
+Calculating frame 552...
+Convex contact area = 1824.609 A^2.
+Read the first two lines, ii = 553
+Calculating frame 553...
+Convex contact area = 1816.160 A^2.
+Read the first two lines, ii = 554
+Calculating frame 554...
+Convex contact area = 1809.661 A^2.
+Read the first two lines, ii = 555
+Calculating frame 555...
+Convex contact area = 1814.288 A^2.
+Read the first two lines, ii = 556
+Calculating frame 556...
+Convex contact area = 1789.542 A^2.
+Read the first two lines, ii = 557
+Calculating frame 557...
+Convex contact area = 1810.543 A^2.
+Read the first two lines, ii = 558
+Calculating frame 558...
+Convex contact area = 1821.124 A^2.
+Read the first two lines, ii = 559
+Calculating frame 559...
+Convex contact area = 1818.463 A^2.
+Read the first two lines, ii = 560
+Calculating frame 560...
+Convex contact area = 1810.370 A^2.
+Read the first two lines, ii = 561
+Calculating frame 561...
+Convex contact area = 1806.621 A^2.
+Read the first two lines, ii = 562
+Calculating frame 562...
+Convex contact area = 1783.769 A^2.
+Read the first two lines, ii = 563
+Calculating frame 563...
+Convex contact area = 1814.791 A^2.
+Read the first two lines, ii = 564
+Calculating frame 564...
+Convex contact area = 1836.364 A^2.
+Read the first two lines, ii = 565
+Calculating frame 565...
+Convex contact area = 1796.743 A^2.
+Read the first two lines, ii = 566
+Calculating frame 566...
+Convex contact area = 1800.239 A^2.
+Read the first two lines, ii = 567
+Calculating frame 567...
+Convex contact area = 1813.033 A^2.
+Read the first two lines, ii = 568
+Calculating frame 568...
+Convex contact area = 1813.324 A^2.
+Read the first two lines, ii = 569
+Calculating frame 569...
+Convex contact area = 1827.815 A^2.
+Read the first two lines, ii = 570
+Calculating frame 570...
+Convex contact area = 1812.435 A^2.
+Read the first two lines, ii = 571
+Calculating frame 571...
+Convex contact area = 1818.912 A^2.
+Read the first two lines, ii = 572
+Calculating frame 572...
+Convex contact area = 1829.604 A^2.
+Read the first two lines, ii = 573
+Calculating frame 573...
+Convex contact area = 1804.472 A^2.
+Read the first two lines, ii = 574
+Calculating frame 574...
+Convex contact area = 1816.247 A^2.
+Read the first two lines, ii = 575
+Calculating frame 575...
+Convex contact area = 1834.975 A^2.
+Read the first two lines, ii = 576
+Calculating frame 576...
+Convex contact area = 1839.632 A^2.
+Read the first two lines, ii = 577
+Calculating frame 577...
+Convex contact area = 1833.664 A^2.
+Read the first two lines, ii = 578
+Calculating frame 578...
+Convex contact area = 1803.272 A^2.
+Read the first two lines, ii = 579
+Calculating frame 579...
+Convex contact area = 1844.685 A^2.
+Read the first two lines, ii = 580
+Calculating frame 580...
+Convex contact area = 1816.098 A^2.
+Read the first two lines, ii = 581
+Calculating frame 581...
+Convex contact area = 1843.340 A^2.
+Read the first two lines, ii = 582
+Calculating frame 582...
+Convex contact area = 1814.396 A^2.
+Read the first two lines, ii = 583
+Calculating frame 583...
+Convex contact area = 1815.589 A^2.
+Read the first two lines, ii = 584
+Calculating frame 584...
+Convex contact area = 1838.678 A^2.
+Read the first two lines, ii = 585
+Calculating frame 585...
+Convex contact area = 1837.305 A^2.
+Read the first two lines, ii = 586
+Calculating frame 586...
+Convex contact area = 1828.271 A^2.
+Read the first two lines, ii = 587
+Calculating frame 587...
+Convex contact area = 1838.505 A^2.
+Read the first two lines, ii = 588
+Calculating frame 588...
+Convex contact area = 1844.884 A^2.
+Read the first two lines, ii = 589
+Calculating frame 589...
+Convex contact area = 1814.969 A^2.
+Read the first two lines, ii = 590
+Calculating frame 590...
+Convex contact area = 1791.302 A^2.
+Read the first two lines, ii = 591
+Calculating frame 591...
+Convex contact area = 1812.145 A^2.
+Read the first two lines, ii = 592
+Calculating frame 592...
+Convex contact area = 1831.611 A^2.
+Read the first two lines, ii = 593
+Calculating frame 593...
+Convex contact area = 1844.576 A^2.
+Read the first two lines, ii = 594
+Calculating frame 594...
+Convex contact area = 1812.138 A^2.
+Read the first two lines, ii = 595
+Calculating frame 595...
+Convex contact area = 1822.128 A^2.
+Read the first two lines, ii = 596
+Calculating frame 596...
+Convex contact area = 1831.912 A^2.
+Read the first two lines, ii = 597
+Calculating frame 597...
+Convex contact area = 1808.571 A^2.
+Read the first two lines, ii = 598
+Calculating frame 598...
+Convex contact area = 1841.604 A^2.
+Read the first two lines, ii = 599
+Calculating frame 599...
+Convex contact area = 1811.165 A^2.
+Read the first two lines, ii = 600
+Calculating frame 600...
+Convex contact area = 1811.265 A^2.
+Read the first two lines, ii = 601
+Calculating frame 601...
+Convex contact area = 1821.087 A^2.
+Read the first two lines, ii = 602
+Calculating frame 602...
+Convex contact area = 1803.219 A^2.
+Read the first two lines, ii = 603
+Calculating frame 603...
+Convex contact area = 1827.385 A^2.
+Read the first two lines, ii = 604
+Calculating frame 604...
+Convex contact area = 1817.588 A^2.
+Read the first two lines, ii = 605
+Calculating frame 605...
+Convex contact area = 1831.460 A^2.
+Read the first two lines, ii = 606
+Calculating frame 606...
+Convex contact area = 1839.730 A^2.
+Read the first two lines, ii = 607
+Calculating frame 607...
+Convex contact area = 1855.061 A^2.
+Read the first two lines, ii = 608
+Calculating frame 608...
+Convex contact area = 1871.307 A^2.
+Read the first two lines, ii = 609
+Calculating frame 609...
+Convex contact area = 1855.503 A^2.
+Read the first two lines, ii = 610
+Calculating frame 610...
+Convex contact area = 1862.642 A^2.
+Read the first two lines, ii = 611
+Calculating frame 611...
+Convex contact area = 1857.997 A^2.
+Read the first two lines, ii = 612
+Calculating frame 612...
+Convex contact area = 1832.548 A^2.
+Read the first two lines, ii = 613
+Calculating frame 613...
+Convex contact area = 1842.204 A^2.
+Read the first two lines, ii = 614
+Calculating frame 614...
+Convex contact area = 1855.730 A^2.
+Read the first two lines, ii = 615
+Calculating frame 615...
+Convex contact area = 1840.852 A^2.
+Read the first two lines, ii = 616
+Calculating frame 616...
+Convex contact area = 1828.473 A^2.
+Read the first two lines, ii = 617
+Calculating frame 617...
+Convex contact area = 1821.738 A^2.
+Read the first two lines, ii = 618
+Calculating frame 618...
+Convex contact area = 1837.998 A^2.
+Read the first two lines, ii = 619
+Calculating frame 619...
+Convex contact area = 1855.127 A^2.
+Read the first two lines, ii = 620
+Calculating frame 620...
+Convex contact area = 1828.516 A^2.
+Read the first two lines, ii = 621
+Calculating frame 621...
+Convex contact area = 1828.314 A^2.
+Read the first two lines, ii = 622
+Calculating frame 622...
+Convex contact area = 1823.481 A^2.
+Read the first two lines, ii = 623
+Calculating frame 623...
+Convex contact area = 1830.031 A^2.
+Read the first two lines, ii = 624
+Calculating frame 624...
+Convex contact area = 1844.309 A^2.
+Read the first two lines, ii = 625
+Calculating frame 625...
+Convex contact area = 1853.487 A^2.
+Read the first two lines, ii = 626
+Calculating frame 626...
+Convex contact area = 1841.061 A^2.
+Read the first two lines, ii = 627
+Calculating frame 627...
+Convex contact area = 1836.313 A^2.
+Read the first two lines, ii = 628
+Calculating frame 628...
+Convex contact area = 1834.043 A^2.
+Read the first two lines, ii = 629
+Calculating frame 629...
+Convex contact area = 1828.393 A^2.
+Read the first two lines, ii = 630
+Calculating frame 630...
+Convex contact area = 1843.637 A^2.
+Read the first two lines, ii = 631
+Calculating frame 631...
+Convex contact area = 1840.139 A^2.
+Read the first two lines, ii = 632
+Calculating frame 632...
+Convex contact area = 1856.866 A^2.
+Read the first two lines, ii = 633
+Calculating frame 633...
+Convex contact area = 1837.778 A^2.
+Read the first two lines, ii = 634
+Calculating frame 634...
+Convex contact area = 1837.975 A^2.
+Read the first two lines, ii = 635
+Calculating frame 635...
+Convex contact area = 1829.459 A^2.
+Read the first two lines, ii = 636
+Calculating frame 636...
+Convex contact area = 1821.402 A^2.
+Read the first two lines, ii = 637
+Calculating frame 637...
+Convex contact area = 1832.786 A^2.
+Read the first two lines, ii = 638
+Calculating frame 638...
+Convex contact area = 1835.610 A^2.
+Read the first two lines, ii = 639
+Calculating frame 639...
+Convex contact area = 1813.148 A^2.
+Read the first two lines, ii = 640
+Calculating frame 640...
+Convex contact area = 1815.819 A^2.
+Read the first two lines, ii = 641
+Calculating frame 641...
+Convex contact area = 1838.583 A^2.
+Read the first two lines, ii = 642
+Calculating frame 642...
+Convex contact area = 1849.267 A^2.
+Read the first two lines, ii = 643
+Calculating frame 643...
+Convex contact area = 1856.736 A^2.
+Read the first two lines, ii = 644
+Calculating frame 644...
+Convex contact area = 1847.051 A^2.
+Read the first two lines, ii = 645
+Calculating frame 645...
+Convex contact area = 1840.100 A^2.
+Read the first two lines, ii = 646
+Calculating frame 646...
+Convex contact area = 1850.751 A^2.
+Read the first two lines, ii = 647
+Calculating frame 647...
+Convex contact area = 1849.210 A^2.
+Read the first two lines, ii = 648
+Calculating frame 648...
+Convex contact area = 1852.792 A^2.
+Read the first two lines, ii = 649
+Calculating frame 649...
+Convex contact area = 1849.771 A^2.
+Read the first two lines, ii = 650
+Calculating frame 650...
+Convex contact area = 1864.561 A^2.
+Read the first two lines, ii = 651
+Calculating frame 651...
+Convex contact area = 1851.580 A^2.
+Read the first two lines, ii = 652
+Calculating frame 652...
+Convex contact area = 1852.380 A^2.
+Read the first two lines, ii = 653
+Calculating frame 653...
+Convex contact area = 1868.860 A^2.
+Read the first two lines, ii = 654
+Calculating frame 654...
+Convex contact area = 1854.406 A^2.
+Read the first two lines, ii = 655
+Calculating frame 655...
+Convex contact area = 1882.680 A^2.
+Read the first two lines, ii = 656
+Calculating frame 656...
+Convex contact area = 1840.190 A^2.
+Read the first two lines, ii = 657
+Calculating frame 657...
+Convex contact area = 1837.455 A^2.
+Read the first two lines, ii = 658
+Calculating frame 658...
+Convex contact area = 1855.523 A^2.
+Read the first two lines, ii = 659
+Calculating frame 659...
+Convex contact area = 1862.799 A^2.
+Read the first two lines, ii = 660
+Calculating frame 660...
+Convex contact area = 1857.253 A^2.
+Read the first two lines, ii = 661
+Calculating frame 661...
+Convex contact area = 1875.762 A^2.
+Read the first two lines, ii = 662
+Calculating frame 662...
+Convex contact area = 1863.763 A^2.
+Read the first two lines, ii = 663
+Calculating frame 663...
+Convex contact area = 1876.018 A^2.
+Read the first two lines, ii = 664
+Calculating frame 664...
+Convex contact area = 1851.352 A^2.
+Read the first two lines, ii = 665
+Calculating frame 665...
+Convex contact area = 1853.437 A^2.
+Read the first two lines, ii = 666
+Calculating frame 666...
+Convex contact area = 1877.074 A^2.
+Read the first two lines, ii = 667
+Calculating frame 667...
+Convex contact area = 1875.753 A^2.
+Read the first two lines, ii = 668
+Calculating frame 668...
+Convex contact area = 1843.365 A^2.
+Read the first two lines, ii = 669
+Calculating frame 669...
+Convex contact area = 1852.656 A^2.
+Read the first two lines, ii = 670
+Calculating frame 670...
+Convex contact area = 1865.307 A^2.
+Read the first two lines, ii = 671
+Calculating frame 671...
+Convex contact area = 1872.904 A^2.
+Read the first two lines, ii = 672
+Calculating frame 672...
+Convex contact area = 1856.238 A^2.
+Read the first two lines, ii = 673
+Calculating frame 673...
+Convex contact area = 1856.360 A^2.
+Read the first two lines, ii = 674
+Calculating frame 674...
+Convex contact area = 1845.541 A^2.
+Read the first two lines, ii = 675
+Calculating frame 675...
+Convex contact area = 1860.660 A^2.
+Read the first two lines, ii = 676
+Calculating frame 676...
+Convex contact area = 1860.907 A^2.
+Read the first two lines, ii = 677
+Calculating frame 677...
+Convex contact area = 1867.785 A^2.
+Read the first two lines, ii = 678
+Calculating frame 678...
+Convex contact area = 1877.016 A^2.
+Read the first two lines, ii = 679
+Calculating frame 679...
+Convex contact area = 1876.845 A^2.
+Read the first two lines, ii = 680
+Calculating frame 680...
+Convex contact area = 1838.959 A^2.
+Read the first two lines, ii = 681
+Calculating frame 681...
+Convex contact area = 1830.241 A^2.
+Read the first two lines, ii = 682
+Calculating frame 682...
+Convex contact area = 1864.120 A^2.
+Read the first two lines, ii = 683
+Calculating frame 683...
+Convex contact area = 1871.231 A^2.
+Read the first two lines, ii = 684
+Calculating frame 684...
+Convex contact area = 1850.171 A^2.
+Read the first two lines, ii = 685
+Calculating frame 685...
+Convex contact area = 1874.732 A^2.
+Read the first two lines, ii = 686
+Calculating frame 686...
+Convex contact area = 1870.457 A^2.
+Read the first two lines, ii = 687
+Calculating frame 687...
+Convex contact area = 1898.638 A^2.
+Read the first two lines, ii = 688
+Calculating frame 688...
+Convex contact area = 1858.850 A^2.
+Read the first two lines, ii = 689
+Calculating frame 689...
+Convex contact area = 1837.229 A^2.
+Read the first two lines, ii = 690
+Calculating frame 690...
+Convex contact area = 1852.906 A^2.
+Read the first two lines, ii = 691
+Calculating frame 691...
+Convex contact area = 1853.239 A^2.
+Read the first two lines, ii = 692
+Calculating frame 692...
+Convex contact area = 1835.372 A^2.
+Read the first two lines, ii = 693
+Calculating frame 693...
+Convex contact area = 1853.481 A^2.
+Read the first two lines, ii = 694
+Calculating frame 694...
+Convex contact area = 1859.125 A^2.
+Read the first two lines, ii = 695
+Calculating frame 695...
+Convex contact area = 1865.254 A^2.
+Read the first two lines, ii = 696
+Calculating frame 696...
+Convex contact area = 1869.009 A^2.
+Read the first two lines, ii = 697
+Calculating frame 697...
+Convex contact area = 1866.877 A^2.
+Read the first two lines, ii = 698
+Calculating frame 698...
+Convex contact area = 1865.510 A^2.
+Read the first two lines, ii = 699
+Calculating frame 699...
+Convex contact area = 1861.009 A^2.
+Read the first two lines, ii = 700
+Calculating frame 700...
+Convex contact area = 1888.437 A^2.
+Read the first two lines, ii = 701
+Calculating frame 701...
+Convex contact area = 1838.618 A^2.
+Read the first two lines, ii = 702
+Calculating frame 702...
+Convex contact area = 1814.604 A^2.
+Read the first two lines, ii = 703
+Calculating frame 703...
+Convex contact area = 1831.953 A^2.
+Read the first two lines, ii = 704
+Calculating frame 704...
+Convex contact area = 1834.996 A^2.
+Read the first two lines, ii = 705
+Calculating frame 705...
+Convex contact area = 1856.320 A^2.
+Read the first two lines, ii = 706
+Calculating frame 706...
+Convex contact area = 1853.919 A^2.
+Read the first two lines, ii = 707
+Calculating frame 707...
+Convex contact area = 1842.759 A^2.
+Read the first two lines, ii = 708
+Calculating frame 708...
+Convex contact area = 1866.437 A^2.
+Read the first two lines, ii = 709
+Calculating frame 709...
+Convex contact area = 1878.756 A^2.
+Read the first two lines, ii = 710
+Calculating frame 710...
+Convex contact area = 1853.175 A^2.
+Read the first two lines, ii = 711
+Calculating frame 711...
+Convex contact area = 1875.693 A^2.
+Read the first two lines, ii = 712
+Calculating frame 712...
+Convex contact area = 1875.784 A^2.
+Read the first two lines, ii = 713
+Calculating frame 713...
+Convex contact area = 1870.165 A^2.
+Read the first two lines, ii = 714
+Calculating frame 714...
+Convex contact area = 1858.684 A^2.
+Read the first two lines, ii = 715
+Calculating frame 715...
+Convex contact area = 1868.028 A^2.
+Read the first two lines, ii = 716
+Calculating frame 716...
+Convex contact area = 1857.706 A^2.
+Read the first two lines, ii = 717
+Calculating frame 717...
+Convex contact area = 1835.308 A^2.
+Read the first two lines, ii = 718
+Calculating frame 718...
+Convex contact area = 1841.916 A^2.
+Read the first two lines, ii = 719
+Calculating frame 719...
+Convex contact area = 1850.954 A^2.
+Read the first two lines, ii = 720
+Calculating frame 720...
+Convex contact area = 1880.141 A^2.
+Read the first two lines, ii = 721
+Calculating frame 721...
+Convex contact area = 1851.249 A^2.
+Read the first two lines, ii = 722
+Calculating frame 722...
+Convex contact area = 1828.694 A^2.
+Read the first two lines, ii = 723
+Calculating frame 723...
+Convex contact area = 1819.445 A^2.
+Read the first two lines, ii = 724
+Calculating frame 724...
+Convex contact area = 1819.199 A^2.
+Read the first two lines, ii = 725
+Calculating frame 725...
+Convex contact area = 1825.090 A^2.
+Read the first two lines, ii = 726
+Calculating frame 726...
+Convex contact area = 1833.614 A^2.
+Read the first two lines, ii = 727
+Calculating frame 727...
+Convex contact area = 1826.003 A^2.
+Read the first two lines, ii = 728
+Calculating frame 728...
+Convex contact area = 1821.376 A^2.
+Read the first two lines, ii = 729
+Calculating frame 729...
+Convex contact area = 1847.223 A^2.
+Read the first two lines, ii = 730
+Calculating frame 730...
+Convex contact area = 1848.271 A^2.
+Read the first two lines, ii = 731
+Calculating frame 731...
+Convex contact area = 1849.829 A^2.
+Read the first two lines, ii = 732
+Calculating frame 732...
+Convex contact area = 1813.769 A^2.
+Read the first two lines, ii = 733
+Calculating frame 733...
+Convex contact area = 1831.571 A^2.
+Read the first two lines, ii = 734
+Calculating frame 734...
+Convex contact area = 1826.250 A^2.
+Read the first two lines, ii = 735
+Calculating frame 735...
+Convex contact area = 1825.152 A^2.
+Read the first two lines, ii = 736
+Calculating frame 736...
+Convex contact area = 1834.672 A^2.
+Read the first two lines, ii = 737
+Calculating frame 737...
+Convex contact area = 1838.142 A^2.
+Read the first two lines, ii = 738
+Calculating frame 738...
+Convex contact area = 1838.102 A^2.
+Read the first two lines, ii = 739
+Calculating frame 739...
+Convex contact area = 1830.284 A^2.
+Read the first two lines, ii = 740
+Calculating frame 740...
+Convex contact area = 1815.949 A^2.
+Read the first two lines, ii = 741
+Calculating frame 741...
+Convex contact area = 1824.682 A^2.
+Read the first two lines, ii = 742
+Calculating frame 742...
+Convex contact area = 1808.016 A^2.
+Read the first two lines, ii = 743
+Calculating frame 743...
+Convex contact area = 1802.871 A^2.
+Read the first two lines, ii = 744
+Calculating frame 744...
+Convex contact area = 1799.858 A^2.
+Read the first two lines, ii = 745
+Calculating frame 745...
+Convex contact area = 1805.591 A^2.
+Read the first two lines, ii = 746
+Calculating frame 746...
+Convex contact area = 1815.653 A^2.
+Read the first two lines, ii = 747
+Calculating frame 747...
+Convex contact area = 1804.359 A^2.
+Read the first two lines, ii = 748
+Calculating frame 748...
+Convex contact area = 1805.269 A^2.
+Read the first two lines, ii = 749
+Calculating frame 749...
+Convex contact area = 1806.566 A^2.
+Read the first two lines, ii = 750
+Calculating frame 750...
+Convex contact area = 1827.510 A^2.
+Read the first two lines, ii = 751
+Calculating frame 751...
+Convex contact area = 1801.312 A^2.
+Read the first two lines, ii = 752
+Calculating frame 752...
+Convex contact area = 1819.209 A^2.
+Read the first two lines, ii = 753
+Calculating frame 753...
+Convex contact area = 1813.026 A^2.
+Read the first two lines, ii = 754
+Calculating frame 754...
+Convex contact area = 1822.605 A^2.
+Read the first two lines, ii = 755
+Calculating frame 755...
+Convex contact area = 1827.189 A^2.
+Read the first two lines, ii = 756
+Calculating frame 756...
+Convex contact area = 1834.645 A^2.
+Read the first two lines, ii = 757
+Calculating frame 757...
+Convex contact area = 1809.894 A^2.
+Read the first two lines, ii = 758
+Calculating frame 758...
+Convex contact area = 1816.536 A^2.
+Read the first two lines, ii = 759
+Calculating frame 759...
+Convex contact area = 1824.524 A^2.
+Read the first two lines, ii = 760
+Calculating frame 760...
+Convex contact area = 1812.022 A^2.
+Read the first two lines, ii = 761
+Calculating frame 761...
+Convex contact area = 1834.530 A^2.
+Read the first two lines, ii = 762
+Calculating frame 762...
+Convex contact area = 1805.626 A^2.
+Read the first two lines, ii = 763
+Calculating frame 763...
+Convex contact area = 1814.135 A^2.
+Read the first two lines, ii = 764
+Calculating frame 764...
+Convex contact area = 1815.282 A^2.
+Read the first two lines, ii = 765
+Calculating frame 765...
+Convex contact area = 1823.086 A^2.
+Read the first two lines, ii = 766
+Calculating frame 766...
+Convex contact area = 1807.451 A^2.
+Read the first two lines, ii = 767
+Calculating frame 767...
+Convex contact area = 1790.043 A^2.
+Read the first two lines, ii = 768
+Calculating frame 768...
+Convex contact area = 1821.902 A^2.
+Read the first two lines, ii = 769
+Calculating frame 769...
+Convex contact area = 1822.327 A^2.
+Read the first two lines, ii = 770
+Calculating frame 770...
+Convex contact area = 1815.347 A^2.
+Read the first two lines, ii = 771
+Calculating frame 771...
+Convex contact area = 1825.519 A^2.
+Read the first two lines, ii = 772
+Calculating frame 772...
+Convex contact area = 1826.024 A^2.
+Read the first two lines, ii = 773
+Calculating frame 773...
+Convex contact area = 1789.945 A^2.
+Read the first two lines, ii = 774
+Calculating frame 774...
+Convex contact area = 1806.833 A^2.
+Read the first two lines, ii = 775
+Calculating frame 775...
+Convex contact area = 1822.760 A^2.
+Read the first two lines, ii = 776
+Calculating frame 776...
+Convex contact area = 1830.587 A^2.
+Read the first two lines, ii = 777
+Calculating frame 777...
+Convex contact area = 1805.964 A^2.
+Read the first two lines, ii = 778
+Calculating frame 778...
+Convex contact area = 1811.600 A^2.
+Read the first two lines, ii = 779
+Calculating frame 779...
+Convex contact area = 1800.657 A^2.
+Read the first two lines, ii = 780
+Calculating frame 780...
+Convex contact area = 1842.577 A^2.
+Read the first two lines, ii = 781
+Calculating frame 781...
+Convex contact area = 1814.593 A^2.
+Read the first two lines, ii = 782
+Calculating frame 782...
+Convex contact area = 1841.396 A^2.
+Read the first two lines, ii = 783
+Calculating frame 783...
+Convex contact area = 1832.089 A^2.
+Read the first two lines, ii = 784
+Calculating frame 784...
+Convex contact area = 1835.372 A^2.
+Read the first two lines, ii = 785
+Calculating frame 785...
+Convex contact area = 1821.861 A^2.
+Read the first two lines, ii = 786
+Calculating frame 786...
+Convex contact area = 1845.976 A^2.
+Read the first two lines, ii = 787
+Calculating frame 787...
+Convex contact area = 1828.585 A^2.
+Read the first two lines, ii = 788
+Calculating frame 788...
+Convex contact area = 1828.611 A^2.
+Read the first two lines, ii = 789
+Calculating frame 789...
+Convex contact area = 1819.878 A^2.
+Read the first two lines, ii = 790
+Calculating frame 790...
+Convex contact area = 1834.065 A^2.
+Read the first two lines, ii = 791
+Calculating frame 791...
+Convex contact area = 1830.724 A^2.
+Read the first two lines, ii = 792
+Calculating frame 792...
+Convex contact area = 1833.888 A^2.
+Read the first two lines, ii = 793
+Calculating frame 793...
+Convex contact area = 1823.605 A^2.
+Read the first two lines, ii = 794
+Calculating frame 794...
+Convex contact area = 1830.558 A^2.
+Read the first two lines, ii = 795
+Calculating frame 795...
+Convex contact area = 1804.046 A^2.
+Read the first two lines, ii = 796
+Calculating frame 796...
+Convex contact area = 1837.712 A^2.
+Read the first two lines, ii = 797
+Calculating frame 797...
+Convex contact area = 1816.471 A^2.
+Read the first two lines, ii = 798
+Calculating frame 798...
+Convex contact area = 1836.249 A^2.
+Read the first two lines, ii = 799
+Calculating frame 799...
+Convex contact area = 1836.276 A^2.
+Read the first two lines, ii = 800
+Calculating frame 800...
+Convex contact area = 1827.497 A^2.
+Read the first two lines, ii = 801
+Calculating frame 801...
+Convex contact area = 1843.454 A^2.
+Read the first two lines, ii = 802
+Calculating frame 802...
+Convex contact area = 1839.799 A^2.
+Read the first two lines, ii = 803
+Calculating frame 803...
+Convex contact area = 1823.172 A^2.
+Read the first two lines, ii = 804
+Calculating frame 804...
+Convex contact area = 1823.860 A^2.
+Read the first two lines, ii = 805
+Calculating frame 805...
+Convex contact area = 1828.032 A^2.
+Read the first two lines, ii = 806
+Calculating frame 806...
+Convex contact area = 1823.008 A^2.
+Read the first two lines, ii = 807
+Calculating frame 807...
+Convex contact area = 1817.277 A^2.
+Read the first two lines, ii = 808
+Calculating frame 808...
+Convex contact area = 1849.609 A^2.
+Read the first two lines, ii = 809
+Calculating frame 809...
+Convex contact area = 1854.433 A^2.
+Read the first two lines, ii = 810
+Calculating frame 810...
+Convex contact area = 1886.243 A^2.
+Read the first two lines, ii = 811
+Calculating frame 811...
+Convex contact area = 1851.446 A^2.
+Read the first two lines, ii = 812
+Calculating frame 812...
+Convex contact area = 1860.769 A^2.
+Read the first two lines, ii = 813
+Calculating frame 813...
+Convex contact area = 1841.094 A^2.
+Read the first two lines, ii = 814
+Calculating frame 814...
+Convex contact area = 1823.780 A^2.
+Read the first two lines, ii = 815
+Calculating frame 815...
+Convex contact area = 1837.265 A^2.
+Read the first two lines, ii = 816
+Calculating frame 816...
+Convex contact area = 1836.167 A^2.
+Read the first two lines, ii = 817
+Calculating frame 817...
+Convex contact area = 1848.672 A^2.
+Read the first two lines, ii = 818
+Calculating frame 818...
+Convex contact area = 1825.944 A^2.
+Read the first two lines, ii = 819
+Calculating frame 819...
+Convex contact area = 1821.056 A^2.
+Read the first two lines, ii = 820
+Calculating frame 820...
+Convex contact area = 1827.746 A^2.
+Read the first two lines, ii = 821
+Calculating frame 821...
+Convex contact area = 1846.435 A^2.
+Read the first two lines, ii = 822
+Calculating frame 822...
+Convex contact area = 1844.475 A^2.
+Read the first two lines, ii = 823
+Calculating frame 823...
+Convex contact area = 1826.317 A^2.
+Read the first two lines, ii = 824
+Calculating frame 824...
+Convex contact area = 1804.759 A^2.
+Read the first two lines, ii = 825
+Calculating frame 825...
+Convex contact area = 1847.689 A^2.
+Read the first two lines, ii = 826
+Calculating frame 826...
+Convex contact area = 1826.162 A^2.
+Read the first two lines, ii = 827
+Calculating frame 827...
+Convex contact area = 1849.146 A^2.
+Read the first two lines, ii = 828
+Calculating frame 828...
+Convex contact area = 1834.477 A^2.
+Read the first two lines, ii = 829
+Calculating frame 829...
+Convex contact area = 1845.528 A^2.
+Read the first two lines, ii = 830
+Calculating frame 830...
+Convex contact area = 1845.183 A^2.
+Read the first two lines, ii = 831
+Calculating frame 831...
+Convex contact area = 1842.303 A^2.
+Read the first two lines, ii = 832
+Calculating frame 832...
+Convex contact area = 1840.306 A^2.
+Read the first two lines, ii = 833
+Calculating frame 833...
+Convex contact area = 1842.756 A^2.
+Read the first two lines, ii = 834
+Calculating frame 834...
+Convex contact area = 1809.885 A^2.
+Read the first two lines, ii = 835
+Calculating frame 835...
+Convex contact area = 1858.890 A^2.
+Read the first two lines, ii = 836
+Calculating frame 836...
+Convex contact area = 1846.963 A^2.
+Read the first two lines, ii = 837
+Calculating frame 837...
+Convex contact area = 1836.599 A^2.
+Read the first two lines, ii = 838
+Calculating frame 838...
+Convex contact area = 1823.944 A^2.
+Read the first two lines, ii = 839
+Calculating frame 839...
+Convex contact area = 1844.300 A^2.
+Read the first two lines, ii = 840
+Calculating frame 840...
+Convex contact area = 1835.946 A^2.
+Read the first two lines, ii = 841
+Calculating frame 841...
+Convex contact area = 1814.946 A^2.
+Read the first two lines, ii = 842
+Calculating frame 842...
+Convex contact area = 1852.866 A^2.
+Read the first two lines, ii = 843
+Calculating frame 843...
+Convex contact area = 1824.197 A^2.
+Read the first two lines, ii = 844
+Calculating frame 844...
+Convex contact area = 1836.895 A^2.
+Read the first two lines, ii = 845
+Calculating frame 845...
+Convex contact area = 1834.086 A^2.
+Read the first two lines, ii = 846
+Calculating frame 846...
+Convex contact area = 1850.179 A^2.
+Read the first two lines, ii = 847
+Calculating frame 847...
+Convex contact area = 1848.874 A^2.
+Read the first two lines, ii = 848
+Calculating frame 848...
+Convex contact area = 1869.607 A^2.
+Read the first two lines, ii = 849
+Calculating frame 849...
+Convex contact area = 1847.098 A^2.
+Read the first two lines, ii = 850
+Calculating frame 850...
+Convex contact area = 1840.160 A^2.
+Read the first two lines, ii = 851
+Calculating frame 851...
+Convex contact area = 1845.363 A^2.
+Read the first two lines, ii = 852
+Calculating frame 852...
+Convex contact area = 1876.453 A^2.
+Read the first two lines, ii = 853
+Calculating frame 853...
+Convex contact area = 1873.787 A^2.
+Read the first two lines, ii = 854
+Calculating frame 854...
+Convex contact area = 1877.033 A^2.
+Read the first two lines, ii = 855
+Calculating frame 855...
+Convex contact area = 1883.311 A^2.
+Read the first two lines, ii = 856
+Calculating frame 856...
+Convex contact area = 1838.381 A^2.
+Read the first two lines, ii = 857
+Calculating frame 857...
+Convex contact area = 1871.370 A^2.
+Read the first two lines, ii = 858
+Calculating frame 858...
+Convex contact area = 1879.280 A^2.
+Read the first two lines, ii = 859
+Calculating frame 859...
+Convex contact area = 1865.050 A^2.
+Read the first two lines, ii = 860
+Calculating frame 860...
+Convex contact area = 1870.360 A^2.
+Read the first two lines, ii = 861
+Calculating frame 861...
+Convex contact area = 1860.467 A^2.
+Read the first two lines, ii = 862
+Calculating frame 862...
+Convex contact area = 1834.836 A^2.
+Read the first two lines, ii = 863
+Calculating frame 863...
+Convex contact area = 1870.825 A^2.
+Read the first two lines, ii = 864
+Calculating frame 864...
+Convex contact area = 1871.347 A^2.
+Read the first two lines, ii = 865
+Calculating frame 865...
+Convex contact area = 1841.354 A^2.
+Read the first two lines, ii = 866
+Calculating frame 866...
+Convex contact area = 1844.703 A^2.
+Read the first two lines, ii = 867
+Calculating frame 867...
+Convex contact area = 1834.474 A^2.
+Read the first two lines, ii = 868
+Calculating frame 868...
+Convex contact area = 1847.674 A^2.
+Read the first two lines, ii = 869
+Calculating frame 869...
+Convex contact area = 1846.371 A^2.
+Read the first two lines, ii = 870
+Calculating frame 870...
+Convex contact area = 1871.952 A^2.
+Read the first two lines, ii = 871
+Calculating frame 871...
+Convex contact area = 1850.810 A^2.
+Read the first two lines, ii = 872
+Calculating frame 872...
+Convex contact area = 1862.067 A^2.
+Read the first two lines, ii = 873
+Calculating frame 873...
+Convex contact area = 1843.288 A^2.
+Read the first two lines, ii = 874
+Calculating frame 874...
+Convex contact area = 1865.711 A^2.
+Read the first two lines, ii = 875
+Calculating frame 875...
+Convex contact area = 1850.329 A^2.
+Read the first two lines, ii = 876
+Calculating frame 876...
+Convex contact area = 1867.512 A^2.
+Read the first two lines, ii = 877
+Calculating frame 877...
+Convex contact area = 1839.415 A^2.
+Read the first two lines, ii = 878
+Calculating frame 878...
+Convex contact area = 1847.271 A^2.
+Read the first two lines, ii = 879
+Calculating frame 879...
+Convex contact area = 1842.835 A^2.
+Read the first two lines, ii = 880
+Calculating frame 880...
+Convex contact area = 1850.908 A^2.
+Read the first two lines, ii = 881
+Calculating frame 881...
+Convex contact area = 1850.221 A^2.
+Read the first two lines, ii = 882
+Calculating frame 882...
+Convex contact area = 1843.895 A^2.
+Read the first two lines, ii = 883
+Calculating frame 883...
+Convex contact area = 1824.274 A^2.
+Read the first two lines, ii = 884
+Calculating frame 884...
+Convex contact area = 1836.898 A^2.
+Read the first two lines, ii = 885
+Calculating frame 885...
+Convex contact area = 1840.061 A^2.
+Read the first two lines, ii = 886
+Calculating frame 886...
+Convex contact area = 1848.232 A^2.
+Read the first two lines, ii = 887
+Calculating frame 887...
+Convex contact area = 1850.273 A^2.
+Read the first two lines, ii = 888
+Calculating frame 888...
+Convex contact area = 1826.911 A^2.
+Read the first two lines, ii = 889
+Calculating frame 889...
+Convex contact area = 1847.141 A^2.
+Read the first two lines, ii = 890
+Calculating frame 890...
+Convex contact area = 1843.018 A^2.
+Read the first two lines, ii = 891
+Calculating frame 891...
+Convex contact area = 1839.243 A^2.
+Read the first two lines, ii = 892
+Calculating frame 892...
+Convex contact area = 1839.194 A^2.
+Read the first two lines, ii = 893
+Calculating frame 893...
+Convex contact area = 1849.224 A^2.
+Read the first two lines, ii = 894
+Calculating frame 894...
+Convex contact area = 1866.044 A^2.
+Read the first two lines, ii = 895
+Calculating frame 895...
+Convex contact area = 1866.198 A^2.
+Read the first two lines, ii = 896
+Calculating frame 896...
+Convex contact area = 1862.752 A^2.
+Read the first two lines, ii = 897
+Calculating frame 897...
+Convex contact area = 1868.482 A^2.
+Read the first two lines, ii = 898
+Calculating frame 898...
+Convex contact area = 1846.710 A^2.
+Read the first two lines, ii = 899
+Calculating frame 899...
+Convex contact area = 1855.783 A^2.
+Read the first two lines, ii = 900
+Calculating frame 900...
+Convex contact area = 1843.881 A^2.
+Read the first two lines, ii = 901
+Calculating frame 901...
+Convex contact area = 1840.956 A^2.
+Read the first two lines, ii = 902
+Calculating frame 902...
+Convex contact area = 1851.639 A^2.
+Read the first two lines, ii = 903
+Calculating frame 903...
+Convex contact area = 1847.948 A^2.
+Read the first two lines, ii = 904
+Calculating frame 904...
+Convex contact area = 1815.956 A^2.
+Read the first two lines, ii = 905
+Calculating frame 905...
+Convex contact area = 1831.552 A^2.
+Read the first two lines, ii = 906
+Calculating frame 906...
+Convex contact area = 1830.921 A^2.
+Read the first two lines, ii = 907
+Calculating frame 907...
+Convex contact area = 1801.926 A^2.
+Read the first two lines, ii = 908
+Calculating frame 908...
+Convex contact area = 1807.182 A^2.
+Read the first two lines, ii = 909
+Calculating frame 909...
+Convex contact area = 1813.189 A^2.
+Read the first two lines, ii = 910
+Calculating frame 910...
+Convex contact area = 1821.708 A^2.
+Read the first two lines, ii = 911
+Calculating frame 911...
+Convex contact area = 1816.163 A^2.
+Read the first two lines, ii = 912
+Calculating frame 912...
+Convex contact area = 1812.222 A^2.
+Read the first two lines, ii = 913
+Calculating frame 913...
+Convex contact area = 1843.153 A^2.
+Read the first two lines, ii = 914
+Calculating frame 914...
+Convex contact area = 1838.979 A^2.
+Read the first two lines, ii = 915
+Calculating frame 915...
+Convex contact area = 1847.334 A^2.
+Read the first two lines, ii = 916
+Calculating frame 916...
+Convex contact area = 1830.282 A^2.
+Read the first two lines, ii = 917
+Calculating frame 917...
+Convex contact area = 1832.462 A^2.
+Read the first two lines, ii = 918
+Calculating frame 918...
+Convex contact area = 1837.011 A^2.
+Read the first two lines, ii = 919
+Calculating frame 919...
+Convex contact area = 1825.548 A^2.
+Read the first two lines, ii = 920
+Calculating frame 920...
+Convex contact area = 1834.250 A^2.
+Read the first two lines, ii = 921
+Calculating frame 921...
+Convex contact area = 1815.369 A^2.
+Read the first two lines, ii = 922
+Calculating frame 922...
+Convex contact area = 1819.865 A^2.
+Read the first two lines, ii = 923
+Calculating frame 923...
+Convex contact area = 1816.309 A^2.
+Read the first two lines, ii = 924
+Calculating frame 924...
+Convex contact area = 1835.578 A^2.
+Read the first two lines, ii = 925
+Calculating frame 925...
+Convex contact area = 1845.972 A^2.
+Read the first two lines, ii = 926
+Calculating frame 926...
+Convex contact area = 1832.802 A^2.
+Read the first two lines, ii = 927
+Calculating frame 927...
+Convex contact area = 1849.374 A^2.
+Read the first two lines, ii = 928
+Calculating frame 928...
+Convex contact area = 1832.165 A^2.
+Read the first two lines, ii = 929
+Calculating frame 929...
+Convex contact area = 1813.592 A^2.
+Read the first two lines, ii = 930
+Calculating frame 930...
+Convex contact area = 1822.907 A^2.
+Read the first two lines, ii = 931
+Calculating frame 931...
+Convex contact area = 1826.306 A^2.
+Read the first two lines, ii = 932
+Calculating frame 932...
+Convex contact area = 1835.364 A^2.
+Read the first two lines, ii = 933
+Calculating frame 933...
+Convex contact area = 1825.959 A^2.
+Read the first two lines, ii = 934
+Calculating frame 934...
+Convex contact area = 1809.278 A^2.
+Read the first two lines, ii = 935
+Calculating frame 935...
+Convex contact area = 1800.981 A^2.
+Read the first two lines, ii = 936
+Calculating frame 936...
+Convex contact area = 1814.832 A^2.
+Read the first two lines, ii = 937
+Calculating frame 937...
+Convex contact area = 1789.661 A^2.
+Read the first two lines, ii = 938
+Calculating frame 938...
+Convex contact area = 1818.585 A^2.
+Read the first two lines, ii = 939
+Calculating frame 939...
+Convex contact area = 1809.702 A^2.
+Read the first two lines, ii = 940
+Calculating frame 940...
+Convex contact area = 1815.435 A^2.
+Read the first two lines, ii = 941
+Calculating frame 941...
+Convex contact area = 1843.660 A^2.
+Read the first two lines, ii = 942
+Calculating frame 942...
+Convex contact area = 1830.566 A^2.
+Read the first two lines, ii = 943
+Calculating frame 943...
+Convex contact area = 1838.175 A^2.
+Read the first two lines, ii = 944
+Calculating frame 944...
+Convex contact area = 1831.742 A^2.
+Read the first two lines, ii = 945
+Calculating frame 945...
+Convex contact area = 1858.595 A^2.
+Read the first two lines, ii = 946
+Calculating frame 946...
+Convex contact area = 1823.729 A^2.
+Read the first two lines, ii = 947
+Calculating frame 947...
+Convex contact area = 1832.612 A^2.
+Read the first two lines, ii = 948
+Calculating frame 948...
+Convex contact area = 1834.173 A^2.
+Read the first two lines, ii = 949
+Calculating frame 949...
+Convex contact area = 1829.972 A^2.
+Read the first two lines, ii = 950
+Calculating frame 950...
+Convex contact area = 1859.131 A^2.
+Read the first two lines, ii = 951
+Calculating frame 951...
+Convex contact area = 1841.445 A^2.
+Read the first two lines, ii = 952
+Calculating frame 952...
+Convex contact area = 1818.753 A^2.
+Read the first two lines, ii = 953
+Calculating frame 953...
+Convex contact area = 1822.860 A^2.
+Read the first two lines, ii = 954
+Calculating frame 954...
+Convex contact area = 1831.646 A^2.
+Read the first two lines, ii = 955
+Calculating frame 955...
+Convex contact area = 1857.606 A^2.
+Read the first two lines, ii = 956
+Calculating frame 956...
+Convex contact area = 1835.036 A^2.
+Read the first two lines, ii = 957
+Calculating frame 957...
+Convex contact area = 1820.361 A^2.
+Read the first two lines, ii = 958
+Calculating frame 958...
+Convex contact area = 1840.112 A^2.
+Read the first two lines, ii = 959
+Calculating frame 959...
+Convex contact area = 1832.566 A^2.
+Read the first two lines, ii = 960
+Calculating frame 960...
+Convex contact area = 1842.024 A^2.
+Read the first two lines, ii = 961
+Calculating frame 961...
+Convex contact area = 1835.613 A^2.
+Read the first two lines, ii = 962
+Calculating frame 962...
+Convex contact area = 1830.655 A^2.
+Read the first two lines, ii = 963
+Calculating frame 963...
+Convex contact area = 1814.735 A^2.
+Read the first two lines, ii = 964
+Calculating frame 964...
+Convex contact area = 1829.978 A^2.
+Read the first two lines, ii = 965
+Calculating frame 965...
+Convex contact area = 1837.036 A^2.
+Read the first two lines, ii = 966
+Calculating frame 966...
+Convex contact area = 1827.520 A^2.
+Read the first two lines, ii = 967
+Calculating frame 967...
+Convex contact area = 1823.266 A^2.
+Read the first two lines, ii = 968
+Calculating frame 968...
+Convex contact area = 1865.308 A^2.
+Read the first two lines, ii = 969
+Calculating frame 969...
+Convex contact area = 1839.509 A^2.
+Read the first two lines, ii = 970
+Calculating frame 970...
+Convex contact area = 1844.889 A^2.
+Read the first two lines, ii = 971
+Calculating frame 971...
+Convex contact area = 1820.645 A^2.
+Read the first two lines, ii = 972
+Calculating frame 972...
+Convex contact area = 1830.687 A^2.
+Read the first two lines, ii = 973
+Calculating frame 973...
+Convex contact area = 1851.133 A^2.
+Read the first two lines, ii = 974
+Calculating frame 974...
+Convex contact area = 1844.018 A^2.
+Read the first two lines, ii = 975
+Calculating frame 975...
+Convex contact area = 1844.501 A^2.
+Read the first two lines, ii = 976
+Calculating frame 976...
+Convex contact area = 1833.850 A^2.
+Read the first two lines, ii = 977
+Calculating frame 977...
+Convex contact area = 1861.837 A^2.
+Read the first two lines, ii = 978
+Calculating frame 978...
+Convex contact area = 1848.442 A^2.
+Read the first two lines, ii = 979
+Calculating frame 979...
+Convex contact area = 1852.948 A^2.
+Read the first two lines, ii = 980
+Calculating frame 980...
+Convex contact area = 1845.587 A^2.
+Read the first two lines, ii = 981
+Calculating frame 981...
+Convex contact area = 1827.415 A^2.
+Read the first two lines, ii = 982
+Calculating frame 982...
+Convex contact area = 1818.512 A^2.
+Read the first two lines, ii = 983
+Calculating frame 983...
+Convex contact area = 1830.831 A^2.
+Read the first two lines, ii = 984
+Calculating frame 984...
+Convex contact area = 1838.843 A^2.
+Read the first two lines, ii = 985
+Calculating frame 985...
+Convex contact area = 1828.112 A^2.
+Read the first two lines, ii = 986
+Calculating frame 986...
+Convex contact area = 1854.331 A^2.
+Read the first two lines, ii = 987
+Calculating frame 987...
+Convex contact area = 1836.865 A^2.
+Read the first two lines, ii = 988
+Calculating frame 988...
+Convex contact area = 1857.579 A^2.
+Read the first two lines, ii = 989
+Calculating frame 989...
+Convex contact area = 1837.176 A^2.
+Read the first two lines, ii = 990
+Calculating frame 990...
+Convex contact area = 1864.321 A^2.
+Read the first two lines, ii = 991
+Calculating frame 991...
+Convex contact area = 1854.856 A^2.
+Read the first two lines, ii = 992
+Calculating frame 992...
+Convex contact area = 1857.003 A^2.
+Read the first two lines, ii = 993
+Calculating frame 993...
+Convex contact area = 1870.747 A^2.
+Read the first two lines, ii = 994
+Calculating frame 994...
+Convex contact area = 1870.488 A^2.
+Read the first two lines, ii = 995
+Calculating frame 995...
+Convex contact area = 1866.460 A^2.
+Read the first two lines, ii = 996
+Calculating frame 996...
+Convex contact area = 1847.604 A^2.
+Read the first two lines, ii = 997
+Calculating frame 997...
+Convex contact area = 1872.163 A^2.
+Read the first two lines, ii = 998
+Calculating frame 998...
+Convex contact area = 1866.780 A^2.
+Read the first two lines, ii = 999
+Calculating frame 999...
+Convex contact area = 1863.718 A^2.
+Read the first two lines, ii = 1000
+Calculating frame 1000...
+Convex contact area = 1854.046 A^2.
+Read the first two lines, ii = 1001
+Calculating frame 1001...
+Convex contact area = 1888.185 A^2.
+Read the first two lines, ii = 1002
+Calculating frame 1002...
+Convex contact area = 1881.719 A^2.
+Read the first two lines, ii = 1003
+Calculating frame 1003...
+Convex contact area = 1874.060 A^2.
+Read the first two lines, ii = 1004
+Calculating frame 1004...
+Convex contact area = 1859.979 A^2.
+Read the first two lines, ii = 1005
+Calculating frame 1005...
+Convex contact area = 1887.454 A^2.
+Read the first two lines, ii = 1006
+Calculating frame 1006...
+Convex contact area = 1876.571 A^2.
+Read the first two lines, ii = 1007
+Calculating frame 1007...
+Convex contact area = 1882.366 A^2.
+Read the first two lines, ii = 1008
+Calculating frame 1008...
+Convex contact area = 1879.144 A^2.
+Read the first two lines, ii = 1009
+Calculating frame 1009...
+Convex contact area = 1886.205 A^2.
+Read the first two lines, ii = 1010
+Calculating frame 1010...
+Convex contact area = 1887.943 A^2.
+Read the first two lines, ii = 1011
+Calculating frame 1011...
+Convex contact area = 1884.713 A^2.
+Read the first two lines, ii = 1012
+Calculating frame 1012...
+Convex contact area = 1867.780 A^2.
+Read the first two lines, ii = 1013
+Calculating frame 1013...
+Convex contact area = 1879.383 A^2.
+q = 0.015, S(q) = 13649107.00000 
+q = 0.020, S(q) = 13335783.00000 
+q = 0.025, S(q) = 12943217.00000 
+q = 0.030, S(q) = 12478666.00000 
+q = 0.035, S(q) = 11950557.00000 
+q = 0.040, S(q) = 11368302.00000 
+q = 0.045, S(q) = 10741890.00000 
+q = 0.050, S(q) = 10081746.00000 
+q = 0.055, S(q) = 9398424.00000 
+q = 0.060, S(q) = 8702271.00000 
+q = 0.065, S(q) = 8003278.50000 
+q = 0.070, S(q) = 7310782.00000 
+q = 0.075, S(q) = 6633286.50000 
+q = 0.080, S(q) = 5978342.50000 
+q = 0.085, S(q) = 5352379.00000 
+q = 0.090, S(q) = 4760664.50000 
+q = 0.095, S(q) = 4207269.00000 
+q = 0.100, S(q) = 3695052.50000 
+q = 0.105, S(q) = 3225739.00000 
+q = 0.110, S(q) = 2799963.00000 
+q = 0.115, S(q) = 2417394.25000 
+q = 0.120, S(q) = 2076860.62500 
+q = 0.125, S(q) = 1776479.37500 
+q = 0.130, S(q) = 1513801.37500 
+q = 0.135, S(q) = 1285972.12500 
+q = 0.140, S(q) = 1089862.87500 
+q = 0.145, S(q) = 922207.00000 
+q = 0.150, S(q) = 779723.00000 
+q = 0.155, S(q) = 659214.75000 
+q = 0.160, S(q) = 557655.68750 
+q = 0.165, S(q) = 472254.68750 
+q = 0.170, S(q) = 400499.65625 
+q = 0.175, S(q) = 340181.21875 
+q = 0.180, S(q) = 289403.84375 
+q = 0.185, S(q) = 246576.71875 
+q = 0.190, S(q) = 210395.03125 
+q = 0.195, S(q) = 179811.89062 
+q = 0.200, S(q) = 154003.42188 
+q = 0.205, S(q) = 132330.51562 
+q = 0.210, S(q) = 114299.46875 
+q = 0.215, S(q) = 99525.24219 
+q = 0.220, S(q) = 87696.90625 
+q = 0.225, S(q) = 78548.40625 
+q = 0.230, S(q) = 71835.06250 
+q = 0.235, S(q) = 67316.39062 
+q = 0.240, S(q) = 64744.17969 
+q = 0.245, S(q) = 63856.93750 
+q = 0.250, S(q) = 64379.28125 
+q = 0.255, S(q) = 66024.90625 
+q = 0.260, S(q) = 68503.12500 
+q = 0.265, S(q) = 71526.90625 
+q = 0.270, S(q) = 74822.02344 
+q = 0.275, S(q) = 78136.12500 
+q = 0.280, S(q) = 81246.85938 
+q = 0.285, S(q) = 83968.17969 
+q = 0.290, S(q) = 86155.45312 
+q = 0.295, S(q) = 87707.64062 
+q = 0.300, S(q) = 88567.55469 
+q = 0.305, S(q) = 88719.63281 
+q = 0.310, S(q) = 88186.56250 
+q = 0.315, S(q) = 87023.56250 
+q = 0.320, S(q) = 85312.06250 
+q = 0.325, S(q) = 83152.59375 
+q = 0.330, S(q) = 80657.67188 
+q = 0.335, S(q) = 77944.44531 
+q = 0.340, S(q) = 75128.56250 
+q = 0.345, S(q) = 72318.12500 
+q = 0.350, S(q) = 69609.56250 
+q = 0.355, S(q) = 67083.78125 
+q = 0.360, S(q) = 64804.46875 
+q = 0.365, S(q) = 62816.66406 
+q = 0.370, S(q) = 61147.13672 
+q = 0.375, S(q) = 59805.10938 
+q = 0.380, S(q) = 58784.25391 
+q = 0.385, S(q) = 58064.61719 
+q = 0.390, S(q) = 57615.53906 
+q = 0.395, S(q) = 57398.34375 
+q = 0.400, S(q) = 57369.19922 
+q = 0.405, S(q) = 57481.51562 
+q = 0.410, S(q) = 57688.76172 
+q = 0.415, S(q) = 57946.21094 
+q = 0.420, S(q) = 58212.73438 
+q = 0.425, S(q) = 58452.02734 
+q = 0.430, S(q) = 58633.66016 
+q = 0.435, S(q) = 58733.53516 
+q = 0.440, S(q) = 58733.92188 
+q = 0.445, S(q) = 58623.50781 
+q = 0.450, S(q) = 58396.96484 
+q = 0.455, S(q) = 58054.35547 
+q = 0.460, S(q) = 57600.53125 
+q = 0.465, S(q) = 57044.20312 
+q = 0.470, S(q) = 56397.20312 
+q = 0.475, S(q) = 55673.50781 
+q = 0.480, S(q) = 54888.50781 
+q = 0.485, S(q) = 54058.05859 
+q = 0.490, S(q) = 53197.79297 
+q = 0.495, S(q) = 52322.48828 
+q = 0.500, S(q) = 51445.41406 
+==9673== Profiling application: ./traj_scatter.out
+==9673== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   81.54%  6.25007s       500  12.500ms  12.455ms  13.866ms  scat_calc(float*, int*, float*, float*, int, int, int, float*, float, float, float, float*, float*, float*, float*, int, float*)
+                    9.70%  743.55ms       500  1.4871ms  1.4467ms  1.6949ms  surf_calc(float*, int*, int*, int*, float*, int, int, int, float, float*)
+                    8.03%  615.23ms       500  1.2305ms  1.2223ms  1.3741ms  dist_calc(float*, int*, int*, int*, int, int)
+                    0.51%  39.353ms       500  78.705us  76.639us  88.159us  sum_V(float*, float*, int, int, int*, float*)
+                    0.07%  5.3332ms      4509  1.1820us     991ns  12.384us  [CUDA memset]
+                    0.06%  4.4693ms       500  8.9380us  8.5430us  9.6320us  FF_calc(float*, float*, float*, int, int, float, float, float*)
+                    0.05%  3.7550ms       500  7.5090us  6.9440us  8.4160us  create_FF_full_FoXS(float*, float*, float, int*, float*, int, int, int, int)
+                    0.04%  2.9500ms       504  5.8530us  1.1840us  11.968us  [CUDA memcpy HtoD]
+                    0.01%  725.69us       500  1.4510us  1.2480us  6.4000us  [CUDA memcpy DtoH]
+      API calls:   96.01%  7.71156s      1004  7.6808ms  9.7550us  58.252ms  cudaMemcpy
+                    3.29%  264.20ms        19  13.905ms  5.2160us  262.07ms  cudaMalloc
+                    0.36%  28.713ms      4509  6.3680us  2.4030us  54.353us  cudaMemset
+                    0.24%  18.919ms      3000  6.3060us  5.0780us  84.076us  cudaLaunch
+                    0.06%  4.5584ms     28000     162ns     116ns  442.11us  cudaSetupArgument
+                    0.03%  2.5977ms        16  162.35us  6.7510us  654.78us  cudaFree
+                    0.01%  629.62us        94  6.6980us     300ns  252.41us  cuDeviceGetAttribute
+                    0.01%  591.18us      3000     197ns     142ns  14.356us  cudaConfigureCall
+                    0.01%  480.63us         1  480.63us  480.63us  480.63us  cuDeviceTotalMem
+                    0.00%  59.335us         1  59.335us  59.335us  59.335us  cuDeviceGetName
+                    0.00%  3.5060us         3  1.1680us     363ns  2.3400us  cuDeviceGetCount
+                    0.00%  3.3880us         2  1.6940us     398ns  2.9900us  cuDeviceGet
+1540829378408
