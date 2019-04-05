@@ -71,6 +71,7 @@ if (frame_num % delta_t == 0) {
     } else {
         force_ramp = (1 - cos(PI * ((float)frame_num - (float)tau) / (float)tau)) / 2.0;
     }
+    force_ramp = 1.0;
     printf("Currently force_ramp is %.3f\n",force_ramp);
     
 
@@ -117,13 +118,14 @@ if (frame_num % delta_t == 0) {
     cudaMalloc((void **)&d_FF_full,    size_qxatom2);
     cudaMalloc((void **)&d_WK,         size_WK);
     cudaMalloc((void **)&d_c2,         size_c2); // Only for HyPred
-    cudaMalloc((void **)&d_S_old,      size_double_q);
+    cudaMalloc((void **)&d_S_old,      size_double_q); // For EMA
 
     // Initialize some matrices
     cudaMemset(d_close_flag, 0,   size_qxatom2);
     cudaMemset(d_Force,      0.0, size_coord);
     cudaMemset(d_Aq,         0.0, size_q);
-    cudaMemset(d_S_calc,     0.0, size_double_q);
+    //cudaMemset(d_S_calc,     0.0, size_q);
+    cudaMemset(d_S_calc,     0.0, size_double_q); //For EMA method, use double precision
     cudaMemset(d_f_ptxc,     0.0, size_qxatom2);
     cudaMemset(d_f_ptyc,     0.0, size_qxatom2);   
     cudaMemset(d_f_ptzc,     0.0, size_qxatom2);
@@ -318,30 +320,35 @@ if (frame_num % delta_t == 0) {
     float chi = 0.0;
     float chi2 = 0.0;
     float chi_ref = 0.0;
-    printf("S_old: ");
+    if (frame_num % 1 == 0) printf("S_old: ");
     for (int ii = 0; ii < num_q; ii++) {
         chi = q_S_ref_dS[ii+2*num_q] - ((float)S_old[ii] - q_S_ref_dS[ii+num_q]);
         chi2 += chi * chi / dS_err[ii];
         chi_ref+= q_S_ref_dS[ii+2*num_q] * q_S_ref_dS[ii+2*num_q] / dS_err[ii];
-        printf("%.3f, ", S_old[ii]);
+        if (frame_num % 1 == 0) printf("%.3f, ", S_old[ii]);
     }
     printf("\nchi square is %.5e ( %.3f % )\n", chi2, chi2 / chi_ref * 100);
 
- 
+    printf("Force vectors: \n");
+    for (int ii = 0; ii < num_atom; ii++) {
+        printf("%8.5f %8.5f %8.5f\n", Force[3*ii+0], Force[3*ii+1], Force[3*ii+2]);
+    }
     cudaFree(d_coord); 
     cudaFree(d_Force); 
     cudaFree(d_Ele); 
-    cudaFree(d_q_S_ref_dS); 
+    cudaFree(d_q_S_ref_dS);
+    cudaFree(d_sigma2); 
     cudaFree(d_Aq);
     cudaFree(d_S_calc); 
-    cudaFree(d_f_ptxc); cudaFree(d_f_ptyc); cudaFree(d_f_ptzc);
     cudaFree(d_S_calcc); 
-    cudaFree(d_WK);
+    cudaFree(d_f_ptxc); cudaFree(d_f_ptyc); cudaFree(d_f_ptzc);
     cudaFree(d_V); cudaFree(d_V_s); 
+    cudaFree(d_WK);
     cudaFree(d_close_flag); cudaFree(d_close_num); cudaFree(d_close_idx);
     cudaFree(d_vdW);
     cudaFree(d_FF_table); cudaFree(d_FF_full);
-    //cudaFree(d_c2);
+    cudaFree(d_S_old);
+    cudaFree(d_c2);
     free(S_calc);
 
     gettimeofday(&tv2, NULL);

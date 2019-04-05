@@ -14,7 +14,7 @@ int main() {
     //int num_q = 98;
     //int num_atom = 3649;
     int frames_to_average = 500; // Will be the last n frames of the traj
-    int frames_total = 1014; // Look at the xyz file
+    int frames_total = 2001; // Look at the xyz file
 
     float *coord, *S_calc, *S_calc_tot;
     float *d_coord, *d_S_calc;
@@ -103,7 +103,7 @@ int main() {
     float sigma2 = 1.0;
     float alpha = 1.0;
 
-    FILE *fp = fopen("../../test.txt","r");
+    FILE *fp = fopen("test.txt","r");
     if (fp == NULL) {
         printf("Opening file failed.\n");
         return 1;
@@ -140,7 +140,7 @@ int main() {
             surf_calc<<<1024,512>>>(d_coord, d_Ele, d_close_num, d_close_idx, d_vdW, 
                                     num_atom, num_atom2, num_raster, sol_s, d_V);
             sum_V<<<1,1024>>>(d_V, d_V_s, num_atom, num_atom2, d_Ele, d_vdW);
-            FF_calc<<<320, 32>>>(d_q_S_ref_dS, d_WK, d_vdW, num_q, num_ele, c1, r_m, d_FF_table,rho);
+            FF_calc<<<320, 32>>>(d_q_S_ref_dS, d_WK, d_vdW, num_q, num_ele, c1, r_m, d_FF_table, rho);
             create_FF_full_FoXS<<<320, 1024>>>(d_FF_table, d_V, c2, d_Ele, d_FF_full, 
                                           num_q, num_ele, num_atom, num_atom2);
             scat_calc<<<320, 1024>>>(d_coord,    

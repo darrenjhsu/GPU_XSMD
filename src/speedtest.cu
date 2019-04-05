@@ -118,7 +118,7 @@ int main () {
     // Only for HyPred
     //cudaMemcpy(d_c2,         c2,         size_c2,    cudaMemcpyHostToDevice);
 
-
+    printf("Diagnostics: First coordinate is %.3f.\n",coord_init[0]);
 
     float sigma2 = 1.0;
     float alpha = 1.0;
@@ -178,8 +178,9 @@ int main () {
         num_q, 
         num_ele, 
         c1, 
-        r_m, 
-        d_FF_table);
+        r_m,
+        d_FF_table,
+        rho);
 
     create_FF_full_FoXS<<<320, 1024>>>(
         d_FF_table, 
