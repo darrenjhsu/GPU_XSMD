@@ -1,4 +1,2 @@
-archive/
-bin/
-build/
+archive/:bin/:build/
 
