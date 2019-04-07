@@ -35,8 +35,8 @@ if (frame_num % delta_t == 0) {
     float *d_sigma2;         // Sigma square (standard error of mean) for the target diff pattern.
                                 
     float *d_Aq;             // Prefactor for each q
-    //float *d_S_calc;         // Calculated scattering curve
-    double *d_S_calc;         // For EMA method, use double
+    float *d_S_calc;         // Calculated scattering curve
+    //double *d_S_calc;         // For EMA method, use double
 
     float *d_S_calcc,        // Some intermediate matrices
           *d_f_ptxc, 
@@ -110,8 +110,8 @@ if (frame_num % delta_t == 0) {
     cudaMalloc((void **)&d_Ele,        size_atom);
     cudaMalloc((void **)&d_q_S_ref_dS, 3 * size_q);
     cudaMalloc((void **)&d_sigma2,     size_q);
-    //cudaMalloc((void **)&d_S_calc,     size_q); // Will be computed on GPU
-    cudaMalloc((void **)&d_S_calc,     size_double_q); // For EMA method, use double precision
+    cudaMalloc((void **)&d_S_calc,     size_q); // Will be computed on GPU
+    //cudaMalloc((void **)&d_S_calc,     size_double_q); // For EMA method, use double precision
     cudaMalloc((void **)&d_f_ptxc,     size_qxatom2);
     cudaMalloc((void **)&d_f_ptyc,     size_qxatom2);
     cudaMalloc((void **)&d_f_ptzc,     size_qxatom2);
@@ -133,8 +133,8 @@ if (frame_num % delta_t == 0) {
     cudaMemset(d_close_flag, 0,   size_qxatom2);
     cudaMemset(d_Force,      0.0, size_coord);
     cudaMemset(d_Aq,         0.0, size_q);
-    //cudaMemset(d_S_calc,     0.0, size_q);
-    cudaMemset(d_S_calc,     0.0, size_double_q); //For EMA method, use double precision
+    cudaMemset(d_S_calc,     0.0, size_q);
+    //cudaMemset(d_S_calc,     0.0, size_double_q); //For EMA method, use double precision
     cudaMemset(d_f_ptxc,     0.0, size_qxatom2);
     cudaMemset(d_f_ptyc,     0.0, size_qxatom2);   
     cudaMemset(d_f_ptzc,     0.0, size_qxatom2);
@@ -253,7 +253,7 @@ if (frame_num % delta_t == 0) {
        exit(-1);
     }
 
-/*    scat_calc<<<320, 1024>>>(
+    scat_calc<<<320, 1024>>>(
         d_coord, 
         d_Ele,
         d_q_S_ref_dS, 
@@ -264,15 +264,15 @@ if (frame_num % delta_t == 0) {
         d_Aq, 
         alpha,    
         k_chi,     
-        sigma2,    
+        d_sigma2,    
         d_f_ptxc, 
         d_f_ptyc, 
         d_f_ptzc, 
         d_S_calcc, 
         num_atom2, 
-        d_FF_full);*/
+        d_FF_full);
 
-    scat_calc_EMA<<<320, 1024>>>(
+/*    scat_calc_EMA<<<320, 1024>>>(
         d_coord, 
         d_Ele,
         d_q_S_ref_dS, 
@@ -293,7 +293,7 @@ if (frame_num % delta_t == 0) {
         d_S_old,
         *EMA_norm
         );
-
+*/
 
     cudaDeviceSynchronize();
     error = cudaGetLastError();
@@ -334,14 +334,17 @@ if (frame_num % delta_t == 0) {
     float chi = 0.0;
     float chi2 = 0.0;
     float chi_ref = 0.0;
-    if (frame_num % 1 == 0) printf("S_old: ");
+    if (frame_num % 1000 == 0) printf("S_calc: ");
+    //if (frame_num % 1000 == 0) printf("S_old: ");
     for (int ii = 0; ii < num_q; ii++) {
-        chi = q_S_ref_dS[ii+2*num_q] - ((float)S_old[ii] - q_S_ref_dS[ii+num_q]);
+        //chi = q_S_ref_dS[ii+2*num_q] - ((float)S_old[ii] - q_S_ref_dS[ii+num_q]);
+        chi = q_S_ref_dS[ii+2*num_q] - ((float)S_calc[ii] - q_S_ref_dS[ii+num_q]);
         chi2 += chi * chi / dS_err[ii];
         chi_ref+= q_S_ref_dS[ii+2*num_q] * q_S_ref_dS[ii+2*num_q] / dS_err[ii];
-        if (frame_num % 1 == 0) printf("%.3f, ", S_old[ii]);
+        if (frame_num % 1000 == 0) printf("%.3f, ", S_calc[ii]);
     }
     printf("\nchi square is %.5e ( %.3f % )\n", chi2, chi2 / chi_ref * 100);
+
     if (frame_num % 1000 == 0) {
         printf("Force vectors: \n");
         for (int ii = 0; ii < num_atom; ii++) {
