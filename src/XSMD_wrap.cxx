@@ -2032,20 +2032,23 @@ _wrap_XSMD_calc(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, 
   float *arg1 = (float *) 0 ;
   float *arg2 = (float *) 0 ;
   double *arg3 = (double *) 0 ;
-  int arg4 ;
-  double *arg5 = (double *) 0 ;
+  double *arg4 = (double *) 0 ;
+  int arg5 ;
+  double *arg6 = (double *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
   int res2 = 0 ;
   void *argp3 = 0 ;
   int res3 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  void *argp5 = 0 ;
-  int res5 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  void *argp6 = 0 ;
+  int res6 = 0 ;
   
-  if (SWIG_GetArgs(interp, objc, objv,"ooooo:XSMD_calc coord Force S_old frame_num EMA_norm ",(void *)0,(void *)0,(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  if (SWIG_GetArgs(interp, objc, objv,"oooooo:XSMD_calc coord Force Force_old S_old frame_num EMA_norm ",(void *)0,(void *)0,(void *)0,(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
   res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_float, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "XSMD_calc" "', argument " "1"" of type '" "float *""'"); 
@@ -2061,17 +2064,22 @@ _wrap_XSMD_calc(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, 
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "XSMD_calc" "', argument " "3"" of type '" "double *""'"); 
   }
   arg3 = reinterpret_cast< double * >(argp3);
-  ecode4 = SWIG_AsVal_int SWIG_TCL_CALL_ARGS_2(objv[4], &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "XSMD_calc" "', argument " "4"" of type '" "int""'");
-  } 
-  arg4 = static_cast< int >(val4);
-  res5 = SWIG_ConvertPtr(objv[5], &argp5,SWIGTYPE_p_double, 0 |  0 );
-  if (!SWIG_IsOK(res5)) {
-    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "XSMD_calc" "', argument " "5"" of type '" "double *""'"); 
+  res4 = SWIG_ConvertPtr(objv[4], &argp4,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "XSMD_calc" "', argument " "4"" of type '" "double *""'"); 
   }
-  arg5 = reinterpret_cast< double * >(argp5);
-  XSMD_calc(arg1,arg2,arg3,arg4,arg5);
+  arg4 = reinterpret_cast< double * >(argp4);
+  ecode5 = SWIG_AsVal_int SWIG_TCL_CALL_ARGS_2(objv[5], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "XSMD_calc" "', argument " "5"" of type '" "int""'");
+  } 
+  arg5 = static_cast< int >(val5);
+  res6 = SWIG_ConvertPtr(objv[6], &argp6,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "XSMD_calc" "', argument " "6"" of type '" "double *""'"); 
+  }
+  arg6 = reinterpret_cast< double * >(argp6);
+  XSMD_calc(arg1,arg2,arg3,arg4,arg5,arg6);
   
   return TCL_OK;
 fail:

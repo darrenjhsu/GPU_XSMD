@@ -10,7 +10,7 @@
 #include "WaasKirf.hh"
 #define PI 3.14159265359 
 
-void XSMD_calc (float *coord, float *Force, double *S_old, int frame_num, double *EMA_norm) {
+void XSMD_calc (float *coord, float *Force, double *Force_old, double *S_old, int frame_num, double *EMA_norm) {
 if (frame_num % delta_t == 0) {
     struct timeval tv1, tv2;
     gettimeofday(&tv1, NULL);
@@ -25,6 +25,8 @@ if (frame_num % delta_t == 0) {
     // Declare cuda pointers //
     float *d_coord;          // Coordinates 3 x num_atom
     float *d_Force;          // Force 3 x num_atom
+    double *d_Force_old;
+
     int   *d_Ele;            // Element list.
 
     float *d_q_S_ref_dS;     /* q vector, reference scattering pattern, and 
@@ -55,7 +57,13 @@ if (frame_num % delta_t == 0) {
     float *d_FF_table,       // Form factors for each atom type at each q
           *d_FF_full;        /* Form factors for each atom at each q, 
                                 considering the SASA an atom has. */
+    // If using HyPred mode, then an array of c2 is needed. //
+    float *d_c2;
     
+    // If using surface gradient 
+    float *d_surf_grad;
+
+
     // Compute the exponential moving average normalization constant.
     // Here this final 500.0 is to say we average over 500 snapshots,
     // each snapshot taken every 1000 steps (the first if statement of this kernel).
@@ -75,11 +83,10 @@ if (frame_num % delta_t == 0) {
     printf("Currently force_ramp is %.3f\n",force_ramp);
     
 
-    // If using HyPred mode, then an array of c2 is needed. //
-    float *d_c2;
     
     // set various memory chunk sizes
     int size_coord       = 3 * num_atom * sizeof(float);
+    int size_double_coord= 3 * num_atom * sizeof(double);
     int size_atom        = num_atom * sizeof(int);
     int size_atom2       = num_atom2 * sizeof(int);
     int size_atom2f      = num_atom2 * sizeof(float);
@@ -99,6 +106,7 @@ if (frame_num % delta_t == 0) {
     cudaMalloc((void **)&d_Aq,         size_q);
     cudaMalloc((void **)&d_coord,      size_coord); // 40 KB
     cudaMalloc((void **)&d_Force,      size_coord); // 40 KB
+    cudaMalloc((void **)&d_Force_old,  size_double_coord); // 40 KB
     cudaMalloc((void **)&d_Ele,        size_atom);
     cudaMalloc((void **)&d_q_S_ref_dS, 3 * size_q);
     cudaMalloc((void **)&d_sigma2,     size_q);
@@ -119,6 +127,7 @@ if (frame_num % delta_t == 0) {
     cudaMalloc((void **)&d_WK,         size_WK);
     cudaMalloc((void **)&d_c2,         size_c2); // Only for HyPred
     cudaMalloc((void **)&d_S_old,      size_double_q); // For EMA
+    cudaMalloc((void **)&d_surf_grad, size_coord); // For surface gradient
 
     // Initialize some matrices
     cudaMemset(d_close_flag, 0,   size_qxatom2);
@@ -132,10 +141,12 @@ if (frame_num % delta_t == 0) {
     cudaMemset(d_S_calcc,    0.0, size_qxatom2);
     cudaMemset(d_close_num,  0,   size_atom2);
     cudaMemset(d_close_idx,  0,   size_atom2xatom2);
+    cudaMemset(d_surf_grad,  0.0, size_coord);
     cudaMemset(d_FF_full,    0.0, size_qxatom2);
 
     // Copy necessary data
     cudaMemcpy(d_coord,      coord,      size_coord, cudaMemcpyHostToDevice);
+    cudaMemcpy(d_Force_old,  Force_old,  size_double_coord, cudaMemcpyHostToDevice);
     cudaMemcpy(d_vdW,        vdW,        size_vdW,   cudaMemcpyHostToDevice);
     cudaMemcpy(d_Ele,        Ele,        size_atom,  cudaMemcpyHostToDevice);
     cudaMemcpy(d_q_S_ref_dS, q_S_ref_dS, 3 * size_q, cudaMemcpyHostToDevice);
@@ -295,7 +306,8 @@ if (frame_num % delta_t == 0) {
     cudaMemcpyAsync(S_calc, d_S_calc, size_q,     cudaMemcpyDeviceToHost);
 
     force_calc<<<1024, 512>>>(
-        d_Force, 
+        d_Force,
+        d_Force_old,
         num_atom, 
         num_q, 
         d_f_ptxc, 
@@ -304,6 +316,7 @@ if (frame_num % delta_t == 0) {
         num_atom2, 
         num_q2, 
         d_Ele,
+        *EMA_norm,
         force_ramp);
 
     cudaDeviceSynchronize();
@@ -314,8 +327,9 @@ if (frame_num % delta_t == 0) {
        exit(-1);
     }
 
-    cudaMemcpy(Force,  d_Force,  size_coord, cudaMemcpyDeviceToHost);
-    cudaMemcpy(S_old,  d_S_old,  size_double_q, cudaMemcpyDeviceToHost);
+    cudaMemcpy(Force,      d_Force,      size_coord, cudaMemcpyDeviceToHost);
+    cudaMemcpy(Force_old,  d_Force_old,  size_double_coord, cudaMemcpyDeviceToHost);
+    cudaMemcpy(S_old,      d_S_old,      size_double_q, cudaMemcpyDeviceToHost);
 
     float chi = 0.0;
     float chi2 = 0.0;
@@ -331,12 +345,19 @@ if (frame_num % delta_t == 0) {
     }
     printf("\nchi square is %.5e ( %.3f % )\n", chi2, chi2 / chi_ref * 100);
 
-    /*printf("Force vectors: \n");
-    for (int ii = 0; ii < num_atom; ii++) {
-        printf("%8.5f %8.5f %8.5f\n", Force[3*ii+0], Force[3*ii+1], Force[3*ii+2]);
-    }*/
+    if (frame_num % 1000 == 0) {
+        printf("Force vectors: \n");
+        for (int ii = 0; ii < num_atom; ii++) {
+            printf("%8.5f %8.5f %8.5f\n", Force[3*ii+0], Force[3*ii+1], Force[3*ii+2]);
+        }
+        printf("Force_old vectors: \n");
+        for (int ii = 0; ii < num_atom; ii++) {
+            printf("%8.5f %8.5f %8.5f\n", Force_old[3*ii+0], Force_old[3*ii+1], Force_old[3*ii+2]);
+        }
+    } 
     cudaFree(d_coord); 
     cudaFree(d_Force); 
+    cudaFree(d_Force_old); 
     cudaFree(d_Ele); 
     cudaFree(d_q_S_ref_dS);
     cudaFree(d_sigma2); 
@@ -351,6 +372,7 @@ if (frame_num % delta_t == 0) {
     cudaFree(d_FF_table); cudaFree(d_FF_full);
     cudaFree(d_S_old);
     cudaFree(d_c2);
+    cudaFree(d_surf_grad);
     free(S_calc);
 
     gettimeofday(&tv2, NULL);
