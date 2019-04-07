@@ -2103,12 +2103,12 @@ SWIGINTERN const char *_wrap_Ele_set(ClientData clientData SWIGUNUSED, Tcl_Inter
     int *inp = 0;
     int res = SWIG_ConvertPtr(value, SWIG_as_voidptrptr(&inp), SWIGTYPE_p_int,  0 );
     if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""Ele""' of type '""int [1932]""'");
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""Ele""' of type '""int [104]""'");
     } else if (inp) {
       size_t ii = 0;
-      for (; ii < (size_t)1932; ++ii) Ele[ii] = inp[ii];
+      for (; ii < (size_t)104; ++ii) Ele[ii] = inp[ii];
     } else {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""Ele""' of type '""int [1932]""'");
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""Ele""' of type '""int [104]""'");
     }
   }
   return NULL;
@@ -2761,12 +2761,12 @@ SWIGINTERN const char *_wrap_q_S_ref_dS_set(ClientData clientData SWIGUNUSED, Tc
     float *inp = 0;
     int res = SWIG_ConvertPtr(value, SWIG_as_voidptrptr(&inp), SWIGTYPE_p_float,  0 );
     if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""q_S_ref_dS""' of type '""float [339]""'");
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""q_S_ref_dS""' of type '""float [903]""'");
     } else if (inp) {
       size_t ii = 0;
-      for (; ii < (size_t)339; ++ii) q_S_ref_dS[ii] = inp[ii];
+      for (; ii < (size_t)903; ++ii) q_S_ref_dS[ii] = inp[ii];
     } else {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""q_S_ref_dS""' of type '""float [339]""'");
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""q_S_ref_dS""' of type '""float [903]""'");
     }
   }
   return NULL;
@@ -2799,12 +2799,12 @@ SWIGINTERN const char *_wrap_dS_err_set(ClientData clientData SWIGUNUSED, Tcl_In
     float *inp = 0;
     int res = SWIG_ConvertPtr(value, SWIG_as_voidptrptr(&inp), SWIGTYPE_p_float,  0 );
     if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""dS_err""' of type '""float [113]""'");
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""dS_err""' of type '""float [301]""'");
     } else if (inp) {
       size_t ii = 0;
-      for (; ii < (size_t)113; ++ii) dS_err[ii] = inp[ii];
+      for (; ii < (size_t)301; ++ii) dS_err[ii] = inp[ii];
     } else {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""dS_err""' of type '""float [113]""'");
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""dS_err""' of type '""float [301]""'");
     }
   }
   return NULL;

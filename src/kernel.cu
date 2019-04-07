@@ -352,7 +352,7 @@ __global__ void __launch_bounds__(1024,2) scat_calc (
     float *Aq, 
     float alpha,   
     float k_chi,    
-    float sigma2,  
+    float *sigma2,  
     float *f_ptxc, 
     float *f_ptyc, 
     float *f_ptzc, 
@@ -360,11 +360,12 @@ __global__ void __launch_bounds__(1024,2) scat_calc (
     int num_atom2,
     float *FF_full) {
 
-    float q_pt; 
+    float q_pt, sigma2_pt; 
 
     for (int ii = blockIdx.x; ii < num_q; ii += gridDim.x) {
 
         q_pt = q_S_ref_dS[ii];
+        sigma2_pt = sigma2[ii];
 
         // Calculate scattering for Aq
         for (int jj = threadIdx.x; jj < num_atom; jj += blockDim.x) {
@@ -420,7 +421,7 @@ __global__ void __launch_bounds__(1024,2) scat_calc (
             Aq[ii] = S_calc[ii] - q_S_ref_dS[ii+num_q];
             Aq[ii] *= -alpha;
             Aq[ii] += q_S_ref_dS[ii + 2*num_q];
-            Aq[ii] *= k_chi / sigma2;
+            Aq[ii] *= k_chi / sigma2_pt;
             Aq[ii] += Aq[ii];
         }
         __syncthreads();
