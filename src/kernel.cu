@@ -1222,13 +1222,13 @@ __global__ void force_calc (
         __syncthreads();
         if (threadIdx.x == 0) {
             if (Ele[ii]) {
-                Force_old[ii*3    ] *= (EMA_norm - 1.0) / EMA_norm; 
+                Force_old[ii*3    ] *= (EMA_norm - 1.0); 
                 Force_old[ii*3    ] -= (double)f_ptxc[ii];
                 Force_old[ii*3    ] /= EMA_norm;
-                Force_old[ii*3 + 1] *= (EMA_norm - 1.0) / EMA_norm; 
+                Force_old[ii*3 + 1] *= (EMA_norm - 1.0); 
                 Force_old[ii*3 + 1] -= (double)f_ptyc[ii];
                 Force_old[ii*3 + 1] /= EMA_norm;
-                Force_old[ii*3 + 2] *= (EMA_norm - 1.0) / EMA_norm; 
+                Force_old[ii*3 + 2] *= (EMA_norm - 1.0); 
                 Force_old[ii*3 + 2] -= (double)f_ptzc[ii];
                 Force_old[ii*3 + 2] /= EMA_norm;
                 Force[ii*3    ] = (float)Force_old[ii*3    ] * force_ramp;

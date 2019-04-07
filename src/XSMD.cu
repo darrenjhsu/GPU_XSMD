@@ -342,11 +342,16 @@ if (frame_num % delta_t == 0) {
         if (frame_num % 1 == 0) printf("%.3f, ", S_old[ii]);
     }
     printf("\nchi square is %.5e ( %.3f % )\n", chi2, chi2 / chi_ref * 100);
-
-    /*printf("Force vectors: \n");
-    for (int ii = 0; ii < num_atom; ii++) {
-        printf("%8.5f %8.5f %8.5f\n", Force[3*ii+0], Force[3*ii+1], Force[3*ii+2]);
-    }*/
+    if (frame_num % 1000 == 0) {
+        printf("Force vectors: \n");
+        for (int ii = 0; ii < num_atom; ii++) {
+            printf("%8.5f %8.5f %8.5f\n", Force[3*ii+0], Force[3*ii+1], Force[3*ii+2]);
+        }
+        printf("Force_old vectors: \n");
+        for (int ii = 0; ii < num_atom; ii++) {
+            printf("%8.5f %8.5f %8.5f\n", Force_old[3*ii+0], Force_old[3*ii+1], Force_old[3*ii+2]);
+        }
+    } 
     cudaFree(d_coord); 
     cudaFree(d_Force); 
     cudaFree(d_Force_old); 
