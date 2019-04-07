@@ -242,7 +242,7 @@ if (frame_num % delta_t == 0) {
        exit(-1);
     }
 
-/*    scat_calc<<<320, 1024>>>(
+    scat_calc<<<320, 1024>>>(
         d_coord, 
         d_Ele,
         d_q_S_ref_dS, 
@@ -253,15 +253,15 @@ if (frame_num % delta_t == 0) {
         d_Aq, 
         alpha,    
         k_chi,     
-        sigma2,    
+        d_sigma2,    
         d_f_ptxc, 
         d_f_ptyc, 
         d_f_ptzc, 
         d_S_calcc, 
         num_atom2, 
-        d_FF_full);*/
+        d_FF_full);
 
-    scat_calc_EMA<<<320, 1024>>>(
+/*    scat_calc_EMA<<<320, 1024>>>(
         d_coord, 
         d_Ele,
         d_q_S_ref_dS, 
@@ -282,7 +282,7 @@ if (frame_num % delta_t == 0) {
         d_S_old,
         *EMA_norm
         );
-
+*/
 
     cudaDeviceSynchronize();
     error = cudaGetLastError();
@@ -329,10 +329,10 @@ if (frame_num % delta_t == 0) {
     }
     printf("\nchi square is %.5e ( %.3f % )\n", chi2, chi2 / chi_ref * 100);
 
-    printf("Force vectors: \n");
+    /*printf("Force vectors: \n");
     for (int ii = 0; ii < num_atom; ii++) {
         printf("%8.5f %8.5f %8.5f\n", Force[3*ii+0], Force[3*ii+1], Force[3*ii+2]);
-    }
+    }*/
     cudaFree(d_coord); 
     cudaFree(d_Force); 
     cudaFree(d_Ele); 

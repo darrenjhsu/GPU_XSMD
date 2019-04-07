@@ -2103,12 +2103,12 @@ SWIGINTERN const char *_wrap_Ele_set(ClientData clientData SWIGUNUSED, Tcl_Inter
     int *inp = 0;
     int res = SWIG_ConvertPtr(value, SWIG_as_voidptrptr(&inp), SWIGTYPE_p_int,  0 );
     if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""Ele""' of type '""int [104]""'");
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""Ele""' of type '""int [1932]""'");
     } else if (inp) {
       size_t ii = 0;
-      for (; ii < (size_t)104; ++ii) Ele[ii] = inp[ii];
+      for (; ii < (size_t)1932; ++ii) Ele[ii] = inp[ii];
     } else {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""Ele""' of type '""int [104]""'");
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""Ele""' of type '""int [1932]""'");
     }
   }
   return NULL;
@@ -2761,17 +2761,55 @@ SWIGINTERN const char *_wrap_q_S_ref_dS_set(ClientData clientData SWIGUNUSED, Tc
     float *inp = 0;
     int res = SWIG_ConvertPtr(value, SWIG_as_voidptrptr(&inp), SWIGTYPE_p_float,  0 );
     if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""q_S_ref_dS""' of type '""float [903]""'");
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""q_S_ref_dS""' of type '""float [339]""'");
     } else if (inp) {
       size_t ii = 0;
-      for (; ii < (size_t)903; ++ii) q_S_ref_dS[ii] = inp[ii];
+      for (; ii < (size_t)339; ++ii) q_S_ref_dS[ii] = inp[ii];
     } else {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""q_S_ref_dS""' of type '""float [903]""'");
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""q_S_ref_dS""' of type '""float [339]""'");
     }
   }
   return NULL;
 fail:
   return "q_S_ref_dS";
+}
+
+
+SWIGINTERN const char *_wrap_dS_err_get(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, char *name1, char *name2, int flags) {
+  Tcl_Obj *value = 0;
+  
+  value = SWIG_NewPointerObj(SWIG_as_voidptr(dS_err), SWIGTYPE_p_float,  0 );
+  if (value) {
+    Tcl_SetVar2(interp,name1,name2,Tcl_GetStringFromObj(value,NULL), flags);
+    Tcl_DecrRefCount(value);
+  }
+  return NULL;
+}
+
+
+SWIGINTERN const char *_wrap_dS_err_set(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, char *name1, char *name2 SWIGUNUSED, int flags) {
+  Tcl_Obj *value = 0;
+  Tcl_Obj *name1o = 0;
+  
+  name1o = Tcl_NewStringObj(name1,-1);
+  value = Tcl_ObjGetVar2(interp, name1o, 0, flags);
+  Tcl_DecrRefCount(name1o);
+  if (!value) SWIG_fail;
+  {
+    float *inp = 0;
+    int res = SWIG_ConvertPtr(value, SWIG_as_voidptrptr(&inp), SWIGTYPE_p_float,  0 );
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""dS_err""' of type '""float [113]""'");
+    } else if (inp) {
+      size_t ii = 0;
+      for (; ii < (size_t)113; ++ii) dS_err[ii] = inp[ii];
+    } else {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""dS_err""' of type '""float [113]""'");
+    }
+  }
+  return NULL;
+fail:
+  return "dS_err";
 }
 
 
@@ -2848,6 +2886,7 @@ static swig_var_info swig_variables[] = {
     { SWIG_prefix "c2", 0, (swig_variable_func) _wrap_c2_get,(swig_variable_func) _wrap_c2_set},
     { SWIG_prefix "c", 0, (swig_variable_func) _wrap_c_get,(swig_variable_func) _wrap_c_set},
     { SWIG_prefix "q_S_ref_dS", 0, (swig_variable_func) _wrap_q_S_ref_dS_get,(swig_variable_func) _wrap_q_S_ref_dS_set},
+    { SWIG_prefix "dS_err", 0, (swig_variable_func) _wrap_dS_err_get,(swig_variable_func) _wrap_dS_err_set},
     { SWIG_prefix "WK", 0, (swig_variable_func) _wrap_WK_get,(swig_variable_func) _wrap_WK_set},
     {0,0,0,0}
 };
